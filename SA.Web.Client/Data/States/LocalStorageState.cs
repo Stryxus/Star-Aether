@@ -5,6 +5,7 @@ using SA.Web.Client.Data.Json;
 using SA.Web.Shared.Json;
 
 using Newtonsoft.Json;
+using SA.Web.Client.WebSockets;
 
 namespace SA.Web.Client.Data.States
 {
@@ -55,19 +56,19 @@ namespace SA.Web.Client.Data.States
                         break;
                     case Type t when t == typeof(NewsData):
                         if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyNewsDataChange(Services.Get<ClientState>().NewsData = obj as NewsData ?? new NewsData(), true);
-                        else await Services.Get<ServerState>().RequestNewsData(true);
+                        else if (Services.Get<WebSocketManagerMiddleware>().IsConnected) await Services.Get<ServerState>().RequestNewsData(true);
                         break;
                     case Type t when t == typeof(ChangelogData):
                         if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyChangelogDataChange(Services.Get<ClientState>().ChangelogData = obj as ChangelogData ?? new ChangelogData(), true);
-                        else await Services.Get<ServerState>().RequestChangelogData(true);
+                        else if (Services.Get<WebSocketManagerMiddleware>().IsConnected) await Services.Get<ServerState>().RequestChangelogData(true);
                         break;
                     case Type t when t == typeof(RoadmapData):
                         if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyRoadmapCardDataChange(Services.Get<ClientState>().RoadmapData = obj as RoadmapData ?? new RoadmapData(), true);
-                        else await Services.Get<ServerState>().RequestRoadmapData(true);
+                        else if (Services.Get<WebSocketManagerMiddleware>().IsConnected) await Services.Get<ServerState>().RequestRoadmapData(true);
                         break;
                     case Type t when t == typeof(MediaPhotographyData):
                         if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyPhotographyDataChange(Services.Get<ClientState>().PhotographyData = obj as MediaPhotographyData ?? new MediaPhotographyData(), true);
-                        else await Services.Get<ServerState>().RequestPhotographyData(true);
+                        else if (Services.Get<WebSocketManagerMiddleware>().IsConnected) await Services.Get<ServerState>().RequestPhotographyData(true);
                         break;
                 }
             }
