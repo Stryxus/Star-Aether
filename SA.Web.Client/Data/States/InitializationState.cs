@@ -13,7 +13,6 @@ namespace SA.Web.Client.Data.States
         {
             if (
                 Services.Get<ClientState>().Settings != null &&
-                Services.Get<ClientState>().LocalUpdateTimes != null &&
                 Services.Get<ClientState>().NewsData != null &&
                 Services.Get<ClientState>().ChangelogData != null &&
                 Services.Get<ClientState>().RoadmapData != null &&
@@ -44,35 +43,14 @@ namespace SA.Web.Client.Data.States
 
                 Services.Get<WebSocketManagerMiddleware>().OnServerConnected += async () =>
                 {
-                    Services.Get<ClientState>().OnUpdateTimesChanged += async () =>
+                    if (FirstDataLoadPass)
                     {
-                        if (FirstDataLoadPass)
-                        {
-                            FirstDataLoadPass = false;
-                            if (Services.Get<ClientState>().PreviousLocalUpdateTimes != null && Services.Get<ClientState>().PreviousLocalUpdateTimes != Services.Get<ClientState>().LocalUpdateTimes)
-                            {
-                                if (DateTime.Compare(Services.Get<ClientState>().PreviousLocalUpdateTimes.ChangelogDataUpdate, Services.Get<ClientState>().LocalUpdateTimes.ChangelogDataUpdate) < 0) await Services.Get<ServerState>().RequestChangelogData(true);
-                                if (DateTime.Compare(Services.Get<ClientState>().PreviousLocalUpdateTimes.NewsDataUpdate, Services.Get<ClientState>().LocalUpdateTimes.NewsDataUpdate) < 0) await Services.Get<ServerState>().RequestNewsData(true);
-                                if (DateTime.Compare(Services.Get<ClientState>().PreviousLocalUpdateTimes.RoadmapDataUpdate, Services.Get<ClientState>().LocalUpdateTimes.RoadmapDataUpdate) < 0) await Services.Get<ServerState>().RequestRoadmapData(true);
-                                if (DateTime.Compare(Services.Get<ClientState>().PreviousLocalUpdateTimes.PhotographyDataUpdate, Services.Get<ClientState>().LocalUpdateTimes.PhotographyDataUpdate) < 0) await Services.Get<ServerState>().RequestPhotographyData(true);
-                            }
-                            else if (Services.Get<ClientState>().PreviousLocalUpdateTimes == Services.Get<ClientState>().LocalUpdateTimes)
-                            {
-                                await Services.Get<ServerState>().RequestChangelogData(true);
-                                await Services.Get<ServerState>().RequestNewsData(true);
-                                await Services.Get<ServerState>().RequestRoadmapData(true);
-                                await Services.Get<ServerState>().RequestPhotographyData(true);
-                            }
-                            else
-                            {
-                                await Services.Get<ServerState>().RequestChangelogData();
-                                await Services.Get<ServerState>().RequestNewsData();
-                                await Services.Get<ServerState>().RequestRoadmapData();
-                                await Services.Get<ServerState>().RequestPhotographyData();
-                            }
-                        }
-                    };
-                    await Services.Get<ServerState>().RequestUpdateData(true);
+                        FirstDataLoadPass = false;
+                        await Services.Get<ServerState>().RequestChangelogData(true);
+                        await Services.Get<ServerState>().RequestNewsData(true);
+                        await Services.Get<ServerState>().RequestRoadmapData(true);
+                        await Services.Get<ServerState>().RequestPhotographyData(true);
+                    }
                 };
                 Services.Get<WebSocketManagerMiddleware>().OnServerConnectionError += async () =>
                 {

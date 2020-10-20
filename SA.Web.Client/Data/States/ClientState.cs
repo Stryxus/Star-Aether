@@ -32,34 +32,6 @@ namespace SA.Web.Client.Data.States
 
         internal void NotifySettingsChange() => OnSettingsChanged?.Invoke();
 
-        internal LastUpdateTimes PreviousLocalUpdateTimes { get; set; }
-        private LastUpdateTimes _localUpdateTimes;
-        internal LastUpdateTimes LocalUpdateTimes 
-        {
-            get
-            {
-                return _localUpdateTimes;
-            }
-            set 
-            {
-                _localUpdateTimes = value;
-                OnUpdateTimesChanged?.Invoke();
-                Services.Get<InitializationState>().CheckAppLoaded();
-            } 
-        }
-
-        internal event Action OnUpdateTimesChanged;
-        internal async void NotifyUpdateTimesChange(LastUpdateTimes data, bool isLocalData)
-        {
-            if (!isLocalData)
-            {
-                PreviousLocalUpdateTimes = LocalUpdateTimes;
-                LocalUpdateTimes = data;
-                await Services.Get<LocalStorageState>().SetLocalData<LastUpdateTimes>();
-                await Logger.LogInfo("Received Updated Data!");
-            }
-        }
-
         private NewsData _newsData;
         internal NewsData NewsData
         {

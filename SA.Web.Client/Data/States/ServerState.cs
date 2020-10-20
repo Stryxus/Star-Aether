@@ -9,14 +9,6 @@ namespace SA.Web.Client.Data.States
 {
     internal class ServerState
     {
-        internal async Task RequestUpdateData(bool getFreshCopy = false) => await Send(async (ClientWebSocket socket) =>
-        {
-            await Logger.LogInfo("Requesting Update Data...");
-            if (Services.Get<WebSocketManagerMiddleware>().IsConnected && getFreshCopy)
-                Services.Get<StateSocketHandler>().SendMessageAsync(socket, "CMD." + Commands.GetUpdateData);
-            else await Services.Get<LocalStorageState>().GetLocalData<LastUpdateTimes>();
-        });
-
         internal async Task RequestNewsData(bool getFreshCopy = false) => await Send(async (ClientWebSocket socket) =>
         {
             await Logger.LogInfo("Requesting News Data...");

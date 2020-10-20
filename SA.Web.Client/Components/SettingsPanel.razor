@@ -49,7 +49,6 @@
                 <button class="col" @onclick="@(async () =>
                                                 {
                                                     await LocalData.Clear();
-                                                    await ServerState.RequestUpdateData(true);
                                                     await ServerState.RequestChangelogData(true);
                                                     await ServerState.RequestNewsData(true);
                                                     await ServerState.RequestRoadmapData(true);

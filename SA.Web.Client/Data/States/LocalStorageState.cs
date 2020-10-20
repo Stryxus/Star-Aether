@@ -18,9 +18,6 @@ namespace SA.Web.Client.Data.States
                     await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().Settings = defaultData ? new GlobalSettings() : Services.Get<ClientState>().Settings));
                     Services.Get<ClientState>().NotifySettingsChange();
                     break;
-                case Type t when t == typeof(LastUpdateTimes):
-                    await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().LocalUpdateTimes = defaultData ? new LastUpdateTimes() : Services.Get<ClientState>().LocalUpdateTimes));
-                    break;
                 case Type t when t == typeof(NewsData):
                     await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().NewsData = defaultData ? new NewsData() : Services.Get<ClientState>().NewsData));
                     break;
@@ -55,10 +52,6 @@ namespace SA.Web.Client.Data.States
                             Services.Get<ClientState>().Settings = new GlobalSettings();
                             await SetLocalData<T>();
                         }
-                        break;
-                    case Type t when t == typeof(LastUpdateTimes):
-                        if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().LocalUpdateTimes = obj as LastUpdateTimes ?? new LastUpdateTimes();
-                        else await Services.Get<ServerState>().RequestUpdateData(true);
                         break;
                     case Type t when t == typeof(NewsData):
                         if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyNewsDataChange(Services.Get<ClientState>().NewsData = obj as NewsData ?? new NewsData(), true);
