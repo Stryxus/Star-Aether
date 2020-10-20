@@ -37,9 +37,9 @@ This website is distributed to [Azure](https://azure.microsoft.com/) through [Bl
 # Contributing
 
 ### Requirements
-* Visual Studio Preview 2019.
+* Visual Studio 2019.
 * ASP.NET Core
-* .NET 5 RC1 SDK
+* .NET 5 SDK
 
 Developing the website only requires you to run `Run_Blaze.cmd` at all times and leave it running in the background. This command file starts [Blaze](https://github.com/Star-Athenaeum/Blaze) which processes everything under wwwroot.
 
