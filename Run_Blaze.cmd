@@ -1,2 +1,2 @@
-"Blaze\BlazeApp.exe" "SA.Web\Client"
+"Blaze\BlazeApp.exe" "SA.Web.Client"
 exit 0
