@@ -1,6 +1,6 @@
 <h1 align="center">
 
-<img src="https://raw.githubusercontent.com/Star-Athenaeum/Website/Public/.github/git-readme.png?sanitize=true" width="300px" height="300px" alt="Logo" />
+<img src="https://raw.githubusercontent.com/Star-Athenaeum/Website/master/.github/git-readme.png?sanitize=true" width="300px" height="300px" alt="Logo" />
 <br/>
 The Star Athenaeum Project Website
 </h1>
