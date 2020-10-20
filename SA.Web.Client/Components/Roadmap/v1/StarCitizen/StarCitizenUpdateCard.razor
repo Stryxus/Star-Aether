@@ -1,0 +1,32 @@
+﻿<div class="col-auto roadmap-v1-star-citizen-card @(
+                         Card.Patches[0].EvocatiTestingDate != null && Card.Patches[0].PTUTestingStartDate != null && Card.Patches[0].PUReleaseDate == null ? "ptu" :
+                         Card.Patches[0].EvocatiTestingDate != null && Card.Patches[0].PTUTestingStartDate == null && Card.Patches[0].PUReleaseDate == null ? "evocati" :
+                         Card.Patches[0].EvocatiTestingDate == null && Card.Patches[0].PTUTestingStartDate == null && Card.Patches[0].PUReleaseDate == null ? "dev" : "released")">
+    <StarCitizenUpdateCardHeader Card="Card" />
+    <StarCitizenUpdateCardBody Card="Card" AvailableDates="AvailableDates" />
+    <StarCitizenUpdateCardTools Card="Card" AvailableDates="AvailableDates" />
+</div>
+
+@inject RoadmapV1State RoadmapV1State 
+
+@code {
+
+    [Parameter]
+    public RoadmapCard Card { get; set; }
+
+    private List<DateTime> AvailableDates { get; set; } = new List<DateTime>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        foreach (RoadmapFeature f in Card.VersionFeatures)
+        {
+            foreach (DateTime d in f.TaskCount.Keys.Concat(f.TasksCompleted.Keys))
+            {
+                if (!AvailableDates.Contains(d)) AvailableDates.Add(d);
+            }
+        }
+        AvailableDates = AvailableDates.OrderBy(o => o.Date).Reverse().ToList();
+        if (!RoadmapV1State.Roadmap_v1_SelectedDates.ContainsKey(Card.MajorVersion + "." + Card.MinorVersion)) RoadmapV1State.Roadmap_v1_SelectedDates.Add(Card.MajorVersion + "." + Card.MinorVersion, AvailableDates[0]);
+        await base.OnInitializedAsync();
+    }
+}

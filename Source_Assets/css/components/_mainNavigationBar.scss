@@ -1,0 +1,511 @@
+#main-nav {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    z-index: $zindex-navigation-bar;
+
+    a {
+        color: white !important;
+        font-style: normal !important;
+    }
+}
+
+// BEGIN-Min-Width
+
+@include media-breakpoint-up(xs) {
+}
+
+@include media-breakpoint-up(sm) {
+}
+
+@include media-breakpoint-up(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-up(lg) {
+
+    #main-nav {
+        height: ($navigation-bar-height - 12) + px;
+    
+        & > .row {
+
+            &:nth-child(1) {
+                display: none;
+            }
+    
+            &:nth-child(2) {
+                flex-wrap: nowrap !important;
+                flex-direction: row !important;
+    
+                .row {
+                    flex-wrap: nowrap !important;
+                    flex-direction: row !important;
+                }
+            
+                .logo-container {
+                    height: 70px;
+                    width: 210px;
+            
+                    a {
+            
+                        &.active {
+                            img {
+                                filter: invert(10%);
+                            }
+                        }
+            
+                        &:hover {
+                            img {
+                                filter: invert(5%);
+                            }
+                        }
+            
+                        img {
+                            position: absolute;
+                            height: 170px;
+                            width: 170px;
+                            bottom: 0px;
+                            left: 18px;
+                            cursor: pointer;
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+            
+                .corner-background {
+                    position: absolute;
+                    bottom: -130px;
+                    left: -200.5px;
+                    height: 600px;
+                    width: 300px;
+                    transform: rotate(-30deg);
+                    backdrop-filter: $backdrop-blur-heavy;
+                    background-color: $colour-grey-1-trans-high;
+                }
+
+                .version {
+                    position: absolute;
+                    bottom: ($navigation-bar-height * 2) + px;
+                    left: 8px;
+                    width: auto;
+                    color: $colour-grey-10;
+
+                    small {
+                        transform: rotate(-60deg);
+                    }
+                }
+            
+                .headline-ticker {
+                    bottom: ($navigation-bar-height * 1.625) + px;
+                    left: ($navigation-bar-height * 1.66) + px;
+                    width: calc(100% - #{($navigation-bar-height * 1.66) + px});
+                    clip-path: polygon(12px 0%, 100% 0px, 100% 100%, 34px 100%);
+                    padding-right: 0px !important;
+            
+                    .headline-ticker-content {
+                        background-color: $colour-grey-1-trans-high;
+                        overflow-y: hidden;
+                        overflow-x: scroll;
+            
+                        & > .row {
+                            flex-wrap: nowrap;
+            
+                            & > .col-auto {
+                                padding-right: 0px;
+                            }
+                        }
+                    }
+                }
+            
+                .economy-ticker {
+                    bottom: ($navigation-bar-height) + px;
+                    left: ($navigation-bar-height * 2) + px;
+                    width: calc(100% - #{($navigation-bar-height * 2) + px});
+                    clip-path: polygon(12px 0%, 100% 0px, 100% 100%, 34px 100%);
+                }
+            
+                .headline-ticker, .economy-ticker {
+                    position: absolute;
+                    backdrop-filter: $backdrop-blur-heavy;
+            
+                    h6 {
+                        float: left;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        padding-left: 14px;
+                        padding-right: 14px;
+                        margin: 0px;
+                        font-weight: 300;
+                    }
+            
+                    .economy-ticker-title, .headline-ticker-title {
+                        border-right: 1px solid $colour-grey-10;
+                        
+                        h6 {
+                            padding-left: 30px;
+                            background-color: $colour-grey-1-trans-low;
+                        }
+                    }
+            
+                    .economy-ticker-content {
+                        background-color: $colour-grey-1-trans-high;
+                        overflow-y: hidden;
+                        overflow-x: scroll;
+            
+                        & > .row {
+                            flex-wrap: nowrap;
+            
+                            & > .col-auto {
+                                padding-right: 0px;
+            
+                                h6 {
+            
+                                    &:nth-child(2), &:nth-child(2), &:nth-child(3) {
+                                        font-weight: 300;
+                                    }
+            
+                                    &:nth-child(1) {
+                                        background-color: $colour-grey-4-trans-high;
+                                    }
+                    
+                                    &:nth-child(2) {
+                                        color: $colour-green-main;
+                                    }
+                    
+                                    &:nth-child(3) {
+                                        color: $colour-red-main;
+                                    }
+                    
+                                    &:nth-child(4) {
+                                        color: $colour-blue-main;
+                                    }
+                                }
+            
+                                &:last-child {
+                                    padding-right: 24px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .bordered-line-v {
+                    transform: rotate(-30deg);
+                }
+        
+                .bordered-line-above {
+                    border-top-width: 0px;
+                    border-bottom-width: 0px;
+                    border-left-width: 1px;
+                    border-right-width: 1px;
+                    height: 400px;
+                    width: 9px;
+                    bottom: ($navigation-bar-height - 42) + px;
+                    left: 82.5px;
+                    transform: rotate(-30deg);
+                }
+        
+                .bordered-line-patch {
+                    border-top-width: 0px;
+                    border-bottom-width: 0px;
+                    border-left-width: 1px;
+                    border-right-width: 0px;
+                    height: 9.5px;
+                    width: 0px;
+                    bottom: ($navigation-bar-height - 22) + px;
+                    left: 183px;
+                    transform: rotate(-30deg);
+                }
+
+                .bordered-line-patch-left {
+                    border-top-width: 0px;
+                    border-bottom-width: 0px;
+                    border-left-width: 0px;
+                    border-right-width: 1px;
+                    height: 220px;
+                    width: 9px;
+                    bottom: 5px;
+                    left: 37px;
+                    z-index: 1000;
+                    transform: rotate(30deg);
+                }
+        
+                .bordered-line-above, .bordered-line-patch, .bordered-line-patch-left {
+                    border-color: $colour-grey-10;
+                    border-style: solid;
+                    position: absolute;
+                    padding-left: 0px !important;
+                    padding-right: 0px !important;
+                }
+            
+                #main-nav-buttons {
+                    height: 64px;
+
+                    & > .col {
+                        backdrop-filter: $backdrop-blur-heavy;
+                        background-color: $colour-grey-1-trans-high;
+                        clip-path: polygon(1px 0%, 100% 0px, 100% 100%, 38px 100%);
+                        padding-right: ($navigation-bar-height * 7.1) + px;
+                        height: inherit;
+        
+                        & > .row {
+                            height: inherit;
+
+                            & > .col {
+                                overflow-y: hidden;
+                                overflow-x: scroll;
+                                margin-top: 0px;
+                                margin-bottom: 0px;
+                                margin-left: 0px;
+                                margin-right: 0px;
+                                padding-top: 0px;
+                                padding-bottom: 0px;
+                                padding-left: 0px;
+                                padding-right: 10px;
+                                height: inherit;
+
+                                & > .row {
+                                    padding: 0px;
+                                    margin: 0px;
+                                    height: inherit;
+                    
+                                    & > .col-auto {
+                                        padding: 0px;
+                                        height: inherit;
+                        
+                                        &:first-child {
+                                            a {
+                                                padding-left: 20px;
+                                            }
+                                        }
+                    
+                                        a {
+                                            text-decoration: none;
+                                            transform: skewX(30deg);
+                                            height: inherit;
+                        
+                                            p {
+                                                transform: skewX(-30deg);
+                                                font-size: 14px;
+                                                font-weight: 300;
+                                                padding-top: 22px;
+                                                padding-bottom: 22px;
+                                                padding-left: 50px;
+                                                padding-right: 50px;
+                                                margin: 0px;
+                                            }
+                        
+                                            &.active {
+                                                background-color: $colour-grey-10-trans-low;
+                                                color: $colour-white !important;
+                                            }
+                        
+                                            &:hover {
+                                                background-color: $colour-grey-6-trans-low;
+                                                color: $colour-white !important;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            
+                #settings-button {
+                    height: ($navigation-bar-height - 18) + px !important;
+                    background-color: $colour-grey-3-trans-high;
+                    backdrop-filter: $backdrop-blur-heavy;
+                    border-left: 1px solid $colour-grey-10;
+                    cursor: pointer;
+                    transform: skewX(30deg);
+                    position: absolute;
+                    bottom: 0px;
+                    right: (($navigation-bar-height * 4) - 26) + px;
+            
+                    i {
+                        padding-top: 20px;
+                        padding-left: 26px;
+                        padding-right: 16px;
+                        font-size: 20px;
+                        transform: skewX(-30deg);
+                    }
+            
+                    &.active {
+                        background-color: $colour-grey-10-trans-low;
+                    }
+            
+                    &:hover {
+                        background-color: $colour-grey-6-trans-low;
+                    }
+                }
+            
+                #id-card {
+                    width: ($navigation-bar-height * 4) + px;
+                    height: ($navigation-bar-height - 18) + px !important;
+                    background-color: $colour-grey-3-trans-high;
+                    backdrop-filter: $backdrop-blur-heavy;
+                    border-left: 1px solid $colour-grey-10;
+                    overflow: hidden;
+                    cursor: pointer;
+                    transform: skewX(30deg);
+                    margin-right: -26px;
+                    padding-right: 34px;
+                    position: absolute;
+                    bottom: 0px;
+                    right: 0px;
+            
+                    & > .row {
+                        transform: skewX(-30deg);
+            
+                        small {
+                            padding-top: 5px;
+                            padding-bottom: 5px;
+                        }
+            
+                        #id-card-name {
+                            height: 100%;
+                            word-wrap: break-word;
+                            padding-left: 10px;
+                        }
+            
+                        #id-card-avatar {
+            
+                            img {
+                                width: ($navigation-bar-height - 18) + px;
+                                height: ($navigation-bar-height - 18) + px;
+                            }
+                        }
+                    }
+                    
+                    &.active {
+                        background-color: $colour-grey-10-trans-low;
+                    }
+            
+                    &:hover {
+                        background-color: $colour-grey-6-trans-low;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+}
+
+// END-Min-Width
+
+// BEGIN-Max-Width
+
+@include media-breakpoint-down(xs) {
+}
+
+@include media-breakpoint-down(sm) {
+}
+
+@include media-breakpoint-down(md) {
+
+}
+
+// Desktop
+
+@include media-breakpoint-down(lg) {
+
+    #main-nav {
+        position: fixed;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        z-index: $zindex-navigation-bar;
+
+        & > .row {
+    
+            &:nth-child(1) {
+                background-color: $colour-grey-3-trans-high;
+                backdrop-filter: $backdrop-blur-heavy;
+                overflow: hidden;
+    
+                .logo {
+                    position: absolute;
+                    bottom: 8px;
+                    left: 22px;
+                    width: 40px;
+                    height: 40px;
+                    padding: 0px;
+                }
+    
+                .avatar {
+                    position: absolute;
+                    right: 16px;
+                    width: 50px;
+                    height: 50px;
+                    padding: 0px;
+                }
+
+                .collapsing-button, .settings-button {
+                    width: 50px;
+                    height: 50px;
+                    background-color: transparent;
+                    backdrop-filter: none;
+                }
+
+                .settings-button {
+                    position: absolute;
+                    bottom: 0px;
+                    right: 70px;
+                }
+    
+                a {
+                    width: 100vh;
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    text-decoration: none;
+    
+                    &.active {
+                        background-color: $colour-grey-10-trans-low;
+                    }
+    
+                    p {
+                        margin: 0px;
+                    }
+                }
+            }
+    
+            &:nth-child(2) {
+                display: none;
+            }
+        }
+    }
+}
+
+// END-Max-Width
+
+// BEGIN-Width-Exclusivity
+
+@include media-breakpoint-only(xs) {
+}
+
+@include media-breakpoint-only(sm) {
+}
+
+@include media-breakpoint-only(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-only(lg) {
+}
+
+@include media-breakpoint-only(xl) {
+}
+
+// END-Width-Exclusivity

@@ -1,0 +1,21 @@
+﻿@inherits LayoutComponentBase
+
+<main class="container-fluid">
+    @Body
+</main>
+
+@inject UIState UIState
+@inject JSInterface.AnimationManager AnimationManager  
+
+@code {        
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            UIState.FirstRender = false;
+        }
+        await AnimationManager.FadePageIn(UIState.FirstRender);
+    }
+}

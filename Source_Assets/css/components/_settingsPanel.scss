@@ -1,0 +1,222 @@
+#settings-panel {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: $colour-grey-1-trans-high;
+    backdrop-filter: $backdrop-blur-heavy;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    overflow: hidden;
+    align-items: stretch;
+    z-index: $zindex-settings-panel;
+    display: none;
+    opacity: 0;
+
+    & > .col {
+        overflow: hidden;
+
+        & > .row {
+
+            &:nth-child(1) {
+                overflow: hidden;
+                padding-left: 10px;
+                padding-right: 10px;
+
+                a {
+                    display: inline;
+                }
+
+                small {
+                    width: 100%;
+                    margin-top: 15px;
+                    margin-bottom: 15px;
+                }
+            }
+
+            &:nth-child(2) {
+                overflow: scroll;
+                padding-left: 10px;
+                padding-right: 10px;
+
+                & > .col {
+
+                    & > small {
+                        font-weight: bold;
+                        margin-bottom: 16px;
+
+                        a {
+                            display: inline;
+                        }
+                    }
+                }
+            }
+
+            &:nth-child(3) {
+                overflow: hidden;
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+                right: 0px;
+
+                button {
+                    padding: 10px;
+                    margin: 0px;
+                    background-color: rgba($colour-red-main, 0.15);
+
+                    i {
+                        display: inline;
+                    }
+
+                    p {
+                        display: inline;
+                    }
+
+                    &:hover  {
+                        background-color: rgba($colour-red-main, 0.3);
+                    }
+                }
+            }
+        }
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 44px;
+        height: 26px;
+        margin: 10px;
+
+        input {
+            opacity: 0;
+            width: 0px;
+            height: 0px;
+
+            &:checked + .slider {
+                background-color: $colour-blue-main-trans-low;
+            }
+
+            &:focus + .slider {
+                box-shadow: 0px 0px 1px $colour-blue-main-trans-low;
+            }
+
+            &:checked + .slider:before {
+                -webkit-transform: translateX(18px);
+                -ms-transform: translateX(18px);
+                transform: translateX(18px);
+            }
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            background-color: $colour-red-main-trans-low;
+            transition: .4s;
+            border-radius: 50px;
+    
+            &:before {
+                position: absolute;
+                content: "";
+                height: 18px;
+                width: 18px;
+                left: 4px;
+                bottom: 4px;
+                background-color: $colour-blue-main-trans-low;
+                transition: .4s;
+                border-radius: 50px;
+            }
+    
+            &.round {
+                border-radius: 34px;
+            }
+    
+            &.round:before {
+                border-radius: 50%;
+            }
+        }
+    }
+
+    h5 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    h6 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+// BEGIN-Min-Width
+
+@include media-breakpoint-up(xs) {
+}
+
+@include media-breakpoint-up(sm) {
+}
+
+@include media-breakpoint-up(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-up(lg) {
+
+    #settings-panel {
+        width: 500px;
+        margin-right: 0px;
+        bottom: ($navigation-bar-height - 12) + px;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+}
+
+// END-Min-Width
+
+// BEGIN-Max-Width
+
+@include media-breakpoint-down(xs) {
+}
+
+@include media-breakpoint-down(sm) {
+}
+
+@include media-breakpoint-down(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-down(lg) {
+
+    #settings-panel {
+        left: 0px;
+        bottom: $navigation-bar-mobile-height + px;
+    }
+}
+
+// END-Max-Width
+
+// BEGIN-Width-Exclusivity
+
+@include media-breakpoint-only(xs) {
+}
+
+@include media-breakpoint-only(sm) {
+}
+
+@include media-breakpoint-only(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-only(lg) {
+}
+
+@include media-breakpoint-only(xl) {
+}
+
+// END-Width-Exclusivity

@@ -1,0 +1,35 @@
+﻿<div class="row header">
+    <div class="col title">
+        <h5>v@(Card.MajorVersion + "." + Card.MinorVersion).0</h5>
+    </div>
+    <small class="status">
+        @(Card == null ? string.Empty :
+                         Card.Patches[0].EvocatiTestingDate != null && Card.Patches[0].PTUTestingStartDate != null && Card.Patches[0].PUReleaseDate == null ? "In PTU" :
+                         Card.Patches[0].EvocatiTestingDate != null && Card.Patches[0].PTUTestingStartDate == null && Card.Patches[0].PUReleaseDate == null ? "In Evocati" :
+                         Card.Patches[0].EvocatiTestingDate == null && Card.Patches[0].PTUTestingStartDate == null && Card.Patches[0].PUReleaseDate == null ? "In Development" :
+                         Card.Patches[0].EvocatiTestingDate == null && Card.Patches[0].PTUTestingStartDate == null && Card.Patches[0].PUReleaseDate == null ? "Released" : "Released")
+    </small>
+    <button class="info-button statistics @(RoadmapV1State.Roadmap_v1_IsStatisticsVisible[Card.MajorVersion + "." + Card.MinorVersion] ? "active" : string.Empty)"
+            @onclick="@(() => RoadmapV1State.Roadmap_v1_ToggleStatisticsVisibility(Card.MajorVersion + "." + Card.MinorVersion))">
+        <i class="far fa-chart-bar"></i>
+    </button>
+    <button class="info-button updates @(RoadmapV1State.Roadmap_v1_IsPatchNotesVisible[Card.MajorVersion + "." + Card.MinorVersion] ? "active" : string.Empty)"
+            @onclick="@(() => RoadmapV1State.Roadmap_v1_TogglePatchNotesVisibility(Card.MajorVersion + "." + Card.MinorVersion))">
+        <i class="fas fa-wrench"></i>
+    </button>
+</div>
+
+@inject RoadmapV1State RoadmapV1State
+
+@code {
+
+    [Parameter]
+    public RoadmapCard Card { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!RoadmapV1State.Roadmap_v1_IsStatisticsVisible.ContainsKey(Card.MajorVersion + "." + Card.MinorVersion)) RoadmapV1State.Roadmap_v1_IsStatisticsVisible.Add(Card.MajorVersion + "." + Card.MinorVersion, false);
+        if (!RoadmapV1State.Roadmap_v1_IsPatchNotesVisible.ContainsKey(Card.MajorVersion + "." + Card.MinorVersion)) RoadmapV1State.Roadmap_v1_IsPatchNotesVisible.Add(Card.MajorVersion + "." + Card.MinorVersion, false);
+        await base.OnInitializedAsync();
+    }
+}

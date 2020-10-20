@@ -1,0 +1,36 @@
+﻿<div class="col">
+    <StarCitizenUpdateCardCategoryStatistics Card="Card" Features="Features" AvailableDates="AvailableDates" />
+    <hr />
+    <div class="row category">
+        <div class="col">
+            <Virtualize Items="Features" Context="feature">
+                <Placeholder>
+                    <h4>Loading Feature...</h4>
+                </Placeholder>
+                <ItemContent>
+                    <StarCitizenUpdateCardCategoryItemFrame Title="@(feature.Title)">
+                        <StarCitizenUpdateCardCategoryFeature Card="Card" Feature="feature" AvailableDates="AvailableDates" />
+                    </StarCitizenUpdateCardCategoryItemFrame>
+                    @if (feature.Title == Features.Last().Title)
+                    {
+                        <hr />
+                    }
+                </ItemContent>
+            </Virtualize>
+        </div>
+    </div>
+</div>
+
+@inject ClientState State
+
+@code {
+
+    [Parameter]
+    public RoadmapCard Card { get; set; }
+
+    [Parameter]
+    public List<RoadmapFeature> Features { get; set; }
+
+    [Parameter]
+    public List<DateTime> AvailableDates { get; set; }
+}

@@ -1,0 +1,175 @@
+#featured-page {
+    padding-left: 25px;
+    padding-right: 25px;
+
+    h4 {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 26px;
+        padding-right: 26px;
+        background-color: rgba(119, 44, 232, 0.8);
+        backdrop-filter: $backdrop-blur-light;
+
+        i {
+            margin-right: 10px;
+        }
+    }
+
+    .featured-element {
+        background-color: $colour-grey-1-trans-high;
+        border: 1px solid rgba(119, 44, 232, 0.8);
+        margin: 10px !important;
+        backdrop-filter: $backdrop-blur-light;
+
+        & > .row {
+
+            &:first-child {
+
+                & > .col-auto {
+
+                    & > * {
+                        width: 850px !important;
+                        height: 480px !important;
+                    }
+                }
+            }
+
+            &:nth-child(2) {
+
+                .featured-profile-picture {
+                    padding: 12px;
+
+                    img {
+                        border-radius: 100px;
+                    }
+                }
+
+                & > .col-auto {
+
+                    &:nth-child(1) {
+                        a {
+
+                            &:hover {
+                                background-color: rgba(119, 44, 232, 0.8);
+                            }
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        margin-left: 16px;
+                
+                        a {
+                            width: 30px !important;
+                            height: 30px !important;
+                            font-size: 26px;
+                            padding: 0px;
+                            text-align: center;
+                            margin-left: 10px;
+                            margin-right: 10px;
+
+                            &:hover {
+                                filter: invert(50%);
+                            }
+
+                            .far {
+                                &.fa-id-card {
+                                    color: rgba(255, 255, 255, 0.8) !important;
+                                }
+                            }
+
+                            .fab {
+
+                                &.fa-twitch {
+                                    color: rgba(119, 44, 232, 0.8) !important;
+                                }
+
+                                &.fa-twitter {
+                                    color: rgba(29, 161, 242, 0.8) !important;
+                                }
+
+                                &.fa-youtube {
+                                    color: rgba(229, 39, 45, 0.8) !important;
+                                }
+
+                                &.fa-instagram {
+                                    color: rgba(255, 255, 255, 0.8) !important;
+                                }
+
+                                &.fa-discord {
+                                    color: rgba(114, 137, 218, 0.8) !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            & > .col-auto {
+                padding: 0px !important;
+            }
+        }
+    }
+}
+
+// BEGIN-Min-Width
+
+@include media-breakpoint-up(xs) {
+}
+
+@include media-breakpoint-up(sm) {
+}
+
+@include media-breakpoint-up(md) {
+
+}
+
+// Desktop
+
+@include media-breakpoint-up(lg) {
+
+}
+
+@include media-breakpoint-up(xl) {
+}
+
+// END-Min-Width
+
+// BEGIN-Max-Width
+
+@include media-breakpoint-down(xs) {
+}
+
+@include media-breakpoint-down(sm) {
+}
+
+@include media-breakpoint-down(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-down(lg) {
+
+}
+
+// END-Max-Width
+
+// BEGIN-Width-Exclusivity
+
+@include media-breakpoint-only(xs) {
+}
+
+@include media-breakpoint-only(sm) {
+}
+
+@include media-breakpoint-only(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-only(lg) {
+}
+
+@include media-breakpoint-only(xl) {
+}
+
+// END-Width-Exclusivity

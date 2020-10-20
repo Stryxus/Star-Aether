@@ -1,0 +1,63 @@
+﻿<div class="row body">
+    <div class="col">
+        <StarCitizenUpdateCardBodyInfo Card="Card" AvailableDates="AvailableDates" />
+        @if (Card.VersionFeatures.Any(o => o.Category == RoadmapCardCategory.Characters))
+        {
+            <StarCitizenUpdateCardItemFrame Title="Characters">
+                <StarCitizenUpdateCardCategory Card="Card" Features="Card.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategory.Characters)"           AvailableDates="AvailableDates" />
+            </StarCitizenUpdateCardItemFrame>
+        }
+        @if (Card.VersionFeatures.Any(o => o.Category == RoadmapCardCategory.Locations))
+        {
+            <StarCitizenUpdateCardItemFrame Title="Locations">
+                <StarCitizenUpdateCardCategory Card="Card" Features="Card.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategory.Locations)"            AvailableDates="AvailableDates" />
+            </StarCitizenUpdateCardItemFrame>
+        }
+        @if (Card.VersionFeatures.Any(o => o.Category == RoadmapCardCategory.AI))
+        {
+            <StarCitizenUpdateCardItemFrame Title="AI">
+                <StarCitizenUpdateCardCategory Card="Card" Features="Card.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategory.AI)"                   AvailableDates="AvailableDates" />
+            </StarCitizenUpdateCardItemFrame>
+        }
+        @if (Card.VersionFeatures.Any(o => o.Category == RoadmapCardCategory.Gameplay))
+        {
+            <StarCitizenUpdateCardItemFrame Title="StarCitizenplay">
+                <StarCitizenUpdateCardCategory Card="Card" Features="Card.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategory.Gameplay)"             AvailableDates="AvailableDates" />
+            </StarCitizenUpdateCardItemFrame>
+        }
+        @if (Card.VersionFeatures.Any(o => o.Category == RoadmapCardCategory.ShipsAndVehicles))
+        {
+            <StarCitizenUpdateCardItemFrame Title="Ships And Vehicles">
+                <StarCitizenUpdateCardCategory Card="Card" Features="Card.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategory.ShipsAndVehicles)"     AvailableDates="AvailableDates" />
+            </StarCitizenUpdateCardItemFrame>
+        }
+        @if (Card.VersionFeatures.Any(o => o.Category == RoadmapCardCategory.WeaponsAndItems))
+        {
+            <StarCitizenUpdateCardItemFrame Title="Weapons And Items">
+                <StarCitizenUpdateCardCategory Card="Card" Features="Card.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategory.WeaponsAndItems)"      AvailableDates="AvailableDates" />
+            </StarCitizenUpdateCardItemFrame>
+        }
+        @if (Card.VersionFeatures.Any(o => o.Category == RoadmapCardCategory.CoreTech))
+        {
+            <StarCitizenUpdateCardItemFrame Title="Core Tech">
+                <StarCitizenUpdateCardCategory Card="Card" Features="Card.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategory.CoreTech)"             AvailableDates="AvailableDates" />
+            </StarCitizenUpdateCardItemFrame>
+        }
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public RoadmapCard Card { get; set; }
+
+    [Parameter]
+    public bool IsStatisticsCollapsed { get; set; }
+
+    [Parameter]
+    public bool IsPatchNotesCollapsed { get; set; }
+
+    [Parameter]
+    public List<DateTime> AvailableDates { get; set; }
+
+}

@@ -1,0 +1,78 @@
+﻿<div class="col-auto featured-element">
+    <div class="row">
+        <div class="col-auto">
+            <div id="@StreamerInFormalName">
+                <iframe src="@("https://embed.twitch.tv?channel=" + StreamerInFormalName + "&height=480&layout=video&migration=true&muted=true&parent=localhost&referrer=https%3A%2F%2F" + (Globals.IsDevelopmentMode ? "localhost" : "ueesa.net") + "%3A44379%2Ffeatured&width=8500")" allowfullscreen scrolling="no" frameborder="0" width="850" height="480" title="Twitch" allow="autoplay; fullscreen"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-auto">
+            <a class="featured-profile-picture" target="_blank" href="">
+                @if (ClientState.TwitchLogos.ContainsKey(StreamerInFormalName))
+                {
+                    <img src="@ClientState.TwitchLogos[StreamerInFormalName]" width="70" height="70" />
+                }
+                else
+                {
+                    <img src="/img/avatar.svg" width="70" height="70" />
+                }
+            </a>
+        </div>
+        <div class="col-auto">
+            <div class="row">
+                <div class="col">
+                    <p>@StreamerFormalName</p>
+                </div>
+            </div>
+            <div class="row">
+                <a target="_blank" href="" class="col-auto">
+                    <i class="far fa-id-card"></i>
+                </a>
+                <a target="_blank" href="" class="col-auto">
+                    <i class="fab fa-twitch"></i>
+                </a>
+                <a target="_blank" href="" class="col-auto">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a target="_blank" href="" class="col-auto">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a target="_blank" href="" class="col-auto">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a target="_blank" href="" class="col-auto">
+                    <i class="fab fa-discord"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@inject ClientState ClientState 
+@inject ServerState ServerState
+@inject WebSocketManagerMiddleware WebSocketManagerMiddleware
+
+@code {
+
+    [Parameter]
+    public string StreamerFormalName { get; set; }
+
+    [Parameter]
+    public string StreamerInFormalName { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        ClientState.OnTwitchLogoAdded += (string username) =>
+        {
+            if (username == StreamerInFormalName) StateHasChanged();
+        };
+        WebSocketManagerMiddleware.OnServerConnected += async () =>
+        {
+            if (!ClientState.TwitchLogos.ContainsKey(StreamerInFormalName)) await ServerState.RequestTwitchLogo(StreamerInFormalName);
+        };
+        if (!ClientState.TwitchLogos.ContainsKey(StreamerInFormalName)) await ServerState.RequestTwitchLogo(StreamerInFormalName);
+    }
+
+}

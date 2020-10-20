@@ -1,0 +1,72 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+    <BlazorWebAssemblyLazyLoad>true</BlazorWebAssemblyLazyLoad>
+    <Configurations>Debug;Release;Release Testing</Configurations>
+    <Platforms>AnyCPU;x64</Platforms>
+    <Nullable>annotations</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|AnyCPU'">
+    <Optimize>true</Optimize>
+    <DefineConstants>RELEASE_TEST</DefineConstants>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|x64'">
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;RELEASE_TEST</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="blaze-settings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web.Extensions" Version="5.0.0-preview.8.20414.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0-rc.2.20475.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0-rc.2.20475.17" PrivateAssets="all" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Components\Changelog\" />
+    <Folder Include="Components\Fleeter\" />
+    <Folder Include="Components\Econome\" />
+    <Folder Include="Components\About\" />
+    <Folder Include="Components\News\" />
+    <Folder Include="Components\Roadmap\v2\Squadron42\" />
+    <Folder Include="Components\Roadmap\v2\StarCitizen\" />
+    <Folder Include="Components\StarGazer\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="blaze-settings.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\BSL.NET\BinaryStarLib\BinaryStarLib.csproj" />
+    <ProjectReference Include="..\SA.Web.Shared\SA.Web.Shared.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Update="App.razor">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
+  </ItemGroup>
+
+</Project>

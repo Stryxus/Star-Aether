@@ -1,0 +1,29 @@
+﻿@page "/roadmap"
+
+<div id="roadmap-page" class="row no-scroll">
+    <div class="col padded-no-scroll">
+        <div id="roadmap-cards" class="row align-items-stretch">
+            @if (ClientState.RoadmapData != null)
+            {
+                @if (ClientState.RoadmapData.Cards != null)
+                {
+                    @foreach (RoadmapCard card in ClientState.RoadmapData.Cards)
+                    {
+                        <StarCitizenUpdateCard Card="card" />
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@inject ClientState ClientState
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        ClientState.OnRoadmapCardDataChanged += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+}

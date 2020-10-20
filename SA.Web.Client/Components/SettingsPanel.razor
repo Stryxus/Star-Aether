@@ -1,0 +1,76 @@
+﻿@if (ClientState.Settings != null)
+{
+    <div id="settings-panel" class="row bordered bordered-line-left">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <small>
+                        Powered by <a target="_blank" href="https://azure.microsoft.com/">Microsoft Azure</a> and <a target="_blank" href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor">.NET 5 Blazor WebAssembly</a>
+                    </small>
+                    <small>
+                        The Star Athenaeum Project strictly doesn`t use any trackers or cookies.
+                    </small>
+                    <small>
+                        Minimum Resolution: 1920x1080 - 3840x2160 Recommended.
+                    </small>
+                    <small>
+                        Date Format: UTC YYYY/MM/DD and DD/MM/YYYY
+                    </small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Settings</h5>
+                    @if (ClientState.Settings != null)
+                    {
+                        <h6>User Interface</h6>
+                        <SettingsPanelToggleButton Title="Show headlines ticker on navbar" Value="ClientState.Settings.ShowHealinesTicker" ToggleValue="(val) => ClientState.Settings.ShowHealinesTicker = val" />
+                        <SettingsPanelToggleButton Title="Show econome ticker on navbar" Value="ClientState.Settings.ShowEconomyTicker" ToggleValue="(val) => ClientState.Settings.ShowEconomyTicker = val" />
+                        <h6>Push Notifications</h6>
+                        <SettingsPanelToggleButton Title="Show notification on blog update" Value="ClientState.Settings.ShowBlogUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowBlogUpdateNotification = val" />
+                        <SettingsPanelToggleButton Title="Show notification on changelog update" Value="ClientState.Settings.ShowChangelogUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowChangelogUpdateNotification = val" />
+                        <SettingsPanelToggleButton Title="Show notification on roadmap update" Value="ClientState.Settings.ShowRoadmapUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowRoadmapUpdateNotification = val" />
+                        <SettingsPanelToggleButton Title="Show notification on photography update" Value="ClientState.Settings.ShowPhotographyUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowPhotographyUpdateNotification = val" />
+                        <SettingsPanelToggleButton Title="Show notification on videography update" Value="ClientState.Settings.ShowVideographyUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowPhotographyUpdateNotification = val" />
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <button class="col-12" onclick="window.open('https://paypal.me/stryxus?locale.x=en_GB','_blank')">
+                    <p>Help out and donate!</p>
+                </button>
+                <button class="col" @onclick="@(async () =>
+                                                {
+                                                    await LocalData.Clear();
+                                                    await Cache.Clear();
+                                                })" title="Clears the Applications Cache, including all stored Local Data.">
+                    <p>Refresh App Cache</p>
+                </button>
+                <button class="col" @onclick="@(async () =>
+                                                {
+                                                    await LocalData.Clear();
+                                                    await ServerState.RequestUpdateData(true);
+                                                    await ServerState.RequestChangelogData(true);
+                                                    await ServerState.RequestNewsData(true);
+                                                    await ServerState.RequestRoadmapData(true);
+                                                    await ServerState.RequestPhotographyData(true);
+                                                })" title="Clears the Applications Local Data.">
+                    <p>Refresh Data Cache</p>
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@inject ClientState ClientState
+@inject ServerState ServerState
+@inject JSInterface.Cache Cache
+@inject JSInterface.LocalData LocalData
+
+@code {        
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+    }
+}

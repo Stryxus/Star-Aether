@@ -1,0 +1,51 @@
+﻿@if (ClientState.Settings != null)
+{
+    <div class="headline-ticker" style="@(ClientState.Settings.ShowHealinesTicker ? string.Empty : "display: none")">
+        <div class="col-auto headline-ticker-title">
+            <h6>Headlines</h6>
+        </div>
+        <div class="col headline-ticker-content">
+            <div class="row">
+                @if (ClientState.NewsData != null)
+                {
+                    if (ClientState.NewsData.NewsPosts != null)
+                    {
+                        for (int i = 0; i < ClientState.NewsData.NewsPosts.Count; i++)
+                        {
+                            <div class="col-auto">
+                                <h6>@ClientState.NewsData.NewsPosts[i].Title</h6>
+                            </div>
+                            if (i != ClientState.NewsData.NewsPosts.Count - 1)
+                            {
+                                <div class="col-auto">
+                                    <h6><i class="fas fa-newspaper"></i></h6>
+                                </div>
+                            }
+                        }
+                    }
+                    else
+                    {
+                        <div class="col-auto"></div>
+                    }
+                }
+                else
+                {
+                    <div class="col-auto"></div>
+                }
+                <div class="col-auto"></div>
+            </div>
+        </div>
+    </div>
+}
+
+@inject ClientState ClientState
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        ClientState.OnNewsDataChanged += StateHasChanged;
+        ClientState.OnSettingsChanged += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+}

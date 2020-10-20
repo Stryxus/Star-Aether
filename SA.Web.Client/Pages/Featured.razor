@@ -1,0 +1,26 @@
+﻿@page "/featured"
+
+<div id="featured-page" class="row">
+    <div class="col padded-scroll">
+        <div class="row">
+            <div class="col">
+                <h4><i class="fab fa-twitch"></i> Twitch Livestreamers</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row justify-content-center">
+                    <FeaturedMediaPerson StreamerFormalName="Comrade Blaqkstar" StreamerInFormalName="comradeblaqkstar" />
+                    <FeaturedMediaPerson StreamerFormalName="WelshThor" StreamerInFormalName="welshthor" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@inject ClientState ClientState
+@inject UIState UIState
+
+@code {
+
+}

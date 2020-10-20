@@ -1,0 +1,33 @@
+﻿<div id="settings-button" class="col-auto" @onclick="() => UIState.ToggleSettingsPanelVisibility()">
+    <i class="fas fa-cog"></i>
+</div>
+<div id="id-card" class="col-auto">
+    <div class="row">
+        <div class="col">
+            <div id="id-card-name" class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">
+                            <small>Citizen-@ClientState.Random.Next(int.MinValue, int.MaxValue)</small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <small>Profiles coming soon!</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="id-card-avatar" class="col-auto">
+            <img draggable="false" src="/img/avatar.svg" alt="Avatar" />
+        </div>
+    </div>
+</div>
+
+@inject ClientState ClientState
+@inject UIState UIState
+
+@code {
+
+}

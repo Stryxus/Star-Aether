@@ -1,0 +1,28 @@
+﻿@if (RoadmapV1State.Roadmap_v1_IsStatisticsVisible[Card.MajorVersion + "." + Card.MinorVersion])
+{
+    <StarCitizenUpdateCardInformationStatistics Card="Card" AvailableDates="AvailableDates" />
+    <hr />
+}
+@if (RoadmapV1State.Roadmap_v1_IsPatchNotesVisible[Card.MajorVersion + "." + Card.MinorVersion])
+{
+    <StarCitizenUpdateCardInformationPatchList Card="Card" />
+    <hr />
+}
+
+@inject RoadmapV1State RoadmapV1State
+
+@code {
+
+    [Parameter]
+    public RoadmapCard Card { get; set; }
+
+    [Parameter]
+    public List<DateTime> AvailableDates { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        RoadmapV1State.Roadmap_v1_OnStatisticsVisibilityToggle += StateHasChanged;
+        RoadmapV1State.Roadmap_v1_OnPatchNotesVisibilityToggle += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+}

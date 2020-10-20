@@ -1,0 +1,104 @@
+﻿@page "/changelog"
+
+<div id="changelog-page" class="row justify-content-center no-scroll">
+    <div class="col alt-scroll">
+        @if (ClientState.ChangelogData != null)
+        {
+            @if (ClientState.ChangelogData.ChangelogPosts != null) 
+            {
+                <Virtualize Items="ClientState.ChangelogData.ChangelogPosts" Context="entry">
+                    <Placeholder>
+                        <h4>Loading Entry...</h4>
+                    </Placeholder>
+                    <ItemContent>
+                        <PostEntry Title="@("[" + (entry.Type != null ? entry.Type.ToString() : UpdateType.Patch) + "] " + @entry.Title)">
+                                <div class="row">
+                                    <div class="col">
+                                        <p>
+                                            @entry.Description
+                                        </p>
+                                    </div>
+                                </div>
+                                @if (entry.Additions.Count != 0)
+                                        {
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>Added</h6>
+                                            <ul>
+                                                <Virtualize Items="entry.Additions" Context="c">
+                                                    <li>@c</li>
+                                                </Virtualize>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                        }
+                                @if (entry.Removals.Count != 0)
+                                        {
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>Removed</h6>
+                                            <ul>
+                                                <Virtualize Items="entry.Removals" Context="c">
+                                                    <li>@c</li>
+                                                </Virtualize>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                        }
+                                @if (entry.Changes.Count != 0)
+                                        {
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>Changes</h6>
+                                            <ul>
+                                                <Virtualize Items="entry.Changes" Context="c">
+                                                    <li>@c</li>
+                                                </Virtualize>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                        }
+                                @if (entry.Optimizations.Count != 0)
+                                        {
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>Optimizations</h6>
+                                            <ul>
+                                                <Virtualize Items="entry.Optimizations" Context="c">
+                                                    <li>@c</li>
+                                                </Virtualize>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                        }
+                                @if (entry.Fixes.Count != 0)
+                                        {
+                                    <div class="row">
+                                        <div class="col">
+                                            <h6>Fixes</h6>
+                                            <ul>
+                                                <Virtualize Items="entry.Fixes" Context="c">
+                                                    <li>@c</li>
+                                                </Virtualize>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                        }
+                        </PostEntry>
+                    </ItemContent>
+                </Virtualize>
+            }
+        }
+    </div>
+</div>
+
+@inject ClientState ClientState
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        ClientState.OnChangelogDataChanged += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+}

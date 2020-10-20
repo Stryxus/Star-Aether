@@ -1,0 +1,74 @@
+﻿<nav id="main-nav" class="container-fluid">
+    <div class="row">
+        <div class="col">
+            @if (IsMobileNavbarVisible)
+            {
+                <MainNavigationBarNavigator IsMobileNavbarVisible="@IsMobileNavbarVisible" NavLinks="Pages" />
+            }
+            <div class="row justify-content-center bordered-line-top">
+                <img class="logo" src="favicon.svg" draggable="false" alt="Logo" />
+                <div class="col-auto">
+                    <button class="collapsing-button" @onclick="@ToggleMobileNavbar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <button class="settings-button @(UIState.IsSettingsPanelVisible ? "active" : string.Empty)" @onclick="() => UIState.ToggleSettingsPanelVisibility()">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <img class="avatar" draggable="false" src="/img/avatar.svg" alt="Avatar" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="corner-background"></div>
+        <div class="bordered-line-above"></div>
+        <div class="bordered-line-patch"></div>
+        <div class="bordered-line-patch-left"></div>
+        <div class="version">
+            <small>@("v" + Globals.YearVersion + "." + Globals.MonthVersion + "." + Globals.DayVersion)</small>
+        </div>
+        <MainNavigationBarHeadlinesTicker />
+        <MainNavigationBarEconomyTicker />
+        <div class="col-auto logo-container">
+            <NavLink draggable="false" href="/" Match="NavLinkMatch.All">
+                <img src="favicon.svg" draggable="false" alt="Logo" />
+            </NavLink>
+        </div>
+        <div class="col-auto bordered-line-v"></div>
+        <div class="col">
+            <div class="row">
+                <div class="col bordered-line-h"></div>
+            </div>
+            <div id="main-nav-buttons" class="row">
+                <div class="col">
+                    <MainNavigationBarNavigator IsMobileNavbarVisible="@IsMobileNavbarVisible" NavLinks="Pages"/>
+                </div>
+                <MainNavigationBarPersonalSection />
+            </div>
+        </div>
+    </div>
+</nav>
+
+@inject ClientState ClientState
+@inject UIState UIState
+
+@code {
+
+    private bool IsMobileNavbarVisible = false;
+
+    private void ToggleMobileNavbar() => IsMobileNavbarVisible = !IsMobileNavbarVisible;
+
+    private Dictionary<string, string> Pages = new Dictionary<string, string>()
+    {
+        { "News", "news" },
+        { "Roadmap", "roadmap" },
+        { "Star Gazer", "stargazer" },
+        { "Fleeter", "fleeter" },
+        { "Load-Up & Out", "loadupout" },
+        { "Econome", "econome" },
+        { "Changelog", "changelog" },
+        { "Featured", "featured" },
+        { "Wallpapers", "wallpapers" },
+        { "About", "about" }
+    };
+}

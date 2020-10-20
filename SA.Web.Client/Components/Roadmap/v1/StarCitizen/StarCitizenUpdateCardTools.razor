@@ -1,0 +1,26 @@
+﻿<div class="row align-items-stretch tools">
+    <div class="col">
+        <small>Select a roadmap update</small>
+        <select @onchange="@((ChangeEventArgs args) => 
+                             {
+                                 RoadmapV1State.Roadmap_v1_ChangeSelectedDate(Card.MajorVersion + "." + Card.MinorVersion, DateTime.Parse(args.Value.ToString()));
+                             })">
+            @foreach (DateTime d in AvailableDates)
+            {
+                <option>@d.ToShortDateString()</option>
+            }
+        </select>
+    </div>
+</div>
+
+@inject RoadmapV1State RoadmapV1State 
+
+@code {
+
+    [Parameter]
+    public RoadmapCard Card { get; set; }
+
+    [Parameter]
+    public List<DateTime> AvailableDates { get; set; }
+
+}

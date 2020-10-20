@@ -1,0 +1,39 @@
+﻿@if (IsMobileNavbarVisible)
+{
+    <div class="row">
+        <div class="col">
+            @foreach (string page in NavLinks.Keys)
+            {
+                <div class="row">
+                    <div class="col">
+                        <PreNavLink href="@("/" + NavLinks[page].ToLower())" ToggleAllNavLinks="@StateHasChanged"><p>@(page)</p></PreNavLink>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                @foreach (string page in NavLinks.Keys)
+                {
+                    <div class="col-auto">
+                        <PreNavLink href="@("/" + NavLinks[page].ToLower())" ToggleAllNavLinks="@StateHasChanged"><p>@(page)</p></PreNavLink>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public Dictionary<string, string> NavLinks { get; set; }
+
+    [Parameter]
+    public bool IsMobileNavbarVisible { get; set; }
+}

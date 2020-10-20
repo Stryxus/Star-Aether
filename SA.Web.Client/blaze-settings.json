@@ -1,0 +1,122 @@
+{
+  "sourceResourcesDir": "D:/Projects/StarAthenaeum/The-Website/Source_Assets",
+  "formatWebsiteRoot": true,
+  "scssIncludeDirectory": "css",
+  "scssPrecision": 3,
+  "jsDependencyLinks": [
+    "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/Draggable.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/EasePack.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.0-beta/chart.js"
+
+  ],
+  "ignored_directories": [
+    "/css/thirdparty"
+  ],
+  "ignored_files": [
+
+  ],
+  "ignored_extensions": [
+    ".scss",
+    ".sass",
+    ".css",
+    ".js",
+    ".min.css",
+    ".min.js"
+  ],
+  "fileConfigs": {
+    "/img/background.png": {
+      "enabled": true,
+      "width": 3840,
+      "height": 2160,
+      "quality": 70,
+      "format": "webp"
+    },
+    "/img/about/stryxus.png": {
+      "enabled": true,
+      "width": 508,
+      "height": 1432,
+      "quality": 70,
+      "format": "webp"
+    },
+    "/img/roadmap/ai.png": {
+      "enabled": true,
+      "width": 1920,
+      "height": 1080,
+      "quality": 70,
+      "format": "webp"
+    },
+    "/img/roadmap/characters.png": {
+      "enabled": true,
+      "width": 1920,
+      "height": 1080,
+      "quality": 70,
+      "format": "webp"
+    },
+    "/img/roadmap/coretech.png": {
+      "enabled": true,
+      "width": 1920,
+      "height": 1080,
+      "quality": 70,
+      "format": "webp"
+    },
+    "/img/roadmap/gameplay.png": {
+      "enabled": true,
+      "width": 1920,
+      "height": 1080,
+      "quality": 70,
+      "format": "webp"
+    },
+    "/img/roadmap/locations.png": {
+      "enabled": true,
+      "width": 1920,
+      "height": 1080,
+      "quality": 70,
+      "format": "webp"
+    },
+    "/img/roadmap/shipsandvehicles.png": {
+      "enabled": true,
+      "width": 1920,
+      "height": 1080,
+      "quality": 70,
+      "format": "webp"
+    },
+    "/img/roadmap/weaponsanditems.png": {
+      "enabled": true,
+      "width": 1920,
+      "height": 1080,
+      "quality": 70,
+      "format": "webp"
+    },
+    "/css/bundle.scss": {
+      "enabled": true
+    },
+    "/js/variables.js": {
+      "enabled": true,
+      "order": 0
+    },
+    "/js/runtime.js": {
+      "enabled": true,
+      "order": 1
+    },
+    "/js/cache-storage.js": {
+      "enabled": true,
+      "order": 2
+    },
+    "/js/browser-storage.js": {
+      "enabled": true,
+      "order": 3
+    },
+    "/js/webgl-interface.js": {
+      "enabled": true,
+      "order": 4
+    },
+    "/js/animation-manager.js": {
+      "enabled": true,
+      "order": 5
+    }
+  }
+}

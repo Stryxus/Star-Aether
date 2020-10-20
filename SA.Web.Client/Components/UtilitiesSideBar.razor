@@ -1,0 +1,15 @@
+﻿<div id="utilities-sidebar" class="container-fluid bordered bordered-line-right">
+    @if (Services.Get<UIState>().UtilitiesType == UIState.UtilitiesBarType.SocialMedia)
+    {
+        <SocialMediaUtilities />
+    }
+    else if (Services.Get<UIState>().UtilitiesType == UIState.UtilitiesBarType.Roadmap)
+    {
+        <RoadmapUtilities />
+    }
+</div>
+
+@code {
+
+
+}

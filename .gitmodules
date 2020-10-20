@@ -1,0 +1,9 @@
+[submodule "Source_Assets/css/thirdparty/bootstrap"]
+	path = Source_Assets/css/thirdparty/bootstrap
+	url = https://github.com/twbs/bootstrap
+[submodule "Source_Assets/css/thirdparty/fontawesome"]
+	path = Source_Assets/css/thirdparty/fontawesome
+	url = https://github.com/FortAwesome/Font-Awesome
+[submodule "BSL.NET"]
+	path = BSL.NET
+	url = https://github.com/Star-Athenaeum/BSL.NET
