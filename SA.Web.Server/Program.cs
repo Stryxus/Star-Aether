@@ -105,7 +105,10 @@ namespace SA.Web.Server
                     });
                     await Services.Get<MongoDBInterface>().Connect();
                     Services.Get<TwitchInterface>().Connect();
-                    SABotDiscord.StartBot(Globals.APIVersionString, Globals.IsDevelopmentMode ? PrivateVariables.Instance.DebugToken : PrivateVariables.Instance.Token, PrivateVariables.Instance.GuildID, PrivateVariables.Instance.DebugChannelID);
+                    if (ServerLocator.IsUKServer()) SABotDiscord.StartBot(Globals.APIVersionString, 
+                                                                            Globals.IsDevelopmentMode ? PrivateVariables.Instance.DebugToken : PrivateVariables.Instance.Token, 
+                                                                            PrivateVariables.Instance.GuildID, 
+                                                                            PrivateVariables.Instance.DebugChannelID);
                 });
             }).Build().RunAsync();
     }
