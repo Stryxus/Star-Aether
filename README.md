@@ -1,13 +1,13 @@
 <h1 align="center">
 
-<img src="https://raw.githubusercontent.com/Star-Athenaeum/The-Website/Public/.github/git-readme.png?sanitize=true" width="300px" height="300px" alt="Logo" />
+<img src="https://raw.githubusercontent.com/Star-Athenaeum/Website/Public/.github/git-readme.png?sanitize=true" width="300px" height="300px" alt="Logo" />
 <br/>
 The Star Athenaeum Project Website
 </h1>
 <div align="center">
 
-![Build](https://github.com/Star-Athenaeum/The-Website/workflows/.NET%205/badge.svg)
-[![License: MIT](https://img.shields.io/github/license/Star-Athenaeum/The-Website)](https://github.com/Star-Athenaeum/The-Website/blob/master/LICENSE)
+![Build](https://github.com/Star-Athenaeum/Website/workflows/.NET%205/badge.svg)
+[![License: MIT](https://img.shields.io/github/license/Star-Athenaeum/Website)](https://github.com/Star-Athenaeum/Website/blob/master/LICENSE)
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=flat&logo=twitter)](https://twitter.com/intent/tweet?hashtags=StarAthenaeum,StarCitizen&text=StarAthenaeum.+The+most+ambitious+tools+project+for+Star+Citizen&url=https://github.com/Star-Athenaeum)
 
 </div>
@@ -20,7 +20,7 @@ From a vast amount of tools from checking on the economic price of Quantanium to
 
 # Licensing
 
-This project follows the [MIT License](https://github.com/Star-Athenaeum/The-Website/blob/master/LICENSE)
+This project follows the [MIT License](https://github.com/Star-Athenaeum/Website/blob/master/LICENSE)
 
 # Questions
 
