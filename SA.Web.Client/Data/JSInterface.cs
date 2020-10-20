@@ -31,11 +31,6 @@ namespace SA.Web.Client.Data
             public async Task Clear() => await JSR.InvokeVoidAsync("localStorageInterface.clear");
         }
 
-        public class WebGLInterface
-        {
-            public async Task LoadStarGazer(string dataPath, string frameworkPath, string codePath) => await JSR.InvokeVoidAsync("webGLInterface.loadStarGazer", dataPath, frameworkPath, codePath);
-        }
-
         public class AnimationManager
         {
             public async Task ShowRouter() => await JSR.InvokeVoidAsync("animationInterface.showRouter");

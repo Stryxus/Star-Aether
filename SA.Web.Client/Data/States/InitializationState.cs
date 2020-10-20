@@ -34,7 +34,6 @@ namespace SA.Web.Client.Data.States
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.Runtime>(), "runtime");
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.Cache>(), "cacheStorageInterface");
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.LocalData>(), "localStorageInterface");
-                await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.WebGLInterface>(), "webGLInterface");
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.AnimationManager>(), "animationInterface");
 
                 OnAppLoaded += async () => await Services.Get<JSInterface.AnimationManager>().ShowRouter();

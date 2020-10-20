@@ -110,13 +110,9 @@
       "enabled": true,
       "order": 3
     },
-    "/js/webgl-interface.js": {
-      "enabled": true,
-      "order": 4
-    },
     "/js/animation-manager.js": {
       "enabled": true,
-      "order": 5
+      "order": 4
     }
   }
 }

@@ -35,7 +35,6 @@ namespace SA.Web.Client
             HostBuilder.Services.AddScoped<JSInterface.Runtime>();
             HostBuilder.Services.AddScoped<JSInterface.Cache>();
             HostBuilder.Services.AddScoped<JSInterface.LocalData>();
-            HostBuilder.Services.AddScoped<JSInterface.WebGLInterface>();
             HostBuilder.Services.AddScoped<JSInterface.AnimationManager>();
 
             Host = HostBuilder.Build();

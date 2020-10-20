@@ -1,26 +1,7 @@
 ﻿@page "/stargazer"
 
-<h5 id="star-gazer-warning">This is a proof of concept tech testing demo!</h5>
-<canvas id="unity-canvas"></canvas>
 
-@inject JSInterface.Runtime Runtime
-@inject JSInterface.WebGLInterface WebGL
 
 @code {
 
-    protected override async Task OnInitializedAsync()
-    {
-        if (!(await Runtime.IsScriptLoaded("webgl/stargazer/Star Gazer Publish.loader.js"))) await Runtime.Load("webgl/stargazer/Star Gazer Publish.loader.js");
-        await base.OnInitializedAsync();
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await base.OnAfterRenderAsync(firstRender);
-        if (firstRender)
-        {
-            await Task.Delay(TimeSpan.FromSeconds(5));
-            await WebGL.LoadStarGazer("webgl/stargazer/Star Gazer Publish.data.wasm", "webgl/stargazer/Star Gazer Publish.framework.js", "webgl/stargazer/Star Gazer Publish.wasm");
-        }
-    }
 }
