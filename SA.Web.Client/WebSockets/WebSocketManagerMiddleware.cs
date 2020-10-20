@@ -27,7 +27,7 @@ namespace SA.Web.Client.WebSockets
                 try
                 {
 #if DEBUG || RELEASE_TEST
-                    await ClientSocket.ConnectAsync(new Uri("wss://localhost:32777/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
+                    await ClientSocket.ConnectAsync(new Uri("wss://localhost:32772/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
 #else
                     await ClientSocket.ConnectAsync(new Uri("wss://ueesa.net/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
 #endif
