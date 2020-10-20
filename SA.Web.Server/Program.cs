@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.WebSockets;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -55,15 +54,6 @@ namespace SA.Web.Server
                     services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Pages");
                     services.AddRouting();
                     services.AddResponseCompression(options => options.Providers.Add<BrotliCompressionProvider>());
-                    services.AddWebSockets((WebSocketOptions options) =>
-                    {
-                        options.KeepAliveInterval = TimeSpan.FromMinutes(2);
-#if RELEASE
-                        options.AllowedOrigins.Add("https://ueesa.net");
-                        options.AllowedOrigins.Add("wss://ueesa.net");
-                        options.AllowedOrigins.Add("ueesa.net");
-#endif
-                    });
                     services.AddWebSocketManager();
                 });
 
@@ -81,11 +71,6 @@ namespace SA.Web.Server
                     }
                     else app.UseExceptionHandler("/Error");
 
-                    app.UseForwardedHeaders(new ForwardedHeadersOptions
-                    {
-                        ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-                    });
-
                     app.UseBlazorFrameworkFiles();
                     app.UseStaticFiles();
                     app.UseResponseCompression();
@@ -94,7 +79,13 @@ namespace SA.Web.Server
                     app.UseRouting();
                     app.Use(async (context, next) =>
                     {
-                        if (!Services.Get<IBrowserDetector>().Browser.Name.Contains("Chrome") && !Services.Get<IBrowserDetector>().Browser.Name.Contains("Chromium")) context.Response.Redirect("chrome.html");
+                        bool isAllowed = true;
+                        try
+                        {
+                            isAllowed = !Services.Get<IBrowserDetector>().Browser.Name.Contains("Chrome") && !Services.Get<IBrowserDetector>().Browser.Name.Contains("Chromium");
+                        }
+                        catch { }
+                        if (!isAllowed) context.Response.Redirect("chrome.html");
                         else await next();
                     });
                     app.UseEndpoints(endpoints =>
