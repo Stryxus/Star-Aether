@@ -4,6 +4,7 @@
 @{
     Layout = null;
 }
+@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
 
 <!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
@@ -75,6 +76,7 @@
         }
     </style>
     <link type="text/css" rel="stylesheet" href="bundle.min.css" />
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
     <noscript>
@@ -97,5 +99,6 @@
     <script async type="text/javascript" charset="UTF-8" src="_content/Microsoft.AspNetCore.Components.Web.Extensions/headManager.js"></script>
     <script async type="text/javascript" charset="UTF-8" src="bundle.min.js"></script>
     <script async type="text/javascript" charset="UTF-8" src="https://embed.twitch.tv/embed/v1.js"></script>
+    <script>@Html.Raw(JavaScriptSnippet.ScriptBody)</script>
 </body>
 </html>
