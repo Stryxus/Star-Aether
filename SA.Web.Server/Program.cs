@@ -31,7 +31,6 @@ namespace SA.Web.Server
                 {
                     await Logger.LogInfo("Starting Application Insights Telemetry");
                     services.AddApplicationInsightsTelemetry(PrivateVariables.Instance.ApplicationInsightsKey);
-                    services.AddApplicationInsightsTelemetryProcessor<InsightsFilter>();
                     await Logger.LogInfo("Started Application Insights Telemetry");
 #else
                 webBuilder.ConfigureServices((services) => 
