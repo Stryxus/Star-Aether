@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.WebSockets;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +17,6 @@ using SA.Web.Server.Data.Json;
 using SA.Web.Server.Discord;
 
 using Shyjus.BrowserDetection;
-using Microsoft.AspNetCore.Http;
 
 namespace SA.Web.Server
 {
