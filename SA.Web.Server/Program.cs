@@ -18,6 +18,7 @@ using SA.Web.Server.Data.Json;
 using SA.Web.Server.Discord;
 
 using Shyjus.BrowserDetection;
+using Microsoft.AspNetCore.Http;
 
 namespace SA.Web.Server
 {
@@ -79,12 +80,12 @@ namespace SA.Web.Server
                     app.UseRouting();
                     app.Use(async (context, next) =>
                     {
-                        bool isAllowed = true;
+                        bool isAllowed = false;
                         try
                         {
-                            isAllowed = !Services.Get<IBrowserDetector>().Browser.Name.Contains("Chrome") && !Services.Get<IBrowserDetector>().Browser.Name.Contains("Chromium");
+                            isAllowed = Services.Get<IBrowserDetector>().Browser.Name.Contains("Chrome") || Services.Get<IBrowserDetector>().Browser.Name.Contains("Chromium");
                         }
-                        catch { }
+                        catch { isAllowed = true; }
                         if (!isAllowed) context.Response.Redirect("chrome.html");
                         else await next();
                     });
