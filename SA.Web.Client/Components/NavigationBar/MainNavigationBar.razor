@@ -66,9 +66,15 @@
         { "Fleeter", "fleeter" },
         { "Load-Up & Out", "loadupout" },
         { "Econome", "econome" },
-        { "Changelog", "changelog" },
         { "Featured", "featured" },
         { "Wallpapers", "wallpapers" },
         { "About", "about" }
     };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        if (IsMobileNavbarVisible) Pages.Add("Home", "");
+        else if (Pages.ContainsKey("Home")) Pages.Remove("Home");
+    }
 }
