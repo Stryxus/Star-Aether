@@ -24,16 +24,9 @@ namespace SA.Web.Server
     {
         public static async Task Main() => await Host.CreateDefaultBuilder().ConfigureWebHostDefaults((webBuilder) => 
             {
-#if RELEASE
                 webBuilder.ConfigureServices(async (services) =>
                 {
-                    await Logger.LogInfo("Starting Application Insights Telemetry");
                     services.AddApplicationInsightsTelemetry(PrivateVariables.Instance.ApplicationInsightsKey);
-                    await Logger.LogInfo("Started Application Insights Telemetry");
-#else
-                webBuilder.ConfigureServices((services) => 
-                {
-#endif
                     services.AddBrowserDetection();
                     services.AddScoped<MongoDBInterface>();
                     services.AddScoped<TwitchInterface>();
