@@ -6,7 +6,7 @@ namespace SA.Web.Shared
     {
         public static string YearVersion { get; } = "2020";
         public static string MonthVersion { get; } = "10";
-        public static string DayVersion { get; } = "20";
+        public static string DayVersion { get; } = "26";
 
         public static string APINameString { get; } = "SA.Web.API";
         public static string APIVersionString { get; } = "v" + YearVersion + "." + MonthVersion + "." + DayVersion;
