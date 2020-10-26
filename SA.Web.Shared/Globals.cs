@@ -7,9 +7,11 @@ namespace SA.Web.Shared
         public static string YearVersion { get; } = "2020";
         public static string MonthVersion { get; } = "10";
         public static string DayVersion { get; } = "26";
+        public static string IterationVersion { get; } = "a";
+        public static string VersionString { get { return YearVersion + "." + MonthVersion + "." + DayVersion + IterationVersion; } }
 
         public static string APINameString { get; } = "SA.Web.API";
-        public static string APIVersionString { get; } = "v" + YearVersion + "." + MonthVersion + "." + DayVersion;
+        public static string APIVersionString { get { return VersionString; } }
 
 #if DEBUG || RELEASE_TEST
         public static Uri CoreLink                              { get; private set; } = new Uri("https://raw.githubusercontent.com/Star-Athenaeum/Data-Vault/master/TEST/v1");
