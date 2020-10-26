@@ -6,7 +6,7 @@ The Star Athenaeum Project Website
 </h1>
 <div align="center">
 
-![Build](https://github.com/Star-Athenaeum/Website/workflows/.NET%205/badge.svg)
+![Build](https://github.com/Star-Athenaeum/Website/workflows/Build/badge.svg)
 [![License: MIT](https://img.shields.io/github/license/Star-Athenaeum/Website)](https://github.com/Star-Athenaeum/Website/blob/master/LICENSE)
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=flat&logo=twitter)](https://twitter.com/intent/tweet?hashtags=StarAthenaeum,StarCitizen&text=StarAthenaeum.+The+most+ambitious+tools+project+for+Star+Citizen&url=https://github.com/Star-Athenaeum)
 
