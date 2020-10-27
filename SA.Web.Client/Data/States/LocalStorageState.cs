@@ -22,9 +22,6 @@ namespace SA.Web.Client.Data.States
                 case Type t when t == typeof(NewsData):
                     await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().NewsData = defaultData ? new NewsData() : Services.Get<ClientState>().NewsData));
                     break;
-                case Type t when t == typeof(ChangelogData):
-                    await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().ChangelogData = defaultData ? new ChangelogData() : Services.Get<ClientState>().ChangelogData));
-                    break;
                 case Type t when t == typeof(RoadmapData):
                     await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().RoadmapData = defaultData ? new RoadmapData() : Services.Get<ClientState>().RoadmapData));
                     break;
@@ -57,10 +54,6 @@ namespace SA.Web.Client.Data.States
                     case Type t when t == typeof(NewsData):
                         if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyNewsDataChange(Services.Get<ClientState>().NewsData = obj as NewsData ?? new NewsData(), true);
                         else if (Services.Get<WebSocketManagerMiddleware>().IsConnected) await Services.Get<ServerState>().RequestNewsData(true);
-                        break;
-                    case Type t when t == typeof(ChangelogData):
-                        if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyChangelogDataChange(Services.Get<ClientState>().ChangelogData = obj as ChangelogData ?? new ChangelogData(), true);
-                        else if (Services.Get<WebSocketManagerMiddleware>().IsConnected) await Services.Get<ServerState>().RequestChangelogData(true);
                         break;
                     case Type t when t == typeof(RoadmapData):
                         if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyRoadmapCardDataChange(Services.Get<ClientState>().RoadmapData = obj as RoadmapData ?? new RoadmapData(), true);

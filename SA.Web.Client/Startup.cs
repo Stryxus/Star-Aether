@@ -1,8 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using System.Net.WebSockets;
+using System.Net.Http;
 
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 
 using SA.Web.Client.WebSockets;
@@ -10,6 +12,7 @@ using SA.Web.Client.Data;
 using SA.Web.Client.Data.States;
 using SA.Web.Client.Data.States.Roadmap;
 using SA.Web.Shared.WebSockets;
+using SA.Web.Shared;
 
 namespace SA.Web.Client
 {
@@ -36,6 +39,10 @@ namespace SA.Web.Client
             HostBuilder.Services.AddScoped<JSInterface.Cache>();
             HostBuilder.Services.AddScoped<JSInterface.LocalData>();
             HostBuilder.Services.AddScoped<JSInterface.AnimationManager>();
+
+            HostBuilder.Services.AddHttpClient("SA.Web.ServerAPI", client => client.BaseAddress = new Uri(HostBuilder.HostEnvironment.BaseAddress)).AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
+            HostBuilder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("SA.Web.ServerAPI"));
+            HostBuilder.Services.AddApiAuthorization();
 
             Host = HostBuilder.Build();
             Services.SetServiceProvider(Host.Services);

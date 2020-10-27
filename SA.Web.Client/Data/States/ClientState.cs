@@ -58,32 +58,6 @@ namespace SA.Web.Client.Data.States
             }
         }
 
-        private ChangelogData _changelogData;
-        internal ChangelogData ChangelogData
-        {
-            get
-            {
-                return _changelogData;
-            }
-            set
-            {
-                _changelogData = value;
-                OnChangelogDataChanged?.Invoke();
-                Services.Get<InitializationState>().CheckAppLoaded();
-            }
-        }
-
-        internal event Action OnChangelogDataChanged;
-        internal async void NotifyChangelogDataChange(ChangelogData data, bool isLocalData)
-        {
-            if (!isLocalData)
-            {
-                ChangelogData = data;
-                await Services.Get<LocalStorageState>().SetLocalData<ChangelogData>();
-                await Logger.LogInfo("Received Changelog Data!");
-            }
-        }
-
         private RoadmapData _roadmapData;
         internal RoadmapData RoadmapData
         {

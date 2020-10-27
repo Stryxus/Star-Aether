@@ -9,15 +9,21 @@ namespace SA.Web.Client.Data.States
     internal class InitializationState
     {
         internal event Action OnAppLoaded;
+        private bool SingleAppLoadedLock;
         internal void CheckAppLoaded()
         {
             if (
                 Services.Get<ClientState>().Settings != null &&
                 Services.Get<ClientState>().NewsData != null &&
-                Services.Get<ClientState>().ChangelogData != null &&
                 Services.Get<ClientState>().RoadmapData != null &&
-                Services.Get<ClientState>().PhotographyData != null
-                ) OnAppLoaded?.Invoke();
+                Services.Get<ClientState>().PhotographyData != null &&
+                !Services.Get<UIState>().FirstRender &&
+                !SingleAppLoadedLock
+                )
+            {
+                SingleAppLoadedLock = true;
+                OnAppLoaded?.Invoke();
+            }
         }
 
         private bool FirstRegisterPass { get; set; } = true;
@@ -36,7 +42,11 @@ namespace SA.Web.Client.Data.States
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.LocalData>(), "localStorageInterface");
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.AnimationManager>(), "animationInterface");
 
-                OnAppLoaded += async () => await Services.Get<JSInterface.AnimationManager>().ShowRouter();
+                OnAppLoaded += async () =>
+                {
+                    await Logger.LogInfo("Application has loaded successfully. Showing router.");
+                    await Services.Get<JSInterface.AnimationManager>().ShowRouter();
+                };
 
                 await Services.Get<LocalStorageState>().GetLocalData<GlobalSettings>();
 

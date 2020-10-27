@@ -5,6 +5,7 @@
 </main>
 
 @inject UIState UIState
+@inject ClientState ClientState
 @inject JSInterface.AnimationManager AnimationManager
 
 @code {
@@ -15,6 +16,7 @@
         if (firstRender)
         {
             UIState.FirstRender = false;
+
         }
         await AnimationManager.FadePageIn(UIState.FirstRender);
     }

@@ -13,8 +13,6 @@ GLOBAL.animationInterface = function (ref)
 
         showRouter: () => 
         {
-            document.getElementById("router").style.display = "block";
-            document.getElementById("router").style.opacity = 1;
             TweenMax.to("#loading-overlay", 2, { opacity: 0, onComplete: () => { document.getElementById("loading-overlay").style.display = "none"; } });
         },
         fadeOutPage: () => 

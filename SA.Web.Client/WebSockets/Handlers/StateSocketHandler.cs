@@ -26,7 +26,6 @@ namespace SA.Web.Client.WebSockets
                 message = message.Replace("JSON.", string.Empty);
 
                 TryConvertJSON<NewsData>((data) => Services.Get<ClientState>().NotifyNewsDataChange(data, false));
-                TryConvertJSON<ChangelogData>((data) => Services.Get<ClientState>().NotifyChangelogDataChange(data, false));
                 TryConvertJSON<RoadmapData>((data) => Services.Get<ClientState>().NotifyRoadmapCardDataChange(data, false));
                 TryConvertJSON<MediaPhotographyData>((data) => Services.Get<ClientState>().NotifyPhotographyDataChange(data, false));
 
