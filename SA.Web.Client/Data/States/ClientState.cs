@@ -53,6 +53,7 @@ namespace SA.Web.Client.Data.States
         {
             if (!isLocalData)
             {
+                data.NewsPosts.Reverse();
                 NewsData = data;
                 await Services.Get<LocalStorageState>().SetLocalData<NewsData>();
                 await Logger.LogInfo("Received News Data!");
