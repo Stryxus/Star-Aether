@@ -33,7 +33,7 @@ $borderRadius: 10px;
         border-left: 3px solid rgba($releasedColour, $colourTransparency);
 
         .header {
-            background-color: $releasedColour;
+            background-color: rgba($releasedColour, $colourTransparency);
         }
     }
 
@@ -41,7 +41,7 @@ $borderRadius: 10px;
         border-left: 3px solid rgba($devColour, $colourTransparency);
 
         .header {
-            background-color: $devColour;
+            background-color: rgba($devColour, $colourTransparency);
         }
     }
 
@@ -49,7 +49,7 @@ $borderRadius: 10px;
         border-left: 3px solid rgba($scheduleColour, $colourTransparency);
 
         .header {
-            background-color: $scheduleColour;
+            background-color: rgba($scheduleColour, $colourTransparency);
         }
     }
 
@@ -57,7 +57,7 @@ $borderRadius: 10px;
         border-left: 3px solid rgba($polishingColour, $colourTransparency);
 
         .header {
-            background-color: $polishingColour;
+            background-color: rgba($polishingColour, $colourTransparency);
         }
     }
 
@@ -379,7 +379,7 @@ $borderRadius: 10px;
         padding-left: 12px;
         padding-right: 62px;
         border-top: 1px solid $colour-grey-7-trans-high;
-        background-color: $colour-grey-2;
+        background-color: rgba($colour-grey-2, $colourTransparency);
         backdrop-filter: $backdrop-blur-heavy;
         clip-path: polygon(0px 0px, calc(100% - 62px) 0px, calc(100% - 10px) 100%, 0px 100%);
 
