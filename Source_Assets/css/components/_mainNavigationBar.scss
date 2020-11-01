@@ -123,8 +123,8 @@
             
                 .economy-ticker {
                     bottom: ($navigation-bar-height) + px;
-                    left: ($navigation-bar-height * 2) + px;
-                    width: calc(100% - #{(($navigation-bar-height * 2) - 12) + px});
+                    left: (($navigation-bar-height * 2) + 2) + px;
+                    width: calc(100% - #{(($navigation-bar-height * 2) - 14) + px});
                     clip-path: polygon(12px 0%, 100% 0px, 100% 100%, 34px 100%);
                 }
             
@@ -140,6 +140,7 @@
                         padding-right: 14px;
                         margin: 0px;
                         font-weight: 300;
+                        font-size: 13px;
                     }
             
                     .economy-ticker-title, .headline-ticker-title {
