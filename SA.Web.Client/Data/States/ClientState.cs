@@ -27,6 +27,7 @@ namespace SA.Web.Client.Data.States
             {
                 settings = value;
                 OnSettingsChanged?.Invoke();
+                Services.Get<InitializationState>().CheckAppLoaded();
             }
         }
 
