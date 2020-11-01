@@ -1,7 +1,7 @@
 ﻿<div id="settings-button" class="col-auto" @onclick="() => UIState.ToggleSettingsPanelVisibility()">
     <i class="fas fa-cog"></i>
 </div>
-<div id="id-card" class="col-auto">
+<a id="id-card" class="col-auto" href="/login">
     <div class="row">
         <div class="col">
             <div id="id-card-name" class="row">
@@ -23,7 +23,7 @@
             <img draggable="false" src="/img/avatar.svg" alt="Avatar" />
         </div>
     </div>
-</div>
+</a>
 
 @inject ClientState ClientState
 @inject UIState UIState
