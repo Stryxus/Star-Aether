@@ -8,8 +8,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SA.Web.Server</title>
-    <link rel="stylesheet" href="~/Identity/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/Identity/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha2/css/bootstrap-grid.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="~/Identity/css/site.css" />
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -43,13 +43,8 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; 2020 - SA.Web.Server</p>
-        </footer>
     </div>
-    <script src="~/Identity/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/Identity/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Identity/js/site.js" asp-append-version="true"></script>
+    <script async type="text/javascript" charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
