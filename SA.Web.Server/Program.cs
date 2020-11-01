@@ -31,7 +31,7 @@ namespace SA.Web.Server
 
         public static async Task Main() => await Host.CreateDefaultBuilder().ConfigureWebHostDefaults((webBuilder) => 
             {
-                webBuilder.ConfigureServices(async (services) =>
+                webBuilder.ConfigureServices((services) =>
                 {
                     services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
                     services.AddDatabaseDeveloperPageExceptionFilter();
