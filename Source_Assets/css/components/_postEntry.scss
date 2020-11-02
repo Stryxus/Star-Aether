@@ -2,53 +2,46 @@
     margin: 40px;
 
     .post-header {
-        background-color: rgba($colour-grey-5, 0.95);
-        clip-path: polygon(0 0, calc(100% - 65px) 0, 100% 65px, 100% 100%, 40px 100%, 0 calc(100% - 40px));
+        background-color: rgba($colour-grey-5, 0.75);
+        backdrop-filter: $backdrop-blur-heavy;
 
         h4 {
             margin-top: 18px;
             margin-bottom: 18px;
             margin-left: 36px;
-            margin-right: 56px;
+            margin-right: 36px;
             font-weight: 200;
         }
     }
 
     .post-content {
-        background-color: rgba($colour-grey-2, 0.95);
-        clip-path: polygon(0 0, calc(100% - 65px) 0, 100% 65px, 100% 100%, 40px 100%, 0 calc(100% - 40px));
+        background-color: rgba($colour-grey-2, 0.75);
+        backdrop-filter: $backdrop-blur-heavy;
         padding-top: 20px;
         padding-bottom: 20px;
         padding-left: 40px;
-        padding-right: 80px;
-
-        & > .col {
-            padding-top: 20px;
-            padding-bottom: 20px;
-            padding-left: 40px;
-            padding-right: 40px;
-        }
+        padding-right: 40px;
 
         img {
             box-shadow: $box-shadow-down-smooth;
             object-fit: contain;
-            margin-top: 0px;
-            margin-bottom: 0px;
-            margin-left: 0px;
-            margin-right: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: 36px;
+            margin-right: 36px;
             float: left;
         }
     }
 
     .post-footer {
-        background-color: rgba($colour-grey-5, 0.95);
-        clip-path: polygon(0 0, calc(100% - 65px) 0, 100% 65px, 100% 100%, 40px 100%, 0 calc(100% - 40px));
+        background-color: rgba($colour-grey-5, 0.75);
+        backdrop-filter: $backdrop-blur-heavy;
 
         small {
-            margin-top: 12px;
-            margin-bottom: 12px;
+            margin-top: 18px;
+            margin-bottom: 18px;
             margin-left: 36px;
-            margin-right: 56px;
+            margin-right: 36px;
         }
     }
 }
