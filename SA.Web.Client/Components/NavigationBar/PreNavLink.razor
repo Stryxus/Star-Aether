@@ -4,8 +4,7 @@
                                      {
                                          UIState.CurrentPage = href;
                                          await AnimationManager.FadePageOut();
-                                         await Task.Delay(TimeSpan.FromSeconds(0.6));
-                                         await ToggleAllNavLinks.InvokeAsync();
+                                         await Task.Delay(TimeSpan.FromSeconds(0.4));
                                          NavigationManager.NavigateTo(href);
                                      }
                                  })">@ChildContent</a>
@@ -22,6 +21,9 @@
     [Parameter]
     public string href { get; set; }
 
-    [Parameter]
-    public EventCallback ToggleAllNavLinks { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        UIState.OnPageChanged += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
 }

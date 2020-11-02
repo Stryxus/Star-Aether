@@ -30,9 +30,9 @@
         <MainNavigationBarHeadlinesTicker />
         <MainNavigationBarEconomyTicker />
         <div class="col-auto logo-container">
-            <NavLink draggable="false" href="/" Match="NavLinkMatch.All">
+            <PreNavLink href="/">
                 <img src="favicon.svg" draggable="false" alt="Logo" />
-            </NavLink>
+            </PreNavLink>
         </div>
         <div class="col-auto bordered-line-v"></div>
         <div class="col">
@@ -72,7 +72,7 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        if (IsMobileNavbarVisible) Pages.Add("Home", "");
+        if (IsMobileNavbarVisible && !Pages.ContainsKey("Home")) Pages.Add("Home", "");
         else if (Pages.ContainsKey("Home")) Pages.Remove("Home");
     }
 }

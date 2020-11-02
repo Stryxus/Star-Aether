@@ -6,7 +6,7 @@
             {
                 <div class="row">
                     <div class="col">
-                        <PreNavLink href="@("/" + NavLinks[page].ToLower())" ToggleAllNavLinks="@StateHasChanged"><p>@(page)</p></PreNavLink>
+                        <PreNavLink href="@("/" + NavLinks[page].ToLower())"><p>@(page)</p></PreNavLink>
                     </div>
                 </div>
             }
@@ -21,7 +21,7 @@ else
                 @foreach (string page in NavLinks.Keys)
                 {
                     <div class="col-auto">
-                        <PreNavLink href="@("/" + NavLinks[page].ToLower())" ToggleAllNavLinks="@StateHasChanged"><p>@(page)</p></PreNavLink>
+                        <PreNavLink href="@("/" + NavLinks[page].ToLower())"><p>@(page)</p></PreNavLink>
                     </div>
                 }
             </div>

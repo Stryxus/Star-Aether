@@ -1,7 +1,12 @@
 ﻿@page "/stargazer"
 
-
+@inject UIState UIState
 
 @code {
 
+    protected override async Task OnParametersSetAsync()
+    {
+        UIState.CurrentPage = "/stargazer";
+        await base.OnParametersSetAsync();
+    }
 }

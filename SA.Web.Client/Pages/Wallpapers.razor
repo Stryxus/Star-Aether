@@ -40,10 +40,17 @@
     </div>
 </div>
 
+@inject UIState UIState
 @inject ClientState ClientState
 
-@code {        
-    
+@code {
+
+    protected override async Task OnParametersSetAsync()
+    {
+        UIState.CurrentPage = "/wallpapers";
+        await base.OnParametersSetAsync();
+    }
+
     protected override async Task OnInitializedAsync()
     {
         ClientState.OnPhotographyDataChanged += StateHasChanged;

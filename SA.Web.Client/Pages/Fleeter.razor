@@ -46,6 +46,13 @@
     </div>
 </div>
 
+@inject UIState UIState
+
 @code {
 
+    protected override async Task OnParametersSetAsync()
+    {
+        UIState.CurrentPage = "/fleeter";
+        await base.OnParametersSetAsync();
+    }
 }

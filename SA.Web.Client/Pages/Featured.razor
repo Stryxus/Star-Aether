@@ -23,4 +23,9 @@
 
 @code {
 
+    protected override async Task OnParametersSetAsync()
+    {
+        UIState.CurrentPage = "/featured";
+        await base.OnParametersSetAsync();
+    }
 }

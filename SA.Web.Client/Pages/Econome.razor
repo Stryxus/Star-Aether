@@ -42,6 +42,13 @@
     </div>
 </div>
 
-@code {
+@inject UIState UIState  
 
+@code {        
+
+    protected override async Task OnParametersSetAsync()
+    {
+        UIState.CurrentPage = "/econome";
+        await base.OnParametersSetAsync();
+    }
 }
