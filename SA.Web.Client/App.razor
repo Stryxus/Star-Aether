@@ -38,7 +38,7 @@
     <div id="background-container" />
     <div id="router">
         <div id="webpage">
-            <Router AppAssembly="@typeof(Startup).Assembly" AdditionalAssemblies="LazyLoadedAssemblies" OnNavigateAsync="@OnNavigateAsync">
+            <Router AppAssembly="@typeof(Startup).Assembly">
                 <Found Context="routeData">
                     <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                         <NotAuthorized>
@@ -89,17 +89,5 @@
     {
         await InitializationState.Init();
         await base.OnInitializedAsync();
-    }
-
-    private List<Assembly> LazyLoadedAssemblies = new List<Assembly>();
-
-    private Task OnNavigateAsync(NavigationContext args)
-    {
-        if (args.Path.EndsWith("/stargazer"))
-        {
-            //List<Assembly> assemblies = (await LazyLoader.LoadAssembliesAsync(new string[] { "Lib1.dll" })).ToList();
-            //LazyLoadedAssemblies.AddRange(assemblies);
-        }
-        return Task.CompletedTask;
     }
 }
