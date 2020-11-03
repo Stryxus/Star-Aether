@@ -113,6 +113,7 @@ $borderRadius: 10px;
             width: auto;
             padding-left: 50px;
             padding-right: 50px;
+            backdrop-filter: none !important;
 
             &:hover {
                 background-color: $colour-grey-5-trans-high;
