@@ -30,7 +30,7 @@ namespace SA.Web.Client.WebSockets
                     await ClientSocket.ConnectAsync(new Uri("ws://localhost:31888/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
 #else
                     //await ClientSocket.ConnectAsync(new Uri("wss://ueesa.net/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
-                    await ClientSocket.ConnectAsync(new Uri("wss://star-athenaeum-uk-server.azurewebsites.net/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
+                    await ClientSocket.ConnectAsync(new Uri("wss://star-athenaeum-uk.azurewebsites.net/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
 #endif
 
                     async Task Continued()
