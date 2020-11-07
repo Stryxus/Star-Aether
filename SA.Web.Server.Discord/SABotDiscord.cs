@@ -9,9 +9,9 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 
-using SA.Web.Server.Discord.Commands;
+using SA.Bot.Discord.Commands;
 
-namespace SA.Web.Server.Discord
+namespace SA.Bot.Discord
 {
     public static class SABotDiscord
     {

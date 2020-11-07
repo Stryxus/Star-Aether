@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 
-namespace SA.Web.Server.Discord.Commands
+namespace SA.Bot.Discord.Commands
 {
     public class CommandHelp : ModuleBase<SocketCommandContext>
     {

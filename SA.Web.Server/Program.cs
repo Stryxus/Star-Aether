@@ -19,7 +19,7 @@ using SA.Web.Server.Models;
 
 using SA.Web.Server.Data.Json;
 using SA.Web.Server.Data.Identity;
-using SA.Web.Server.Discord;
+using SA.Bot.Discord;
 
 using Shyjus.BrowserDetection;
 

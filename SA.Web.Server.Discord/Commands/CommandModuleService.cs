@@ -8,7 +8,7 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 
-namespace SA.Web.Server.Discord.Commands
+namespace SA.Bot.Discord.Commands
 {
     public class CommandModuleService
     {
