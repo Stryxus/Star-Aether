@@ -1,9 +1,17 @@
 using System;
+using System.Net.Http;
+using System.Net.WebSockets;
+using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.Extensions.DependencyInjection;
 
 using SA.Web.Client.WebSockets;
 using SA.Web.Client.Data;
 using SA.Web.Client.Data.States;
 using SA.Web.Client.Data.States.Roadmap;
+using SA.Web.Shared.WebSockets;
 
 namespace SA.Web.Client
 {
