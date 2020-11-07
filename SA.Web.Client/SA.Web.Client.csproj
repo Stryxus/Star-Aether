@@ -63,6 +63,10 @@
   
   <ItemGroup>
     <ProjectReference Include="..\BSL.NET\BinaryStarLib\BinaryStarLib.csproj" />
+    <ProjectReference Include="..\SA.Client.UI\SA.Client.UI.csproj" />
+    <ProjectReference Include="..\SA.Project.Econome\SA.Project.Econome.csproj" />
+    <ProjectReference Include="..\SA.Project.Fleeter\SA.Project.Fleeter.csproj" />
+    <ProjectReference Include="..\SA.Project.LoadUpOut\SA.Project.LoadUpOut.csproj" />
     <ProjectReference Include="..\SA.Web.Shared\SA.Web.Shared.csproj" />
   </ItemGroup>
   
