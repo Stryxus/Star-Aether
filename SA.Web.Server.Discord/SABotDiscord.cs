@@ -25,7 +25,7 @@ namespace SA.Bot.Discord
             using (ServiceProvider services = ConfigureServices())
             {
                 DiscordClient = new DiscordSocketClient();
-                DiscordClient.Log += LogAsync;
+                DiscordClient.Log += Log;
                 DiscordClient.JoinedGuild += async (SocketGuild guild) =>
                 {
                     if (guild.Id != ulong.Parse(guildID)) await guild.LeaveAsync();
@@ -34,7 +34,6 @@ namespace SA.Bot.Discord
                 {
                     if (!user.IsBot) await user.AddRoleAsync(user.Guild.Roles.First(x => x.Name == "Freelancers"));
                 };
-                DiscordClient.Log += LogAsync;
 
                 await DiscordClient.LoginAsync(TokenType.Bot, token);
                 await DiscordClient.StartAsync();
@@ -42,10 +41,11 @@ namespace SA.Bot.Discord
 
                 await services.GetRequiredService<CommandModuleService>().InitializeAsync();
 
-                static async Task LogAsync(LogMessage log)
+                static Task Log(LogMessage log)
                 {
                     // Replace this with BSL.NET logger
                     Console.WriteLine(log.ToString());
+                    return Task.CompletedTask;
                 }
             }
 
