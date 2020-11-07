@@ -20,13 +20,6 @@ namespace SA.Web.Server.Data.Json
 
         public string TwitchAPIID { get; set; }
 
-        // Discord
-
-        public string Token { get; set; }
-        public string GuildID { get; set; }
-        public string DebugToken { get; set; }
-        public string DebugChannelID { get; set; }
-
         //
 
         internal static PrivateVariables _instance;

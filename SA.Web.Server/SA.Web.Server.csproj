@@ -66,7 +66,6 @@
   <ItemGroup>
     <ProjectReference Include="..\BSL.NET\BinaryStarLib\BinaryStarLib.csproj" />
     <ProjectReference Include="..\SA.Web.Client\SA.Web.Client.csproj" />
-    <ProjectReference Include="..\SA.Web.Server.Discord\SA.Bot.Discord.csproj" />
     <ProjectReference Include="..\SA.Web.Shared\SA.Web.Shared.csproj" />
   </ItemGroup>
 

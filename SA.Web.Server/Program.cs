@@ -19,7 +19,6 @@ using SA.Web.Server.Models;
 
 using SA.Web.Server.Data.Json;
 using SA.Web.Server.Data.Identity;
-using SA.Bot.Discord;
 
 using Shyjus.BrowserDetection;
 
@@ -112,10 +111,6 @@ namespace SA.Web.Server
                     });
                     await Services.Get<MongoDBInterface>().Connect();
                     Services.Get<TwitchInterface>().Connect();
-                    if (ServerLocator.IsUKServer()) SABotDiscord.StartBot(Globals.APIVersionString, 
-                                                                            Globals.IsDevelopmentMode ? PrivateVariables.Instance.DebugToken : PrivateVariables.Instance.Token, 
-                                                                            PrivateVariables.Instance.GuildID, 
-                                                                            PrivateVariables.Instance.DebugChannelID);
                 });
             }).Build().RunAsync();
     }
