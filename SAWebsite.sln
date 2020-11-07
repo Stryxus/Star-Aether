@@ -30,19 +30,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bots", "Bots", "{E5CC8B34-0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Discord", "Discord", "{502BFBC1-109E-4FD0-9F7F-E0E24C49CDF0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SA.Web.Server.Discord", "SA.Web.Server.Discord\SA.Web.Server.Discord.csproj", "{4527746E-D0F2-42FB-8FBF-C3F9C70F4B1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SA.Bot.Discord", "SA.Web.Server.Discord\SA.Bot.Discord.csproj", "{4527746E-D0F2-42FB-8FBF-C3F9C70F4B1F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Twitch", "Twitch", "{0F904CF3-1756-4FA3-8FBD-0FF033257569}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{BD43D6E3-5B8D-4820-89D9-BDE421C0820E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SA.Project.Fleeter", "SA.Project.Fleeter\SA.Project.Fleeter.csproj", "{B494674E-AB12-4C2C-8A32-182E0239C5C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SA.Project.Fleeter", "SA.Project.Fleeter\SA.Project.Fleeter.csproj", "{B494674E-AB12-4C2C-8A32-182E0239C5C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SA.Project.LoadUpOut", "SA.Project.LoadUpOut\SA.Project.LoadUpOut.csproj", "{4F02BCA3-C4BF-4AF3-A239-5831841CE489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SA.Project.LoadUpOut", "SA.Project.LoadUpOut\SA.Project.LoadUpOut.csproj", "{4F02BCA3-C4BF-4AF3-A239-5831841CE489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SA.Project.Econome", "SA.Project.Econome\SA.Project.Econome.csproj", "{E9394AB8-68ED-47FE-89F9-40D5436DB974}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SA.Project.Econome", "SA.Project.Econome\SA.Project.Econome.csproj", "{E9394AB8-68ED-47FE-89F9-40D5436DB974}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SA.Client.UI", "SA.Client.UI\SA.Client.UI.csproj", "{33E6526D-24AA-497F-A192-943043E6562E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SA.Client.UI", "SA.Client.UI\SA.Client.UI.csproj", "{33E6526D-24AA-497F-A192-943043E6562E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
