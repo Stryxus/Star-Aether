@@ -3,11 +3,11 @@
         <label class="switch">
             @if (Value)
             {
-                <input type="checkbox" checked @onclick="@(async () => await Toggle())">
+                <input type="checkbox" checked @onclick="Toggle">
             }
             else
             {
-                <input type="checkbox" @onclick="@(async () => await Toggle())">
+                <input type="checkbox" @onclick="Toggle">
             }
             <span class="slider"></span>
         </label>

@@ -1,7 +1,7 @@
 ﻿<div class="row section-item-frame @SpecialClasses">
     <div class="col-auto section-item-frame-line" />
     <div class="col">
-        <div class="row section-item-frame-title @(IsChanged ? "updated" : string.Empty)" @onclick="@ChangeVisibility">
+        <div class="row section-item-frame-title @(IsChanged ? "updated" : string.Empty)" @onclick="ChangeVisibility">
             <div class="col-auto d-flex align-items-center">
                 <i class="fas @(IsVisible ? "fa-chevron-up" : "fa-chevron-down")"></i>
             </div>

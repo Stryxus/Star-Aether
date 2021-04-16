@@ -20,7 +20,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <select @onchange="@((ChangeEventArgs e) => { p.Resolutions[0] = e.Value.ToString(); })" title="Choose a resolution that suites you!">
+                                <select @onchange="OnPhotoResChange(p)" title="Choose a resolution that suites you!">
                                     @foreach (string s in p.Resolutions)
                                     {
                                         <option>@(s.Substring(s.LastIndexOf('_') + 1, s.LastIndexOf('.') - s.LastIndexOf('_') - 1))</option>
@@ -56,4 +56,6 @@
         ClientState.OnPhotographyDataChanged += StateHasChanged;
         await base.OnInitializedAsync();
     }
+
+    private void OnPhotoResChange(ChangeEventArgs e, MediaPhoto p) => p.Resolutions[0] = e.Value.ToString();
 }

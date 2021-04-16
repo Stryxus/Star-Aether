@@ -10,11 +10,11 @@
                          CardData.Patches[0].EvocatiTestingDate == null && CardData.Patches[0].PTUTestingStartDate == null && CardData.Patches[0].PUReleaseDate == null ? "Released" : "Released")
     </small>
     <button class="info-button statistics @(RoadmapV1State.Roadmap_v1_IsStatisticsVisible[CardData.MajorVersion + "." + CardData.MinorVersion] ? "active" : string.Empty)"
-            @onclick="@(() => RoadmapV1State.Roadmap_v1_ToggleStatisticsVisibility(CardData.MajorVersion + "." + CardData.MinorVersion))">
+            @onclick="TogglePatchNotesVisibility">
         <i class="far fa-chart-bar"></i>
     </button>
     <button class="info-button updates @(RoadmapV1State.Roadmap_v1_IsPatchNotesVisible[CardData.MajorVersion + "." + CardData.MinorVersion] ? "active" : string.Empty)"
-            @onclick="@(() => RoadmapV1State.Roadmap_v1_TogglePatchNotesVisibility(CardData.MajorVersion + "." + CardData.MinorVersion))">
+            @onclick="TogglePatchNotesVisibility">
         <i class="fas fa-wrench"></i>
     </button>
 </div>
@@ -32,4 +32,6 @@
         if (!RoadmapV1State.Roadmap_v1_IsPatchNotesVisible.ContainsKey(CardData.MajorVersion + "." + CardData.MinorVersion)) RoadmapV1State.Roadmap_v1_IsPatchNotesVisible.Add(CardData.MajorVersion + "." + CardData.MinorVersion, false);
         await base.OnInitializedAsync();
     }
+
+    private void TogglePatchNotesVisibility() => RoadmapV1State.Roadmap_v1_TogglePatchNotesVisibility(CardData.MajorVersion + "." + CardData.MinorVersion);
 }

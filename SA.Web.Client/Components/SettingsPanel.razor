@@ -37,21 +37,10 @@
                 <button class="col-12" onclick="window.open('https://paypal.me/stryxus?locale.x=en_GB','_blank')">
                     <p>Help out and donate!</p>
                 </button>
-                <button class="col" @onclick="@(async () =>
-                                                {
-                                                    await LocalData.Clear();
-                                                    await Cache.Clear();
-                                                })" title="Clears the Applications Cache, including all stored Local Data.">
+                <button class="col" @onclick="ClearAllData" title="Clears the Applications Cache, including all stored Local Data.">
                     <p>Refresh App Cache</p>
                 </button>
-                <button class="col" @onclick="@(async () =>
-                                                {
-                                                    await LocalData.Clear();
-                                                    await ServerState.RequestChangelogData(true);
-                                                    await ServerState.RequestNewsData(true);
-                                                    await ServerState.RequestRoadmapData(true);
-                                                    await ServerState.RequestPhotographyData(true);
-                                                })" title="Clears the Applications Local Data.">
+                <button class="col" @onclick="ClearDatabases" title="Clears the Applications Local Data.">
                     <p>Refresh Data Cache</p>
                 </button>
             </div>
@@ -69,5 +58,20 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
+    }
+
+    private async Task ClearAllData()
+    {
+        await LocalData.Clear();
+        await Cache.Clear();
+    }
+
+    private async Task ClearDatabases()
+    {
+        await LocalData.Clear();
+        await ServerState.RequestChangelogData(true);
+        await ServerState.RequestNewsData(true);
+        await ServerState.RequestRoadmapData(true);
+        await ServerState.RequestPhotographyData(true);
     }
 }

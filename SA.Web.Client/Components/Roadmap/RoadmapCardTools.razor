@@ -1,10 +1,7 @@
 ﻿<div class="row align-items-stretch tools">
     <div class="col">
         <small>Select a roadmap update</small>
-        <select @onchange="@((ChangeEventArgs args) => 
-                             {
-                                 RoadmapV1State.Roadmap_v1_ChangeSelectedDate(CardData.MajorVersion + "." + CardData.MinorVersion, DateTime.Parse(args.Value.ToString()));
-                             })">
+        <select @onchange="OnVersionChange">
             @foreach (DateTime d in AvailableDates)
             {
                 <option>@d.ToShortDateString()</option>
@@ -22,5 +19,7 @@
 
     [Parameter]
     public List<DateTime> AvailableDates { get; set; }
+
+    private void OnVersionChange(ChangeEventArgs args) => RoadmapV1State.Roadmap_v1_ChangeSelectedDate(CardData.MajorVersion + "." + CardData.MinorVersion, DateTime.Parse(args.Value.ToString()));
 
 }
