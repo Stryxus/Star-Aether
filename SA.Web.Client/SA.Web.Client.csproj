@@ -26,6 +26,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\About\**" />
+    <Compile Remove="Components\Changelog\**" />
+    <Compile Remove="Components\Econome\**" />
+    <Compile Remove="Components\Fleeter\**" />
+    <Compile Remove="Components\News\**" />
+    <Compile Remove="Components\Roadmap\v2\**" />
+    <Compile Remove="Components\StarGazer\**" />
+    <Content Remove="Components\About\**" />
+    <Content Remove="Components\Changelog\**" />
+    <Content Remove="Components\Econome\**" />
+    <Content Remove="Components\Fleeter\**" />
+    <Content Remove="Components\News\**" />
+    <Content Remove="Components\Roadmap\v2\**" />
+    <Content Remove="Components\StarGazer\**" />
+    <EmbeddedResource Remove="Components\About\**" />
+    <EmbeddedResource Remove="Components\Changelog\**" />
+    <EmbeddedResource Remove="Components\Econome\**" />
+    <EmbeddedResource Remove="Components\Fleeter\**" />
+    <EmbeddedResource Remove="Components\News\**" />
+    <EmbeddedResource Remove="Components\Roadmap\v2\**" />
+    <EmbeddedResource Remove="Components\StarGazer\**" />
+    <None Remove="Components\About\**" />
+    <None Remove="Components\Changelog\**" />
+    <None Remove="Components\Econome\**" />
+    <None Remove="Components\Fleeter\**" />
+    <None Remove="Components\News\**" />
+    <None Remove="Components\Roadmap\v2\**" />
+    <None Remove="Components\StarGazer\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="blaze-settings.json" />
   </ItemGroup>
 
@@ -38,17 +69,6 @@
 
   <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Components\Changelog\" />
-    <Folder Include="Components\Fleeter\" />
-    <Folder Include="Components\Econome\" />
-    <Folder Include="Components\About\" />
-    <Folder Include="Components\News\" />
-    <Folder Include="Components\Roadmap\v2\Squadron42\" />
-    <Folder Include="Components\Roadmap\v2\StarCitizen\" />
-    <Folder Include="Components\StarGazer\" />
   </ItemGroup>
   
   <ItemGroup>
