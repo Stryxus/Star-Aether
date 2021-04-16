@@ -4,13 +4,9 @@
   "scssIncludeDirectory": "css",
   "scssPrecision": 3,
   "jsDependencyLinks": [
-    "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.js",
-    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.js",
-    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.js",
-    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/Draggable.js",
-    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/EasePack.js",
-    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.js",
-    "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.0-beta/chart.js"
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/CSSRulePlugin.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollToPlugin.js"
 
   ],
   "ignored_directories": [
