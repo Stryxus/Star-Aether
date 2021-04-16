@@ -3,7 +3,7 @@
         <small>Select a roadmap update</small>
         <select @onchange="@((ChangeEventArgs args) => 
                              {
-                                 RoadmapV1State.Roadmap_v1_ChangeSelectedDate(Card.MajorVersion + "." + Card.MinorVersion, DateTime.Parse(args.Value.ToString()));
+                                 RoadmapV1State.Roadmap_v1_ChangeSelectedDate(CardData.MajorVersion + "." + CardData.MinorVersion, DateTime.Parse(args.Value.ToString()));
                              })">
             @foreach (DateTime d in AvailableDates)
             {
@@ -18,7 +18,7 @@
 @code {
 
     [Parameter]
-    public RoadmapCard Card { get; set; }
+    public RoadmapCardData CardData { get; set; }
 
     [Parameter]
     public List<DateTime> AvailableDates { get; set; }

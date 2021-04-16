@@ -1,11 +1,11 @@
-﻿@if (RoadmapV1State.Roadmap_v1_IsStatisticsVisible[Card.MajorVersion + "." + Card.MinorVersion])
+﻿@if (RoadmapV1State.Roadmap_v1_IsStatisticsVisible[CardData.MajorVersion + "." + CardData.MinorVersion])
 {
-    <StarCitizenUpdateCardInformationStatistics Card="Card" AvailableDates="AvailableDates" />
+    <RoadmapCardInformationStatistics Card="CardData" AvailableDates="AvailableDates" />
     <hr />
 }
-@if (RoadmapV1State.Roadmap_v1_IsPatchNotesVisible[Card.MajorVersion + "." + Card.MinorVersion])
+@if (RoadmapV1State.Roadmap_v1_IsPatchNotesVisible[CardData.MajorVersion + "." + CardData.MinorVersion])
 {
-    <StarCitizenUpdateCardInformationPatchList Card="Card" />
+    <RoadmapCardInformationPatchList Card="CardData" />
     <hr />
 }
 
@@ -14,7 +14,7 @@
 @code {
 
     [Parameter]
-    public RoadmapCard Card { get; set; }
+    public RoadmapCardData CardData { get; set; }
 
     [Parameter]
     public List<DateTime> AvailableDates { get; set; }

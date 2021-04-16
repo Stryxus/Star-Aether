@@ -1,5 +1,5 @@
 ﻿<div class="col">
-    <StarCitizenUpdateCardCategoryStatistics Card="Card" Features="Features" AvailableDates="AvailableDates" />
+    <RoadmapCardCategoryStatistics Card="CardData" Features="Features" AvailableDates="AvailableDates" />
     <hr />
     <div class="row category">
         <div class="col">
@@ -8,9 +8,9 @@
                     <h4>Loading Feature...</h4>
                 </Placeholder>
                 <ItemContent>
-                    <StarCitizenUpdateCardCategoryItemFrame Title="@(feature.Title)">
-                        <StarCitizenUpdateCardCategoryFeature Card="Card" Feature="feature" AvailableDates="AvailableDates" />
-                    </StarCitizenUpdateCardCategoryItemFrame>
+                    <RoadmapCardCategoryItemFrame Title="@(feature.Title)">
+                        <RoadmapCardCategoryFeature Card="CardData" Feature="feature" AvailableDates="AvailableDates" />
+                    </RoadmapCardCategoryItemFrame>
                     @if (feature.Title == Features.Last().Title)
                     {
                         <hr />
@@ -26,10 +26,10 @@
 @code {
 
     [Parameter]
-    public RoadmapCard Card { get; set; }
+    public RoadmapCardData CardData { get; set; }
 
     [Parameter]
-    public List<RoadmapFeature> Features { get; set; }
+    public List<RoadmapFeatureData> Features { get; set; }
 
     [Parameter]
     public List<DateTime> AvailableDates { get; set; }

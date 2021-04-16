@@ -1,7 +1,7 @@
 ﻿<div class="col section-category-statistics">
-    @if (Card.Patches.Count() >= 2)
+    @if (CardData.Patches.Count() >= 2)
     {
-        <Virtualize Items="Card.Patches" Context="changelog">
+        <Virtualize Items="CardData.Patches" Context="changelog">
             <Placeholder>
                 <h4>Loading Patch...</h4>
             </Placeholder>
@@ -12,7 +12,7 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col">
-                                    <small class="title">@("Patch: " + Card.MajorVersion + "." + Card.MinorVersion + "." + changelog.PatchVersion)</small>
+                                    <small class="title">@("Patch: " + CardData.MajorVersion + "." + CardData.MinorVersion + "." + changelog.PatchVersion)</small>
                                 </div>
                             </div>
                             <div class="row">
@@ -74,7 +74,7 @@
 @code {
 
     [Parameter]
-    public RoadmapCard Card { get; set; }
+    public RoadmapCardData CardData { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

@@ -60,7 +60,7 @@
     public double Progress { get; set; } = 0;
     public string FeatureStatusString { get; set; } = string.Empty;
 
-    public RoadmapFeatureStatus Status { get; set; }
+    public RoadmapFeatureStatusData Status { get; set; }
     public bool AreTasksKnown { get; set; } = false;
 
     protected override async Task OnInitializedAsync()
@@ -82,13 +82,13 @@
             HasData = false;
         }
 
-        AreTasksKnown = (Status != RoadmapFeatureStatus.Scheduled && TasksCompleted > 0) || Status == RoadmapFeatureStatus.Scheduled;
-        Progress = Status == RoadmapFeatureStatus.InDevelopment ? 100D * (double)TaskCount / (double)TasksCompleted : AreTasksKnown ? 100D : 0D;
+        AreTasksKnown = (Status != RoadmapFeatureStatusData.Scheduled && TasksCompleted > 0) || Status == RoadmapFeatureStatusData.Scheduled;
+        Progress = Status == RoadmapFeatureStatusData.InDevelopment ? 100D * (double)TaskCount / (double)TasksCompleted : AreTasksKnown ? 100D : 0D;
 
         bool hasPUReleaseDate = CardData.Patches[0].PUReleaseDate != null;
         FeatureStatusString =
             AreTasksKnown ? "Tasks: " +
-                (hasPUReleaseDate || Status == RoadmapFeatureStatus.Released || Status == RoadmapFeatureStatus.Polishing ? TasksCompleted : TaskCount) + "/" + TasksCompleted + " | " +
+                (hasPUReleaseDate || Status == RoadmapFeatureStatusData.Released || Status == RoadmapFeatureStatusData.Polishing ? TasksCompleted : TaskCount) + "/" + TasksCompleted + " | " +
                     (Progress < 100D ? Progress.ToString("0.00") + "% | " : string.Empty) + (hasPUReleaseDate ? "Released" : Status.ToString())
             : "Data Unknown | " + (hasPUReleaseDate ? "Released" : Status.ToString());
         await base.OnInitializedAsync();

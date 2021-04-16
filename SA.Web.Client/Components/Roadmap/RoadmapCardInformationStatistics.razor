@@ -121,13 +121,13 @@
 
         foreach (RoadmapFeatureData f in CardData.VersionFeatures)
         {
-            RoadmapFeatureStatus status = f.Status[f.Status.Keys.Where(x => x <= SelectedDate).Reverse().First()];
+            RoadmapFeatureStatusData status = f.Status[f.Status.Keys.Where(x => x <= SelectedDate).Reverse().First()];
             TaskCount += f.TaskCount[f.TaskCount.Keys.Where(x => x <= SelectedDate).Reverse().First()];
             TasksCompleted += f.TasksCompleted[f.TasksCompleted.Keys.Where(x => x <= SelectedDate).Reverse().First()];
-            bool IsDataKnown = status != RoadmapFeatureStatus.Scheduled && TaskCount > 0 && TasksCompleted > 0;
+            bool IsDataKnown = status != RoadmapFeatureStatusData.Scheduled && TaskCount > 0 && TasksCompleted > 0;
 
-            if (f.Status[f.Status.Keys.Where(x => x <= SelectedDate).Reverse().First()] == RoadmapFeatureStatus.Scheduled) ScheduledFeatures++;
-            else if (f.Status[f.Status.Keys.Where(x => x <= SelectedDate).Reverse().First()] == RoadmapFeatureStatus.InDevelopment) InDevelopmentFeatures++;
+            if (f.Status[f.Status.Keys.Where(x => x <= SelectedDate).Reverse().First()] == RoadmapFeatureStatusData.Scheduled) ScheduledFeatures++;
+            else if (f.Status[f.Status.Keys.Where(x => x <= SelectedDate).Reverse().First()] == RoadmapFeatureStatusData.InDevelopment) InDevelopmentFeatures++;
             else PolishingReleasedFeatures++;
         }
 

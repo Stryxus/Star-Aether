@@ -27,7 +27,7 @@ namespace SA.Web.Shared.Json
         public List<string> Versions { get; set; }
     }
 
-    public enum RoadmapCardCategory : int
+    public enum RoadmapCardCategoryData : int
     {
         Characters,
         Locations,
@@ -51,14 +51,14 @@ namespace SA.Web.Shared.Json
     public class RoadmapFeatureData
     {
         public string Title { get; set; }
-        public RoadmapCardCategory Category { get; set; }
-        public Dictionary<DateTime, RoadmapFeatureStatus> Status { get; set; }
+        public RoadmapCardCategoryData Category { get; set; }
+        public Dictionary<DateTime, RoadmapFeatureStatusData> Status { get; set; }
         public Dictionary<DateTime, int> TaskCount { get; set; }
         public Dictionary<DateTime, int> TasksCompleted { get; set; }
         public string Description { get; set; }
     }
 
-    public enum RoadmapFeatureStatus : int
+    public enum RoadmapFeatureStatusData : int
     {
         Scheduled,
         InDevelopment,

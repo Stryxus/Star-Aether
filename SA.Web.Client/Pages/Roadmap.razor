@@ -7,9 +7,9 @@
             {
                 @if (ClientState.RoadmapData.Cards != null)
                 {
-                    @foreach (RoadmapCard card in ClientState.RoadmapData.Cards)
+                    @foreach (RoadmapCardData card in ClientState.RoadmapData.Cards)
                     {
-                        <StarCitizenUpdateCard Card="card" />
+                        <RoadmapCard Card="card" />
                     }
                 }
             }
