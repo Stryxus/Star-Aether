@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Security.Authentication;
@@ -8,7 +7,6 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
-using SA.Web.Server.Data.Json;
 using SA.Web.Server.WebSockets;
 using SA.Web.Shared.Json;
 
@@ -29,7 +27,7 @@ namespace SA.Web.Server
             if (Client == null)
             {
                 await Logger.LogInfo("Connecting to MongoDB...");
-                MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(PrivateVariables.Instance.MongoDBConnectionString));
+                MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(""));
                 settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls13 };
                 Client = new MongoClient(settings);
                 Database_Public_Data = Client.GetDatabase("public_data");
@@ -54,8 +52,8 @@ namespace SA.Web.Server
 
         internal async Task<string> GetRoadmapData()
         {
-            RoadmapData data = new RoadmapData { Cards = new List<RoadmapCard>() };
-            foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("roadmap-data").FindAsync(_ => true)).ToListAsync()) data.Cards.Add(BsonSerializer.Deserialize<RoadmapCard>(entry));
+            RoadmapData data = new RoadmapData { Cards = new List<RoadmapCardData>() };
+            foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("roadmap-data").FindAsync(_ => true)).ToListAsync()) data.Cards.Add(BsonSerializer.Deserialize<RoadmapCardData>(entry));
             return JsonConvert.SerializeObject(data);
         }
 
