@@ -8,21 +8,21 @@ namespace SA.Web.Shared.Json
 {
     public class RoadmapData
     {
-        public List<RoadmapCard> Cards { get; set; }
+        public List<RoadmapCardData> Cards { get; set; }
     }
 
-    public class RoadmapCard
+    public class RoadmapCardData
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public int MajorVersion { get; set; }
         public int MinorVersion { get; set; }
-        public List<RoadmapFeature> VersionFeatures { get; set; }
-        public List<RoadmapCardChangelog> Patches { get; set; }
+        public List<RoadmapFeatureData> VersionFeatures { get; set; }
+        public List<RoadmapCardChangelogData> Patches { get; set; }
     }
 
-    public class RoadmapCardVersions
+    public class RoadmapCardVersionsData
     {
         public List<string> Versions { get; set; }
     }
@@ -38,7 +38,7 @@ namespace SA.Web.Shared.Json
         CoreTech
     }
 
-    public class RoadmapCardChangelog
+    public class RoadmapCardChangelogData
     {
         public int PatchVersion { get; set; }
         public string VersionString { get; set; }
@@ -48,7 +48,7 @@ namespace SA.Web.Shared.Json
         public string SpectrumPatchNotes { get; set; }
     }
 
-    public class RoadmapFeature
+    public class RoadmapFeatureData
     {
         public string Title { get; set; }
         public RoadmapCardCategory Category { get; set; }

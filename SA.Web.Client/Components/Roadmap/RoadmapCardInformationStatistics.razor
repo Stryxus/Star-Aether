@@ -4,7 +4,7 @@
             <small>Features</small>
         </div>
         <div class="col">
-            <small>@Card.VersionFeatures.Count()</small>
+            <small>@CardData.VersionFeatures.Count()</small>
         </div>
     </div>
     <div class="row">
@@ -52,7 +52,7 @@
             <small>Version String</small>
         </div>
         <div class="col">
-            <small>@(Card.Patches[0].VersionString != null ? Card.Patches[0].VersionString : "Unknown")</small>
+            <small>@(CardData.Patches[0].VersionString != null ? CardData.Patches[0].VersionString : "Unknown")</small>
         </div>
     </div>
     <div class="row">
@@ -60,7 +60,7 @@
             <small>PU Release</small>
         </div>
         <div class="col">
-            <small>@(Card.Patches[0].PUReleaseDate != null ? Card.Patches[0].PUReleaseDate?.ToShortDateString() : "Unknown")</small>
+            <small>@(CardData.Patches[0].PUReleaseDate != null ? CardData.Patches[0].PUReleaseDate?.ToShortDateString() : "Unknown")</small>
         </div>
     </div>
     <div class="row">
@@ -68,7 +68,7 @@
             <small>PTU Release</small>
         </div>
         <div class="col">
-            <small>@(Card.Patches[0].PTUTestingStartDate != null ? Card.Patches[0].PTUTestingStartDate?.ToShortDateString() : "Unknown")</small>
+            <small>@(CardData.Patches[0].PTUTestingStartDate != null ? CardData.Patches[0].PTUTestingStartDate?.ToShortDateString() : "Unknown")</small>
         </div>
     </div>
     <div class="row">
@@ -76,7 +76,7 @@
             <small>Evocati Release</small>
         </div>
         <div class="col">
-            <small>@(Card.Patches[0].EvocatiTestingDate != null ? Card.Patches[0].EvocatiTestingDate?.ToShortDateString() : "Unknown")</small>
+            <small>@(CardData.Patches[0].EvocatiTestingDate != null ? CardData.Patches[0].EvocatiTestingDate?.ToShortDateString() : "Unknown")</small>
         </div>
     </div>
     <div class="row">
@@ -85,9 +85,9 @@
         </div>
         <div class="col">
             <small>
-                @if (!string.IsNullOrEmpty(Card.Patches[0].SpectrumPatchNotes))
+                @if (!string.IsNullOrEmpty(CardData.Patches[0].SpectrumPatchNotes))
                 {
-                    <a href="@Card.Patches[0].SpectrumPatchNotes" target="_blank">Spectrum Link</a>
+                    <a href="@CardData.Patches[0].SpectrumPatchNotes" target="_blank">Spectrum Link</a>
                 }
                 else
                 {
@@ -103,7 +103,7 @@
 @code {
 
     [Parameter]
-    public RoadmapCard Card { get; set; }
+    public RoadmapCardData CardData { get; set; }
 
     [Parameter]
     public List<DateTime> AvailableDates { get; set; }
@@ -117,9 +117,9 @@
 
     protected override async Task OnInitializedAsync()
     {
-        DateTime SelectedDate = RoadmapV1State.Roadmap_v1_SelectedDates[Card.MajorVersion + "." + Card.MinorVersion];
+        DateTime SelectedDate = RoadmapV1State.Roadmap_v1_SelectedDates[CardData.MajorVersion + "." + CardData.MinorVersion];
 
-        foreach (RoadmapFeature f in Card.VersionFeatures)
+        foreach (RoadmapFeatureData f in CardData.VersionFeatures)
         {
             RoadmapFeatureStatus status = f.Status[f.Status.Keys.Where(x => x <= SelectedDate).Reverse().First()];
             TaskCount += f.TaskCount[f.TaskCount.Keys.Where(x => x <= SelectedDate).Reverse().First()];

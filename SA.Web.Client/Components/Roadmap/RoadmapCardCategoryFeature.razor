@@ -43,10 +43,10 @@
 @code {
 
     [Parameter]
-    public RoadmapCard Card { get; set; }
+    public RoadmapCardData CardData { get; set; }
 
     [Parameter]
-    public RoadmapFeature Feature { get; set; }
+    public RoadmapFeatureData Feature { get; set; }
 
     [Parameter]
     public List<DateTime> AvailableDates { get; set; }
@@ -67,7 +67,7 @@
     {
         try
         {
-            SelectedDate = RoadmapV1State.Roadmap_v1_SelectedDates[Card.MajorVersion + "." + Card.MinorVersion];
+            SelectedDate = RoadmapV1State.Roadmap_v1_SelectedDates[CardData.MajorVersion + "." + CardData.MinorVersion];
             Status = Feature.Status[Feature.Status.Keys.Where(x => x <= SelectedDate).Reverse().First()];
             TaskCount = Feature.TaskCount[Feature.TaskCount.Keys.Where(x => x <= SelectedDate).Reverse().First()];
             TasksCompleted = Feature.TasksCompleted[Feature.TasksCompleted.Keys.Where(x => x <= SelectedDate).Reverse().First()];
@@ -85,7 +85,7 @@
         AreTasksKnown = (Status != RoadmapFeatureStatus.Scheduled && TasksCompleted > 0) || Status == RoadmapFeatureStatus.Scheduled;
         Progress = Status == RoadmapFeatureStatus.InDevelopment ? 100D * (double)TaskCount / (double)TasksCompleted : AreTasksKnown ? 100D : 0D;
 
-        bool hasPUReleaseDate = Card.Patches[0].PUReleaseDate != null;
+        bool hasPUReleaseDate = CardData.Patches[0].PUReleaseDate != null;
         FeatureStatusString =
             AreTasksKnown ? "Tasks: " +
                 (hasPUReleaseDate || Status == RoadmapFeatureStatus.Released || Status == RoadmapFeatureStatus.Polishing ? TasksCompleted : TaskCount) + "/" + TasksCompleted + " | " +

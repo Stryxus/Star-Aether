@@ -48,10 +48,10 @@
 @code {
 
     [Parameter]
-    public RoadmapCard Card { get; set; }
+    public RoadmapCardData CardData { get; set; }
 
     [Parameter]
-    public List<RoadmapFeature> Features { get; set; }
+    public List<RoadmapFeatureData> Features { get; set; }
 
     [Parameter]
     public List<DateTime> AvailableDates { get; set; }
@@ -65,11 +65,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        DateTime SelectedDate = RoadmapV1State.Roadmap_v1_SelectedDates[Card.MajorVersion + "." + Card.MinorVersion];
+        DateTime SelectedDate = RoadmapV1State.Roadmap_v1_SelectedDates[CardData.MajorVersion + "." + CardData.MinorVersion];
 
         try
         {
-            foreach (RoadmapFeature f in Features)
+            foreach (RoadmapFeatureData f in Features)
             {
                 RoadmapFeatureStatus status = f.Status[f.Status.Keys.Where(x => x <= SelectedDate).Reverse().First()];
                 TaskCount += f.TaskCount[f.TaskCount.Keys.Where(x => x <= SelectedDate).Reverse().First()];
