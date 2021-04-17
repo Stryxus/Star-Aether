@@ -7,6 +7,7 @@
     <Configurations>Debug;Release;Release Testing</Configurations>
     <Nullable>annotations</Nullable>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <AssemblyName>UEESA</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|AnyCPU'">
