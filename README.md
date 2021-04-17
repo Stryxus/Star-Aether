@@ -6,17 +6,13 @@ The Star Athenaeum Project Website
 </h1>
 <div align="center">
 
-![Build](https://github.com/Star-Athenaeum/Website/workflows/Build/badge.svg)
-[![License: MIT](https://img.shields.io/github/license/Star-Athenaeum/Website)](https://github.com/Star-Athenaeum/Website/blob/master/LICENSE)
-[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=flat&logo=twitter)](https://twitter.com/intent/tweet?hashtags=StarAthenaeum,StarCitizen&text=StarAthenaeum.+The+most+ambitious+tools+project+for+Star+Citizen&url=https://github.com/Star-Athenaeum)
+[![Build](https://img.shields.io/github/workflow/status/Star-Athenaeum/UEESA-App/Build?style=flat-square)](https://github.com/Star-Athenaeum/UEESA-App/actions/workflows/dotnet-core.yml)
+[![License: MIT](https://img.shields.io/github/license/Star-Athenaeum/Website?style=flat-square)](https://github.com/Star-Athenaeum/Website/blob/master/LICENSE)
+[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=flat&logo=twitter?style=flat-square)](https://twitter.com/intent/tweet?hashtags=StarAthenaeum,StarCitizen&text=StarAthenaeum.+The+most+ambitious+tools+project+for+Star+Citizen&url=https://github.com/Star-Athenaeum)
 
 </div>
 
-The Star Athenaeum Project is an ever expending place of learning for the use by the average player of Star Citizen and Squadron 42.
-
-The project is aimed to provide as much information to the community as possible, either it be from Star Citizen or Squadron 42 or even anything else along the lines.
-
-From a vast amount of tools from checking on the economic price of Quantanium to seeing if you can increase one of your ships weapons in dps, the StarAthenaeum project was always designed to provide as many tools as possible within the realm of possibility and practicality.
+Home to the cutting edge corner of the verse, where each and every citizen, pirate, syndicate leader and alike can learn a little more.
 
 # Licensing
 
@@ -24,15 +20,12 @@ This project follows the [MIT License](https://github.com/Star-Athenaeum/Website
 
 # Questions
 
-Have a question? There are 2 ways of doing this!
-* Join the official [Discord Server](https://discord.gg/prMBNeC) and @Stryxus at any time.
+Have a question? There is currently 1 way of doing this!
 * Tweet [@Stryxus](https://twitter.com/Stryxus)
-
-**Please dont put questions in the issues section!**
 
 # Distribution
 
-This website is distributed to [Azure](https://azure.microsoft.com/) through [Blaze](https://github.com/Star-Athenaeum/Blaze).
+This website is distributed to [Azure](https://azure.microsoft.com/) with [Blaze](https://github.com/Star-Athenaeum/Blaze).
 
 # Contributing
 
