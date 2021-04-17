@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 
 using SA.Web.Server.WebSockets;
 using SA.Web.Shared;
@@ -26,7 +27,7 @@ namespace SA.Web.Server
 #if DEBUG
                     services.AddApplicationInsightsTelemetry("00000000-0000-0000-0000-000000000000");
 #else
-                    services.AddApplicationInsightsTelemetry(PrivateData.Instance.ApplicationInsightsConnectionString);
+                    services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.ApplicationInsightsConnectionString });
 #endif
                     services.AddRazorPages();
                     services.AddScoped<MongoDBInterface>();
