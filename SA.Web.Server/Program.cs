@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Builder;
@@ -26,7 +27,12 @@ namespace SA.Web.Server
                     services.AddScoped<MongoDBInterface>();
                     services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Pages");
                     services.AddRouting();
-                    services.AddResponseCompression(options => options.Providers.Add<BrotliCompressionProvider>());
+                    services.AddResponseCompression(options =>
+                    {
+                        options.Providers.Add<BrotliCompressionProvider>();
+                        options.Providers.Add<GzipCompressionProvider>();
+                        options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
+                    });
                     services.AddWebSocketManager();
                 });
 
