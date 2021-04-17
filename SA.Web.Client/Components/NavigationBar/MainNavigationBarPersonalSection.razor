@@ -8,7 +8,7 @@
                 <div class="col">
                     <div class="row">
                         <div class="col">
-                            <small>Citizen-@ClientState.Random.Next(int.MinValue, int.MaxValue)</small>
+                            <small>Citizen-@ClientState.CitizenID</small>
                         </div>
                     </div>
                     <div class="row">
@@ -28,7 +28,13 @@
 @inject ClientState ClientState
 @inject UIState UIState
 
-@code {
+@code {        
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        ClientState.CitizenID = ClientState.Random.Next(int.MinValue, int.MaxValue);
+    }
 
     private void ToggleSettingsPanel() => UIState.ToggleSettingsPanelVisibility();
 }
