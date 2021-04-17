@@ -46,28 +46,28 @@ namespace SA.Web.Server
         internal async Task<string> GetNewsData()
         {
             NewsData data = new NewsData { NewsPosts = new List<NewsEntryData>() };
-            foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("news-data").FindAsync(_ => true)).ToListAsync()) data.NewsPosts.Add(BsonSerializer.Deserialize<NewsEntryData>(entry));
+            //foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("news-data").FindAsync(_ => true)).ToListAsync()) data.NewsPosts.Add(BsonSerializer.Deserialize<NewsEntryData>(entry));
             return JsonConvert.SerializeObject(data);
         }
 
         internal async Task<string> GetRoadmapData()
         {
             RoadmapData data = new RoadmapData { Cards = new List<RoadmapCardData>() };
-            foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("roadmap-data").FindAsync(_ => true)).ToListAsync()) data.Cards.Add(BsonSerializer.Deserialize<RoadmapCardData>(entry));
+            //foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("roadmap-data").FindAsync(_ => true)).ToListAsync()) data.Cards.Add(BsonSerializer.Deserialize<RoadmapCardData>(entry));
             return JsonConvert.SerializeObject(data);
         }
 
         internal async Task<string> GetChangelogData()
         {
             ChangelogData data = new ChangelogData { ChangelogPosts = new List<ChangelogEntryData>() };
-            foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("changelog-data").FindAsync(_ => true)).ToListAsync()) data.ChangelogPosts.Add(BsonSerializer.Deserialize<ChangelogEntryData>(entry));
+            //foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("changelog-data").FindAsync(_ => true)).ToListAsync()) data.ChangelogPosts.Add(BsonSerializer.Deserialize<ChangelogEntryData>(entry));
             return JsonConvert.SerializeObject(data);
         }
 
         internal async Task<string> GetPhotographyData()
         {
             MediaPhotographyData data = new MediaPhotographyData { Photos = new List<MediaPhoto>() };
-            foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("photography-data").FindAsync(_ => true)).ToListAsync()) data.Photos.Add(BsonSerializer.Deserialize<MediaPhoto>(entry));
+            //foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("photography-data").FindAsync(_ => true)).ToListAsync()) data.Photos.Add(BsonSerializer.Deserialize<MediaPhoto>(entry));
             return JsonConvert.SerializeObject(data);
         }
     }
