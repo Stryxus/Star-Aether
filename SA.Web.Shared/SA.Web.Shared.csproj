@@ -31,8 +31,7 @@
   <ItemGroup>
     <PackageReference Include="MongoDB.Bson" Version="2.12.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Stryxus.Lib" Version="2021.3.27" />
-    <PackageReference Include="Stryxus.Lib.AspNet.WebAssembly" Version="2021.3.27" />
+    <PackageReference Include="Stryxus.Lib" Version="2021.4.17" />
   </ItemGroup>
 
 </Project>
