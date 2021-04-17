@@ -357,7 +357,6 @@ SA.Web.Client/wwwroot/**/*
 !SA.Web.Client/wwwroot/service-worker.js
 !SA.Web.Client/wwwroot/service-worker.published.js
 
-SA.Web.Server/private.json
 SA.Web.Server/Properties/serviceDependencies.json
 SA.Web.Server/Properties/serviceDependencies.local.json
 SA.Web.Server/Properties/ServiceDependencies/*
