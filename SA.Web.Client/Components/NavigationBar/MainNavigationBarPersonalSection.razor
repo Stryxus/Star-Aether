@@ -1,4 +1,4 @@
-﻿<div id="settings-button" class="col-auto" @onclick="() => UIState.ToggleSettingsPanelVisibility()">
+﻿<div id="settings-button" class="col-auto" @onclick="ToggleSettingsPanel">
     <i class="fas fa-cog"></i>
 </div>
 <a id="id-card" class="col-auto" href="/login">
@@ -30,4 +30,5 @@
 
 @code {
 
+    private void ToggleSettingsPanel() => UIState.ToggleSettingsPanelVisibility();
 }
