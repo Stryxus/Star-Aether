@@ -40,8 +40,8 @@
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.17.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Stryxus.Lib" Version="2021.4.17" />
-    <PackageReference Include="Stryxus.Lib.AspNet" Version="2021.4.17" />
+    <PackageReference Include="Stryxus.Lib" Version="2021.4.17.1" />
+    <PackageReference Include="Stryxus.Lib.AspNet" Version="2021.4.17.1" />
   </ItemGroup>
 
   <ItemGroup>
