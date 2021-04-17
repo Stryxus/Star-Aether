@@ -29,6 +29,9 @@ namespace SA.Web.Server
                 await Logger.LogInfo("Connecting to MongoDB...");
                 MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(PrivateData.Instance.MongoDBConnectionString));
                 settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls13 };
+                settings.ConnectTimeout = TimeSpan.FromSeconds(10);
+                settings.ServerSelectionTimeout = TimeSpan.FromSeconds(2.5);
+                settings.WaitQueueTimeout = TimeSpan.FromSeconds(2.5);
                 Client = new MongoClient(settings);
                 Database_Public_Data = Client.GetDatabase("public_data");
                 await Logger.LogInfo("Connected to MongoDB!");
