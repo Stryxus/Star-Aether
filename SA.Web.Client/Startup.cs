@@ -4,7 +4,6 @@ using System.Net.WebSockets;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 
 using SA.Web.Client.WebSockets;
@@ -41,7 +40,6 @@ namespace SA.Web.Client
 
             HostBuilder.Services.AddHttpClient("SA.Web.ServerAPI", client => client.BaseAddress = new Uri(HostBuilder.HostEnvironment.BaseAddress)).AddHttpMessageHandler<BaseAddressAuthorizationMessageHandler>();
             HostBuilder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("SA.Web.ServerAPI"));
-            HostBuilder.Services.AddApiAuthorization();
 
             Host = HostBuilder.Build();
             Services.SetServiceProvider(Host.Services);
