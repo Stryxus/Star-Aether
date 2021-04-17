@@ -37,10 +37,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.5" />
     <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Stryxus.Lib" Version="2021.3.27" />
+    <PackageReference Include="Stryxus.Lib.AspNet.WebAssembly" Version="2021.3.27" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BSL.NET\BinaryStarLib\BinaryStarLib.csproj" />
     <ProjectReference Include="..\SA.Web.Client\SA.Web.Client.csproj" />
     <ProjectReference Include="..\SA.Web.Shared\SA.Web.Shared.csproj" />
   </ItemGroup>
