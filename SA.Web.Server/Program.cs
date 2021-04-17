@@ -23,6 +23,11 @@ namespace SA.Web.Server
             {
                 webBuilder.ConfigureServices((services) =>
                 {
+#if DEBUG
+                    services.AddApplicationInsightsTelemetry("00000000-0000-0000-0000-000000000000");
+#else
+                    services.AddApplicationInsightsTelemetry(PrivateData.Instance.ApplicationInsightsConnectionString);
+#endif
                     services.AddRazorPages();
                     services.AddScoped<MongoDBInterface>();
                     services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Pages");
