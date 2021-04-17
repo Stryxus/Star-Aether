@@ -5,6 +5,7 @@
     <Configurations>Debug;Release;Release Testing</Configurations>
     <Platforms>AnyCPU;x64</Platforms>
     <Nullable>annotations</Nullable>
+    <AssemblyName>SA.Web.Client</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|AnyCPU'">
@@ -33,8 +34,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.5" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Stryxus.Lib" Version="2021.4.17.1" />
-    <PackageReference Include="Stryxus.Lib.AspNet.WebAssembly" Version="2021.4.17.1" />
+    <PackageReference Include="Stryxus.Lib" Version="2021.4.17.3" />
+    <PackageReference Include="Stryxus.Lib.AspNet.WebAssembly" Version="2021.4.17.3" />
   </ItemGroup>
   
   <ItemGroup>

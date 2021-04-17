@@ -1,5 +1,4 @@
 using System;
-using System.Net.Http;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
 
@@ -14,7 +13,7 @@ using SA.Web.Shared.WebSockets;
 
 namespace SA.Web.Client
 {
-    public static class Startup
+    public static class Program
     {
         public static WebAssemblyHost Host { get; private set; }
 
