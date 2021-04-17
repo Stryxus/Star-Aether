@@ -51,7 +51,7 @@ namespace SA.Web.Server
             NewsData data = new NewsData { NewsPosts = new List<NewsEntryData>() };
             try
             {
-                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("news-data").FindAsync(_ => true)).ToListAsync()) data.NewsPosts.Add(BsonSerializer.Deserialize<NewsEntryData>(entry));
+                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("news_data").FindAsync(_ => true)).ToListAsync()) data.NewsPosts.Add(BsonSerializer.Deserialize<NewsEntryData>(entry));
             } catch (TimeoutException)
             {
                 await Logger.LogWarn("News data request timed out - Using default data structure.");
@@ -67,7 +67,7 @@ namespace SA.Web.Server
             RoadmapData data = new RoadmapData { Cards = new List<RoadmapCardData>() };
             try
             {
-                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("roadmap-data").FindAsync(_ => true)).ToListAsync()) data.Cards.Add(BsonSerializer.Deserialize<RoadmapCardData>(entry));
+                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("roadmap_data").FindAsync(_ => true)).ToListAsync()) data.Cards.Add(BsonSerializer.Deserialize<RoadmapCardData>(entry));
             }
             catch (TimeoutException)
             {
@@ -85,7 +85,7 @@ namespace SA.Web.Server
             ChangelogData data = new ChangelogData { ChangelogPosts = new List<ChangelogEntryData>() };
             try
             {
-                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("changelog-data").FindAsync(_ => true)).ToListAsync()) data.ChangelogPosts.Add(BsonSerializer.Deserialize<ChangelogEntryData>(entry));
+                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("changelog_data").FindAsync(_ => true)).ToListAsync()) data.ChangelogPosts.Add(BsonSerializer.Deserialize<ChangelogEntryData>(entry));
             }
             catch (TimeoutException)
             {
@@ -103,7 +103,7 @@ namespace SA.Web.Server
             MediaPhotographyData data = new MediaPhotographyData { Photos = new List<MediaPhoto>() };
             try
             {
-                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("photography-data").FindAsync(_ => true)).ToListAsync()) data.Photos.Add(BsonSerializer.Deserialize<MediaPhoto>(entry));
+                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("photography_data").FindAsync(_ => true)).ToListAsync()) data.Photos.Add(BsonSerializer.Deserialize<MediaPhoto>(entry));
             }
             catch (TimeoutException)
             {
