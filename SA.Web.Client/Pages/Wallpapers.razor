@@ -20,7 +20,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <select @onchange="OnPhotoResChange(p)" title="Choose a resolution that suites you!">
+                                <select @onchange="args => OnPhotoResChange(args, p)" title="Choose a resolution that suites you!">
                                     @foreach (string s in p.Resolutions)
                                     {
                                         <option>@(s.Substring(s.LastIndexOf('_') + 1, s.LastIndexOf('.') - s.LastIndexOf('_') - 1))</option>
