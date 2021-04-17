@@ -27,8 +27,8 @@
     "/img/background.png": {
       "enabled": true,
       "width": 3840,
-      "height": 2160,
-      "quality": 70,
+      "height": 1440,
+      "quality": 90,
       "format": "webp"
     },
     "/img/about/stryxus.png": {
