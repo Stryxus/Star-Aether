@@ -17,7 +17,5 @@ namespace SA.Web.Server.Data
             get { return _instance != null ? _instance : _instance = JsonConvert.DeserializeObject<PrivateVariables>(File.ReadAllText("private.json")); }
             private set { _instance = value; }
         }
-
-        private static void GetJson() => Instance = JsonConvert.DeserializeObject<PrivateVariables>(File.ReadAllText("private.json"));
     }
 }
