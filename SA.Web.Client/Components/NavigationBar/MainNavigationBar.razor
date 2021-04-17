@@ -56,8 +56,6 @@
 
     private bool IsMobileNavbarVisible = false;
 
-    private void ToggleMobileNavbar() => IsMobileNavbarVisible = !IsMobileNavbarVisible;
-
     private Dictionary<string, string> Pages = new Dictionary<string, string>()
     {
         { "Roadmap", "roadmap" },
@@ -76,5 +74,6 @@
         else if (Pages.ContainsKey("Home")) Pages.Remove("Home");
     }
 
+    private void ToggleMobileNavbar() => IsMobileNavbarVisible = !IsMobileNavbarVisible;
     private void ToggleSettingsPanel() => UIState.ToggleSettingsPanelVisibility();
 }
