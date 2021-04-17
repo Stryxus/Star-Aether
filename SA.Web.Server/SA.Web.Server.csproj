@@ -34,16 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Remove="private.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="private.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.0.0" />
     <PackageReference Include="Azure.Identity" Version="1.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.5" />
