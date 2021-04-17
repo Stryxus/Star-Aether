@@ -59,7 +59,7 @@ namespace SA.Web.Server
                         endpoints.MapRazorPages();
                         endpoints.MapFallbackToPage("/_Host");
                     });
-                    //await Services.Get<MongoDBInterface>().Connect();
+                    await Services.Get<MongoDBInterface>().Connect();
                 });
             }).Build().RunAsync();
     }
