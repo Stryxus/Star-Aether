@@ -24,7 +24,6 @@ namespace SA.Web.Server
                 {
                     services.AddRazorPages();
                     services.AddScoped<MongoDBInterface>();
-                    services.AddRazorPages();
                     services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Pages");
                     services.AddRouting();
                     services.AddResponseCompression(options => options.Providers.Add<BrotliCompressionProvider>());
