@@ -8,7 +8,7 @@ The Star Athenaeum Project Website
 
 [![Build](https://img.shields.io/github/workflow/status/Star-Athenaeum/UEESA-App/Build?style=flat-square)](https://github.com/Star-Athenaeum/UEESA-App/actions/workflows/dotnet-core.yml)
 [![License: MIT](https://img.shields.io/github/license/Star-Athenaeum/Website?style=flat-square)](https://github.com/Star-Athenaeum/Website/blob/master/LICENSE)
-[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=flat&logo=twitter?style=flat-square)](https://twitter.com/intent/tweet?hashtags=StarAthenaeum,StarCitizen&text=StarAthenaeum.+The+most+ambitious+tools+project+for+Star+Citizen&url=https://github.com/Star-Athenaeum)
+[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=flat-square&logo=twitter)](https://twitter.com/intent/tweet?hashtags=StarAthenaeum,StarCitizen&text=StarAthenaeum.+The+most+ambitious+tools+project+for+Star+Citizen&url=https://github.com/Star-Athenaeum)
 
 </div>
 
