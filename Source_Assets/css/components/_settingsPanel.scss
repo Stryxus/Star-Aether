@@ -5,12 +5,10 @@
     backdrop-filter: $backdrop-blur-heavy;
     position: absolute;
     top: 0px;
-    right: 0px;
+    right: -501px;
     overflow: hidden;
     align-items: stretch;
     z-index: $zindex-settings-panel;
-    display: none;
-    opacity: 0;
 
     & > .col {
         overflow: hidden;

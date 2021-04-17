@@ -32,17 +32,16 @@ GLOBAL.animationInterface = function (ref)
         },
         slideSettingsPanelInOut: (slideIn) => 
         {
+            console.log(document.getElementById("settings-panel").offsetWidth);
+            var width = document.getElementById("settings-panel").offsetWidth;
             if (slideIn) 
             {
-                document.getElementById("settings-panel").style.display = "block";
-                TweenMax.to("#settings-panel", 0.4, { opacity: 1 });
+                document.getElementById("settings-panel").style.right = -width;
+                TweenMax.to("#settings-panel", 0.3, { right: 0 });
             }
             else 
             {
-                TweenMax.to("#settings-panel", 0.4, { opacity: 0, onComplete: () => 
-                {
-                    document.getElementById("settings-panel").style.display = "none";
-                } });
+                TweenMax.to("#settings-panel", 0.3, { right: -width });
             }
         }
     }
