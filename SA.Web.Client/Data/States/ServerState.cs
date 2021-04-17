@@ -33,14 +33,6 @@ namespace SA.Web.Client.Data.States
             else await Services.Get<LocalStorageState>().GetLocalData<RoadmapData>();
         });
 
-        internal async Task RequestPhotographyData(bool getFreshCopy = false) => await Send(async (ClientWebSocket socket) =>
-        {
-            await Logger.LogInfo("Requesting Photography Data...");
-            if (Services.Get<WebSocketManagerMiddleware>().IsConnected && getFreshCopy)
-                Services.Get<StateSocketHandler>().SendMessageAsync(socket, "CMD." + Commands.GetPhotographyData);
-            else await Services.Get<LocalStorageState>().GetLocalData<MediaPhotographyData>();
-        });
-
         internal async Task RequestTwitchLogo(string username) => await Send(async (ClientWebSocket socket) => 
         {
             await Logger.LogInfo("Requesting Twitch Data for " + username);

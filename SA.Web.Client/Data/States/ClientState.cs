@@ -88,33 +88,6 @@ namespace SA.Web.Client.Data.States
             }
         }
 
-        private MediaPhotographyData _photographyData;
-        internal MediaPhotographyData PhotographyData
-        {
-            get
-            {
-                return _photographyData;
-            }
-            set
-            {
-                _photographyData = value;
-                OnPhotographyDataChanged?.Invoke();
-                Services.Get<InitializationState>().CheckAppLoaded();
-            }
-        }
-
-        internal event Action OnPhotographyDataChanged;
-        internal async void NotifyPhotographyDataChange(MediaPhotographyData data, bool isLocalData)
-        {
-            data.Photos = data.Photos.OrderBy(o => o.TakenDate).Reverse().ToList();
-            if (!isLocalData)
-            {
-                PhotographyData = data;
-                await Services.Get<LocalStorageState>().SetLocalData<MediaPhotographyData>();
-                await Logger.LogInfo("Received Photography Data!");
-            }
-        }
-
         // Twitch
 
         /*

@@ -27,7 +27,6 @@ namespace SA.Web.Client.WebSockets
 
                 TryConvertJSON<NewsData>((data) => Services.Get<ClientState>().NotifyNewsDataChange(data, false));
                 TryConvertJSON<RoadmapData>((data) => Services.Get<ClientState>().NotifyRoadmapCardDataChange(data, false));
-                TryConvertJSON<MediaPhotographyData>((data) => Services.Get<ClientState>().NotifyPhotographyDataChange(data, false));
 
                 void TryConvertJSON<T>(Action<T> conversion)
                 {

@@ -16,7 +16,6 @@ namespace SA.Web.Client.Data.States
                 Services.Get<ClientState>().Settings != null &&
                 Services.Get<ClientState>().NewsData != null &&
                 Services.Get<ClientState>().RoadmapData != null &&
-                Services.Get<ClientState>().PhotographyData != null &&
                 !Services.Get<UIState>().FirstRender &&
                 !SingleAppLoadedLock
                 )
@@ -58,7 +57,6 @@ namespace SA.Web.Client.Data.States
                         await Services.Get<ServerState>().RequestChangelogData(true);
                         await Services.Get<ServerState>().RequestNewsData(true);
                         await Services.Get<ServerState>().RequestRoadmapData(true);
-                        await Services.Get<ServerState>().RequestPhotographyData(true);
                     }
                 };
                 Services.Get<WebSocketManagerMiddleware>().OnServerConnectionError += async () =>
@@ -67,7 +65,6 @@ namespace SA.Web.Client.Data.States
                     await Services.Get<ServerState>().RequestChangelogData();
                     await Services.Get<ServerState>().RequestNewsData();
                     await Services.Get<ServerState>().RequestRoadmapData();
-                    await Services.Get<ServerState>().RequestPhotographyData();
                 };
                 await Services.Get<WebSocketManagerMiddleware>().Connect(Services.Get<ClientState>());
 

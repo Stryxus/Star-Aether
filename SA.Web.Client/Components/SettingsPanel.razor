@@ -29,7 +29,6 @@
                         <h6>Push Notifications</h6>
                         <SettingsPanelToggleButton Title="Show notification on news post" Value="ClientState.Settings.ShowBlogUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowBlogUpdateNotification = val" />
                         <SettingsPanelToggleButton Title="Show notification on roadmap update" Value="ClientState.Settings.ShowRoadmapUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowRoadmapUpdateNotification = val" />
-                        <SettingsPanelToggleButton Title="Show notification on wallpapers update" Value="ClientState.Settings.ShowPhotographyUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowPhotographyUpdateNotification = val" />
                     }
                 </div>
             </div>
@@ -72,6 +71,5 @@
         await ServerState.RequestChangelogData(true);
         await ServerState.RequestNewsData(true);
         await ServerState.RequestRoadmapData(true);
-        await ServerState.RequestPhotographyData(true);
     }
 }

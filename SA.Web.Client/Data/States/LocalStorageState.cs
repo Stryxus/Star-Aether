@@ -25,9 +25,6 @@ namespace SA.Web.Client.Data.States
                 case Type t when t == typeof(RoadmapData):
                     await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().RoadmapData = defaultData ? new RoadmapData() : Services.Get<ClientState>().RoadmapData));
                     break;
-                case Type t when t == typeof(MediaPhotographyData):
-                    await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().PhotographyData = defaultData ? new MediaPhotographyData() : Services.Get<ClientState>().PhotographyData));
-                    break;
             }
         }
 
@@ -58,10 +55,6 @@ namespace SA.Web.Client.Data.States
                     case Type t when t == typeof(RoadmapData):
                         if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyRoadmapCardDataChange(Services.Get<ClientState>().RoadmapData = obj as RoadmapData ?? new RoadmapData(), true);
                         else if (Services.Get<WebSocketManagerMiddleware>().IsConnected) await Services.Get<ServerState>().RequestRoadmapData(true);
-                        break;
-                    case Type t when t == typeof(MediaPhotographyData):
-                        if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyPhotographyDataChange(Services.Get<ClientState>().PhotographyData = obj as MediaPhotographyData ?? new MediaPhotographyData(), true);
-                        else if (Services.Get<WebSocketManagerMiddleware>().IsConnected) await Services.Get<ServerState>().RequestPhotographyData(true);
                         break;
                 }
             }

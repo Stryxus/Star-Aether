@@ -21,7 +21,6 @@ namespace SA.Web.Server.WebSockets
                 if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(RoadmapData).Name + await Services.Get<MongoDBInterface>().GetRoadmapData());
                 else if ((Commands)cmd == Commands.GetNewsData) SendMessageAsync(socket, "JSON." + typeof(NewsData).Name + await Services.Get<MongoDBInterface>().GetNewsData());
                 else if ((Commands)cmd == Commands.GetChangelogData) SendMessageAsync(socket, "JSON." + typeof(ChangelogData).Name + await Services.Get<MongoDBInterface>().GetChangelogData());
-                else if ((Commands)cmd == Commands.GetPhotographyData) SendMessageAsync(socket, "JSON." + typeof(MediaPhotographyData).Name + await Services.Get<MongoDBInterface>().GetPhotographyData());
             }
 
             return;

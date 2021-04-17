@@ -41,7 +41,6 @@ namespace SA.Web.Server
                     Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(NewsData).Name + await GetNewsData());
                     Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(RoadmapData).Name + await GetRoadmapData());
                     Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(ChangelogData).Name + await GetChangelogData());
-                    Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(MediaPhotographyData).Name + await GetPhotographyData());
                 };
             }
         }
@@ -86,24 +85,6 @@ namespace SA.Web.Server
             try
             {
                 foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("changelog_data").FindAsync(_ => true)).ToListAsync()) data.ChangelogPosts.Add(BsonSerializer.Deserialize<ChangelogEntryData>(entry));
-            }
-            catch (TimeoutException)
-            {
-                await Logger.LogWarn("News data request timed out - Using default data structure.");
-            }
-            catch (NullReferenceException)
-            {
-                await Logger.LogError("News data request threw null - Using default data structure.");
-            }
-            return JsonConvert.SerializeObject(data);
-        }
-
-        internal async Task<string> GetPhotographyData()
-        {
-            MediaPhotographyData data = new MediaPhotographyData { Photos = new List<MediaPhoto>() };
-            try
-            {
-                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("photography_data").FindAsync(_ => true)).ToListAsync()) data.Photos.Add(BsonSerializer.Deserialize<MediaPhoto>(entry));
             }
             catch (TimeoutException)
             {

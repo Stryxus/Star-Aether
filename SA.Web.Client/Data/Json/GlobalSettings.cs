@@ -12,7 +12,6 @@ namespace SA.Web.Client.Data.Json
         public bool ShowBlogUpdateNotification { get; set; } = true;
         public bool ShowChangelogUpdateNotification { get; set; } = true;
         public bool ShowRoadmapUpdateNotification { get; set; } = true;
-        public bool ShowPhotographyUpdateNotification { get; set; } = true;
         public bool ShowVideographyUpdateNotification { get; set; } = true;
     }
 }
