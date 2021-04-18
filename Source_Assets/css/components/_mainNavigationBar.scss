@@ -45,12 +45,22 @@
                     flex-wrap: nowrap !important;
                     flex-direction: row !important;
                 }
-            
-                .logo-container {
-                    height: 70px;
+
+                .main-navbar-buttons-offset {
                     width: 210px;
+                }
+
+                .logo-container {
+                    height: 382px;
+                    width: 221px;
+                    position: absolute;
+                    left: 0px;
+                    bottom: 0px;
+                    clip-path: polygon(0px 0px, 100% 100%, 0px 100%);
             
                     a {
+                        height: 382px;
+                        width: 221px;
             
                         &.active {
                             img {
@@ -66,12 +76,11 @@
             
                         img {
                             position: absolute;
-                            height: 100px;
-                            width: 100px;
-                            bottom: 10px;
-                            left: 50px;
+                            height: 130px;
+                            width: 130px;
+                            bottom: 20px;
+                            left: 20px;
                             cursor: pointer;
-                            margin-bottom: 10px;
                         }
                     }
                 }
@@ -89,13 +98,13 @@
 
                 .version {
                     position: absolute;
-                    bottom: ($navigation-bar-height * 2) + px;
-                    left: 8px;
+                    bottom: ($navigation-bar-height * 3.3) + px;
+                    left: -20px;
                     width: auto;
                     color: $colour-grey-10;
 
                     small {
-                        transform: rotate(-60deg);
+                        transform: rotate(60deg);
                     }
                 }
             
@@ -205,7 +214,7 @@
                     border-right-width: 1px;
                     height: 400px;
                     width: 9px;
-                    bottom: ($navigation-bar-height - 42) + px;
+                    bottom: ($navigation-bar-height - 41.8) + px;
                     left: 82.5px;
                     transform: rotate(-30deg);
                 }
@@ -217,25 +226,12 @@
                     border-right-width: 0px;
                     height: 9.5px;
                     width: 0px;
-                    bottom: ($navigation-bar-height - 22) + px;
+                    bottom: ($navigation-bar-height - 21.6) + px;
                     left: 183px;
                     transform: rotate(-30deg);
                 }
-
-                .bordered-line-patch-left {
-                    border-top-width: 0px;
-                    border-bottom-width: 0px;
-                    border-left-width: 0px;
-                    border-right-width: 1px;
-                    height: 220px;
-                    width: 9px;
-                    bottom: 5px;
-                    left: 37px;
-                    z-index: 1000;
-                    transform: rotate(30deg);
-                }
         
-                .bordered-line-above, .bordered-line-patch, .bordered-line-patch-left {
+                .bordered-line-above, .bordered-line-patch {
                     border-color: $colour-grey-10;
                     border-style: solid;
                     position: absolute;
