@@ -84,7 +84,7 @@
                     width: 300px;
                     transform: rotate(-30deg);
                     backdrop-filter: $backdrop-blur-heavy;
-                    background-color: $colour-grey-1-trans-high;
+                    background-color: $colour-grey-1-trans-low;
                 }
 
                 .version {
@@ -107,7 +107,7 @@
                     padding-right: 0px !important;
             
                     .headline-ticker-content {
-                        background-color: $colour-grey-1-trans-high;
+                        background-color: $colour-grey-1-trans-low;
                         overflow-y: hidden;
                         overflow-x: scroll;
             
@@ -153,7 +153,7 @@
                     }
             
                     .economy-ticker-content {
-                        background-color: $colour-grey-1-trans-high;
+                        background-color: $colour-grey-1-trans-low;
                         overflow-y: hidden;
                         overflow-x: scroll;
             
@@ -170,7 +170,7 @@
                                     }
             
                                     &:nth-child(1) {
-                                        background-color: $colour-grey-4-trans-high;
+                                        background-color: $colour-grey-4-trans-low;
                                     }
                     
                                     &:nth-child(2) {
@@ -248,7 +248,7 @@
 
                     & > .col {
                         backdrop-filter: $backdrop-blur-heavy;
-                        background-color: $colour-grey-1-trans-high;
+                        background-color: $colour-grey-1-trans-low;
                         clip-path: polygon(1px 0%, 100% 0px, 100% 100%, 38px 100%);
                         padding-right: ($navigation-bar-height * 7.1) + px;
                         height: inherit;
@@ -319,7 +319,7 @@
             
                 #settings-button {
                     height: ($navigation-bar-height - 18) + px !important;
-                    background-color: $colour-grey-3-trans-high;
+                    background-color: $colour-grey-3-trans-low;
                     backdrop-filter: $backdrop-blur-heavy;
                     border-left: 1px solid $colour-grey-10;
                     cursor: pointer;
@@ -348,7 +348,7 @@
                 #id-card {
                     width: ($navigation-bar-height * 4) + px;
                     height: ($navigation-bar-height - 18) + px !important;
-                    background-color: $colour-grey-3-trans-high;
+                    background-color: $colour-grey-3-trans-low;
                     backdrop-filter: $backdrop-blur-heavy;
                     border-left: 1px solid $colour-grey-10;
                     overflow: hidden;
@@ -429,7 +429,7 @@
         & > .row {
     
             &:nth-child(1) {
-                background-color: $colour-grey-3-trans-high;
+                background-color: $colour-grey-3-trans-low;
                 backdrop-filter: $backdrop-blur-heavy;
                 overflow: hidden;
     
