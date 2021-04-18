@@ -13,7 +13,7 @@ GLOBAL.animationInterface = function (ref)
 
         showRouter: () => 
         {
-            TweenMax.to("#loading-overlay", 2, { opacity: 0, onComplete: () => { document.getElementById("loading-overlay").style.display = "none"; } });
+            TweenMax.to("#loading-overlay", 1, { opacity: 0, onComplete: () => { document.getElementById("loading-overlay").style.display = "none"; } });
         },
         fadeOutPage: () => 
         {

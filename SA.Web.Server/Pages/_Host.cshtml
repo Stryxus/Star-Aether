@@ -39,8 +39,8 @@
     <style type="text/css">
         #loading-overlay {
             z-index: 1000001;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.95), rgba(25, 25, 25, 0.95));
-            backdrop-filter: blur(25px);
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
             position: fixed;
             top: 0px;
             bottom: 0px;
@@ -56,30 +56,26 @@
                 transform: translateX(-50%) translateY(-50%);
             }
 
-            #loading-overlay.loading-overlay-first img {
-                animation: colorInvert 1s ease-out;
-            }
-
             #loading-overlay .progress {
                 position: fixed;
                 left: 0px;
                 bottom: 0px;
-                height: 40px;
+                height: 100vh;
                 width: 100vw;
                 padding: 0px;
                 margin: 0px;
             }
 
         .progress-bar3 {
-            transition: 0.4s linear;
+            transition: 3s linear;
             transition-property: width, background-color;
             height: 100%;
         }
 
         .progress-infinite .progress-bar3 {
             width: 100%;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 40%, rgba(255, 255, 255, 0.25) 50%, rgba(0, 0, 0, 0) 60%), linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(225, 225, 225, 0.1) 50%);
-            animation: progress-bar 1s linear infinite;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 30%, rgba(255, 255, 255, 0.075) 50%, rgba(0, 0, 0, 0) 70%);
+            animation: progress-bar 3s linear infinite;
         }
 
         @@keyframes progress-bar {
@@ -89,16 +85,6 @@
 
             100% {
                 background-position-x: 200vw;
-            }
-        }
-
-        @@keyframes colorInvert {
-            0% {
-                filter: invert(100%);
-            }
-
-            100% {
-                filter: invert(0%);
             }
         }
     </style>
@@ -111,7 +97,7 @@
     </noscript>
     <app>
         <div id="loading-overlay" class="loading-overlay-first">
-            <img draggable="false" height="300" width="300" src="favicon.svg" alt="Logo" />
+            <img draggable="false" height="250" width="250" src="favicon.svg" alt="Logo" />
             <div class="progress progress-infinite">
                 <div class="progress-bar3" />
             </div>
