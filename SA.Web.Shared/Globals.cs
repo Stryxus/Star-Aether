@@ -4,10 +4,10 @@ namespace SA.Web.Shared
 {
     public static class Globals
     {
-        public static string YearVersion { get; } = "2020";
-        public static string MonthVersion { get; } = "10";
-        public static string DayVersion { get; } = "26";
-        public static string IterationVersion { get; } = "b";
+        public static string YearVersion { get; } = "2021";
+        public static string MonthVersion { get; } = "04";
+        public static string DayVersion { get; } = "18";
+        public static string IterationVersion { get; } = "a";
         public static string VersionString { get { return YearVersion + "." + MonthVersion + "." + DayVersion + IterationVersion; } }
 
         public static string APINameString { get; } = "SA.Web.API";
