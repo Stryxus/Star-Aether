@@ -32,7 +32,6 @@ GLOBAL.animationInterface = function (ref)
         },
         slideSettingsPanelInOut: (slideIn) => 
         {
-            console.log(document.getElementById("settings-panel").offsetWidth);
             var width = document.getElementById("settings-panel").offsetWidth;
             if (slideIn) 
             {
