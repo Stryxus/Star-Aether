@@ -28,11 +28,10 @@ namespace SA.Web.Server
             {
                 await Logger.LogInfo("Connecting to MongoDB...");
                 MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(PrivateData.Instance.MongoDBConnectionString));
-                settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls13 };
-                settings.ConnectTimeout = TimeSpan.FromSeconds(10);
+                settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
+                settings.ConnectTimeout = TimeSpan.FromSeconds(5);
                 settings.ServerSelectionTimeout = TimeSpan.FromSeconds(2.5);
-                settings.ServerSelectionTimeout = TimeSpan.FromSeconds(2.5);
-                settings.WaitQueueTimeout = TimeSpan.FromSeconds(2.5);
+                settings.DirectConnection = true;
                 Client = new MongoClient(settings);
                 Database_Public_Data = Client.GetDatabase("public_data");
                 await Logger.LogInfo("Connected to MongoDB!");
@@ -51,7 +50,7 @@ namespace SA.Web.Server
             NewsData data = new NewsData { NewsPosts = new List<NewsEntryData>() };
             try
             {
-                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("news_data").FindAsync(_ => true)).ToListAsync()) data.NewsPosts.Add(BsonSerializer.Deserialize<NewsEntryData>(entry));
+                foreach (BsonDocument entry in await Database_Public_Data.GetCollection<BsonDocument>("news_data").AsQueryable().ToListAsync()) data.NewsPosts.Add(BsonSerializer.Deserialize<NewsEntryData>(entry));
             } catch (TimeoutException)
             {
                 await Logger.LogWarn("News data request timed out - Using default data structure.");
@@ -67,7 +66,7 @@ namespace SA.Web.Server
             RoadmapData data = new RoadmapData { Cards = new List<RoadmapCardData>() };
             try
             {
-                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("roadmap_data").FindAsync(_ => true)).ToListAsync()) data.Cards.Add(BsonSerializer.Deserialize<RoadmapCardData>(entry));
+                foreach (BsonDocument entry in await Database_Public_Data.GetCollection<BsonDocument>("roadmap_data").AsQueryable().ToListAsync()) data.Cards.Add(BsonSerializer.Deserialize<RoadmapCardData>(entry));
             }
             catch (TimeoutException)
             {
@@ -85,7 +84,7 @@ namespace SA.Web.Server
             ChangelogData data = new ChangelogData { ChangelogPosts = new List<ChangelogEntryData>() };
             try
             {
-                foreach (BsonDocument entry in await (await Database_Public_Data.GetCollection<BsonDocument>("changelog_data").FindAsync(_ => true)).ToListAsync()) data.ChangelogPosts.Add(BsonSerializer.Deserialize<ChangelogEntryData>(entry));
+                foreach (BsonDocument entry in await Database_Public_Data.GetCollection<BsonDocument>("changelog_data").AsQueryable().ToListAsync()) data.ChangelogPosts.Add(BsonSerializer.Deserialize<ChangelogEntryData>(entry));
             }
             catch (TimeoutException)
             {

@@ -1,11 +1,11 @@
 ﻿@if (RoadmapV1State.Roadmap_v1_IsStatisticsVisible[CardData.MajorVersion + "." + CardData.MinorVersion])
 {
-    <RoadmapCardInformationStatistics Card="CardData" AvailableDates="AvailableDates" />
+    <RoadmapCardInformationStatistics CardData="CardData" AvailableDates="AvailableDates" />
     <hr />
 }
 @if (RoadmapV1State.Roadmap_v1_IsPatchNotesVisible[CardData.MajorVersion + "." + CardData.MinorVersion])
 {
-    <RoadmapCardInformationPatchList Card="CardData" />
+    <RoadmapCardInformationPatchList CardData="CardData" />
     <hr />
 }
 

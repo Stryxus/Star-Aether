@@ -1,5 +1,5 @@
 ﻿<div class="col">
-    <RoadmapCardCategoryStatistics Card="CardData" Features="Features" AvailableDates="AvailableDates" />
+    <RoadmapCardCategoryStatistics CardData="CardData" Features="Features" AvailableDates="AvailableDates" />
     <hr />
     <div class="row category">
         <div class="col">
@@ -9,7 +9,7 @@
                 </Placeholder>
                 <ItemContent>
                     <RoadmapCardCategoryItemFrame Title="@(feature.Title)">
-                        <RoadmapCardCategoryFeature Card="CardData" Feature="feature" AvailableDates="AvailableDates" />
+                        <RoadmapCardCategoryFeature CardData="CardData" Feature="feature" AvailableDates="AvailableDates" />
                     </RoadmapCardCategoryItemFrame>
                     @if (feature.Title == Features.Last().Title)
                     {

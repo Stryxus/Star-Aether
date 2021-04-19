@@ -2,9 +2,9 @@
                          CardData.Patches[0].EvocatiTestingDate != null && CardData.Patches[0].PTUTestingStartDate != null && CardData.Patches[0].PUReleaseDate == null ? "ptu" :
                          CardData.Patches[0].EvocatiTestingDate != null && CardData.Patches[0].PTUTestingStartDate == null && CardData.Patches[0].PUReleaseDate == null ? "evocati" :
                          CardData.Patches[0].EvocatiTestingDate == null && CardData.Patches[0].PTUTestingStartDate == null && CardData.Patches[0].PUReleaseDate == null ? "dev" : "released")">
-    <RoadmapCardHeader Card="CardData" />
-    <RoadmapCardBody Card="CardData" AvailableDates="AvailableDates" />
-    <RoadmapCardTools Card="CardData" AvailableDates="AvailableDates" />
+    <RoadmapCardHeader CardData="CardData" />
+    <RoadmapCardBody CardData="CardData" AvailableDates="AvailableDates" />
+    <RoadmapCardTools CardData="CardData" AvailableDates="AvailableDates" />
 </div>
 
 @inject RoadmapV1State RoadmapV1State 
@@ -25,8 +25,11 @@
                 if (!AvailableDates.Contains(d)) AvailableDates.Add(d);
             }
         }
-        AvailableDates = AvailableDates.OrderBy(o => o.Date).Reverse().ToList();
-        if (!RoadmapV1State.Roadmap_v1_SelectedDates.ContainsKey(CardData.MajorVersion + "." + CardData.MinorVersion)) RoadmapV1State.Roadmap_v1_SelectedDates.Add(CardData.MajorVersion + "." + CardData.MinorVersion, AvailableDates[0]);
+        if (AvailableDates.Count != 0)
+        {
+            AvailableDates = AvailableDates.OrderBy(o => o.Date).Reverse().ToList();
+            if (!RoadmapV1State.Roadmap_v1_SelectedDates.ContainsKey(CardData.MajorVersion + "." + CardData.MinorVersion)) RoadmapV1State.Roadmap_v1_SelectedDates.Add(CardData.MajorVersion + "." + CardData.MinorVersion, AvailableDates[0]);
+        }
         await base.OnInitializedAsync();
     }
 }

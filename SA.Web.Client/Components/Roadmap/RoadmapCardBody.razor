@@ -1,46 +1,46 @@
 ﻿<div class="row body">
     <div class="col">
-        <RoadmapCardBodyInfo Card="CardData" AvailableDates="AvailableDates" />
+        <RoadmapCardBodyInfo CardData="CardData" AvailableDates="AvailableDates" />
         @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.Characters))
         {
             <RoadmapCardItemFrame Title="Characters">
-                <RoadmapCardCategory Card="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.Characters)"           AvailableDates="AvailableDates" />
+                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.Characters)"           AvailableDates="AvailableDates" />
             </RoadmapCardItemFrame>
         }
         @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.Locations))
         {
             <RoadmapCardItemFrame Title="Locations">
-                <RoadmapCardCategory Card="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.Locations)"            AvailableDates="AvailableDates" />
+                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.Locations)"            AvailableDates="AvailableDates" />
             </RoadmapCardItemFrame>
         }
         @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.AI))
         {
             <RoadmapCardItemFrame Title="AI">
-                <RoadmapCardCategory Card="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.AI)"                   AvailableDates="AvailableDates" />
+                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.AI)"                   AvailableDates="AvailableDates" />
             </RoadmapCardItemFrame>
         }
         @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.Gameplay))
         {
             <RoadmapCardItemFrame Title="Gameplay">
-                <RoadmapCardCategory Card="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.Gameplay)"             AvailableDates="AvailableDates" />
+                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.Gameplay)"             AvailableDates="AvailableDates" />
             </RoadmapCardItemFrame>
         }
         @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.ShipsAndVehicles))
         {
             <RoadmapCardItemFrame Title="Ships And Vehicles">
-                <RoadmapCardCategory Card="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.ShipsAndVehicles)"     AvailableDates="AvailableDates" />
+                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.ShipsAndVehicles)"     AvailableDates="AvailableDates" />
             </RoadmapCardItemFrame>
         }
         @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.WeaponsAndItems))
         {
             <RoadmapCardItemFrame Title="Weapons And Items">
-                <RoadmapCardCategory Card="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.WeaponsAndItems)"      AvailableDates="AvailableDates" />
+                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.WeaponsAndItems)"      AvailableDates="AvailableDates" />
             </RoadmapCardItemFrame>
         }
         @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.CoreTech))
         {
             <RoadmapCardItemFrame Title="Core Tech">
-                <RoadmapCardCategory Card="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.CoreTech)"             AvailableDates="AvailableDates" />
+                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.CoreTech)"             AvailableDates="AvailableDates" />
             </RoadmapCardItemFrame>
         }
     </div>

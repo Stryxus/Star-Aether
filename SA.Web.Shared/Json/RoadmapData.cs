@@ -15,7 +15,7 @@ namespace SA.Web.Shared.Json
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string _id { get; set; }
         public int MajorVersion { get; set; }
         public int MinorVersion { get; set; }
         public List<RoadmapFeatureData> VersionFeatures { get; set; }
