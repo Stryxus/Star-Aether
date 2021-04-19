@@ -1,19 +1,19 @@
 ﻿<div id="settings-button" class="col-auto" @onclick="ToggleSettingsPanel">
     <i class="fas fa-cog"></i>
 </div>
-<a id="id-card" class="col-auto" href="/login">
+<a id="id-card" class="col-auto" onclick="alert('Login system coming soon™')">
     <div class="row">
         <div class="col">
             <div id="id-card-name" class="row">
                 <div class="col">
                     <div class="row">
                         <div class="col">
-                            <small>Citizen-@ClientState.CitizenID</small>
+                            <small>Concierge Stryxus</small>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <small>Profiles coming soon!</small>
+                            <small>View Profile</small>
                         </div>
                     </div>
                 </div>
@@ -25,16 +25,9 @@
     </div>
 </a>
 
-@inject ClientState ClientState
 @inject UIState UIState
 
 @code {        
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        ClientState.CitizenID = ClientState.Random.Next(int.MinValue, int.MaxValue);
-    }
 
     private void ToggleSettingsPanel() => UIState.ToggleSettingsPanelVisibility();
 }

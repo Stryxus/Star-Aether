@@ -12,7 +12,6 @@ namespace SA.Web.Client.Data.States
         // Global Variables
 
         internal Random Random = new Random();
-        internal int CitizenID = 0;
 
         //
 
