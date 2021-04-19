@@ -93,7 +93,7 @@
                     width: 300px;
                     transform: rotate(-30deg);
                     backdrop-filter: $backdrop-blur-heavy;
-                    background-color: $colour-grey-1-trans-low;
+                    background-color: $colour-grey-1-trans-high;
                 }
 
                 .version {
@@ -116,7 +116,7 @@
                     padding-right: 0px !important;
             
                     .headline-ticker-content {
-                        background-color: $colour-grey-1-trans-low;
+                        background-color: $colour-grey-1-trans-high;
                         overflow-y: hidden;
                         overflow-x: scroll;
             
@@ -157,12 +157,12 @@
                         
                         h6 {
                             padding-left: 30px;
-                            background-color: $colour-grey-1-trans-low;
+                            background-color: $colour-grey-1-trans-high;
                         }
                     }
             
                     .economy-ticker-content {
-                        background-color: $colour-grey-1-trans-low;
+                        background-color: $colour-grey-1-trans-high;
                         overflow-y: hidden;
                         overflow-x: scroll;
             
@@ -244,7 +244,7 @@
 
                     & > .col {
                         backdrop-filter: $backdrop-blur-heavy;
-                        background-color: $colour-grey-1-trans-low;
+                        background-color: $colour-grey-1-trans-high;
                         clip-path: polygon(1px 0%, 100% 0px, 100% 100%, 38px 100%);
                         padding-right: ($navigation-bar-height * 7.1) + px;
                         height: inherit;
