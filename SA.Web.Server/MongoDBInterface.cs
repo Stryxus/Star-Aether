@@ -31,6 +31,7 @@ namespace SA.Web.Server
                 settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls13 };
                 settings.ConnectTimeout = TimeSpan.FromSeconds(10);
                 settings.ServerSelectionTimeout = TimeSpan.FromSeconds(2.5);
+                settings.ServerSelectionTimeout = TimeSpan.FromSeconds(2.5);
                 settings.WaitQueueTimeout = TimeSpan.FromSeconds(2.5);
                 Client = new MongoClient(settings);
                 Database_Public_Data = Client.GetDatabase("public_data");
@@ -70,11 +71,11 @@ namespace SA.Web.Server
             }
             catch (TimeoutException)
             {
-                await Logger.LogWarn("News data request timed out - Using default data structure.");
+                await Logger.LogWarn("Roadmap data request timed out - Using default data structure.");
             }
             catch (NullReferenceException)
             {
-                await Logger.LogError("News data request threw null - Using default data structure.");
+                await Logger.LogError("Roadmap data request threw null - Using default data structure.");
             }
             return JsonConvert.SerializeObject(data);
         }
@@ -88,11 +89,11 @@ namespace SA.Web.Server
             }
             catch (TimeoutException)
             {
-                await Logger.LogWarn("News data request timed out - Using default data structure.");
+                await Logger.LogWarn("Changelog data request timed out - Using default data structure.");
             }
             catch (NullReferenceException)
             {
-                await Logger.LogError("News data request threw null - Using default data structure.");
+                await Logger.LogError("Changelog data request threw null - Using default data structure.");
             }
             return JsonConvert.SerializeObject(data);
         }
