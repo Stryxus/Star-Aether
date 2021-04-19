@@ -1,0 +1,18 @@
+﻿@page "/blog"
+
+<div id="blog-page" class="row justify-content-center todo-page">
+    <div class="col-auto padded-scroll">
+
+    </div>
+</div>
+
+@inject UIState UIState
+
+@code {
+
+    protected override async Task OnParametersSetAsync()
+    {
+        UIState.CurrentPage = "/blog";
+        await base.OnParametersSetAsync();
+    }
+}
