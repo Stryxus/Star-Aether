@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Configurations>Debug;Release;Release Testing</Configurations>
+    <Platforms>AnyCPU;x64</Platforms>
+    <Nullable>annotations</Nullable>
+    <AssemblyName>UEESA.Client</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|AnyCPU'">
+    <Optimize>true</Optimize>
+    <DefineConstants>RELEASE_TEST</DefineConstants>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|x64'">
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;RELEASE_TEST</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="blaze-settings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.5" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Stryxus.Lib" Version="2021.4.17.4" />
+    <PackageReference Include="Stryxus.Lib.AspNet.WebAssembly" Version="2021.4.17.4" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="blaze-settings.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\SA.Web.Shared\UEESA.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

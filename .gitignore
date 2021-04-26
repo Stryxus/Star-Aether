@@ -353,12 +353,12 @@ MigrationBackup/
 *.resx
 
 ###############################################################################################################################################################
-SA.Web.Client/wwwroot/**/*
-!SA.Web.Client/wwwroot/service-worker.js
-!SA.Web.Client/wwwroot/service-worker.published.js
+Core/UEESA.Client/wwwroot/**/*
+!Core/UEESA.Client/wwwroot/service-worker.js
+!Core/UEESA.Client/wwwroot/service-worker.published.js
 
-SA.Web.Server/private.json
-SA.Web.Server/Properties/serviceDependencies.json
-SA.Web.Server/Properties/serviceDependencies.local.json
-SA.Web.Server/Properties/serviceDependencies.Star-Athenaeum-Website - Web Deploy.json
-SA.Web.Server/Properties/ServiceDependencies/*
+Core/UEESA.Server/Properties/serviceDependencies.json
+Core/UEESA.Server/Properties/serviceDependencies.local.json
+Core/UEESA.Server/Properties/serviceDependencies.Star-Athenaeum-Website - Web Deploy.json
+Core/UEESA.Server/Properties/ServiceDependencies/*
+Core/UEESA.Server/private.json
