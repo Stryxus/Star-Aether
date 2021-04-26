@@ -13,6 +13,7 @@ using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 
 using SA.Web.Server.WebSockets;
 using SA.Web.Shared;
+using Microsoft.Net.Http.Headers;
 
 namespace SA.Web.Server
 {
@@ -39,6 +40,7 @@ namespace SA.Web.Server
                         options.Providers.Add<GzipCompressionProvider>();
                         options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
                     });
+                    services.AddResponseCaching();
                     services.AddWebSocketManager();
                 });
 
@@ -62,6 +64,7 @@ namespace SA.Web.Server
                     app.UseBlazorFrameworkFiles();
                     app.UseStaticFiles();
                     app.UseResponseCompression();
+                    app.UseResponseCaching();
                     app.UseWebSockets();
                     app.MapWebSocketManager("/state", Services.Get<StateSocketHandler>());
                     app.UseRouting();
