@@ -53,8 +53,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SA.Web.Client\UEESA.Client.csproj" />
-    <ProjectReference Include="..\SA.Web.Shared\UEESA.Shared.csproj" />
+    <ProjectReference Include="..\..\UEESA.Helix\UEESA.Helix.csproj" />
+    <ProjectReference Include="..\..\UEESA.RSIScraper\UEESA.RSIScraper.csproj" />
+    <ProjectReference Include="..\UEESA.Client\UEESA.Client.csproj" />
+    <ProjectReference Include="..\UEESA.Shared\UEESA.Shared.csproj" />
   </ItemGroup>
 
 </Project>
