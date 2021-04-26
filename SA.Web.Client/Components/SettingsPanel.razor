@@ -16,15 +16,21 @@
                 </div>
             </div>
             <div id="clear-and-donate" class="row">
-                <button class="col-12" onclick="window.open('https://www.paypal.com/donate?business=34XKEAHD8RALY&item_name=Star+Athenaeum&currency_code=GBP','_blank')">
-                    <p>Help out and donate!</p>
-                </button>
-                <button class="col" @onclick="ClearAllData" title="Clears the Applications Cache, including all stored Local Data.">
-                    <p>Refresh App Cache</p>
-                </button>
-                <button class="col" @onclick="ClearDatabases" title="Clears the Applications Local Data.">
-                    <p>Refresh Data Cache</p>
-                </button>
+                <div class="col">
+                    <div class="row">
+                        <button class="col" onclick="window.open('https://www.paypal.com/donate?business=34XKEAHD8RALY&item_name=Star+Athenaeum&currency_code=GBP','_blank')">
+                            <p>Help out and donate!</p>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button class="col" @onclick="ClearAllData" title="Clears the Applications Cache, including all stored Local Data.">
+                            <p>Refresh App Cache</p>
+                        </button>
+                        <button class="col" @onclick="ClearDatabases" title="Clears the Applications Local Data.">
+                            <p>Refresh Data Cache</p>
+                        </button>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col">
@@ -55,6 +61,8 @@
 @inject JSInterface.Cache Cache
 @inject JSInterface.LocalData LocalData
 
+@inject NavigationManager NavMan;
+
 @code {
 
     protected override async Task OnInitializedAsync()
@@ -66,6 +74,7 @@
     {
         await LocalData.Clear();
         await Cache.Clear();
+        NavMan.NavigateTo(NavMan.Uri, forceLoad: true);
     }
 
     private async Task ClearDatabases()
@@ -74,5 +83,6 @@
         await ServerState.RequestChangelogData(true);
         await ServerState.RequestNewsData(true);
         await ServerState.RequestRoadmapData(true);
+        NavMan.NavigateTo(NavMan.Uri, forceLoad: true);
     }
 }

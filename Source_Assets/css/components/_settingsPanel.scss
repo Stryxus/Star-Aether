@@ -56,13 +56,12 @@
         }
 
         #clear-and-donate {
-            padding-left: 0px;
-            padding-right: 0px;
 
             button {
+                border-radius: 12px;
                 padding: 10px;
-                margin: 0px;
-                background-color: rgba($colour-blue-main, 0.15);
+                margin: 6px;
+                background-color: $colour-grey-6-trans-low;
 
                 i {
                     display: inline;
@@ -73,7 +72,7 @@
                 }
 
                 &:hover  {
-                    background-color: rgba($colour-blue-main, 0.3);
+                    background-color: $colour-grey-5-trans-low;
                 }
             }
         }
