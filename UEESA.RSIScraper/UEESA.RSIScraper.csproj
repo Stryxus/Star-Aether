@@ -16,6 +16,16 @@
   <ItemGroup>
     <ProjectReference Include="..\UEESA.Projects.Shared\UEESA.Projects.Shared.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Issues\" />
+    <Folder Include="Pledge\" />
+    <Folder Include="Telemetry\" />
+    <Folder Include="Status\" />
+    <Folder Include="Spectrum\" />
+    <Folder Include="Roadmap\" />
+    <Folder Include="Transmissions\" />
+  </ItemGroup>
   
 
 
