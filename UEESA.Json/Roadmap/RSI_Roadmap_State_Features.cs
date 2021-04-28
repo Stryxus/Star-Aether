@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UEESA.Json.Roadmap
 {
-    class RSI_Roadmap_State_Features
+    public class RSI_Roadmap_State_Features
     {
     }
 }
