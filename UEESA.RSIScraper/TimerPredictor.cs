@@ -6,7 +6,41 @@ using System.Threading.Tasks;
 
 namespace UEESA.RSIScraper
 {
-    class TimerPredictor
+    internal static class TimerPredictor
     {
+        internal static void CallRoadmapScrape()
+        {
+
+        }
+
+        internal static void CallIssueCouncilScrape()
+        {
+
+        }
+
+        internal static void CallSpectrumScrape()
+        {
+
+        }
+
+        internal static void CallPledgeStoreScrape()
+        {
+
+        }
+
+        internal static void CallServicesStatusScrape()
+        {
+
+        }
+
+        internal static void CallTelemetryScrape()
+        {
+
+        }
+
+        internal static void CallTransmissionScrape()
+        {
+
+        }
     }
 }
