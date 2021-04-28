@@ -14,5 +14,7 @@ namespace UEESA.RSIScraper
         internal static Uri URL_RSI_Roadmap = new Uri("https://robertsspaceindustries.com/roadmap/release-view");
         internal static Uri URL_RSI_Telemetry = new Uri("https://robertsspaceindustries.com/telemetry");
         internal static Uri URL_RSI_IssueCouncil = new Uri("https://issue-council.robertsspaceindustries.com/");
+        internal static Uri URL_RSI_PledgeStore = new Uri("https://robertsspaceindustries.com/pledge");
+        internal static Uri URL_RSI_ServicesStatus = new Uri("https://status.robertsspaceindustries.com/");
     }
 }
