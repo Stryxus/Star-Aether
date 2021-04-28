@@ -8,11 +8,6 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\UEESA.Json\UEESA.Json.csproj" />
-    <ProjectReference Include="..\UEESA.Projects.Shared\UEESA.Projects.Shared.csproj" />
-  </ItemGroup>
   
 
 
