@@ -8,17 +8,28 @@ namespace UEESA.RSIScraper
 {
     internal static class TimerPredictor
     {
-        internal static void CallRoadmapScrape()
-        {
-
-        }
-
-        internal static void CallIssueCouncilScrape()
+        internal static void CallTransmissionScrape()
         {
 
         }
 
         internal static void CallSpectrumScrape()
+        {
+
+        }
+
+        internal static void CallRoadmapScrape()
+        {
+
+        }
+
+        internal static void CallTelemetryScrape()
+        {
+
+        }
+
+
+        internal static void CallIssueCouncilScrape()
         {
 
         }
@@ -29,16 +40,6 @@ namespace UEESA.RSIScraper
         }
 
         internal static void CallServicesStatusScrape()
-        {
-
-        }
-
-        internal static void CallTelemetryScrape()
-        {
-
-        }
-
-        internal static void CallTransmissionScrape()
         {
 
         }
