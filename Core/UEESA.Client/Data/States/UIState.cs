@@ -26,8 +26,9 @@ namespace UEESA.Client.Data.States
         internal bool IsNavTickersForcedInvisible { get; private set; }
         internal void ToggleForceNavTickersInvisible(bool? forceInvisible = null)
         {
+            bool boolCache = IsNavTickersForcedInvisible;
             IsNavTickersForcedInvisible = forceInvisible != null ? (bool)forceInvisible : !IsNavTickersForcedInvisible;
-            OnIsNavTickersForcedInvisibleChanged.Invoke();
+            if (boolCache != IsNavTickersForcedInvisible) OnIsNavTickersForcedInvisibleChanged.Invoke();
         }
 
         internal bool IsSettingsPanelVisible { get; private set; }
