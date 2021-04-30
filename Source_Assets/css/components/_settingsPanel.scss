@@ -13,10 +13,10 @@
     & > .col {
 
         & > .row {
+            padding-left: 16px;
+            padding-right: 16px;
 
             &:nth-child(1) {
-                padding-left: 10px;
-                padding-right: 10px;
 
                 a {
                     display: inline;
@@ -30,8 +30,6 @@
             }
 
             &:nth-child(2) {
-                padding-left: 10px;
-                padding-right: 10px;
 
                 & > .col {
 
@@ -51,7 +49,7 @@
             width: 430px;
             margin-top: 50px;
             margin-bottom: 50px;
-            margin-left: 20px;
+            margin-left: 0px;
             margin-right: 20px;
         }
 
