@@ -2,7 +2,7 @@
 
 <img src="https://raw.githubusercontent.com/Star-Athenaeum/Website/master/.github/git-readme.png?sanitize=true" width="300px" height="300px" alt="Logo" />
 <br/>
-The Star Athenaeum Project Website
+UEESA WebAssembly App
 </h1>
 <div align="center">
 
@@ -35,6 +35,7 @@ This website is distributed to [Azure](https://azure.microsoft.com/) with [Blaze
 * .NET 5 SDK
 
 Developing the website only requires you to run `Run_Blaze.cmd` at all times and leave it running in the background. This command file starts [Blaze](https://github.com/Star-Athenaeum/Blaze) which processes everything under wwwroot.
+IMPORTANT: Due to the current state of Blaze, you will need to change the path specified in `blaze-settings.json` (DO NOT COMMIT IT). If the `blaze-settings.json` changes, it is recommended to revert the file locally and pull the update then reapply your path.
 
 To change the configuration of [Blaze](https://github.com/Star-Athenaeum/Blaze), you need to change `blaze-settings.json` in the Client project.
 
