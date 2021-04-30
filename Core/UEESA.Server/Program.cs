@@ -9,11 +9,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+#if RELEASE
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+#endif
 
 using UEESA.Server.WebSockets;
 using UEESA.Shared;
-using Microsoft.Net.Http.Headers;
+using UEESA.RSIScraper.Roadmap;
 
 namespace UEESA.Server
 {
@@ -31,7 +33,6 @@ namespace UEESA.Server
                     services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.ApplicationInsightsConnectionString });
 #endif
                     services.AddRazorPages();
-                    services.AddScoped<MongoDBInterface>();
                     services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Pages");
                     services.AddRouting();
                     services.AddResponseCompression(options =>
@@ -42,6 +43,8 @@ namespace UEESA.Server
                     });
                     services.AddResponseCaching();
                     services.AddWebSocketManager();
+                    services.AddSingleton<MongoDBInterface>();
+                    services.AddSingleton<RSIRoadmapReleaseViewScraperService>();
                 });
 
                 webBuilder.Configure(async (app) => 
@@ -73,7 +76,9 @@ namespace UEESA.Server
                         endpoints.MapRazorPages();
                         endpoints.MapFallbackToPage("/_Host");
                     });
+                    // Wake the services up
                     await Services.Get<MongoDBInterface>().Connect();
+                    Services.Get<RSIRoadmapReleaseViewScraperService>();
                 });
             }).Build().RunAsync();
     }

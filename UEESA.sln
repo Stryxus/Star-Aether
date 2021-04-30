@@ -34,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UEESA.Helix", "UEESA.Helix\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UEESA.Projects.Shared", "UEESA.Projects.Shared\UEESA.Projects.Shared.csproj", "{721E49A9-94A3-4A79-951B-2EB5984ED04C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UEESA.Json", "UEESA.Json\UEESA.Json.csproj", "{360B96AE-9F93-41CA-ABBC-81E75F9B6D61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UEESA.Json", "UEESA.Json\UEESA.Json.csproj", "{360B96AE-9F93-41CA-ABBC-81E75F9B6D61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,8 +84,8 @@ Global
 		{75AF1D36-10FD-4F65-A4B6-C3A41E45B1C3}.Release|x64.Build.0 = Release|Any CPU
 		{7AEDCC49-D640-44C5-9F2C-2D1B5E938F3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7AEDCC49-D640-44C5-9F2C-2D1B5E938F3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7AEDCC49-D640-44C5-9F2C-2D1B5E938F3E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7AEDCC49-D640-44C5-9F2C-2D1B5E938F3E}.Debug|x64.Build.0 = Debug|Any CPU
+		{7AEDCC49-D640-44C5-9F2C-2D1B5E938F3E}.Debug|x64.ActiveCfg = Debug|x64
+		{7AEDCC49-D640-44C5-9F2C-2D1B5E938F3E}.Debug|x64.Build.0 = Debug|x64
 		{7AEDCC49-D640-44C5-9F2C-2D1B5E938F3E}.Release Testing|Any CPU.ActiveCfg = Release|Any CPU
 		{7AEDCC49-D640-44C5-9F2C-2D1B5E938F3E}.Release Testing|Any CPU.Build.0 = Release|Any CPU
 		{7AEDCC49-D640-44C5-9F2C-2D1B5E938F3E}.Release Testing|x64.ActiveCfg = Release|Any CPU

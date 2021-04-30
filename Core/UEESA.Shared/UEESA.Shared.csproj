@@ -32,7 +32,7 @@
   <ItemGroup>
     <PackageReference Include="MongoDB.Bson" Version="2.12.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Stryxus.Lib" Version="2021.4.17.4" />
+    <PackageReference Include="Stryxus.Lib" Version="2021.4.29" />
   </ItemGroup>
 
   <ItemGroup>

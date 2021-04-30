@@ -39,6 +39,15 @@
     <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.17.4\contentFiles\any\net5.0\Mono.Cecil.Pdb.dll" />
     <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.17.4\contentFiles\any\net5.0\Mono.Cecil.Rocks.dll" />
     <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.17.4\contentFiles\any\net5.0\Newtonsoft.Json.dll" />
+    <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.29\contentFiles\any\net5.0\BrowserDebugHost.dll" />
+    <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.29\contentFiles\any\net5.0\BrowserDebugHost.runtimeconfig.json" />
+    <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.29\contentFiles\any\net5.0\BrowserDebugProxy.dll" />
+    <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.29\contentFiles\any\net5.0\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.29\contentFiles\any\net5.0\Microsoft.CodeAnalysis.dll" />
+    <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.29\contentFiles\any\net5.0\Mono.Cecil.dll" />
+    <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.29\contentFiles\any\net5.0\Mono.Cecil.Pdb.dll" />
+    <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.29\contentFiles\any\net5.0\Mono.Cecil.Rocks.dll" />
+    <Content Remove="C:\Users\Stryxus\.nuget\packages\stryxus.lib.aspnet\2021.4.29\contentFiles\any\net5.0\Newtonsoft.Json.dll" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,8 +58,8 @@
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.18.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.12.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Stryxus.Lib" Version="2021.4.17.4" />
-    <PackageReference Include="Stryxus.Lib.AspNet" Version="2021.4.17.4" />
+    <PackageReference Include="Stryxus.Lib" Version="2021.4.29" />
+    <PackageReference Include="Stryxus.Lib.AspNet" Version="2021.4.29" />
   </ItemGroup>
 
   <ItemGroup>

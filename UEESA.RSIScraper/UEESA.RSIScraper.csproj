@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CefSharp.OffScreen" Version="90.5.70-pre" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.33" />
+    <PackageReference Include="Stryxus.Lib" Version="2021.4.29" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,7 +27,6 @@
     <Folder Include="Telemetry\" />
     <Folder Include="Status\" />
     <Folder Include="Spectrum\" />
-    <Folder Include="Roadmap\" />
     <Folder Include="Transmissions\" />
   </ItemGroup>
   
