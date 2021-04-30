@@ -361,4 +361,6 @@ Core/UEESA.Server/Properties/serviceDependencies.json
 Core/UEESA.Server/Properties/serviceDependencies.local.json
 Core/UEESA.Server/Properties/serviceDependencies.Star-Athenaeum-Website - Web Deploy.json
 Core/UEESA.Server/Properties/ServiceDependencies/*
+Core/UEESA.Server/GPUCache
+Core/UEESA.Server/debug.log
 Core/UEESA.Server/private.json
