@@ -92,18 +92,6 @@
                     backdrop-filter: $backdrop-blur-heavy;
                     background-color: $colour-grey-1-trans-high;
                 }
-
-                .version {
-                    position: absolute;
-                    bottom: ($navigation-bar-height * 3.3) + px;
-                    left: -20px;
-                    width: auto;
-                    color: $colour-white;
-
-                    small {
-                        transform: rotate(60deg);
-                    }
-                }
             
                 .headline-ticker {
                     bottom: ($navigation-bar-height * 1.625) + px;
