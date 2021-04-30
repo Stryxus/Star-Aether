@@ -28,14 +28,14 @@
       "enabled": true,
       "width": 3840,
       "height": 1440,
-      "quality": 80,
+      "quality": 70,
       "format": "webp"
     },
     "/img/stryxus.png": {
       "enabled": true,
-      "width": 656,
-      "height": 2029,
-      "quality": 80,
+      "width": 1455,
+      "height": 2038,
+      "quality": 60,
       "format": "webp"
     },
     "/css/bundle.scss": {
