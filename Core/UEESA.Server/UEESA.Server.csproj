@@ -6,7 +6,6 @@
     <UserSecretsId>6bbb3e48-422e-4fbc-9133-003a99c3d85c</UserSecretsId>
     <Configurations>Debug;Release;Release Testing</Configurations>
     <Nullable>annotations</Nullable>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <AssemblyName>UEESA.Server</AssemblyName>
     <ApplicationInsightsResourceId>/subscriptions/12b3bc2f-8120-4584-89a0-4d79087cc5b1/resourcegroups/Star-Athenaeum-Public/providers/Microsoft.Insights/components/Star-Athenaeum-Application-Insights</ApplicationInsightsResourceId>
   </PropertyGroup>
