@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+
+using UEESA.Json.Roadmap;
 
 using CefSharp;
 
@@ -15,19 +18,23 @@ namespace UEESA.RSIScraper.Roadmap
         {
             if (RSIStatusCheck.ISRSIRoadmapReleaseViewWorking == RSIStatusCheck.RSIStatus.Online)
             {
+                RSI_Roadmap_State state = new RSI_Roadmap_State();
+
                 Browser.ExecuteScriptAsync("document.getElementsByClassName('TogglePreviousReleases-yixp65-1')[0].click();", true);
                 Browser.ExecuteScriptAsync("document.getElementsByClassName('Button-sc-1i76va4-2')[0].click();", true);
                 for (int i = 0; i < 12; i++) Browser.ExecuteScriptAsync("document.getElementsByClassName('ReleaseHeader-xqp955-3')[" + i + "].click();", true);
                 HTML.LoadHtml(await Browser.GetSourceAsync());
-                foreach (HtmlNode cardBody in HTML.DocumentNode.SelectSingleNode(".//div[contains(@class, 'Board__Releases-c7lmub-7')]").SelectNodes(".//section[contains(@class, 'Release__Wrapper-sc-1y9ya50-0')]"))
+                foreach (HtmlNode cardBody in HTML.DocumentNode.Descendants().Where(x => x.Name == "div" && x.HasClass("Board__Releases-c7lmub-7")).First()
+                    .Descendants().Where(x => x.Name == "section" && x.HasClass("Release__Wrapper-sc-1y9ya50-0")))
                 {
-                    await Logger.LogInfo("- Release: " + cardBody.SelectSingleNode(".//h2[contains(@class, 'ReleaseHeader__ReleaseHeaderName-xqp955-1')]").InnerText);
-                    foreach (HtmlNode category in cardBody.SelectNodes(".//section[contains(@class, 'Category__Wrapper-sc-3z36kz-0')]"))
+                    await Logger.LogInfo("- Release: " + cardBody.Descendants().Where(x => x.Name == "h2" && x.HasClass("ReleaseHeader__ReleaseHeaderName-xqp955-1")).First().InnerText);
+                    foreach (HtmlNode category in cardBody.Descendants().Where(x => x.Name == "section" && x.HasClass("Category__Wrapper-sc-3z36kz-0")))
                     {
-                        await Logger.LogInfo("| - Category Name: " + category.SelectSingleNode(".//h2[contains(@class, 'Category__CategoryName-sc-3z36kz-4')]").InnerText);
-                        foreach (HtmlNode feature in category.SelectNodes(".//section[contains(@class, 'Card__Wrapper-a2fcbm-0')]"))
+                        await Logger.LogInfo("| - Category Name: " + category.Descendants().Where(x => x.Name == "h2" && x.HasClass("Category__CategoryName-sc-3z36kz-4")).First().InnerText);
+                        foreach (HtmlNode feature in category.Descendants().Where(x => x.Name == "section" && x.HasClass("Card__Wrapper-a2fcbm-0")))
                         {
-                            await Logger.LogInfo("  | Release Feature: " + feature.SelectSingleNode(".//header[contains(@class, 'Card__TitleBar-a2fcbm-4')]/h3").InnerText + " - " + feature.SelectSingleNode(".//p[contains(@class, 'Card__Description-a2fcbm-6')]").InnerText);
+                            await Logger.LogInfo("  | Release Feature: " + feature.Descendants().Where(x => x.Name == "header" && x.HasClass("Card__TitleBar-a2fcbm-4")).First().InnerText + " - " + 
+                                feature.Descendants().Where(x => x.Name == "p" && x.HasClass("Card__Description-a2fcbm-6")).First().InnerText);
                         }
                     }
                 }
