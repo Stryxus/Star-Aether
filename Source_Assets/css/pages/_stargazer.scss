@@ -1,4 +1,15 @@
+#stargazer-page {
 
+    & > .col-auto {
+        padding: 0px !important;
+    }
+
+    canvas {
+        width: 100vw;
+        height: calc(100vh - (#{($navigation-bar-height - 12) + px}));
+        clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 91px 100%, 0px calc(100% - 156px));
+    }
+}
 
 // BEGIN-Min-Width
 

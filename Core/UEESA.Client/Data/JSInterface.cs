@@ -17,6 +17,7 @@ namespace UEESA.Client.Data
         {
             public async Task Load(string relativePath) => await JSR.InvokeAsync<string>("runtime.load", relativePath);
             public async Task<bool> IsScriptLoaded(string relativePath) => await JSR.InvokeAsync<bool>("runtime.isScriptLoaded", relativePath);
+            public async Task LoadWebGL2() => await JSR.InvokeVoidAsync("runtime.loadWebGL2");
         }
 
         public class Cache

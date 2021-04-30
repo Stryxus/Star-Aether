@@ -2,11 +2,25 @@
 
 @inject UIState UIState
 
+<div id="stargazer-page" class="row justify-content-center">
+    <div class="col-auto no-scroll">
+        <canvas id="stargazer-canvas"></canvas>
+    </div>
+</div>
+
+@inject JSInterface.Runtime Runtime
+
 @code {
 
     protected override async Task OnParametersSetAsync()
     {
         UIState.CurrentPage = "/stargazer";
         await base.OnParametersSetAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender) await Runtime.LoadWebGL2();
+        await base.OnAfterRenderAsync(firstRender);
     }
 }
