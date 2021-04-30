@@ -53,6 +53,7 @@
                 .logo-container {
                     height: 382px;
                     width: 221px;
+                    padding: 0px;
                     position: absolute;
                     left: 0px;
                     bottom: 0px;
@@ -63,15 +64,11 @@
                         width: 221px;
             
                         &.active {
-                            img {
-                                
-                            }
+                            background-color: $colour-grey-3-trans-high;
                         }
             
                         &:hover {
-                            img {
-                                
-                            }
+                            background-color: $colour-grey-4-trans-high;
                         }
             
                         img {
@@ -101,7 +98,7 @@
                     bottom: ($navigation-bar-height * 3.3) + px;
                     left: -20px;
                     width: auto;
-                    color: $colour-grey-10;
+                    color: $colour-white;
 
                     small {
                         transform: rotate(60deg);
