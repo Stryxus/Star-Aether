@@ -31,13 +31,6 @@
       "quality": 70,
       "format": "webp"
     },
-    "/img/stryxus.png": {
-      "enabled": true,
-      "width": 1455,
-      "height": 2038,
-      "quality": 60,
-      "format": "webp"
-    },
     "/css/bundle.scss": {
       "enabled": true
     },
