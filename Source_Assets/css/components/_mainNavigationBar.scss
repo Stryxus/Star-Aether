@@ -374,8 +374,9 @@
                         #id-card-avatar {
             
                             img {
-                                width: ($navigation-bar-height - 18) + px;
-                                height: ($navigation-bar-height - 18) + px;
+                                width: ($navigation-bar-height - 24) + px;
+                                height: ($navigation-bar-height - 24) + px;
+                                margin: 6px;
                             }
                         }
                     }

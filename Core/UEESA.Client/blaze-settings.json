@@ -38,13 +38,6 @@
       "quality": 80,
       "format": "webp"
     },
-    "/img/avatar.png": {
-      "enabled": true,
-      "width": 722,
-      "height": 722,
-      "quality": 60,
-      "format": "webp"
-    },
     "/img/roadmap/ai.png": {
       "enabled": true,
       "width": 1920,
