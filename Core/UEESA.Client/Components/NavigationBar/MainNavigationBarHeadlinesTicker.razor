@@ -1,6 +1,6 @@
 ﻿@if (ClientState.Settings != null)
 {
-    <div class="headline-ticker" style="@(ClientState.Settings.ShowHealinesTicker ? string.Empty : "display: none")">
+    <div class="headline-ticker" style="@(ClientState.Settings.ShowHealinesTicker && !UIState.IsNavTickersForcedInvisible ? string.Empty : "display: none")">
         <div class="col-auto headline-ticker-title">
             <h6>Headlines</h6>
         </div>
@@ -39,11 +39,13 @@
 }
 
 @inject ClientState ClientState
+@inject UIState UIState
 
 @code {
 
     protected override async Task OnInitializedAsync()
     {
+        UIState.OnIsNavTickersForcedInvisibleChanged += StateHasChanged;
         ClientState.OnNewsDataChanged += StateHasChanged;
         ClientState.OnSettingsChanged += StateHasChanged;
         await base.OnInitializedAsync();

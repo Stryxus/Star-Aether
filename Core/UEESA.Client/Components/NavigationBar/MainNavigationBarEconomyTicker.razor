@@ -1,6 +1,6 @@
 ﻿@if (ClientState.Settings != null)
 {
-    <div class="economy-ticker" style="@(ClientState.Settings.ShowEconomyTicker ? string.Empty : "display: none")">
+    <div class="economy-ticker" style="@(ClientState.Settings.ShowEconomyTicker && !UIState.IsNavTickersForcedInvisible ? string.Empty : "display: none")">
         <div class="col economy-ticker-title">
             <h6>Economy</h6>
         </div>
@@ -150,11 +150,13 @@
 }
 
 @inject ClientState ClientState
+@inject UIState UIState
 
 @code {
 
     protected override async Task OnInitializedAsync()
     {
+        UIState.OnIsNavTickersForcedInvisibleChanged += StateHasChanged;
         ClientState.OnSettingsChanged += StateHasChanged;
         await base.OnInitializedAsync();
     }

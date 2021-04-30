@@ -9,6 +9,7 @@
 </div>
 
 @inject JSInterface.Runtime Runtime
+@inject UIState UIState
 
 @code {
 
@@ -20,7 +21,11 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender) await Runtime.LoadWebGL2();
         await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            UIState.ToggleForceNavTickersInvisible();
+            await Runtime.LoadWebGL2();
+        }
     }
 }
