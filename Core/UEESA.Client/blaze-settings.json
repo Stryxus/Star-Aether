@@ -31,60 +31,11 @@
       "quality": 80,
       "format": "webp"
     },
-    "/img/about/stryxus.png": {
+    "/img/stryxus.png": {
       "enabled": true,
       "width": 656,
       "height": 2029,
       "quality": 80,
-      "format": "webp"
-    },
-    "/img/roadmap/ai.png": {
-      "enabled": true,
-      "width": 1920,
-      "height": 1080,
-      "quality": 70,
-      "format": "webp"
-    },
-    "/img/roadmap/characters.png": {
-      "enabled": true,
-      "width": 1920,
-      "height": 1080,
-      "quality": 70,
-      "format": "webp"
-    },
-    "/img/roadmap/coretech.png": {
-      "enabled": true,
-      "width": 1920,
-      "height": 1080,
-      "quality": 70,
-      "format": "webp"
-    },
-    "/img/roadmap/gameplay.png": {
-      "enabled": true,
-      "width": 1920,
-      "height": 1080,
-      "quality": 70,
-      "format": "webp"
-    },
-    "/img/roadmap/locations.png": {
-      "enabled": true,
-      "width": 1920,
-      "height": 1080,
-      "quality": 70,
-      "format": "webp"
-    },
-    "/img/roadmap/shipsandvehicles.png": {
-      "enabled": true,
-      "width": 1920,
-      "height": 1080,
-      "quality": 70,
-      "format": "webp"
-    },
-    "/img/roadmap/weaponsanditems.png": {
-      "enabled": true,
-      "width": 1920,
-      "height": 1080,
-      "quality": 70,
       "format": "webp"
     },
     "/css/bundle.scss": {
