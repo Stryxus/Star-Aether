@@ -14,8 +14,6 @@ namespace UEESA.Client.Data.States
         {
             if (
                 Services.Get<ClientState>().Settings != null &&
-                Services.Get<ClientState>().NewsData != null &&
-                Services.Get<ClientState>().RoadmapData != null &&
                 !Services.Get<UIState>().FirstRender &&
                 !SingleAppLoadedLock
                 )
@@ -54,16 +52,12 @@ namespace UEESA.Client.Data.States
                     if (FirstDataLoadPass)
                     {
                         FirstDataLoadPass = false;
-                        await Services.Get<ServerState>().RequestChangelogData(true);
-                        await Services.Get<ServerState>().RequestNewsData(true);
                         await Services.Get<ServerState>().RequestRoadmapData(true);
                     }
                 };
                 Services.Get<WebSocketManagerMiddleware>().OnServerConnectionError += async () =>
                 {
                     await Logger.LogInfo("Connection to the server cannot be established. Running in offline mode.");
-                    await Services.Get<ServerState>().RequestChangelogData();
-                    await Services.Get<ServerState>().RequestNewsData();
                     await Services.Get<ServerState>().RequestRoadmapData();
                 };
                 await Services.Get<WebSocketManagerMiddleware>().Connect(Services.Get<ClientState>());

@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 
 using UEESA.Client.Data.Json;
-using UEESA.Shared.Json;
 
 using Newtonsoft.Json;
-using UEESA.Client.WebSockets;
 
 namespace UEESA.Client.Data.States
 {
@@ -18,12 +16,6 @@ namespace UEESA.Client.Data.States
                 case Type t when t == typeof(GlobalSettings):
                     await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().Settings = defaultData ? new GlobalSettings() : Services.Get<ClientState>().Settings));
                     Services.Get<ClientState>().NotifySettingsChange();
-                    break;
-                case Type t when t == typeof(NewsData):
-                    await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().NewsData = defaultData ? new NewsData() : Services.Get<ClientState>().NewsData));
-                    break;
-                case Type t when t == typeof(RoadmapData):
-                    await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().RoadmapData = defaultData ? new RoadmapData() : Services.Get<ClientState>().RoadmapData));
                     break;
             }
         }
@@ -47,14 +39,6 @@ namespace UEESA.Client.Data.States
                             Services.Get<ClientState>().Settings = new GlobalSettings();
                             await SetLocalData<T>();
                         }
-                        break;
-                    case Type t when t == typeof(NewsData):
-                        if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyNewsDataChange(Services.Get<ClientState>().NewsData = obj as NewsData ?? new NewsData(), true);
-                        else if (Services.Get<WebSocketManagerMiddleware>().IsConnected) await Services.Get<ServerState>().RequestNewsData(true);
-                        break;
-                    case Type t when t == typeof(RoadmapData):
-                        if (((exists, obj) = await LocalDataExists<T>()).exists) Services.Get<ClientState>().NotifyRoadmapCardDataChange(Services.Get<ClientState>().RoadmapData = obj as RoadmapData ?? new RoadmapData(), true);
-                        else if (Services.Get<WebSocketManagerMiddleware>().IsConnected) await Services.Get<ServerState>().RequestRoadmapData(true);
                         break;
                 }
             }

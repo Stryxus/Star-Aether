@@ -3,40 +3,20 @@ using System.Net.WebSockets;
 using System.Threading.Tasks;
 
 using UEESA.Client.WebSockets;
-using UEESA.Shared.Json;
+using UEESA.Shared.WebSockets;
+using UEESA.Json.Roadmap;
 
 namespace UEESA.Client.Data.States
 {
     internal class ServerState
     {
-        internal async Task RequestNewsData(bool getFreshCopy = false) => await Send(async (ClientWebSocket socket) =>
-        {
-            await Logger.LogInfo("Requesting News Data...");
-            if (Services.Get<WebSocketManagerMiddleware>().IsConnected && getFreshCopy)
-                Services.Get<StateSocketHandler>().SendMessageAsync(socket, "CMD." + Commands.GetNewsData);
-            else await Services.Get<LocalStorageState>().GetLocalData<NewsData>();
-        });
-
-        internal async Task RequestChangelogData(bool getFreshCopy = false) => await Send(async (ClientWebSocket socket) =>
-        {
-            await Logger.LogInfo("Requesting Changelog Data...");
-            if (Services.Get<WebSocketManagerMiddleware>().IsConnected && getFreshCopy)
-                Services.Get<StateSocketHandler>().SendMessageAsync(socket, "CMD." + Commands.GetChangelogData);
-            else await Services.Get<LocalStorageState>().GetLocalData<ChangelogData>();
-        });
 
         internal async Task RequestRoadmapData(bool getFreshCopy = false) => await Send(async (ClientWebSocket socket) =>
         {
             await Logger.LogInfo("Requesting Roadmap Data...");
             if (Services.Get<WebSocketManagerMiddleware>().IsConnected && getFreshCopy)
                 Services.Get<StateSocketHandler>().SendMessageAsync(socket, "CMD." + Commands.GetRoadmapData);
-            else await Services.Get<LocalStorageState>().GetLocalData<RoadmapData>();
-        });
-
-        internal async Task RequestTwitchLogo(string username) => await Send(async (ClientWebSocket socket) => 
-        {
-            await Logger.LogInfo("Requesting Twitch Data for " + username);
-            if (Services.Get<WebSocketManagerMiddleware>().IsConnected) Services.Get<StateSocketHandler>().SendMessageAsync(socket, "TWITCH_LOGO." + username);
+            else await Services.Get<LocalStorageState>().GetLocalData<RSI_Roadmap_State>();
         });
 
         private static Task Send(Action<ClientWebSocket> act)

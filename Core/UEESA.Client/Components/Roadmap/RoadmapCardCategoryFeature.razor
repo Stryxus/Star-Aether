@@ -1,36 +1,24 @@
 ﻿<div class="col">
     <div class="row feature">
         <div class="col">
-            @if (HasData)
+            <div class="row">
+                <div class="col feature-img">
+                    @if (Feature.ThumbnailLink != null)
+                    {
+                        <img src="@(Feature.ThumbnailLink)" draggable="false" alt="Feature Image" />
+                    }
+                    <div class="task-overlay">
+                        <small>
+                            @FeatureStatus.ToString()
+                        </small>
+                    </div>
+                </div>
+            </div>
+            @if (Feature.Description != null)
             {
-                <div class="row">
-                    <div class="col feature-img">
-                        <img src="/img/roadmap/@(Feature.Category.ToString().ToLower()).webp" draggable="false" alt="Feature Image" />
-                        <div class="task-overlay">
-                            <small>
-                                @FeatureStatusString
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="feature-progression">
-                            <div class="bar" style="width: @(Progress * 3.9D + "px");" />
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col feature-description">
                         <small>@Feature.Description</small>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="row">
-                    <div class="col d-flex align-items-center not-added">
-                        <small>This feature wasnt added on or before @SelectedDate.ToShortDateString()</small>
                     </div>
                 </div>
             }
@@ -43,54 +31,8 @@
 @code {
 
     [Parameter]
-    public RoadmapCardData CardData { get; set; }
+    public RSI_Roadmap_State_Feature Feature { get; set; }
 
     [Parameter]
-    public RoadmapFeatureData Feature { get; set; }
-
-    [Parameter]
-    public List<DateTime> AvailableDates { get; set; }
-
-    private DateTime SelectedDate { get; set; }
-
-    public bool HasData { get; set; } = false;
-
-    public int TaskCount { get; set; } = 0;
-    public int TasksCompleted { get; set; } = 0;
-    public double Progress { get; set; } = 0;
-    public string FeatureStatusString { get; set; } = string.Empty;
-
-    public RoadmapFeatureStatusData Status { get; set; }
-    public bool AreTasksKnown { get; set; } = false;
-
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            SelectedDate = RoadmapV1State.Roadmap_v1_SelectedDates[CardData.MajorVersion + "." + CardData.MinorVersion];
-            Status = Feature.Status[Feature.Status.Keys.Where(x => x <= SelectedDate).Reverse().First()];
-            TaskCount = Feature.TaskCount[Feature.TaskCount.Keys.Where(x => x <= SelectedDate).Reverse().First()];
-            TasksCompleted = Feature.TasksCompleted[Feature.TasksCompleted.Keys.Where(x => x <= SelectedDate).Reverse().First()];
-            HasData = true;
-        }
-        catch (JSException)
-        {
-            HasData = false;
-        }
-        catch (InvalidOperationException)
-        {
-            HasData = false;
-        }
-
-        AreTasksKnown = (Status != RoadmapFeatureStatusData.Scheduled && TasksCompleted > 0) || Status == RoadmapFeatureStatusData.Scheduled;
-        Progress = Status == RoadmapFeatureStatusData.InDevelopment ? 100D * (double)TaskCount / (double)TasksCompleted : AreTasksKnown ? 100D : 0D;
-
-        bool hasPUReleaseDate = CardData.Patches[0].PUReleaseDate != null;
-        FeatureStatusString =
-            AreTasksKnown ? "Tasks: " +
-                (hasPUReleaseDate || Status == RoadmapFeatureStatusData.Released || Status == RoadmapFeatureStatusData.Polishing ? TasksCompleted : TaskCount) + "/" + TasksCompleted + " | " +
-                    (Progress < 100D ? Progress.ToString("0.00") + "% | " : string.Empty) + (hasPUReleaseDate ? "Released" : Status.ToString())
-            : "Data Unknown | " + (hasPUReleaseDate ? "Released" : Status.ToString());
-        await base.OnInitializedAsync();
-    }
+    public RSI_Roadmap_State_Status FeatureStatus { get; set; }
 }

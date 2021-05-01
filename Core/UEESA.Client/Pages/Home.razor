@@ -2,22 +2,7 @@
 
 <div id="index-page" class="row justify-content-center no-scroll">
     <div class="col alt-scroll">
-        @if (ClientState.NewsData != null)
-        {
-            @if (ClientState.NewsData.NewsPosts != null)
-            {
-                <!--
-                <Virtualize Items="ClientState.NewsData.NewsPosts" Context="entry">
-                    <Placeholder>
-                        <h4>Loading Entry...</h4>
-                    </Placeholder>
-                    <ItemContent>
-                        <PostEntry Title="@entry.Title" Content="@entry.Content" PostedOn="@entry.Date" LastEditedOn="@entry.LastEditTime" />
-                    </ItemContent>
-                </Virtualize>
-                -->
-            }
-        }
+
     </div>
 </div>
 
@@ -34,7 +19,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        ClientState.OnNewsDataChanged += StateHasChanged;
         await base.OnInitializedAsync();
     }
 }

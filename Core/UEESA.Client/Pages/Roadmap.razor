@@ -3,14 +3,11 @@
 <div id="roadmap-page" class="row no-scroll">
     <div class="col padded-no-scroll">
         <div id="roadmap-cards" class="row align-items-stretch">
-            @if (ClientState.RoadmapData != null)
+            @if (ClientState.RoadmapState != null && ClientState.RoadmapState.Features != null)
             {
-                @if (ClientState.RoadmapData.Cards != null)
+                @foreach (string release in ClientState.RoadmapState.Features.Keys)
                 {
-                    @foreach (RoadmapCardData card in ClientState.RoadmapData.Cards)
-                    {
-                        <RoadmapCard CardData="card" />
-                    }
+                    <RoadmapCard CardState="ClientState.RoadmapState.Features[release]" CardStatus="ClientState.RoadmapState.ReleaseStatus[release]" CardVersion="@release" />
                 }
             }
         </div>
@@ -30,7 +27,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        ClientState.OnRoadmapCardDataChanged += StateHasChanged;
+        ClientState.OnRoadmapStateChanged += StateHasChanged;
         await base.OnInitializedAsync();
     }
 }

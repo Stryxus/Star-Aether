@@ -2,7 +2,7 @@
 using System.Net.WebSockets;
 
 using UEESA.Shared.WebSockets;
-using UEESA.Shared.Json;
+using UEESA.Json.Roadmap;
 
 namespace UEESA.Server.WebSockets
 {
@@ -18,9 +18,7 @@ namespace UEESA.Server.WebSockets
 
             if (message.StartsWith("CMD.") && Enum.TryParse(typeof(Commands), message.Replace("CMD.", string.Empty), out object cmd))
             {
-                if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(RoadmapData).Name + await Services.Get<MongoDBInterface>().GetRoadmapData());
-                else if ((Commands)cmd == Commands.GetNewsData) SendMessageAsync(socket, "JSON." + typeof(NewsData).Name + await Services.Get<MongoDBInterface>().GetNewsData());
-                else if ((Commands)cmd == Commands.GetChangelogData) SendMessageAsync(socket, "JSON." + typeof(ChangelogData).Name + await Services.Get<MongoDBInterface>().GetChangelogData());
+                if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(RSI_Roadmap_State).Name + await Services.Get<MongoDBInterface>().GetRoadmapData());
             }
 
             return;

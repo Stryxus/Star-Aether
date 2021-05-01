@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Linq;
 
-using UEESA.Shared.Json;
 using UEESA.Client.Data.Json;
-using System.Collections.Generic;
+using UEESA.Json.Roadmap;
 
 namespace UEESA.Client.Data.States
 {
@@ -33,79 +31,29 @@ namespace UEESA.Client.Data.States
 
         internal void NotifySettingsChange() => OnSettingsChanged?.Invoke();
 
-        private NewsData _newsData;
-        internal NewsData NewsData
+        private RSI_Roadmap_State _roadmapState;
+        internal RSI_Roadmap_State RoadmapState
         {
             get
             {
-                return _newsData;
+                return _roadmapState;
             }
             set
             {
-                _newsData = value;
-                OnNewsDataChanged?.Invoke();
+                _roadmapState = value;
+                OnRoadmapStateChanged?.Invoke();
                 Services.Get<InitializationState>().CheckAppLoaded();
             }
         }
 
-        internal event Action OnNewsDataChanged;
-        internal async void NotifyNewsDataChange(NewsData data, bool isLocalData)
+        internal event Action OnRoadmapStateChanged;
+        internal async void NotifyRoadmapCardDataChange(RSI_Roadmap_State data, bool isLocalData)
         {
             if (!isLocalData)
             {
-                data.NewsPosts.Reverse();
-                NewsData = data;
-                await Services.Get<LocalStorageState>().SetLocalData<NewsData>();
-                await Logger.LogInfo("Received News Data!");
-            }
-        }
-
-        private RoadmapData _roadmapData;
-        internal RoadmapData RoadmapData
-        {
-            get
-            {
-                return _roadmapData;
-            }
-            set
-            {
-                _roadmapData = value;
-                OnRoadmapCardDataChanged?.Invoke();
-                Services.Get<InitializationState>().CheckAppLoaded();
-            }
-        }
-
-        internal event Action OnRoadmapCardDataChanged;
-        internal async void NotifyRoadmapCardDataChange(RoadmapData data, bool isLocalData)
-        {
-            data.Cards = data.Cards.OrderBy(o => o.MajorVersion).ThenBy(o => o.MinorVersion).Reverse().ToList();
-            for (int i = 0; i < data.Cards.Count - 1; i++) data.Cards[i].Patches = data.Cards[i].Patches.OrderBy(o => o.PatchVersion).ToList();
-            if (!isLocalData)
-            {
-                RoadmapData = data;
-                await Services.Get<LocalStorageState>().SetLocalData<RoadmapData>();
-                await Logger.LogInfo("Received Roadmap Data!");
-            }
-        }
-
-        // Twitch
-
-        /*
-         * TODO:
-         * 
-         * Add in Person Profile class to simplify fetching entire profiles of people who are featured. Could bring over official twitch, youtube, twitter and more data with this. 
-         * 
-         */
-
-        internal event Action<string> OnTwitchLogoAdded;
-        internal Dictionary<string, string> TwitchLogos { get; private set; } = new Dictionary<string, string>();
-
-        internal void AddTwitchLogo(string username, string url)
-        {
-            if (!TwitchLogos.ContainsKey(username))
-            {
-                TwitchLogos.Add(username, url);
-                OnTwitchLogoAdded?.Invoke(username);
+                RoadmapState = data;
+                await Services.Get<LocalStorageState>().SetLocalData<RSI_Roadmap_State>();
+                await Logger.LogInfo("Received Roadmap State.");
             }
         }
     }

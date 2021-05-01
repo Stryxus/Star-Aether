@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UEESA.Shared.Json
+namespace UEESA.Shared.WebSockets
 {
     public enum Commands : int
     {

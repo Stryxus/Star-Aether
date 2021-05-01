@@ -81,8 +81,6 @@
     private async Task ClearDatabases()
     {
         await LocalData.Clear();
-        await ServerState.RequestChangelogData(true);
-        await ServerState.RequestNewsData(true);
         await ServerState.RequestRoadmapData(true);
         NavMan.NavigateTo(NavMan.Uri, forceLoad: true);
     }

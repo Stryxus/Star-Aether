@@ -1,46 +1,15 @@
 ﻿<div class="row body">
     <div class="col">
-        <RoadmapCardBodyInfo CardData="CardData" AvailableDates="AvailableDates" />
-        @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.Characters))
+        @foreach (RSI_Roadmap_State_Category category in CardState.Keys)
         {
-            <RoadmapCardItemFrame Title="Characters">
-                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.Characters)"           AvailableDates="AvailableDates" />
-            </RoadmapCardItemFrame>
-        }
-        @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.Locations))
-        {
-            <RoadmapCardItemFrame Title="Locations">
-                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.Locations)"            AvailableDates="AvailableDates" />
-            </RoadmapCardItemFrame>
-        }
-        @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.AI))
-        {
-            <RoadmapCardItemFrame Title="AI">
-                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.AI)"                   AvailableDates="AvailableDates" />
-            </RoadmapCardItemFrame>
-        }
-        @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.Gameplay))
-        {
-            <RoadmapCardItemFrame Title="Gameplay">
-                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.Gameplay)"             AvailableDates="AvailableDates" />
-            </RoadmapCardItemFrame>
-        }
-        @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.ShipsAndVehicles))
-        {
-            <RoadmapCardItemFrame Title="Ships And Vehicles">
-                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.ShipsAndVehicles)"     AvailableDates="AvailableDates" />
-            </RoadmapCardItemFrame>
-        }
-        @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.WeaponsAndItems))
-        {
-            <RoadmapCardItemFrame Title="Weapons And Items">
-                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.WeaponsAndItems)"      AvailableDates="AvailableDates" />
-            </RoadmapCardItemFrame>
-        }
-        @if (CardData.VersionFeatures.Any(o => o.Category == RoadmapCardCategoryData.CoreTech))
-        {
-            <RoadmapCardItemFrame Title="Core Tech">
-                <RoadmapCardCategory CardData="CardData" Features="CardData.VersionFeatures.FindAll(o => o.Category == RoadmapCardCategoryData.CoreTech)"             AvailableDates="AvailableDates" />
+            <RoadmapCardItemFrame Title="@(category == RSI_Roadmap_State_Category.AI ? "AI" : 
+                                           category == RSI_Roadmap_State_Category.Characters ? "Characters" : 
+                                           category == RSI_Roadmap_State_Category.CoreTech ? "Core Tech" : 
+                                           category == RSI_Roadmap_State_Category.Gameplay ? "Gameplay" :
+                                           category == RSI_Roadmap_State_Category.Items ? "Weapons & Items" :
+                                           category == RSI_Roadmap_State_Category.Locations ? "Locations" :
+                                           category == RSI_Roadmap_State_Category.Vehicles ? "Ships & Vehicles" : string.Empty)">
+                <RoadmapCardCategory Features="CardState[category]" />
             </RoadmapCardItemFrame>
         }
     </div>
@@ -49,15 +18,6 @@
 @code {
 
     [Parameter]
-    public RoadmapCardData CardData { get; set; }
-
-    [Parameter]
-    public bool IsStatisticsCollapsed { get; set; }
-
-    [Parameter]
-    public bool IsPatchNotesCollapsed { get; set; }
-
-    [Parameter]
-    public List<DateTime> AvailableDates { get; set; }
+    public Dictionary<RSI_Roadmap_State_Category, List<RSI_Roadmap_State_Feature>> CardState { get; set; }
 
 }

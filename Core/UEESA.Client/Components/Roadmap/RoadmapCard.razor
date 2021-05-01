@@ -1,10 +1,6 @@
-﻿<div class="col-auto roadmap-v1-star-citizen-card @(
-                         CardData.Patches[0].EvocatiTestingDate != null && CardData.Patches[0].PTUTestingStartDate != null && CardData.Patches[0].PUReleaseDate == null ? "ptu" :
-                         CardData.Patches[0].EvocatiTestingDate != null && CardData.Patches[0].PTUTestingStartDate == null && CardData.Patches[0].PUReleaseDate == null ? "evocati" :
-                         CardData.Patches[0].EvocatiTestingDate == null && CardData.Patches[0].PTUTestingStartDate == null && CardData.Patches[0].PUReleaseDate == null ? "dev" : "released")">
-    <RoadmapCardHeader CardData="CardData" />
-    <RoadmapCardBody CardData="CardData" AvailableDates="AvailableDates" />
-    <RoadmapCardTools CardData="CardData" AvailableDates="AvailableDates" />
+﻿<div class="col-auto roadmap-v1-star-citizen-card @(CardStatus.ToString())">
+    <RoadmapCardHeader CardState="CardState" CardStatus="CardStatus" CardVersion="@CardVersion" />
+    <RoadmapCardBody CardState="CardState" />
 </div>
 
 @inject RoadmapV1State RoadmapV1State 
@@ -12,24 +8,11 @@
 @code {
 
     [Parameter]
-    public RoadmapCardData CardData { get; set; }
+    public Dictionary<RSI_Roadmap_State_Category, List<RSI_Roadmap_State_Feature>> CardState { get; set; }
 
-    private List<DateTime> AvailableDates { get; set; } = new List<DateTime>();
+    [Parameter]
+    public RSI_Roadmap_State_Status CardStatus { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        foreach (RoadmapFeatureData f in CardData.VersionFeatures)
-        {
-            foreach (DateTime d in f.TaskCount.Keys.Concat(f.TasksCompleted.Keys))
-            {
-                if (!AvailableDates.Contains(d)) AvailableDates.Add(d);
-            }
-        }
-        if (AvailableDates.Count != 0)
-        {
-            AvailableDates = AvailableDates.OrderBy(o => o.Date).Reverse().ToList();
-            if (!RoadmapV1State.Roadmap_v1_SelectedDates.ContainsKey(CardData.MajorVersion + "." + CardData.MinorVersion)) RoadmapV1State.Roadmap_v1_SelectedDates.Add(CardData.MajorVersion + "." + CardData.MinorVersion, AvailableDates[0]);
-        }
-        await base.OnInitializedAsync();
-    }
+    [Parameter]
+    public string CardVersion { get; set; }
 }

@@ -8,7 +8,8 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
 using UEESA.Server.WebSockets;
-using UEESA.Shared.Json;
+using UEESA.Json.Roadmap;
+using UEESA.RSIScraper.Roadmap;
 
 using JsonConvert = Newtonsoft.Json.JsonConvert;
 
@@ -18,9 +19,6 @@ namespace UEESA.Server
     {
         private MongoClient Client;
         private IMongoDatabase Database_Public_Data;
-
-        internal event Action OnPublicDataUpdate;
-        internal void InvokeOnPublicDataUpdate() => OnPublicDataUpdate?.Invoke();
 
         internal async Task Connect()
         {
@@ -36,37 +34,19 @@ namespace UEESA.Server
                 Database_Public_Data = Client.GetDatabase("public_data");
                 await Logger.LogInfo("Connected to MongoDB!");
 
-                OnPublicDataUpdate += async () =>
+                Services.Get<RSIRoadmapReleaseViewScraperService>().OnRaodmapReleaseViewStateChange += async () =>
                 {
-                    Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(NewsData).Name + await GetNewsData());
-                    Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(RoadmapData).Name + await GetRoadmapData());
-                    Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(ChangelogData).Name + await GetChangelogData());
+                    Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(RSI_Roadmap_State).Name + await GetRoadmapData());
                 };
             }
         }
 
-        internal async Task<string> GetNewsData()
-        {
-            NewsData data = new NewsData { NewsPosts = new List<NewsEntryData>() };
-            try
-            {
-                foreach (BsonDocument entry in await Database_Public_Data.GetCollection<BsonDocument>("news_data").AsQueryable().ToListAsync()) data.NewsPosts.Add(BsonSerializer.Deserialize<NewsEntryData>(entry));
-            } catch (TimeoutException)
-            {
-                await Logger.LogWarn("News data request timed out - Using default data structure.");
-            } catch (NullReferenceException)
-            {
-                await Logger.LogError("News data request threw null - Using default data structure.");
-            }
-            return JsonConvert.SerializeObject(data);
-        }
-
         internal async Task<string> GetRoadmapData()
         {
-            RoadmapData data = new RoadmapData { Cards = new List<RoadmapCardData>() };
+            RSI_Roadmap_State data = new RSI_Roadmap_State { Features = new() };
             try
             {
-                foreach (BsonDocument entry in await Database_Public_Data.GetCollection<BsonDocument>("roadmap_data").AsQueryable().ToListAsync()) data.Cards.Add(BsonSerializer.Deserialize<RoadmapCardData>(entry));
+                //foreach (BsonDocument entry in await Database_Public_Data.GetCollection<BsonDocument>("roadmap_data").AsQueryable().ToListAsync()) data.Cards.Add(BsonSerializer.Deserialize<RoadmapCardData>(entry));
             }
             catch (TimeoutException)
             {
@@ -76,25 +56,7 @@ namespace UEESA.Server
             {
                 await Logger.LogError("Roadmap data request threw null - Using default data structure.");
             }
-            return JsonConvert.SerializeObject(data);
-        }
-
-        internal async Task<string> GetChangelogData()
-        {
-            ChangelogData data = new ChangelogData { ChangelogPosts = new List<ChangelogEntryData>() };
-            try
-            {
-                foreach (BsonDocument entry in await Database_Public_Data.GetCollection<BsonDocument>("changelog_data").AsQueryable().ToListAsync()) data.ChangelogPosts.Add(BsonSerializer.Deserialize<ChangelogEntryData>(entry));
-            }
-            catch (TimeoutException)
-            {
-                await Logger.LogWarn("Changelog data request timed out - Using default data structure.");
-            }
-            catch (NullReferenceException)
-            {
-                await Logger.LogError("Changelog data request threw null - Using default data structure.");
-            }
-            return JsonConvert.SerializeObject(data);
+            return JsonConvert.SerializeObject(Services.Get<RSIRoadmapReleaseViewScraperService>().State);
         }
     }
 }

@@ -15,16 +15,18 @@ namespace UEESA.RSIScraper.Roadmap
     {
         public RSIRoadmapReleaseViewScraperService() : base(RSIStatusCheck.URL_RSI_Roadmap_ReleaseView, TimeSpan.FromSeconds(5)) { }
 
+        public event Action OnRaodmapReleaseViewStateChange;
+        public RSI_Roadmap_State State { get; private set; } = new RSI_Roadmap_State
+        {
+            Features = new(),
+            ReleaseStatus = new()
+        };
+
         protected override async Task ParseData()
         {
             if (RSIStatusCheck.ISRSIRoadmapReleaseViewWorking == RSIStatusCheck.RSIStatus.Online)
             {
                 await Logger.LogInfo("Running RSI Scrape: " + RSIStatusCheck.URL_RSI_Roadmap_ReleaseView.ToString());
-
-                RSI_Roadmap_State state = new()
-                {
-                    Features = new()
-                };
 
                 Browser.ExecuteScriptAsync("document.getElementsByClassName('TogglePreviousReleases-yixp65-1')[0].click();", true);
                 Browser.ExecuteScriptAsync("document.getElementsByClassName('Button-sc-1i76va4-2')[0].click();", true);
@@ -35,7 +37,12 @@ namespace UEESA.RSIScraper.Roadmap
                                                                .Descendants().Where(x => x.Name == "section" && x.HasClass("Release__Wrapper-sc-1y9ya50-0")))
                 {
                     string currentRelease = cardBody.Descendants().Where(x => x.Name == "h2" && x.HasClass("ReleaseHeader__ReleaseHeaderName-xqp955-1")).First().InnerText;
-                    if (!state.Features.ContainsKey(currentRelease)) state.Features.Add(currentRelease, new Dictionary<RSI_Roadmap_State_Category, List<RSI_Roadmap_State_Feature>>());
+                    if (!State.Features.ContainsKey(currentRelease)) State.Features.Add(currentRelease, new Dictionary<RSI_Roadmap_State_Category, List<RSI_Roadmap_State_Feature>>());
+                    string cardStatus = cardBody.Descendants().Where(x => x.Name == "p" && x.HasClass("ReleaseHeader__ReleaseHeaderStatus-xqp955-2")).First().Descendants().First(x => x.Name == "strong").InnerHtml;
+                    State.ReleaseStatus.Add(currentRelease, cardStatus == "Released" ?  RSI_Roadmap_State_Status.Released :
+                                                            cardStatus == "Committed" ? RSI_Roadmap_State_Status.Committed :
+                                                            cardStatus == "Tentative" ? RSI_Roadmap_State_Status.Tentative :
+                                                                                        RSI_Roadmap_State_Status.Tentative);
 
                     foreach (HtmlNode category in cardBody.Descendants().Where(x => x.Name == "section" && x.HasClass("Category__Wrapper-sc-3z36kz-0")))
                     {
@@ -45,12 +52,12 @@ namespace UEESA.RSIScraper.Roadmap
                             currentCategoryString == "Locations"        ? RSI_Roadmap_State_Category.Locations        :
                             currentCategoryString == "AI"               ? RSI_Roadmap_State_Category.AI               :
                             currentCategoryString == "Gameplay"         ? RSI_Roadmap_State_Category.Gameplay         :
-                            currentCategoryString == "ShipsVehicles"    ? RSI_Roadmap_State_Category.ShipsVehicles    :
-                            currentCategoryString == "WeaponsItems"     ? RSI_Roadmap_State_Category.WeaponsItems     :
-                            currentCategoryString == "CoreTech"         ? RSI_Roadmap_State_Category.CoreTech         : 
+                            currentCategoryString == "Ships and Vehicles"    ? RSI_Roadmap_State_Category.Vehicles         :
+                            currentCategoryString == "Weapons and Items"     ? RSI_Roadmap_State_Category.Items            :
+                            currentCategoryString == "Core Tech"         ? RSI_Roadmap_State_Category.CoreTech         : 
                                                                           RSI_Roadmap_State_Category.CoreTech;
 
-                        if (!state.Features[currentRelease].ContainsKey(currentCategory)) state.Features[currentRelease].Add(currentCategory, new List<RSI_Roadmap_State_Feature>());
+                        if (!State.Features[currentRelease].ContainsKey(currentCategory)) State.Features[currentRelease].Add(currentCategory, new List<RSI_Roadmap_State_Feature>());
 
                         foreach (HtmlNode feature in category.Descendants().Where(x => x.Name == "a" && x.HasClass("Card__StyledNavLink-a2fcbm-2")))
                         {
@@ -68,8 +75,13 @@ namespace UEESA.RSIScraper.Roadmap
                             List<HtmlNode> descriptionNodes = feature.Descendants().Where(x => x.Name == "p" && x.HasClass("Card__Description-a2fcbm-6")).ToList();
                             List<HtmlNode> imageNodes = feature.Descendants().Where(x => x.Name == "figure" && x.HasClass("Card__Thumbnail-a2fcbm-5")).ToList();
                             string status = feature.Descendants().First().Descendants().First(x => x.Name == "span").InnerText;
+                            await Logger.LogInfo(status + " - " + status == "Released" ? RSI_Roadmap_State_Status.Released.ToString() :
+                                    status == "Committed" ? RSI_Roadmap_State_Status.Committed.ToString() :
+                                    status == "Tentative" ? RSI_Roadmap_State_Status.Tentative.ToString() :
+                                                              RSI_Roadmap_State_Status.Tentative.ToString());
+                            string thumbnailLink = imageNodes.Count > 0 ? imageNodes.First().GetAttributeValue("media", string.Empty) : null;
 
-                            state.Features[currentRelease][currentCategory].Add(new RSI_Roadmap_State_Feature
+                            State.Features[currentRelease][currentCategory].Add(new RSI_Roadmap_State_Feature
                             {
                                 Name = feature.Descendants().Where(x => x.Name == "header" && x.HasClass("Card__TitleBar-a2fcbm-4")).First().Descendants().First().InnerText,
                                 Description = descriptionNodes.Count > 0 ? descriptionNodes.First().InnerText : null,
@@ -79,12 +91,13 @@ namespace UEESA.RSIScraper.Roadmap
                                     status == "Tentative"   ? RSI_Roadmap_State_Status.Tentative :
                                                               RSI_Roadmap_State_Status.Tentative,
                                 Teams = teams,
-                                ThumbnailLink = imageNodes.Count > 0 ? RSIStatusCheck.URL_RSI + imageNodes.First().GetAttributeValue("media", string.Empty) : null,
+                                ThumbnailLink = imageNodes.Count > 0 ? thumbnailLink.StartsWith("https://media.robertsspaceindustries.com") ? thumbnailLink : RSIStatusCheck.URL_RSI + thumbnailLink : null,
                             });
                         }
                     }
                 }
-                await Logger.LogInfo("Completed RSI Scrape: " + RSIStatusCheck.URL_RSI_Roadmap_ReleaseView.ToString() + "\nReleases: " + state.Features.Keys.Count + "\nFeatures: " + state.Features.Values.Sum(x => x.Sum(o => o.Value.Count)));
+                OnRaodmapReleaseViewStateChange.Invoke();
+                await Logger.LogInfo("Completed RSI Scrape: " + RSIStatusCheck.URL_RSI_Roadmap_ReleaseView.ToString() + "\nReleases: " + State.Features.Keys.Count + "\nFeatures: " + State.Features.Values.Sum(x => x.Sum(o => o.Value.Count)));
             }
         }
 

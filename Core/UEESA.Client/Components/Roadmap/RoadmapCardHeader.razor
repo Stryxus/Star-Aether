@@ -1,22 +1,10 @@
 ﻿<div class="row header">
     <div class="col title">
-        <h5>v@(CardData.MajorVersion + "." + CardData.MinorVersion).0</h5>
+        <h5>
+            v@(CardVersion)
+        </h5>
     </div>
-    <small class="status">
-        @(CardData == null ? string.Empty :
-                         CardData.Patches[0].EvocatiTestingDate != null && CardData.Patches[0].PTUTestingStartDate != null && CardData.Patches[0].PUReleaseDate == null ? "In PTU" :
-                         CardData.Patches[0].EvocatiTestingDate != null && CardData.Patches[0].PTUTestingStartDate == null && CardData.Patches[0].PUReleaseDate == null ? "In Evocati" :
-                         CardData.Patches[0].EvocatiTestingDate == null && CardData.Patches[0].PTUTestingStartDate == null && CardData.Patches[0].PUReleaseDate == null ? "In Development" :
-                         CardData.Patches[0].EvocatiTestingDate == null && CardData.Patches[0].PTUTestingStartDate == null && CardData.Patches[0].PUReleaseDate == null ? "Released" : "Released")
-    </small>
-    <button class="info-button statistics @(RoadmapV1State.Roadmap_v1_IsStatisticsVisible[CardData.MajorVersion + "." + CardData.MinorVersion] ? "active" : string.Empty)"
-            @onclick="TogglePatchNotesVisibility">
-        <i class="far fa-chart-bar"></i>
-    </button>
-    <button class="info-button updates @(RoadmapV1State.Roadmap_v1_IsPatchNotesVisible[CardData.MajorVersion + "." + CardData.MinorVersion] ? "active" : string.Empty)"
-            @onclick="TogglePatchNotesVisibility">
-        <i class="fas fa-wrench"></i>
-    </button>
+    <small class="status">@(CardStatus.ToString())</small>
 </div>
 
 @inject RoadmapV1State RoadmapV1State
@@ -24,14 +12,17 @@
 @code {
 
     [Parameter]
-    public RoadmapCardData CardData { get; set; }
+    public Dictionary<RSI_Roadmap_State_Category, List<RSI_Roadmap_State_Feature>> CardState { get; set; }
+
+    [Parameter]
+    public RSI_Roadmap_State_Status CardStatus { get; set; }
+
+    [Parameter]
+    public string CardVersion { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        if (!RoadmapV1State.Roadmap_v1_IsStatisticsVisible.ContainsKey(CardData.MajorVersion + "." + CardData.MinorVersion)) RoadmapV1State.Roadmap_v1_IsStatisticsVisible.Add(CardData.MajorVersion + "." + CardData.MinorVersion, false);
-        if (!RoadmapV1State.Roadmap_v1_IsPatchNotesVisible.ContainsKey(CardData.MajorVersion + "." + CardData.MinorVersion)) RoadmapV1State.Roadmap_v1_IsPatchNotesVisible.Add(CardData.MajorVersion + "." + CardData.MinorVersion, false);
         await base.OnInitializedAsync();
+        await Logger.LogInfo(CardVersion);
     }
-
-    private void TogglePatchNotesVisibility() => RoadmapV1State.Roadmap_v1_TogglePatchNotesVisibility(CardData.MajorVersion + "." + CardData.MinorVersion);
 }

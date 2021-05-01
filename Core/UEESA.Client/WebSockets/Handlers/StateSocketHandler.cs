@@ -3,7 +3,7 @@ using System.Net.WebSockets;
 
 using UEESA.Client.Data.States;
 using UEESA.Shared.WebSockets;
-using UEESA.Shared.Json;
+using UEESA.Json.Roadmap;
 
 using Newtonsoft.Json;
 
@@ -25,8 +25,7 @@ namespace UEESA.Client.WebSockets
             {
                 message = message.Replace("JSON.", string.Empty);
 
-                TryConvertJSON<NewsData>((data) => Services.Get<ClientState>().NotifyNewsDataChange(data, false));
-                TryConvertJSON<RoadmapData>((data) => Services.Get<ClientState>().NotifyRoadmapCardDataChange(data, false));
+                TryConvertJSON<RSI_Roadmap_State>((data) => Services.Get<ClientState>().NotifyRoadmapCardDataChange(data, false));
 
                 void TryConvertJSON<T>(Action<T> conversion)
                 {
@@ -48,14 +47,6 @@ namespace UEESA.Client.WebSockets
                         catch (JsonException) {}
 #endif
                     }
-                }
-            }
-            else if (message.StartsWith("TWITCH_"))
-            {
-                if (message.StartsWith("TWITCH_LOGO."))
-                {
-                    Services.Get<ClientState>().AddTwitchLogo(message[(message.IndexOf("TWITCH_NAME.") + 12)..],
-                                                                message.Substring(0, message.IndexOf("TWITCH_NAME.")).Replace("TWITCH_LOGO.", string.Empty));
                 }
             }
             return;
