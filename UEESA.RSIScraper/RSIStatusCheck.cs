@@ -5,15 +5,15 @@ namespace UEESA.RSIScraper
 {
     internal static class RSIStatusCheck
     {
-        public static readonly Uri URL_RSI = new("https://robertsspaceindustries.com/");
+        public static readonly Uri URL_RSI = new("https://robertsspaceindustries.com");
         public static readonly Uri URL_RSI_Transmissions = new("https://robertsspaceindustries.com/comm-link");
         public static readonly Uri URL_RSI_Spectrum = new("https://robertsspaceindustries.com/spectrum/community/SC");
         public static readonly Uri URL_RSI_Roadmap_ReleaseView = new("https://robertsspaceindustries.com/roadmap/release-view");
         public static readonly Uri URL_RSI_Roadmap_ProgressTracker = new("https://robertsspaceindustries.com/roadmap/release-view");
         public static readonly Uri URL_RSI_Telemetry = new("https://robertsspaceindustries.com/telemetry");
-        public static readonly Uri URL_RSI_IssueCouncil = new("https://issue-council.robertsspaceindustries.com/");
+        public static readonly Uri URL_RSI_IssueCouncil = new("https://issue-council.robertsspaceindustries.com");
         public static readonly Uri URL_RSI_PledgeStore = new("https://robertsspaceindustries.com/pledge");
-        public static readonly Uri URL_RSI_ServicesStatus = new("https://status.robertsspaceindustries.com/");
+        public static readonly Uri URL_RSI_ServicesStatus = new("https://status.robertsspaceindustries.com");
 
         internal static RSIStatus IsRSIWorking => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI));
         internal static RSIStatus ISRSITransmissionsWorking => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_Transmissions));

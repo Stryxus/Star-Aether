@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace UEESA.Json.Roadmap
 {
     public class RSI_Roadmap_State
     {
+        [JsonConverter(typeof(StringEnumConverter))]
+        public Dictionary<string, Dictionary<RSI_Roadmap_State_Category, List<RSI_Roadmap_State_Feature>>> Features { get; set; }
     }
 }
