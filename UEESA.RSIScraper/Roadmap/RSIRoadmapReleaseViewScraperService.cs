@@ -45,14 +45,14 @@ namespace UEESA.RSIScraper.Roadmap
                     {
                         string currentCategoryString = category.Descendants().Where(x => x.Name == "h2" && x.HasClass("Category__CategoryName-sc-3z36kz-4")).First().InnerText;
                         RSI_Roadmap_State_Category currentCategory =
-                            currentCategoryString == "Characters"       ? RSI_Roadmap_State_Category.Characters       :
-                            currentCategoryString == "Locations"        ? RSI_Roadmap_State_Category.Locations        :
-                            currentCategoryString == "AI"               ? RSI_Roadmap_State_Category.AI               :
-                            currentCategoryString == "Gameplay"         ? RSI_Roadmap_State_Category.Gameplay         :
-                            currentCategoryString == "Ships and Vehicles"    ? RSI_Roadmap_State_Category.Vehicles         :
-                            currentCategoryString == "Weapons and Items"     ? RSI_Roadmap_State_Category.Items            :
-                            currentCategoryString == "Core Tech"         ? RSI_Roadmap_State_Category.CoreTech         : 
-                                                                          RSI_Roadmap_State_Category.CoreTech;
+                            currentCategoryString == "Characters"           ? RSI_Roadmap_State_Category.Characters       :
+                            currentCategoryString == "Locations"            ? RSI_Roadmap_State_Category.Locations        :
+                            currentCategoryString == "AI"                   ? RSI_Roadmap_State_Category.AI               :
+                            currentCategoryString == "Gameplay"             ? RSI_Roadmap_State_Category.Gameplay         :
+                            currentCategoryString == "Ships and Vehicles"   ? RSI_Roadmap_State_Category.Vehicles         :
+                            currentCategoryString == "Weapons and Items"    ? RSI_Roadmap_State_Category.Items            :
+                            currentCategoryString == "Core Tech"            ? RSI_Roadmap_State_Category.CoreTech         : 
+                                                                              RSI_Roadmap_State_Category.CoreTech;
 
                         if (!State.Features[currentRelease].ContainsKey(currentCategory)) State.Features[currentRelease].Add(currentCategory, new List<RSI_Roadmap_State_Feature>());
 
