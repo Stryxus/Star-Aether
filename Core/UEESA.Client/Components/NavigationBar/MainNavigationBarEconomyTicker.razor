@@ -1,6 +1,6 @@
 ﻿@if (ClientState.Settings != null)
 {
-    <div class="economy-ticker" style="@(ClientState.Settings.ShowEconomyTicker && !UIState.IsNavTickersForcedInvisible ? string.Empty : "display: none")">
+    <div class="economy-ticker" style="@(ClientState.Settings.ShowEconomyTicker && UIState.IsNavBarTickersVisible ? string.Empty : "display: none")">
         <div class="col economy-ticker-title">
             <h6>Economy</h6>
         </div>

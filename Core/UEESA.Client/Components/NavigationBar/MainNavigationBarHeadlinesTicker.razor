@@ -1,6 +1,6 @@
 ﻿@if (ClientState.Settings != null)
 {
-    <div class="headline-ticker" style="@(ClientState.Settings.ShowHealinesTicker && !UIState.IsNavTickersForcedInvisible ? string.Empty : "display: none")">
+    <div class="headline-ticker" style="@(ClientState.Settings.ShowHealinesTicker && UIState.IsNavBarTickersVisible ? string.Empty : "display: none")">
         <div class="col-auto headline-ticker-title">
             <h6>Headlines</h6>
         </div>
