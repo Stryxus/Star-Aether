@@ -33,17 +33,17 @@ namespace UEESA.RSIScraper.Roadmap
                 for (int i = 0; i < 12; i++) Browser.ExecuteScriptAsync("document.getElementsByClassName('ReleaseHeader-xqp955-3')[" + i + "].click();", true);
                 HTML.LoadHtml(await Browser.GetSourceAsync());
 
-                foreach (HtmlNode cardBody in HTML.DocumentNode.Descendants().Where(x => x.Name == "div" && x.HasClass("Board__Releases-c7lmub-7")).First()
+                foreach (HtmlNode cardBody in HTML.DocumentNode.Descendants().First(x => x.Name == "div" && x.HasClass("Board__Releases-c7lmub-7"))
                                                                .Descendants().Where(x => x.Name == "section" && x.HasClass("Release__Wrapper-sc-1y9ya50-0")))
                 {
-                    string currentRelease = cardBody.Descendants().Where(x => x.Name == "h2" && x.HasClass("ReleaseHeader__ReleaseHeaderName-xqp955-1")).First().InnerText;
+                    string currentRelease = cardBody.Descendants().First(x => x.Name == "h2" && x.HasClass("ReleaseHeader__ReleaseHeaderName-xqp955-1")).InnerText;
                     if (!State.Features.ContainsKey(currentRelease)) State.Features.Add(currentRelease, new Dictionary<RSI_Roadmap_State_Category, List<RSI_Roadmap_State_Feature>>());
-                    string cardStatus = cardBody.Descendants().Where(x => x.Name == "p" && x.HasClass("ReleaseHeader__ReleaseHeaderStatus-xqp955-2")).First().Descendants().First(x => x.Name == "strong").InnerHtml;
+                    string cardStatus = cardBody.Descendants().First(x => x.Name == "p" && x.HasClass("ReleaseHeader__ReleaseHeaderStatus-xqp955-2")).Descendants().First(x => x.Name == "strong").InnerHtml;
                     State.ReleaseStatus.Add(currentRelease, Enum.Parse<RSI_Roadmap_State_Status>(cardStatus, true));
 
                     foreach (HtmlNode category in cardBody.Descendants().Where(x => x.Name == "section" && x.HasClass("Category__Wrapper-sc-3z36kz-0")))
                     {
-                        string currentCategoryString = category.Descendants().Where(x => x.Name == "h2" && x.HasClass("Category__CategoryName-sc-3z36kz-4")).First().InnerText;
+                        string currentCategoryString = category.Descendants().First(x => x.Name == "h2" && x.HasClass("Category__CategoryName-sc-3z36kz-4")).InnerText;
                         RSI_Roadmap_State_Category currentCategory =
                             currentCategoryString == "Characters"           ? RSI_Roadmap_State_Category.Characters       :
                             currentCategoryString == "Locations"            ? RSI_Roadmap_State_Category.Locations        :
@@ -62,7 +62,7 @@ namespace UEESA.RSIScraper.Roadmap
                             List<HtmlNode> teamsNodeLookup = feature.Descendants().Where(x => x.Name == "section" && x.HasClass("Card__Teams-a2fcbm-7")).ToList();
                             if (teamsNodeLookup.Count > 0)
                             {
-                                List<HtmlNode> teamsNodes = feature.Descendants().Where(x => x.Name == "section" && x.HasClass("Card__Teams-a2fcbm-7")).First().Descendants().ToList();
+                                List<HtmlNode> teamsNodes = feature.Descendants().First(x => x.Name == "section" && x.HasClass("Card__Teams-a2fcbm-7")).Descendants().ToList();
                                 if (teamsNodes.Count > 0)
                                 {
                                     foreach (HtmlNode team in teamsNodes) teams.Add(team.InnerText);
@@ -76,7 +76,7 @@ namespace UEESA.RSIScraper.Roadmap
 
                             State.Features[currentRelease][currentCategory].Add(new RSI_Roadmap_State_Feature
                             {
-                                Name = feature.Descendants().Where(x => x.Name == "header" && x.HasClass("Card__TitleBar-a2fcbm-4")).First().Descendants().First().InnerText,
+                                Name = feature.Descendants().First(x => x.Name == "header" && x.HasClass("Card__TitleBar-a2fcbm-4")).Descendants().First().InnerText,
                                 Description = descriptionNodes.Count > 0 ? descriptionNodes.First().InnerText : null,
                                 Status = Enum.Parse<RSI_Roadmap_State_Status>(status, true),
                                 Teams = teams,
