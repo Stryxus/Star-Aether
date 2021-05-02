@@ -38,7 +38,7 @@ namespace UEESA.RSIScraper.Roadmap
                 {
                     string currentRelease = cardBody.Descendants().First(x => x.Name == "h2" && x.HasClass("ReleaseHeader__ReleaseHeaderName-xqp955-1")).InnerText;
                     if (!State.Features.ContainsKey(currentRelease)) State.Features.Add(currentRelease, new Dictionary<RSI_Roadmap_State_Category, List<RSI_Roadmap_State_Feature>>());
-                    string cardStatus = cardBody.Descendants().First(x => x.Name == "p" && x.HasClass("ReleaseHeader__ReleaseHeaderStatus-xqp955-2")).Descendants().First(x => x.Name == "strong").InnerHtml;
+                    string cardStatus = cardBody.Descendants().First(x => x.Name == "p" && x.HasClass("ReleaseHeader__ReleaseHeaderStatus-xqp955-2")).Descendants().First(x => x.Name == "strong").InnerText;
                     State.ReleaseStatus.Add(currentRelease, Enum.Parse<RSI_Roadmap_State_Status>(cardStatus, true));
 
                     foreach (HtmlNode category in cardBody.Descendants().Where(x => x.Name == "section" && x.HasClass("Category__Wrapper-sc-3z36kz-0")))
@@ -71,7 +71,7 @@ namespace UEESA.RSIScraper.Roadmap
 
                             List<HtmlNode> descriptionNodes = feature.Descendants().Where(x => x.Name == "p" && x.HasClass("Card__Description-a2fcbm-6")).ToList();
                             List<HtmlNode> imageNodes = feature.Descendants().Where(x => x.Name == "figure" && x.HasClass("Card__Thumbnail-a2fcbm-5")).ToList();
-                            string status = feature.Descendants().First(x => x.Name == "div" && x.HasClass("StatusBar-s9py95-0")).Descendants().First(x => x.Name == "span").InnerText;
+                            string status = feature.Descendants().First().Descendants().First(x => x.Name == "span").InnerText;
                             string thumbnailLink = imageNodes.Count > 0 ? imageNodes.First().GetAttributeValue("media", string.Empty) : null;
 
                             State.Features[currentRelease][currentCategory].Add(new RSI_Roadmap_State_Feature
