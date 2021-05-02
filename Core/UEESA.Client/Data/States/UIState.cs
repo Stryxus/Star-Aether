@@ -25,8 +25,9 @@ namespace UEESA.Client.Data.States
         internal bool IsNavBarTickersVisible { get; private set; }
         internal void SetNavBarTickerVisibility(bool isVisible)
         {
+            bool boolCache = IsNavBarTickersVisible;
             IsNavBarTickersVisible = isVisible;
-            OnNavBarTickersVisibilityChange.Invoke();
+            if (boolCache != IsNavBarTickersVisible) OnNavBarTickersVisibilityChange.Invoke();
         }
 
         internal bool IsSettingsPanelVisible { get; private set; }
