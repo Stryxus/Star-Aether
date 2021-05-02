@@ -71,7 +71,7 @@ namespace UEESA.RSIScraper.Roadmap
 
                             List<HtmlNode> descriptionNodes = feature.Descendants().Where(x => x.Name == "p" && x.HasClass("Card__Description-a2fcbm-6")).ToList();
                             List<HtmlNode> imageNodes = feature.Descendants().Where(x => x.Name == "figure" && x.HasClass("Card__Thumbnail-a2fcbm-5")).ToList();
-                            string status = feature.Descendants().First().Descendants().First(x => x.Name == "span").InnerText;
+                            string status = feature.Descendants().First(x => x.Name == "div" && x.HasClass("StatusBar-s9py95-0")).Descendants().First(x => x.Name == "span").InnerText;
                             string thumbnailLink = imageNodes.Count > 0 ? imageNodes.First().GetAttributeValue("media", string.Empty) : null;
 
                             State.Features[currentRelease][currentCategory].Add(new RSI_Roadmap_State_Feature
