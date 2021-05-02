@@ -17,18 +17,16 @@ namespace UEESA.Client.Data.States
             {
                 currentPage = value;
                 OnPageChanged?.Invoke();
-                ToggleForceNavTickersInvisible(false);
             }
         }
         internal bool FirstRender = true;
 
-        internal event Action OnIsNavTickersForcedInvisibleChanged;
-        internal bool IsNavTickersForcedInvisible { get; private set; }
-        internal void ToggleForceNavTickersInvisible(bool? forceInvisible = null)
+        internal event Action OnNavBarTickersVisibilityChange;
+        internal bool IsNavBarTickersVisible { get; private set; }
+        internal void SetNavBarTickerVisibility(bool isVisible)
         {
-            bool boolCache = IsNavTickersForcedInvisible;
-            IsNavTickersForcedInvisible = forceInvisible != null ? (bool)forceInvisible : !IsNavTickersForcedInvisible;
-            if (boolCache != IsNavTickersForcedInvisible) OnIsNavTickersForcedInvisibleChanged.Invoke();
+            IsNavBarTickersVisible = isVisible;
+            OnNavBarTickersVisibilityChange.Invoke();
         }
 
         internal bool IsSettingsPanelVisible { get; private set; }

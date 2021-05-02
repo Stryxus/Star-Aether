@@ -19,7 +19,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        UIState.OnIsNavTickersForcedInvisibleChanged += StateHasChanged;
+        UIState.OnNavBarTickersVisibilityChange += StateHasChanged;
         ClientState.OnSettingsChanged += StateHasChanged;
         await base.OnInitializedAsync();
     }

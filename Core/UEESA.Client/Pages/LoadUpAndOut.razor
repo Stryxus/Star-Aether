@@ -15,4 +15,10 @@
         UIState.CurrentPage = "/loadupout";
         await base.OnParametersSetAsync();
     }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        UIState.SetNavBarTickerVisibility(false);
+    }
 }
