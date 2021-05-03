@@ -113,7 +113,7 @@ namespace UEESA.RSIScraper.Roadmap
                     Logger.LogError("Falling back to the database for roadmap data!");
                 }
             }
-            else Logger.LogWarn("The RSI Release View is down! Falling back to the database for roadmap data!");
+            else Logger.LogWarn("The RSI Release View is down! Falling back to the database for roadmap data! Status: " + RSIStatusCheck.RSIRoadmapReleaseViewStatus);
         }
 
         protected override async Task UploadToDatabase()
