@@ -26,7 +26,7 @@ namespace UEESA.RSIScraper.Roadmap
         {
             if (RSIStatusCheck.ISRSIRoadmapReleaseViewWorking == RSIStatusCheck.RSIStatus.Online)
             {
-                await Logger.LogInfo("Running RSI Scrape: " + RSIStatusCheck.URL_RSI_Roadmap_ReleaseView.ToString());
+                Logger.LogInfo("Running RSI Scrape: " + RSIStatusCheck.URL_RSI_Roadmap_ReleaseView.ToString());
 
                 try
                 {
@@ -90,23 +90,23 @@ namespace UEESA.RSIScraper.Roadmap
                     State.Features = State.Features.Reverse().ToDictionary(x => x.Key, x => x.Value);
                     State.ReleaseStatus = State.ReleaseStatus.Reverse().ToDictionary(x => x.Key, x => x.Value);
                     OnRaodmapReleaseViewStateChange.Invoke();
-                    await Logger.LogInfo("Completed RSI Scrape: " + RSIStatusCheck.URL_RSI_Roadmap_ReleaseView.ToString() + "\nReleases: " + State.Features.Keys.Count + "\nFeatures: " + State.Features.Values.Sum(x => x.Sum(o => o.Value.Count)));
+                    Logger.LogInfo("Completed RSI Scrape: " + RSIStatusCheck.URL_RSI_Roadmap_ReleaseView.ToString() + "\nReleases: " + State.Features.Keys.Count + "\nFeatures: " + State.Features.Values.Sum(x => x.Sum(o => o.Value.Count)));
                 }
                 catch (NullReferenceException e)
                 {
-                    await Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
+                    Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
                 }
                 catch (InvalidOperationException e)
                 {
-                    await Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
+                    Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
                 }
                 catch (ArgumentNullException e)
                 {
-                    await Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
+                    Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
                 }
                 catch (ArgumentException e)
                 {
-                    await Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
+                    Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
                 }
             }
         }

@@ -47,7 +47,7 @@ namespace UEESA.Server
                     services.AddSingleton<RSIRoadmapReleaseViewScraperService>();
                 });
 
-                webBuilder.Configure(async (app) => 
+                webBuilder.Configure((app) => 
                 {
                     Configuration = app.ApplicationServices.GetRequiredService<IConfiguration>();
                     Services.SetServiceProvider(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider);
@@ -77,7 +77,7 @@ namespace UEESA.Server
                         endpoints.MapFallbackToPage("/_Host");
                     });
                     // Wake the services up
-                    await Services.Get<MongoDBInterface>().Connect();
+                    Services.Get<MongoDBInterface>().Connect();
                     Services.Get<RSIRoadmapReleaseViewScraperService>();
                 });
             }).Build().RunAsync();

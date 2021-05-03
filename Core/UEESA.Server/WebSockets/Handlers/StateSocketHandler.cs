@@ -12,13 +12,13 @@ namespace UEESA.Server.WebSockets
 
         public override void OnConnected(WebSocket socket)  => base.OnConnected(socket);
 
-        public override async void Receive(WebSocket socket, WebSocketReceiveResult result, string message)
+        public override void Receive(WebSocket socket, WebSocketReceiveResult result, string message)
         {
             message = message.Replace("\0", string.Empty);
 
             if (message.StartsWith("CMD.") && Enum.TryParse(typeof(Commands), message.Replace("CMD.", string.Empty), out object cmd))
             {
-                if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(RSI_Roadmap_State).Name + await Services.Get<MongoDBInterface>().GetRoadmapData());
+                if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(RSI_Roadmap_State).Name + Services.Get<MongoDBInterface>().GetRoadmapData());
             }
 
             return;

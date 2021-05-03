@@ -41,7 +41,7 @@ namespace UEESA.Client.WebSockets
 #if DEBUG || RELEASE_TEST
                         catch (JsonException e) 
                         {
-                            Logger.LogDebug(e.Message).GetAwaiter().GetResult();
+                            Logger.LogDebug(e.Message);
                         }
 #else
                         catch (JsonException) {}

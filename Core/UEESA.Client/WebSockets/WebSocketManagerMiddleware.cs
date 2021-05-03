@@ -37,7 +37,7 @@ namespace UEESA.Client.WebSockets
                         if (ClientSocket.State == WebSocketState.Open)
                         {
                             SocketHandler.OnConnected(ClientSocket);
-                            await Logger.LogInfo("Connection to the server has been established!");
+                            Logger.LogInfo("Connection to the server has been established!");
                             IsConnected = true;
                             OnServerConnected?.Invoke();
                             await Receive(ClientSocket, async (result, buffer) =>
@@ -61,7 +61,7 @@ namespace UEESA.Client.WebSockets
                 }
                 catch (WebSocketException)
                 {
-                    await Logger.LogInfo("Connection to the server cannot be established. Running in offline mode.");
+                    Logger.LogInfo("Connection to the server cannot be established. Running in offline mode.");
                 }
             }
         }

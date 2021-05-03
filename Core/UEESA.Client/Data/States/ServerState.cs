@@ -13,7 +13,7 @@ namespace UEESA.Client.Data.States
 
         internal async Task RequestRoadmapData(bool getFreshCopy = false) => await Send(async (ClientWebSocket socket) =>
         {
-            await Logger.LogInfo("Requesting Roadmap Data...");
+            Logger.LogInfo("Requesting Roadmap Data...");
             if (Services.Get<WebSocketManagerMiddleware>().IsConnected && getFreshCopy)
                 Services.Get<StateSocketHandler>().SendMessageAsync(socket, "CMD." + Commands.GetRoadmapData);
             else await Services.Get<LocalStorageState>().GetLocalData<RSI_Roadmap_State>();

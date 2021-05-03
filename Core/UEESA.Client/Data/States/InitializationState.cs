@@ -32,7 +32,7 @@ namespace UEESA.Client.Data.States
             {
                 FirstRegisterPass = false;
 
-                await Logger.LogInfo("Initializing Client State...");
+                Logger.LogInfo("Initializing Client State...");
 
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.Runtime>(), "runtime");
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.Cache>(), "cacheStorageInterface");
@@ -41,7 +41,7 @@ namespace UEESA.Client.Data.States
 
                 OnAppLoaded += async () =>
                 {
-                    await Logger.LogInfo("Application has loaded successfully. Showing router.");
+                    Logger.LogInfo("Application has loaded successfully. Showing router.");
                     await Services.Get<JSInterface.AnimationManager>().ShowRouter();
                 };
 
@@ -57,12 +57,12 @@ namespace UEESA.Client.Data.States
                 };
                 Services.Get<WebSocketManagerMiddleware>().OnServerConnectionError += async () =>
                 {
-                    await Logger.LogInfo("Connection to the server cannot be established. Running in offline mode.");
+                    Logger.LogInfo("Connection to the server cannot be established. Running in offline mode.");
                     await Services.Get<ServerState>().RequestRoadmapData();
                 };
                 await Services.Get<WebSocketManagerMiddleware>().Connect(Services.Get<ClientState>());
 
-                await Logger.LogInfo("Client State Initialized.");
+                Logger.LogInfo("Client State Initialized.");
             }
         }
     }

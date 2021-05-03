@@ -20,11 +20,11 @@ namespace UEESA.Server
         private MongoClient Client;
         private IMongoDatabase Database_Public_Data;
 
-        internal async Task Connect()
+        internal void Connect()
         {
             if (Client == null)
             {
-                await Logger.LogInfo("Connecting to MongoDB...");
+                Logger.LogInfo("Connecting to MongoDB...");
                 MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(PrivateData.Instance.MongoDBConnectionString));
                 settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
                 settings.ConnectTimeout = TimeSpan.FromSeconds(5);
@@ -32,16 +32,16 @@ namespace UEESA.Server
                 settings.DirectConnection = true;
                 Client = new MongoClient(settings);
                 Database_Public_Data = Client.GetDatabase("public_data");
-                await Logger.LogInfo("Connected to MongoDB!");
+                Logger.LogInfo("Connected to MongoDB!");
 
-                Services.Get<RSIRoadmapReleaseViewScraperService>().OnRaodmapReleaseViewStateChange += async () =>
+                Services.Get<RSIRoadmapReleaseViewScraperService>().OnRaodmapReleaseViewStateChange += () =>
                 {
-                    Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(RSI_Roadmap_State).Name + await GetRoadmapData());
+                    Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(RSI_Roadmap_State).Name + GetRoadmapData());
                 };
             }
         }
 
-        internal async Task<string> GetRoadmapData()
+        internal string GetRoadmapData()
         {
             RSI_Roadmap_State data = new RSI_Roadmap_State { Features = new() };
             try
@@ -50,11 +50,11 @@ namespace UEESA.Server
             }
             catch (TimeoutException)
             {
-                await Logger.LogWarn("Roadmap data request timed out - Using default data structure.");
+                Logger.LogWarn("Roadmap data request timed out - Using default data structure.");
             }
             catch (NullReferenceException)
             {
-                await Logger.LogError("Roadmap data request threw null - Using default data structure.");
+                Logger.LogError("Roadmap data request threw null - Using default data structure.");
             }
             return JsonConvert.SerializeObject(Services.Get<RSIRoadmapReleaseViewScraperService>().State);
         }

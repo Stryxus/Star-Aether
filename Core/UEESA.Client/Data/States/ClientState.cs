@@ -53,7 +53,7 @@ namespace UEESA.Client.Data.States
             {
                 RoadmapState = data;
                 await Services.Get<LocalStorageState>().SetLocalData<RSI_Roadmap_State>();
-                await Logger.LogInfo("Received Roadmap State.");
+                Logger.LogInfo("Received Roadmap State.");
             }
         }
     }
