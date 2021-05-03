@@ -24,7 +24,7 @@ namespace UEESA.RSIScraper.Roadmap
 
         protected override async Task ParseData()
         {
-            if (RSIStatusCheck.ISRSIRoadmapReleaseViewWorking == RSIStatusCheck.RSIStatus.Online)
+            if (RSIStatusCheck.RSIRoadmapReleaseViewStatus == RSIStatusCheck.ERSIStatus.Online)
             {
                 Logger.LogInfo("Running RSI Scrape: " + RSIStatusCheck.URL_RSI_Roadmap_ReleaseView.ToString());
 
@@ -109,6 +109,7 @@ namespace UEESA.RSIScraper.Roadmap
                     Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
                 }
             }
+            else Logger.LogWarn("The RSI Release View is down! Falling back to database!");
         }
 
         protected override async Task UploadToDatabase()

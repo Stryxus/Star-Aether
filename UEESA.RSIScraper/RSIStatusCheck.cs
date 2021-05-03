@@ -15,17 +15,17 @@ namespace UEESA.RSIScraper
         public static readonly Uri URL_RSI_PledgeStore = new("https://robertsspaceindustries.com/pledge");
         public static readonly Uri URL_RSI_ServicesStatus = new("https://status.robertsspaceindustries.com");
 
-        internal static RSIStatus IsRSIWorking => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI));
-        internal static RSIStatus ISRSITransmissionsWorking => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_Transmissions));
-        internal static RSIStatus ISRSISpectrumWorking => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_Spectrum));
-        internal static RSIStatus ISRSIRoadmapReleaseViewWorking => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_Roadmap_ReleaseView));
-        internal static RSIStatus ISRSIRoadmapProgressTrackerWorking => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_Roadmap_ProgressTracker));
-        internal static RSIStatus ISRSITelemetryWorking => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_Telemetry));
-        internal static RSIStatus ISRSIIssueCouncilWorking => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_IssueCouncil));
-        internal static RSIStatus ISRSIPledgeStoreWorking => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_PledgeStore));
-        internal static RSIStatus ISRSIServicesStatusWorking => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_ServicesStatus));
+        internal static ERSIStatus RSIStatus => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI));
+        internal static ERSIStatus RSITransmissionsStatus => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_Transmissions));
+        internal static ERSIStatus RSISpectrumStatus => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_Spectrum));
+        internal static ERSIStatus RSIRoadmapReleaseViewStatus => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_Roadmap_ReleaseView));
+        internal static ERSIStatus RSIRoadmapProgressTrackerStatus => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_Roadmap_ProgressTracker));
+        internal static ERSIStatus RSITelemetryStatus => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_Telemetry));
+        internal static ERSIStatus RSIIssueCouncilStatus => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_IssueCouncil));
+        internal static ERSIStatus RSIPledgeStoreStatus => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_PledgeStore));
+        internal static ERSIStatus RSIServicesStatusStatus => TranslateHTTPStatus(RetrieveStatusCode(URL_RSI_ServicesStatus));
 
-        public enum RSIStatus
+        public enum ERSIStatus
         {
             Online,
             Maintenance,
@@ -33,10 +33,10 @@ namespace UEESA.RSIScraper
             Unauthorized
         }
 
-        private static RSIStatus TranslateHTTPStatus(HttpStatusCode code) => code == HttpStatusCode.OK ? RSIStatus.Online :
-                   code == HttpStatusCode.Redirect || code == HttpStatusCode.RedirectKeepVerb || code == HttpStatusCode.RedirectMethod || code == HttpStatusCode.PermanentRedirect || code == HttpStatusCode.TemporaryRedirect ? RSIStatus.Maintenance :
-                   code == HttpStatusCode.Unauthorized || code == HttpStatusCode.Forbidden ? RSIStatus.Unauthorized :
-                   RSIStatus.Malfunction;
+        private static ERSIStatus TranslateHTTPStatus(HttpStatusCode code) => code == HttpStatusCode.OK ? ERSIStatus.Online :
+                   code == HttpStatusCode.Redirect || code == HttpStatusCode.RedirectKeepVerb || code == HttpStatusCode.RedirectMethod || code == HttpStatusCode.PermanentRedirect || code == HttpStatusCode.TemporaryRedirect ? ERSIStatus.Maintenance :
+                   code == HttpStatusCode.Unauthorized || code == HttpStatusCode.Forbidden ? ERSIStatus.Unauthorized :
+                   ERSIStatus.Malfunction;
 
         private static HttpStatusCode RetrieveStatusCode(Uri statusURI)
         {
