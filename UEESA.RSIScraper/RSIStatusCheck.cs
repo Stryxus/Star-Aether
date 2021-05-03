@@ -33,14 +33,11 @@ namespace UEESA.RSIScraper
             Unauthorized
         }
 
-        private static RSIStatus TranslateHTTPStatus(HttpStatusCode code)
-        {
-            return code == HttpStatusCode.OK ? RSIStatus.Online :
+        private static RSIStatus TranslateHTTPStatus(HttpStatusCode code) => code == HttpStatusCode.OK ? RSIStatus.Online :
                    code == HttpStatusCode.Redirect || code == HttpStatusCode.RedirectKeepVerb || code == HttpStatusCode.RedirectMethod ||
-                        code == HttpStatusCode.PermanentRedirect || code == HttpStatusCode.TemporaryRedirect ? RSIStatus.Maintenance :
+                   code == HttpStatusCode.PermanentRedirect || code == HttpStatusCode.TemporaryRedirect ? RSIStatus.Maintenance :
                    code == HttpStatusCode.Unauthorized || code == HttpStatusCode.Forbidden ? RSIStatus.Unauthorized :
                    RSIStatus.Malfunction;
-        }
 
         private static HttpStatusCode RetrieveStatusCode(Uri statusURI)
         {
