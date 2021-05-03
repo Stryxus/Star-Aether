@@ -10,9 +10,10 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        targetplatform: [x64]
     steps:
     - uses: actions/checkout@v2
       with:
