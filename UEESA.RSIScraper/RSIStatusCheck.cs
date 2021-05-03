@@ -34,7 +34,9 @@ namespace UEESA.RSIScraper
         }
 
         private static ERSIStatus TranslateHTTPStatus(HttpStatusCode code) => code == HttpStatusCode.OK ? ERSIStatus.Online :
-                   code == HttpStatusCode.Redirect || code == HttpStatusCode.RedirectKeepVerb || code == HttpStatusCode.RedirectMethod || code == HttpStatusCode.PermanentRedirect || code == HttpStatusCode.TemporaryRedirect ? ERSIStatus.Maintenance :
+                   code == HttpStatusCode.Redirect || code == HttpStatusCode.RedirectKeepVerb || 
+                        code == HttpStatusCode.RedirectMethod || code == HttpStatusCode.PermanentRedirect ||
+                        code == HttpStatusCode.TemporaryRedirect || code == HttpStatusCode.ServiceUnavailable ? ERSIStatus.Maintenance :
                    code == HttpStatusCode.Unauthorized || code == HttpStatusCode.Forbidden ? ERSIStatus.Unauthorized :
                    ERSIStatus.Malfunction;
 
