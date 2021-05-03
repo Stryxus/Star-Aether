@@ -95,21 +95,25 @@ namespace UEESA.RSIScraper.Roadmap
                 catch (NullReferenceException e)
                 {
                     Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
+                    Logger.LogError("Falling back to the database for roadmap data!");
                 }
                 catch (InvalidOperationException e)
                 {
                     Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
+                    Logger.LogError("Falling back to the database for roadmap data!");
                 }
                 catch (ArgumentNullException e)
                 {
                     Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
+                    Logger.LogError("Falling back to the database for roadmap data!");
                 }
                 catch (ArgumentException e)
                 {
                     Logger.LogError("The RSI Roadmap Release View Scraper Service threw a " + e.GetType().Name + "!\n  - Message: " + e.Message + "\n  - StackTrace: " + e.StackTrace);
+                    Logger.LogError("Falling back to the database for roadmap data!");
                 }
             }
-            else Logger.LogWarn("The RSI Release View is down! Falling back to database!");
+            else Logger.LogWarn("The RSI Release View is down! Falling back to the database for roadmap data!");
         }
 
         protected override async Task UploadToDatabase()
