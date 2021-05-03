@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 
 namespace UEESA.RSIScraper
@@ -42,18 +43,62 @@ namespace UEESA.RSIScraper
 
         private static HttpStatusCode RetrieveStatusCode(Uri statusURI)
         {
-            HttpStatusCode result = default;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(statusURI);
-            request.Method = "HEAD";
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            try
             {
-                if (response != null)
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(statusURI);
+                request.Method = "GET";
+                using var response = request.GetResponse();
+                using var stream = response.GetResponseStream();
+                using var reader = new StreamReader(stream); return ((HttpWebResponse)response).StatusCode;
+            }
+            catch (WebException e) 
+            {
+                switch (e.Status)
                 {
-                    result = response.StatusCode;
-                    response.Close();
+                    case WebExceptionStatus.CacheEntryNotFound:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.ConnectFailure:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.ConnectionClosed:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.KeepAliveFailure:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.MessageLengthLimitExceeded:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.NameResolutionFailure:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.Pending:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.PipelineFailure:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.ProtocolError:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.ProxyNameResolutionFailure:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.ReceiveFailure:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.RequestCanceled:
+                        return HttpStatusCode.ServiceUnavailable;
+                    case WebExceptionStatus.RequestProhibitedByCachePolicy:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.RequestProhibitedByProxy:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.SecureChannelFailure:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.SendFailure:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.ServerProtocolViolation:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.Timeout:
+                        return HttpStatusCode.NotFound;
+                    case WebExceptionStatus.TrustFailure:
+                        return HttpStatusCode.Unauthorized;
+                    case WebExceptionStatus.UnknownError:
+                        return HttpStatusCode.NotFound;
+                    default:
+                        return HttpStatusCode.NotFound;
                 }
             }
-            return result;
         }
     }
 }
