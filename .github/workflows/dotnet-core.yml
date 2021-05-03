@@ -10,9 +10,12 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    runs-on: ${{ matrix.operating-system }}
+    strategy:
+      matrix:
+        fail-fast: false
+        operating-system: [ubuntu-latest, windows-latest]
+        targetplatform: [x64]
     steps:
     - uses: actions/checkout@v2
       with:
