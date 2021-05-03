@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Stryxus.Lib" Version="2021.4.29" />
+    <PackageReference Include="Stryxus.Lib" Version="2021.5.3" />
   </ItemGroup>
   
 
