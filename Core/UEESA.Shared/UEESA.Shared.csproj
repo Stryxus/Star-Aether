@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Platforms>AnyCPU;x64</Platforms>
+    <Platforms>AnyCPU</Platforms>
     <Configurations>Debug;Release;Release Testing</Configurations>
     <Nullable>annotations</Nullable>
     <AssemblyName>UEESA.Shared</AssemblyName>
@@ -11,17 +11,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|AnyCPU'">
     <DefineConstants>TRACE;RELEASE_TEST</DefineConstants>
     <Optimize>true</Optimize>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|x64'">
-    <DefineConstants>RELEASE_TEST</DefineConstants>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

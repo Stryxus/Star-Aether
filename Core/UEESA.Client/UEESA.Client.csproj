@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Configurations>Debug;Release;Release Testing</Configurations>
-    <Platforms>AnyCPU;x64</Platforms>
+    <Platforms>AnyCPU</Platforms>
     <Nullable>annotations</Nullable>
     <AssemblyName>UEESA.Client</AssemblyName>
   </PropertyGroup>
@@ -13,11 +13,6 @@
     <DefineConstants>RELEASE_TEST</DefineConstants>
     <DebugType>none</DebugType>
     <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|x64'">
-    <Optimize>true</Optimize>
-    <DefineConstants>TRACE;RELEASE_TEST</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
