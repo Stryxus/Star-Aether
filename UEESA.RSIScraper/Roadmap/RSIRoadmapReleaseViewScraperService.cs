@@ -85,6 +85,8 @@ namespace UEESA.RSIScraper.Roadmap
                         }
                     }
                 }
+                State.Features = State.Features.Reverse().ToDictionary(x => x.Key, x => x.Value);
+                State.ReleaseStatus = State.ReleaseStatus.Reverse().ToDictionary(x => x.Key, x => x.Value);
                 OnRaodmapReleaseViewStateChange.Invoke();
                 await Logger.LogInfo("Completed RSI Scrape: " + RSIStatusCheck.URL_RSI_Roadmap_ReleaseView.ToString() + "\nReleases: " + State.Features.Keys.Count + "\nFeatures: " + State.Features.Values.Sum(x => x.Sum(o => o.Value.Count)));
             }
