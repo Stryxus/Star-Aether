@@ -9,7 +9,7 @@
                     }
                     <div class="task-overlay">
                         <small>
-                            @FeatureStatus.ToString()
+                            @Feature.Status.ToString()
                         </small>
                     </div>
                 </div>
@@ -32,7 +32,4 @@
 
     [Parameter]
     public RSI_Roadmap_State_Feature Feature { get; set; }
-
-    [Parameter]
-    public RSI_Roadmap_State_Status FeatureStatus { get; set; }
 }
