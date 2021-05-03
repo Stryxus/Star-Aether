@@ -58,5 +58,12 @@ namespace UEESA.Server
             }
             return JsonConvert.SerializeObject(Services.Get<RSIRoadmapReleaseViewScraperService>().State);
         }
+
+#if DEBUG
+        internal async Task SetupDebugMongoDB()
+        {
+
+        }
+#endif
     }
 }
