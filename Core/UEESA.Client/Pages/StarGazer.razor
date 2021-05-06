@@ -29,6 +29,10 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        if (firstRender) await Runtime.LoadWebGL2();
+        if (firstRender)
+        {
+            await Runtime.LoadWebGL2();
+            UIState.HasCurrentPageLoaded = true;
+        }
     }
 }

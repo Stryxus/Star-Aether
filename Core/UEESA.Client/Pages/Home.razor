@@ -22,4 +22,10 @@
         await base.OnInitializedAsync();
         UIState.SetNavBarTickerVisibility(true);
     }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender) UIState.HasCurrentPageLoaded = true;
+    }
 }
