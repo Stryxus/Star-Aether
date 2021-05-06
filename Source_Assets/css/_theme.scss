@@ -43,6 +43,7 @@ main {
     margin-bottom: 0px !important;
     margin-left: $sidebar-width;
     margin-right: 0px !important;
+    clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 130px 100%, 0px calc(100% - 226px));
 
     & > .row {
         margin: 0px !important;
