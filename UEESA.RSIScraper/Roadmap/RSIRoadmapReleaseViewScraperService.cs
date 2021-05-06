@@ -32,7 +32,7 @@ namespace UEESA.RSIScraper.Roadmap
                 {
                     Browser.ExecuteScriptAsync("document.getElementsByClassName('TogglePreviousReleases-yixp65-1')[0].click();", true);
                     Browser.ExecuteScriptAsync("document.getElementsByClassName('Button-sc-1i76va4-2')[0].click();", true);
-                    for (int i = 0; i < 12; i++) Browser.ExecuteScriptAsync("document.getElementsByClassName('ReleaseHeader-xqp955-3')[" + i + "].click();", true);
+                    for (int i = 0; i < 50; i++) Browser.ExecuteScriptAsync("document.getElementsByClassName('ReleaseHeader-xqp955-3')[" + i + "].click();", true);
                     HTML.LoadHtml(await Browser.GetSourceAsync());
 
                     foreach (HtmlNode cardBody in HTML.DocumentNode.Descendants().First(x => x.Name == "div" && x.HasClass("Board__Releases-c7lmub-7"))
