@@ -45,22 +45,21 @@ main {
     margin-right: 0px !important;
 
     & > .row {
-        min-height: 100vh;
         margin: 0px !important;
 
-        [class*='col-'].padded-no-scroll, .col.padded-no-scroll {
+        &.no-scroll {
+            height: calc(100% - #{$navigation-bar-height + px} + 12px) !important;
             overflow-y: hidden !important;
-            height: 100vh !important;
-        }
-    }
+    
+            & > [class*='col-'].alt-scroll, & > .col.alt-scroll {
+                overflow-y: scroll !important;
+                height: 100%;
+            }
 
-    &.no-scroll {
-        height: 100vh !important;
-        overflow-y: hidden !important;
-
-        [class*='col-'].alt-scroll, .col.alt-scroll {
-            overflow-y: scroll !important;
-            height: 100vh;
+            & > [class*='col-'].padded-no-scroll, & > .col.padded-no-scroll {
+                overflow-y: hidden !important;
+                height: 100% !important;
+            }
         }
     }
 }
