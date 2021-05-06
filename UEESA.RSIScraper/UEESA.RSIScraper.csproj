@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="CefSharp.OffScreen" Version="90.5.70-pre" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.33" />
-    <PackageReference Include="Stryxus.Lib" Version="2021.5.3" />
+    <PackageReference Include="Stryxus.Lib" Version="2021.5.6" />
   </ItemGroup>
 
   <ItemGroup>
