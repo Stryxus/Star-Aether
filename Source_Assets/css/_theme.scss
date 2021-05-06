@@ -34,8 +34,7 @@ app {
 
 main {
     z-index: $zindex-main;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     height: 100vh;
     width: calc(100% - #{($sidebar-width) + px}) !important;
     padding: 0px !important;
