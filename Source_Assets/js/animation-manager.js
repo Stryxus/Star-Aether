@@ -17,13 +17,13 @@ GLOBAL.animationInterface = function (ref)
         },
         fadeOutPage: () => 
         {
-            TweenMax.to("#webpage", 0.25, { opacity: 0 });
+            TweenMax.to("#webpage", 0.15, { opacity: 0 });
         },
         fadeInPage: (bypass) => 
         {
             if (!bypass) 
             {
-                TweenMax.to("#webpage", 0.25, { opacity: 1 });
+                TweenMax.to("#webpage", 0.15, { opacity: 1 });
             }
             else 
             {
