@@ -15,121 +15,30 @@ $borderRadius: 10px;
     padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
-    background-color: $colour-grey-5-trans-low;
+    background-color: $colour-grey-1-trans-low;
     backdrop-filter: $backdrop-blur-heavy;
+    border-left: 1px solid $colour-grey-7-trans-high;
     border-right: 1px solid $colour-grey-7-trans-high;
-    clip-path: polygon(-56px 0px, calc(100% - 56px) 0px, 100% 56px, calc(100% + 56px) 100%, 52px 100%, 0px calc(100% - 52px));
-
-    &:first-child {
-        clip-path: polygon(0px 0px, calc(100% - 56px) 0px, 100% 56px, calc(100% + 57px) 100%, 24px 100%, 0px calc(100% - 40px));
-    }
-
-    &:last-child {
-        clip-path: polygon(-56px 0px, calc(100% - 56px) 0px, 100% 56px, 100% 100%, 52px 100%, 0px calc(100% - 52px));
-        margin-right: -56px;
-    }
-
-    &.released {
-        border-left: 3px solid rgba($releasedColour, $colourTransparency);
-
-        .header {
-            background-color: rgba($releasedColour, $colourTransparency);
-        }
-    }
-
-    &.dev {
-        border-left: 3px solid rgba($devColour, $colourTransparency);
-
-        .header {
-            background-color: rgba($devColour, $colourTransparency);
-        }
-    }
-
-    &.evocati {
-        border-left: 3px solid rgba($scheduleColour, $colourTransparency);
-
-        .header {
-            background-color: rgba($scheduleColour, $colourTransparency);
-        }
-    }
-
-    &.ptu {
-        border-left: 3px solid rgba($polishingColour, $colourTransparency);
-
-        .header {
-            background-color: rgba($polishingColour, $colourTransparency);
-        }
-    }
-
-    @keyframes updated-animation {
-        0% { backdrop-filter: hue-rotate(0deg); }
-        50% { backdrop-filter: hue-rotate(160deg) saturate(300%); }
-        100% { backdrop-filter: hue-rotate(0deg); }
-    }
-
-    .updated {
-        animation-name: updated-animation;
-        animation-duration: 4s;
-        animation-iteration-count: infinite;
-    }
 
     .header {
         background-color: rgba(0, 0, 0, 0.25);
         border-bottom: 1px solid $colour-grey-7-trans-high;
-        position: relative;
-        clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 58px 100%);
-        left: -46px;
-        padding-left: 56px;
-        margin-right: -46px;
+        margin: 0px;
 
         .title {
-            font-weight: lighter;
-            text-align: left;
+            background-color: $colour-grey-7-trans-high;
 
             h5 {
-                margin-top: 15px;
-                margin-bottom: 15px;
-                margin-left: 115px;
+                font-weight: lighter;
+                margin-top: 8px;
+                margin-bottom: 8px;
             }
         }
 
         .status {
-            position: absolute;
-            margin-left: 12px;
-            margin-right: 6px !important;
-            left: 40px;
-            bottom: 6px;
-            text-align: left;
             font-weight: 400;
             display: block;
-        }
-
-        .info-button {
-            position: absolute;
-            background-color: $colour-grey-1-trans-low;
-            top: 0px;
-            bottom: 0px;
-            clip-path: polygon(0px 0px, calc(100% - 56px) 0px, 100% 100%, 56px 100%);
-            width: auto;
-            padding-left: 50px;
-            padding-right: 50px;
-            backdrop-filter: none !important;
-
-            &:hover {
-                background-color: $colour-grey-5-trans-high;
-            }
-
-            &.active {
-                background-color: $colour-grey-10-trans-low;
-            }
-
-            &.statistics {
-                right: 57px;
-            }
-
-            &.updates {
-                right: 1px;
-            }
+            line-height: 40.6666px;
         }
     }
 
@@ -154,7 +63,7 @@ $borderRadius: 10px;
         }
 
         hr {
-            border-top: 5px solid rgba($colour-grey-7-trans-high, 0.25);
+            border-top: 5px solid rgba($colour-grey-9-trans-high, 0.25);
             border-bottom: none;
             border-left: none;
             border-right: none;
@@ -173,11 +82,11 @@ $borderRadius: 10px;
             }
 
             .section-line {
-                background-color: rgba($colour-grey-2-trans-high, 0.4);
+                background-color: rgba($colour-grey-4-trans-high, 0.4);
             }
 
             .section-item-frame-line {
-                background-color: rgba($colour-grey-7-trans-high, 0.25);
+                background-color: rgba($colour-grey-9-trans-high, 0.25);
             }
 
             i {
@@ -204,11 +113,11 @@ $borderRadius: 10px;
             .section-item-frame-title {
 
                 .col-auto {
-                    background-color: $colour-grey-1-trans-low;
+                    background-color: $colour-grey-3-trans-low;
                 }
 
                 .col {
-                    background-color: $colour-grey-7-trans-low;
+                    background-color: $colour-grey-9-trans-low;
                 }
 
                 h6 {
