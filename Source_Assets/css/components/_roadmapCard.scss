@@ -1,10 +1,3 @@
-$releasedColour: rgb(0, 50, 0);
-$polishingColour: rgb(50, 50, 0);
-$devColour: rgb(50, 0, 0);
-$scheduleColour: rgb(50, 50, 50);
-$colourTransparency: 0.75;
-$borderRadius: 10px;
-
 .roadmap-release-view-card {
     width: 400px;
     margin-top: 0px;
@@ -20,8 +13,25 @@ $borderRadius: 10px;
     border-left: 1px solid $colour-grey-7-trans-high;
     border-right: 1px solid $colour-grey-7-trans-high;
 
+    &.released {
+        .header {
+            background-color: $colour-green-main-trans-low;
+        }
+    }
+
+    &.committed {
+        .header {
+            background-color: $colour-blue-main-trans-low;
+        }
+    }
+
+    &.tentative {
+        .header {
+            background-color: $colour-red-darker-trans-low;
+        }
+    }
+
     .header {
-        background-color: rgba(0, 0, 0, 0.25);
         border-bottom: 1px solid $colour-grey-7-trans-high;
         margin: 0px;
 
@@ -140,7 +150,7 @@ $borderRadius: 10px;
                 .feature {
 
                     .not-added {
-                        background-color: $devColour;
+                        background-color: $colour-red-main-trans-low;
 
                         small {
                             padding: 8px;
@@ -162,8 +172,19 @@ $borderRadius: 10px;
                             bottom: 0px;
                             left: 0px;
                             right: 0px;
-                            background-color: $colour-grey-1-trans-low;
                             backdrop-filter: $backdrop-blur-heavy;
+
+                            &.released {
+                                background-color: $colour-green-main-trans-low;
+                            }
+                        
+                            &.committed {
+                                background-color: $colour-blue-main-trans-low;
+                            }
+                        
+                            &.tentative {
+                                background-color: $colour-red-darker-trans-low;
+                            }
 
                             small {
                                 display: block;

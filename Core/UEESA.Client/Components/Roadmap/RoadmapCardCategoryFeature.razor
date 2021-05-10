@@ -7,7 +7,7 @@
                     {
                         <img src="@(Feature.ThumbnailLink)" draggable="false" alt="Feature Image" />
                     }
-                    <div class="task-overlay">
+                    <div class="task-overlay @(Feature.Status.ToString().ToLower())">
                         <small>
                             @Feature.Status.ToString()
                         </small>
