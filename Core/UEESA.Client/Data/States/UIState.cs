@@ -4,18 +4,6 @@ namespace UEESA.Client.Data.States
 {
     internal class UIState
     {
-        private bool _hasCurrentPageLoaded;
-        internal bool HasCurrentPageLoaded
-        {
-            get
-            {
-                return _hasCurrentPageLoaded;
-            }
-            set
-            {
-                if (_hasCurrentPageLoaded = value) Services.Get<JSInterface.AnimationManager>().FadePageIn(true).GetAwaiter().GetResult();
-            }
-        }
         internal event Action OnPageChanged;
         private string currentPage = "/";
         internal string CurrentPage 
