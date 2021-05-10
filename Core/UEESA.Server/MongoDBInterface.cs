@@ -90,7 +90,7 @@ namespace UEESA.Server
                 using WebClient wc = new(); await wc.DownloadFileTaskAsync(new Uri("https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-4.4.5.zip"), Path.Combine(baseDir.FullName, "mongodb.zip"));
                 using (ZipArchive zipArchive = ZipFile.Open(mongoDBZip.FullName, ZipArchiveMode.Read))
                 {
-                    List<ZipArchiveEntry> executables = zipArchive.Entries.Where(x => x.FullName.ToLower().EndsWith(mongodexe.Name + "." + mongodexe.Extension)).ToList();
+                    List<ZipArchiveEntry> executables = zipArchive.Entries.Where(x => x.FullName.ToLower().EndsWith(mongodexe.Name)).ToList();
                     foreach (ZipArchiveEntry entry in executables)
                     {
                         using Stream stream = entry.Open();
