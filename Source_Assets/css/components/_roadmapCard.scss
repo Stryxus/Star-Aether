@@ -13,6 +13,10 @@
     border-left: 1px solid $colour-grey-7-trans-high;
     border-right: 1px solid $colour-grey-7-trans-high;
 
+    &:first-child .body > .col {
+        margin-bottom: 128px;
+    }
+
     &.released {
         .header {
             background-color: $colour-green-main-trans-low;
@@ -56,13 +60,9 @@
         overflow-y: scroll;
         overflow-x: hidden;
         width: 100%;
-        height: 100%;
+        height: calc(100vh - #{$navigation-bar-height + px} - 30px);
         padding: 0px;
         margin: 0px;
-
-        & > .col:last-child {
-            margin-bottom: 105px;
-        }
 
         .col {
             padding: 0px;
@@ -148,14 +148,6 @@
             .category {
 
                 .feature {
-
-                    .not-added {
-                        background-color: $colour-red-main-trans-low;
-
-                        small {
-                            padding: 8px;
-                        }
-                    }
 
                     .feature-img {
                         position: relative;
