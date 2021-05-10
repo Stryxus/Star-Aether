@@ -47,15 +47,55 @@ $colour-grey-9-trans-high: rgba($colour-grey-9, $colour-trans-high);
 $colour-grey-10-trans-high: rgba($colour-grey-10, $colour-trans-high);
 // Colours Grey
 
-//
+// Colors Red
+$colour-red-lightest: rgb(255, 107, 163);
+$colour-red-lighter: rgb(245, 81, 137);
+$colour-red-light: rgb(220, 56, 112);
 $colour-red-main: rgb(194, 30, 86);
-$colour-green-main: rgb(141, 182, 0);
+$colour-red-dark: rgb(169, 5, 61);
+$colour-red-darker: rgb(143, 0, 35);
+$colour-red-darkest: rgb(118, 0, 10);
 
+$colour-red-lightest-trans-low: rgba($colour-red-lightest, $colour-trans-low);
+$colour-red-lighter-trans-low: rgba($colour-red-lighter, $colour-trans-low);
+$colour-red-light-trans-low: rgba($colour-red-light, $colour-trans-low);
 $colour-red-main-trans-low: rgba($colour-red-main, $colour-trans-low);
-$colour-green-main-trans-low: rgba($colour-green-main, $colour-trans-low);
+$colour-red-dark-trans-low: rgba($colour-red-dark, $colour-trans-low);
+$colour-red-darker-trans-low: rgba($colour-red-darker, $colour-trans-low);
+$colour-red-darkest-trans-low: rgba($colour-red-darkest, $colour-trans-low);
 
+$colour-red-lightest-trans-high: rgba($colour-red-lightest, $colour-trans-high);
+$colour-red-lighter-trans-high: rgba($colour-red-lighter, $colour-trans-high);
+$colour-red-light-trans-high: rgba($colour-red-light, $colour-trans-high);
 $colour-red-main-trans-high: rgba($colour-red-main, $colour-trans-high);
+$colour-red-dark-trans-high: rgba($colour-red-dark, $colour-trans-high);
+$colour-red-darker-trans-high: rgba($colour-red-darker, $colour-trans-high);
+$colour-red-darkest-trans-high: rgba($colour-red-darkest, $colour-trans-high);
+
+// Colours Green
+$colour-green-lightest: rgb(218, 255, 77);
+$colour-green-lighter: rgb(192, 233, 51);
+$colour-green-light: rgb(167, 208, 26);
+$colour-green-main: rgb(141, 182, 0);
+$colour-green-dark: rgb(116, 157, 0);
+$colour-green-darker: rgb(90, 131, 0);
+$colour-green-darkest: rgb(65, 106, 0);
+
+$colour-green-lightest-trans-low: rgba($colour-green-lightest, $colour-trans-low);
+$colour-green-lighter-trans-low: rgba($colour-green-lighter, $colour-trans-low);
+$colour-green-light-trans-low: rgba($colour-green-light, $colour-trans-low);
+$colour-green-main-trans-low: rgba($colour-green-main, $colour-trans-low);
+$colour-green-dark-trans-low: rgba($colour-green-dark, $colour-trans-low);
+$colour-green-darker-trans-low: rgba($colour-green-darker, $colour-trans-low);
+$colour-green-darkest-trans-low: rgba($colour-green-darkest, $colour-trans-low);
+
+$colour-green-lightest-trans-high: rgba($colour-green-lightest, $colour-trans-high);
+$colour-green-lighter-trans-high: rgba($colour-green-lighter, $colour-trans-high);
+$colour-green-light-trans-high: rgba($colour-green-light, $colour-trans-high);
 $colour-green-main-trans-high: rgba($colour-green-main, $colour-trans-high);
+$colour-green-dark-trans-high: rgba($colour-green-dark, $colour-trans-high);
+$colour-green-darker-trans-high: rgba($colour-green-darker, $colour-trans-high);
+$colour-green-darkest-trans-high: rgba($colour-green-darkest, $colour-trans-high);
 
 // Colours Blue
 $colour-blue-lightest: rgb(133, 237, 237);
