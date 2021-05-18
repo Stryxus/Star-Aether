@@ -14,7 +14,6 @@ using MongoDB.Driver;
 
 using UEESA.Server.WebSockets;
 using UEESA.Json.Roadmap;
-using UEESA.RSIScraper.Roadmap;
 
 using Stryxus.Lib.FileSystem;
 
@@ -49,13 +48,14 @@ namespace UEESA.Server
                 Database_Public_Data = Client.GetDatabase("public_data");
                 Logger.LogInfo("Connected to MongoDB!");
 
+                /*
                 Services.Get<RSIRoadmapReleaseViewScraperService>().OnRaodmapReleaseViewStateChange += () =>
                 {
                     Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(RSI_Roadmap_State).Name + GetRoadmapData());
                 };
+                */
             }
         }
-
         internal string GetRoadmapData()
         {
             RSI_Roadmap_State data = new RSI_Roadmap_State { Features = new() };
@@ -71,9 +71,9 @@ namespace UEESA.Server
             {
                 Logger.LogError("Roadmap data request threw null - Using default data structure.");
             }
-            return JsonConvert.SerializeObject(Services.Get<RSIRoadmapReleaseViewScraperService>().State);
+            //return JsonConvert.SerializeObject(Services.Get<RSIRoadmapReleaseViewScraperService>().State);
+            return string.Empty;
         }
-
 #if DEBUG
         private static async Task SetupDebugMongoDB()
         {

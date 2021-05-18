@@ -15,7 +15,6 @@ using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 
 using UEESA.Server.WebSockets;
 using UEESA.Shared;
-using UEESA.RSIScraper.Roadmap;
 
 namespace UEESA.Server
 {
@@ -44,7 +43,7 @@ namespace UEESA.Server
                     services.AddResponseCaching();
                     services.AddWebSocketManager();
                     services.AddSingleton<MongoDBInterface>();
-                    services.AddSingleton<RSIRoadmapReleaseViewScraperService>();
+                    //services.AddSingleton<RSIRoadmapReleaseViewScraperService>();
                 });
 
                 webBuilder.Configure((app) => 
@@ -78,7 +77,7 @@ namespace UEESA.Server
                     });
                     // Wake the services up
                     Services.Get<MongoDBInterface>().Connect();
-                    Services.Get<RSIRoadmapReleaseViewScraperService>();
+                    //Services.Get<RSIRoadmapReleaseViewScraperService>();
                 });
             }).Build().RunAsync();
     }
