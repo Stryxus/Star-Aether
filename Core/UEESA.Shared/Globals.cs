@@ -5,7 +5,7 @@ namespace UEESA.Shared
     public static class Globals
     {
         public static string YearVersion { get; } = "2021";
-        public static string MonthVersion { get; } = "04";
+        public static string MonthVersion { get; } = "05";
         public static string DayVersion { get; } = "18";
         public static string IterationVersion { get; } = "a";
         public static string VersionString { get { return YearVersion + "." + MonthVersion + "." + DayVersion + IterationVersion; } }
