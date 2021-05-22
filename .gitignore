@@ -354,8 +354,6 @@ MigrationBackup/
 
 ###############################################################################################################################################################
 Core/UEESA.Client/wwwroot/**/*
-!Core/UEESA.Client/wwwroot/service-worker.js
-!Core/UEESA.Client/wwwroot/service-worker.published.js
 
 Core/UEESA.Server/Properties/serviceDependencies.json
 Core/UEESA.Server/Properties/serviceDependencies.local.json
