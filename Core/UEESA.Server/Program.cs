@@ -32,7 +32,6 @@ namespace UEESA.Server
                     services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.ApplicationInsightsConnectionString });
 #endif
                     services.AddRazorPages();
-                    services.Configure<RazorPagesOptions>(options => options.RootDirectory = "/Pages");
                     services.AddRouting();
                     services.AddResponseCompression(options =>
                     {
