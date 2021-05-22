@@ -67,20 +67,18 @@
 }
 
 .todo-page {
-
-    & > .col-auto {
-        background-color: $colour-grey-4-trans-high;
+    h2 {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $colour-grey-1-trans-high;
+        width: auto;
+        clip-path: polygon(0px 0px, 100% 0px, calc(100% - 20px) 100%, 20px 100%);
+        z-index: 10000;
+        padding-top: 20px;
+        padding-bottom: 20px;
         padding-left: 50px;
         padding-right: 50px;
-        width: 100%;
-
-        h2 {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%);
-            z-index: 10000;
-        }
     }
 }
 
