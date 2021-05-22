@@ -13,6 +13,11 @@ namespace UEESA.Client.Data
 
         public async Task InitializeInterface<T>(T tiedObject, string functionName) where T : class => await JSR.InvokeVoidAsync("GLOBAL." + functionName, DotNetObjectReference.Create(tiedObject));
 
+        public class Utilities
+        {
+            public async Task SetTitle(string title) => await JSR.InvokeAsync<string>("utilities.setTitle", title);
+        }
+
         public class Runtime
         {
             public async Task Load(string relativePath) => await JSR.InvokeAsync<string>("runtime.load", relativePath);

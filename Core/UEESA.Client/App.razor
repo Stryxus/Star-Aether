@@ -29,13 +29,14 @@
 @inject NavigationManager NavigationManager
 
 @inject InitializationState InitializationState
-@inject UIState UIState 
+@inject UIState UIState
 @inject ClientState ClientState
 @inject ServerState ServerState
 @inject LocalStorageState LocalStorageState
 @inject WebSocketManagerMiddleware WebSocketMiddleware
 
 @inject JSInterface Javascript
+@inject JSInterface.Utilities Utilities
 @inject JSInterface.Runtime Runtime
 @inject JSInterface.Cache Cache
 @inject JSInterface.LocalData LocalData
@@ -47,7 +48,7 @@
     {
         await InitializationState.Init();
         UIState.SetPageContexts(new List<PageContext>()
-        {
+    {
             new PageContext
             {
                 FormalPageName = "Home",

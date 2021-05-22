@@ -45,21 +45,25 @@
       "enabled": true,
       "order": 0
     },
-    "/js/runtime.js": {
+    "/js/utilities.js": {
       "enabled": true,
       "order": 1
     },
-    "/js/cache-storage.js": {
+    "/js/runtime.js": {
       "enabled": true,
       "order": 2
     },
-    "/js/browser-storage.js": {
+    "/js/cache-storage.js": {
       "enabled": true,
       "order": 3
     },
-    "/js/animation-manager.js": {
+    "/js/browser-storage.js": {
       "enabled": true,
       "order": 4
+    },
+    "/js/animation-manager.js": {
+      "enabled": true,
+      "order": 5
     }
   }
 }

@@ -45,6 +45,7 @@ namespace UEESA.Client.Data.States
             {
                 currentPage = value;
                 OnPageChanged?.Invoke();
+                new Action(async () => await Services.Get<JSInterface.Utilities>().SetTitle("UEESA - " + value.FormalPageName)).Invoke();
             }
         }
         internal bool FirstRender = true;

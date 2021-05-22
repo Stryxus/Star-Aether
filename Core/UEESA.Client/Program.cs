@@ -32,6 +32,7 @@ namespace UEESA.Client
             HostBuilder.Services.AddScoped<WebSocketManagerMiddleware>();
 
             HostBuilder.Services.AddScoped<JSInterface>();
+            HostBuilder.Services.AddScoped<JSInterface.Utilities>();
             HostBuilder.Services.AddScoped<JSInterface.Runtime>();
             HostBuilder.Services.AddScoped<JSInterface.Cache>();
             HostBuilder.Services.AddScoped<JSInterface.LocalData>();
