@@ -10,12 +10,6 @@
 
 @code {
 
-    protected override async Task OnParametersSetAsync()
-    {
-        UIState.CurrentPage = "/servicestates";
-        await base.OnParametersSetAsync();
-    }
-
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();

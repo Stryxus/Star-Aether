@@ -26,9 +26,10 @@
     <MainNavigationBar />
 </div>
 
-@inject LazyAssemblyLoader LazyLoader
+@inject NavigationManager NavigationManager
 
 @inject InitializationState InitializationState
+@inject UIState UIState 
 @inject ClientState ClientState
 @inject ServerState ServerState
 @inject LocalStorageState LocalStorageState
@@ -45,6 +46,74 @@
     protected override async Task OnInitializedAsync()
     {
         await InitializationState.Init();
+        UIState.SetPageContexts(new List<PageContext>()
+        {
+            new PageContext
+            {
+                FormalPageName = "Home",
+                InformalPageName = "",
+                ForceNavBarTickersInvisible = false,
+                PageBackgroundName = null
+            },
+            new PageContext
+            {
+                FormalPageName = "Citizen Blog",
+                InformalPageName = "blog",
+                ForceNavBarTickersInvisible = true,
+                PageBackgroundName = null
+            },
+            new PageContext
+            {
+                FormalPageName = "Roadmap",
+                InformalPageName = "roadmap",
+                ForceNavBarTickersInvisible = true,
+                PageBackgroundName = null
+            },
+            new PageContext
+            {
+                FormalPageName = "Star Gazer",
+                InformalPageName = "stargazer",
+                ForceNavBarTickersInvisible = true,
+                PageBackgroundName = null
+            },
+            new PageContext
+            {
+                FormalPageName = "Fleeter",
+                InformalPageName = "fleeter",
+                ForceNavBarTickersInvisible = true,
+                PageBackgroundName = "fleeter"
+            },
+            new PageContext
+            {
+                FormalPageName = "Load Up & Out",
+                InformalPageName = "loadupout",
+                ForceNavBarTickersInvisible = true,
+                PageBackgroundName = null
+            },
+            new PageContext
+            {
+                FormalPageName = "Econome",
+                InformalPageName = "econome",
+                ForceNavBarTickersInvisible = false,
+                PageBackgroundName = "econome"
+            },
+            new PageContext
+            {
+                FormalPageName = "Xenoguist",
+                InformalPageName = "xenoguist",
+                ForceNavBarTickersInvisible = false,
+                PageBackgroundName = null
+            },
+            new PageContext
+            {
+                FormalPageName = "Service States",
+                InformalPageName = "servicestates",
+                ForceNavBarTickersInvisible = false,
+                PageBackgroundName = null
+            }
+        });
+        if (NavigationManager.Uri == NavigationManager.BaseUri) UIState.CurrentPage = UIState.PageContexts.First(x => x.InformalPageName.IsEmpty());
+        else UIState.CurrentPage = UIState.PageContexts.First(x => x.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1));
         await base.OnInitializedAsync();
     }
 }

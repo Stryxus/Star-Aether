@@ -2,13 +2,16 @@
 {
     <div class="row">
         <div class="col">
-            @foreach (string page in NavLinks.Keys)
+            @foreach (PageContext page in UIState.PageContexts)
             {
-                <div class="row">
-                    <div class="col">
-                        <PreNavLink href="@("/" + NavLinks[page].ToLower())"><p>@(page)</p></PreNavLink>
+                @if (!page.InformalPageName.IsEmpty())
+                {
+                    <div class="row">
+                        <div class="col">
+                            <PreNavLink href="@("/" + page.InformalPageName.ToLower())"><p>@(page.FormalPageName)</p></PreNavLink>
+                        </div>
                     </div>
-                </div>
+                }
             }
         </div>
     </div>
@@ -18,22 +21,30 @@ else
     <div class="row">
         <div class="col">
             <div class="row">
-                @foreach (string page in NavLinks.Keys)
+                @foreach (PageContext page in UIState.PageContexts)
                 {
-                    <div class="col-auto">
-                        <PreNavLink href="@("/" + NavLinks[page].ToLower())"><p>@(page)</p></PreNavLink>
-                    </div>
+                    @if (!page.InformalPageName.IsEmpty())
+                    {
+                        <div class="col-auto">
+                            <PreNavLink href="@("/" + page.InformalPageName.ToLower())"><p>@(page.FormalPageName)</p></PreNavLink>
+                        </div>
+                    }
                 }
             </div>
         </div>
     </div>
 }
 
+@inject UIState UIState 
+
 @code {
 
     [Parameter]
-    public Dictionary<string, string> NavLinks { get; set; }
-
-    [Parameter]
     public bool IsMobileNavbarVisible { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        UIState.OnPageContextsSet += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
 }

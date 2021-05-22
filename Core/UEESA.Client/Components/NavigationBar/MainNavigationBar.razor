@@ -3,7 +3,7 @@
         <div class="col">
             @if (IsMobileNavbarVisible)
             {
-                <MainNavigationBarNavigator IsMobileNavbarVisible="@IsMobileNavbarVisible" NavLinks="Pages" />
+                <MainNavigationBarNavigator IsMobileNavbarVisible="@IsMobileNavbarVisible" />
             }
             <div class="row justify-content-center bordered-line-top">
                 <img class="logo" src="favicon.svg" draggable="false" alt="Logo" />
@@ -38,7 +38,7 @@
             </div>
             <div id="main-nav-buttons" class="row">
                 <div class="col">
-                    <MainNavigationBarNavigator IsMobileNavbarVisible="@IsMobileNavbarVisible" NavLinks="Pages" />
+                    <MainNavigationBarNavigator IsMobileNavbarVisible="@IsMobileNavbarVisible" />
                 </div>
                 <MainNavigationBarPersonalSection />
             </div>
@@ -52,25 +52,6 @@
 @code {
 
     private bool IsMobileNavbarVisible = false;
-
-    private Dictionary<string, string> Pages = new Dictionary<string, string>()
-    {
-        { "Citizen Blog", "blog" },
-        { "Roadmap", "roadmap" },
-        { "Star Gazer", "stargazer" },
-        { "Fleeter", "fleeter" },
-        { "Load Up & Out", "loadupout" },
-        { "Econome", "econome" },
-        { "Xenoguist", "xenoguist" },
-        { "Service States", "servicestates" }
-    };
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        if (IsMobileNavbarVisible && !Pages.ContainsKey("Home")) Pages.Add("Home", "");
-        else if (Pages.ContainsKey("Home")) Pages.Remove("Home");
-    }
 
     private void ToggleMobileNavbar() => IsMobileNavbarVisible = !IsMobileNavbarVisible;
     private void ToggleSettingsPanel() => UIState.ToggleSettingsPanelVisibility();

@@ -1,0 +1,15 @@
+﻿@if (UIState.CurrentPage.PageBackgroundName != null)
+{
+    <img id="contextual-background" src="@("/img/backgrounds/" + UIState.CurrentPage.PageBackgroundName + ".webp")" />
+}
+
+@inject UIState UIState
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        UIState.OnPageChanged += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+}

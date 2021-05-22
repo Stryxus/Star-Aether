@@ -1,12 +1,39 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace UEESA.Client.Data.States
 {
     internal class UIState
     {
+        private bool IsPageContextsSet = false;
+        internal event Action OnPageContextsSet;
+        private List<PageContext> pageContexts = new();
+        internal List<PageContext> PageContexts
+        {
+            get
+            {
+                return pageContexts;
+            }
+
+            private set
+            {
+                pageContexts = value;
+                OnPageContextsSet.Invoke();
+            }
+        }
+        internal void SetPageContexts(List<PageContext> contexts)
+        {
+            if (!IsPageContextsSet)
+            {
+                IsPageContextsSet = true;
+                PageContexts = contexts;
+            }
+            else Logger.LogError("Page Contexts have already been set!");
+        }
+
         internal event Action OnPageChanged;
-        private string currentPage = "/";
-        internal string CurrentPage 
+        private PageContext currentPage;
+        internal PageContext CurrentPage 
         {
             get
             {

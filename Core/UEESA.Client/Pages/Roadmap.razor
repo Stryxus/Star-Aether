@@ -19,12 +19,6 @@
 
 @code {
 
-    protected override async Task OnParametersSetAsync()
-    {
-        UIState.CurrentPage = "/roadmap";
-        await base.OnParametersSetAsync();
-    }
-
     protected override async Task OnInitializedAsync()
     {
         ClientState.OnRoadmapStateChanged += StateHasChanged;

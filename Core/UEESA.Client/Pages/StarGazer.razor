@@ -14,12 +14,6 @@
 
 @code {
 
-    protected override async Task OnParametersSetAsync()
-    {
-        UIState.CurrentPage = "/stargazer";
-        await base.OnParametersSetAsync();
-    }
-
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();

@@ -24,10 +24,17 @@
     ".min.js"
   ],
   "fileConfigs": {
-    "/img/background.png": {
+    "/img/backgrounds/fleeter.png": {
       "enabled": true,
       "width": 3840,
-      "height": 1440,
+      "height": 1646,
+      "quality": 70,
+      "format": "webp"
+    },
+    "/img/backgrounds/econome.png": {
+      "enabled": true,
+      "width": 3840,
+      "height": 1646,
       "quality": 70,
       "format": "webp"
     },

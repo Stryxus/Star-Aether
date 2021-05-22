@@ -1,4 +1,4 @@
-﻿<a class="@(UIState.CurrentPage == href ? "active" : string.Empty)" draggable="false" @onclick="ToggleUIState">@ChildContent</a>
+﻿<a class="@(UIState.CurrentPage.InformalPageName == href[1..] ? "active" : string.Empty)" draggable="false" @onclick="ToggleUIState">@ChildContent</a>
 
 @inject UIState UIState
 @inject NavigationManager NavigationManager
@@ -20,11 +20,11 @@
 
     private async Task ToggleUIState()
     {
-        if (UIState.CurrentPage != href)
+        if (UIState.CurrentPage.InformalPageName != href[1..])
         {
-            UIState.CurrentPage = href;
             await AnimationManager.FadePageOut();
             await Task.Delay(TimeSpan.FromSeconds(0.3));
+            UIState.CurrentPage = UIState.PageContexts.First(x => x.InformalPageName == href[1..]);
             NavigationManager.NavigateTo(href);
         }
     }
