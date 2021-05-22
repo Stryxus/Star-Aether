@@ -34,12 +34,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.1" />
-    <PackageReference Include="Azure.Identity" Version="1.4.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.17.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.6" />
-    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.18.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.12.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Stryxus.Lib" Version="2021.5.6" />
     <PackageReference Include="Stryxus.Lib.AspNet" Version="2021.5.6" />
@@ -49,10 +45,6 @@
     <ProjectReference Include="..\..\UEESA.Json\UEESA.Json.csproj" />
     <ProjectReference Include="..\UEESA.Client\UEESA.Client.csproj" />
     <ProjectReference Include="..\UEESA.Shared\UEESA.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\" />
   </ItemGroup>
 
 </Project>

@@ -18,7 +18,7 @@ namespace UEESA.Server.WebSockets
 
             if (message.StartsWith("CMD.") && Enum.TryParse(typeof(Commands), message.Replace("CMD.", string.Empty), out object cmd))
             {
-                if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(RSI_Roadmap_State).Name + Services.Get<MongoDBInterface>().GetRoadmapData());
+                if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(RSI_Roadmap_State).Name /*+ Services.Get<MongoDBInterface>().GetRoadmapData()*/);
             }
 
             return;

@@ -42,8 +42,6 @@ namespace UEESA.Server
                     });
                     services.AddResponseCaching();
                     services.AddWebSocketManager();
-                    services.AddSingleton<MongoDBInterface>();
-                    //services.AddSingleton<RSIRoadmapReleaseViewScraperService>();
                 });
 
                 webBuilder.Configure((app) => 
@@ -75,9 +73,6 @@ namespace UEESA.Server
                         endpoints.MapRazorPages();
                         endpoints.MapFallbackToFile("index.html");
                     });
-                    // Wake the services up
-                    Services.Get<MongoDBInterface>().Connect();
-                    //Services.Get<RSIRoadmapReleaseViewScraperService>();
                 });
             }).Build().RunAsync();
     }
