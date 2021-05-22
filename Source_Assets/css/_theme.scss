@@ -36,6 +36,57 @@ html, body {
     transform: translateX(-50%);
 }
 
+#loading-overlay {
+    z-index: 1000001;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    pointer-events: none;
+
+    img {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+
+    .progress {
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+        height: 100vh;
+        width: 100vw;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .progress-bar3 {
+        transition: 3s linear;
+        transition-property: width, background-color;
+        height: 100%;
+    }
+
+    .progress-infinite .progress-bar3 {
+        width: 100%;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 30%, rgba(255, 255, 255, 0.075) 50%, rgba(0, 0, 0, 0) 70%);
+        animation: progress-bar 3s linear infinite;
+    }
+
+    @keyframes progress-bar {
+        0% {
+            background-position-x: -100vw;
+        }
+
+        100% {
+            background-position-x: 200vw;
+        }
+    }
+}
+
 main {
     z-index: $zindex-main;
     overflow: hidden;
