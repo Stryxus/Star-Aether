@@ -51,4 +51,8 @@
     <ProjectReference Include="..\UEESA.Shared\UEESA.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\" />
+  </ItemGroup>
+
 </Project>

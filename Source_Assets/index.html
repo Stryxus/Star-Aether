@@ -1,21 +1,14 @@
-﻿@page "/"
-@namespace UEESA.Server.Pages
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@{
-    Layout = null;
-}
-
 <!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
     <Meta charset="UTF-8" />
-    <base href="~/" />
+    <base href="/" />
     <!-- Primary Meta Tags -->
     <title>UEE Star Athenaeum</title>
     <link rel="icon" type="image/svg" href="favicon.svg" />
     <meta name="title" content="UEE Star Athenaeum" />
     <meta name="description" content="Home to the cutting edge corner of the verse, where each and every citizen, pirate, syndicate leader and alike can learn a little more." />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="theme-color" content="#38a0a0" />
 
     <!-- Open Graph / Facebook -->
@@ -36,62 +29,6 @@
     <link rel="manifest" href="/manifest.json" />
     <link rel="apple-touch-icon" href="/pwa-192.png" />
 
-    <style type="text/css">
-        body {
-            background-color: black;
-        }
-
-        #loading-overlay {
-            z-index: 1000001;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(20px);
-            position: fixed;
-            top: 0px;
-            bottom: 0px;
-            left: 0px;
-            right: 0px;
-            pointer-events: none;
-        }
-
-            #loading-overlay img {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translateX(-50%) translateY(-50%);
-            }
-
-            #loading-overlay .progress {
-                position: fixed;
-                left: 0px;
-                bottom: 0px;
-                height: 100vh;
-                width: 100vw;
-                padding: 0px;
-                margin: 0px;
-            }
-
-        .progress-bar3 {
-            transition: 3s linear;
-            transition-property: width, background-color;
-            height: 100%;
-        }
-
-        .progress-infinite .progress-bar3 {
-            width: 100%;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 30%, rgba(255, 255, 255, 0.075) 50%, rgba(0, 0, 0, 0) 70%);
-            animation: progress-bar 3s linear infinite;
-        }
-
-        @@keyframes progress-bar {
-            0% {
-                background-position-x: -100vw;
-            }
-
-            100% {
-                background-position-x: 200vw;
-            }
-        }
-    </style>
     <link type="text/css" rel="stylesheet" href="bundle.min.css" />
 </head>
 <body>
@@ -99,18 +36,17 @@
         This website requires Javascript. If you dont have Javascript enabled, you must find out how to enable it.
         For no reason should Javascript be disabled in the modern day.
     </noscript>
-    <app>
+    <div id="app">
         <div id="loading-overlay" class="loading-overlay-first">
             <img draggable="false" height="250" width="250" src="favicon.svg" alt="Logo" />
             <div class="progress progress-infinite">
                 <div class="progress-bar3" />
             </div>
         </div>
-    </app>
-    <component type="typeof(UEESA.Client.App)" render-mode="WebAssembly" />
-    <!--<script async type="text/javascript" charset="UTF-8">
-        if (window.location.host.includes("ueesa")) { navigator.serviceWorker.register('service-worker.js').then(reg => { reg.onupdatefound = () => { const installingWorker = reg.installing; installingWorker.onstatechange = () => { switch (installingWorker.state) { case 'installed': if (navigator.serviceWorker.controller) { location.reload(true) } break } } } }).catch(err => console.error('[SERVICE WORKER]', err)) }
-    </script>-->
+    </div>
+    <script async type="text/javascript" charset="UTF-8">
+        navigator.serviceWorker.register('service-worker.js').then(reg => { reg.onupdatefound = () => { const installingWorker = reg.installing; installingWorker.onstatechange = () => { switch (installingWorker.state) { case 'installed': if (navigator.serviceWorker.controller) { location.reload(true) } break } } } }).catch(err => console.error('[SERVICE WORKER]', err));
+    </script>
     <script async type="text/javascript" charset="UTF-8" src="_framework/blazor.webassembly.js"></script>
     <script async type="text/javascript" charset="UTF-8" src="bundle.min.js"></script>
 </body>
