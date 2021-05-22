@@ -45,7 +45,6 @@
   </ItemGroup>
   
   <ItemGroup>
-	<ProjectReference Include="..\..\UEESA.Json\UEESA.Json.csproj" />
 	<ProjectReference Include="..\UEESA.Shared\UEESA.Shared.csproj" />
   </ItemGroup>
 
