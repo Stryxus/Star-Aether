@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace UEESA.Client.Data.States
 {
@@ -57,13 +58,27 @@ namespace UEESA.Client.Data.States
             if (boolCache != IsNavBarTickersVisible) OnNavBarTickersVisibilityChange.Invoke();
         }
 
-        internal bool IsSettingsPanelVisible { get; private set; }
-        internal async void ToggleSettingsPanelVisibility()
+        internal event Action OnIsSettingsPanelVisibleChange;
+        private bool isSettingPanelVisible;
+        internal bool IsSettingsPanelVisible 
         {
-            IsSettingsPanelVisible = !IsSettingsPanelVisible;
-            if (IsSettingsPanelVisible) await Services.Get<JSInterface.AnimationManager>().SlideSettingsPanelInOut(true);
-            else await Services.Get<JSInterface.AnimationManager>().SlideSettingsPanelInOut(false);
+            get
+            {
+                return isSettingPanelVisible;
+            }
+            private set
+            {
+                isSettingPanelVisible = value;
+                if (!value) new Action(async () =>
+                {
+                    await Services.Get<JSInterface.AnimationManager>().SlideSettingsPanelInOut(false);
+                    await Task.Delay(TimeSpan.FromSeconds(0.3));
+                    OnIsSettingsPanelVisibleChange.Invoke();
+                }).Invoke();
+                else OnIsSettingsPanelVisibleChange.Invoke();
+            }
         }
+        internal void ToggleSettingsPanelVisibility() => IsSettingsPanelVisible = !IsSettingsPanelVisible;
 
         internal event Action OnUtilitiesTypeChanged;
         private UtilitiesBarType utilitiesType;

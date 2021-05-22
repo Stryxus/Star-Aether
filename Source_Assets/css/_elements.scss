@@ -58,9 +58,10 @@ small {
 
 a {
     display: block;
-    color: $colour-blue-main-trans-low;
+    color: $colour-red-main-trans-low;
     text-decoration: none;
     font-style: italic;
+    font-weight: 400;
     cursor: pointer;
 
     &:hover {

@@ -1,4 +1,4 @@
-﻿@if (ClientState.Settings != null)
+﻿@if (ClientState.Settings != null && UIState.IsSettingsPanelVisible)
 {
     <div id="settings-panel" class="row bordered bordered-line-left">
         <div class="col">
@@ -56,18 +56,27 @@
     </div>
 }
 
+@inject UIState UIState
 @inject ClientState ClientState
 @inject ServerState ServerState
 @inject JSInterface.Cache Cache
 @inject JSInterface.LocalData LocalData
+@inject JSInterface.AnimationManager AnimationManager
 
-@inject NavigationManager NavMan;
+@inject NavigationManager NavMan
 
 @code {
 
     protected override async Task OnInitializedAsync()
     {
+        UIState.OnIsSettingsPanelVisibleChange += StateHasChanged;
         await base.OnInitializedAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (UIState.IsSettingsPanelVisible) await AnimationManager.SlideSettingsPanelInOut(true);
+        await base.OnAfterRenderAsync(firstRender);
     }
 
     private async Task ClearAllData()
