@@ -20,7 +20,7 @@ namespace UEESA.Client
         public static async Task Main(string[] args)
         {
             WebAssemblyHostBuilder HostBuilder = WebAssemblyHostBuilder.CreateDefault(args);
-            HostBuilder.RootComponents.Add<App>("app");
+            HostBuilder.RootComponents.Add<App>("#app");
             HostBuilder.Services.AddTransient<ConnectionManager<ClientWebSocket>>();
             HostBuilder.Services.AddScoped<StateSocketHandler>();
             HostBuilder.Services.AddScoped<ClientState>();
