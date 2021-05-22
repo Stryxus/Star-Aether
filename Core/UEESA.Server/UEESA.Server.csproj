@@ -7,7 +7,7 @@
     <Configurations>Debug;Release;Release Testing</Configurations>
     <Nullable>annotations</Nullable>
     <AssemblyName>UEESA.Server</AssemblyName>
-    <ApplicationInsightsResourceId>/subscriptions/12b3bc2f-8120-4584-89a0-4d79087cc5b1/resourcegroups/Star-Athenaeum-Public/providers/Microsoft.Insights/components/Star-Athenaeum-Application-Insights</ApplicationInsightsResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/12b3bc2f-8120-4584-89a0-4d79087cc5b1/resourceGroups/Star-Athenaeum-Public/providers/microsoft.insights/components/Star-Athenaeum-Application-Insights</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|x64'">
