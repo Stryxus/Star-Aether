@@ -107,7 +107,7 @@ namespace UEESA.Client.Data.States
                 isSettingPanelVisible = value;
                 if (!value) new Action(async () =>
                 {
-                    await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(false);
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(true);
                     await Task.Delay(TimeSpan.FromSeconds(0.5));
                     OnIsSettingsPanelVisibleChange.Invoke();
                 }).Invoke();
