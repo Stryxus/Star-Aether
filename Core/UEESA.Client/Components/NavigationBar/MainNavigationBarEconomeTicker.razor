@@ -167,7 +167,7 @@
         if (UIState.IsEconomeNavBarTickerVisible)
         {
             await Task.Delay(TimeSpan.FromSeconds(1.5));
-            await AnimationManager.SlideInOutEonomeNavBarTicker(true);
+            await AnimationManager.SlideInOutEonomeNavBarTicker(false);
         }
         await base.OnAfterRenderAsync(firstRender);
     }

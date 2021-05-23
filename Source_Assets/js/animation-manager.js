@@ -42,10 +42,10 @@ GLOBAL.animationInterface = function (ref)
             document.getElementById("tools-sidebar").style.left = -width;
             TweenMax.to("#tools-sidebar", 1, { left: 0, ease: "power3.out" });
         },
-        slideInOutHeadlinesNavBarTicker: (slideOut) => 
+        slideInOutHeadlinesNavBarTicker: (slideIn) => 
         {
             var width = document.getElementById("headlines-navbar-ticker").offsetWidth;
-            if (slideOut) 
+            if (!slideIn) 
             {
                 document.getElementById("headlines-navbar-ticker").style.right = -width;
                 TweenMax.to("#headlines-navbar-ticker", 1.5, { right: 0, ease: "power3.out" });
@@ -55,10 +55,10 @@ GLOBAL.animationInterface = function (ref)
                 TweenMax.to("#headlines-navbar-ticker", 1.5, { right: -width, ease: "power3.out" });
             }
         },
-        slideInOutEonomeNavBarTicker: (slideOut) => 
+        slideInOutEonomeNavBarTicker: (slideIn) => 
         {
             var width = document.getElementById("econome-navbar-ticker").offsetWidth;
-            if (slideOut) 
+            if (!slideIn) 
             {
                 document.getElementById("econome-navbar-ticker").style.right = -width;
                 TweenMax.to("#econome-navbar-ticker", 1.5, { right: 0, ease: "power3.out" });
@@ -68,10 +68,10 @@ GLOBAL.animationInterface = function (ref)
                 TweenMax.to("#econome-navbar-ticker", 1.5, { right: -width, ease: "power3.out" });
             }
         },
-        slideInOutSettingsPanel: (slideOut) => 
+        slideInOutSettingsPanel: (slideIn) => 
         {
             var width = document.getElementById("settings-panel").offsetWidth;
-            if (slideOut) 
+            if (!slideIn) 
             {
                 document.getElementById("settings-panel").style.right = -width;
                 TweenMax.to("#settings-panel", 0.5, { right: 0, ease: "power3.out" });

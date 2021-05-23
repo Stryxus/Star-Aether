@@ -65,7 +65,7 @@ namespace UEESA.Client.Data.States
                 isHeadlinesNavBarTickerVisible = value;
                 if (!value) new Action(async () =>
                 {
-                    await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(false);
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(true);
                     await Task.Delay(TimeSpan.FromSeconds(1.5));
                     OnIsHeadlinesNavBarTickerVisibleChange.Invoke();
                 }).Invoke();
@@ -86,7 +86,7 @@ namespace UEESA.Client.Data.States
                 isEconomeNavBarTickerVisible = value;
                 if (!value) new Action(async () =>
                 {
-                    await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(false);
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(true);
                     await Task.Delay(TimeSpan.FromSeconds(1.5));
                     OnIsEconomeNavBarTickerVisibleChange.Invoke();
                 }).Invoke();
