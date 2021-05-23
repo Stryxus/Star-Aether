@@ -39,12 +39,6 @@ namespace UEESA.Client.Data.States
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.LocalData>(), "localStorageInterface");
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.AnimationManager>(), "animationInterface");
 
-                OnAppLoaded += async () =>
-                {
-                    Logger.LogInfo("Application has loaded successfully. Showing router.");
-                    await Services.Get<JSInterface.AnimationManager>().ShowRouter();
-                };
-
                 await Services.Get<LocalStorageState>().GetLocalData<GlobalSettings>();
 
                 Services.Get<WebSocketManagerMiddleware>().OnServerConnected += async () =>

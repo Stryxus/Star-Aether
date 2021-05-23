@@ -36,14 +36,7 @@
         This website requires Javascript. If you dont have Javascript enabled, you must find out how to enable it.
         For no reason should Javascript be disabled in the modern day.
     </noscript>
-    <div id="app">
-        <div id="loading-overlay" class="loading-overlay-first">
-            <img draggable="false" height="250" width="250" src="favicon.svg" alt="Logo" />
-            <div class="progress progress-infinite">
-                <div class="progress-bar3"></div>
-            </div>
-        </div>
-    </div>
+    <div id="app"></div>
     <script async type="text/javascript" charset="UTF-8">
         navigator.serviceWorker.register('service-worker.js').then(reg => { reg.onupdatefound = () => { const installingWorker = reg.installing; installingWorker.onstatechange = () => { switch (installingWorker.state) { case 'installed': if (navigator.serviceWorker.controller) { location.reload(true) } break } } } }).catch(err => console.error('[SERVICE WORKER]', err));
     </script>

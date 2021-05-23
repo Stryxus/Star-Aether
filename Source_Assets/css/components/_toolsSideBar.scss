@@ -1,4 +1,4 @@
-#utilities-sidebar {
+#tools-sidebar {
     backdrop-filter: $backdrop-blur-heavy;
 }
 
@@ -17,11 +17,11 @@
 
 @include media-breakpoint-up(lg) {
 
-    #utilities-sidebar {
+    #tools-sidebar {
         position: fixed;
         top: 0px;
         bottom: 0px;
-        left: 0px;
+        left: #{-$sidebar-width - 1 + px};
         width: $sidebar-width + px;
         padding: 0px;
         background-color: $colour-grey-1-trans-high;
@@ -37,7 +37,7 @@
             margin-right: auto;
         }
 
-        #social-media {
+        #tools-bar-default {
             text-align: center;
 
             & > .col {

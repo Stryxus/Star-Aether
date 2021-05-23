@@ -6,14 +6,6 @@
     </div>
 </div>
 
-@inject UIState UIState
-@inject ClientState ClientState
-
 @code {
 
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        UIState.SetNavBarTickerVisibility(true);
-    }
 }

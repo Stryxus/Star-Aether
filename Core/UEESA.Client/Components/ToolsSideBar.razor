@@ -1,0 +1,29 @@
+﻿<div id="tools-sidebar" class="container-fluid bordered bordered-line-right">
+    @if (UIState.ToolsType == UIState.ToolsBarType.Default)
+    {
+        <ToolsBarDefaultTools />
+    }
+    else if (UIState.ToolsType == UIState.ToolsBarType.Roadmap)
+    {
+
+    }
+</div>
+
+@inject InitializationState InitState
+@inject UIState UIState
+
+@inject JSInterface.AnimationManager AnimationManager
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        InitState.OnAppLoaded += async () =>
+        {
+            await Task.Delay(TimeSpan.FromSeconds(1.3));
+            await AnimationManager.SlideInToolsBar();
+        };
+        await base.OnInitializedAsync();
+    }
+
+}

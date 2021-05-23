@@ -14,12 +14,6 @@
 
 @code {
 
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        UIState.SetNavBarTickerVisibility(false);
-    }
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);

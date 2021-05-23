@@ -5,6 +5,7 @@
   "scssPrecision": 3,
   "jsDependencyLinks": [
     "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/EasePack.js",
     "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/CSSRulePlugin.js",
     "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/ScrollToPlugin.js"
 
@@ -24,6 +25,13 @@
     ".min.js"
   ],
   "fileConfigs": {
+    "/img/backgrounds/stargazer.png": {
+      "enabled": true,
+      "width": 3840,
+      "height": 1646,
+      "quality": 70,
+      "format": "webp"
+    },
     "/img/backgrounds/fleeter.png": {
       "enabled": true,
       "width": 3840,

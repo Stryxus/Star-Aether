@@ -24,7 +24,7 @@
         <div class="bordered-line-above"></div>
         <div class="bordered-line-patch"></div>
         <MainNavigationBarHeadlinesTicker />
-        <MainNavigationBarEconomyTicker />
+        <MainNavigationBarEconomeTicker />
         <div class="col-auto main-navbar-buttons-offset"></div>
         <div class="logo-container">
             <PreNavLink href="/">
@@ -46,10 +46,23 @@
     </div>
 </nav>
 
+@inject InitializationState InitState
 @inject ClientState ClientState
 @inject UIState UIState
 
-@code {
+@inject JSInterface.AnimationManager AnimationManager
+
+@code {     
+
+    protected override async Task OnInitializedAsync()
+    {
+        InitState.OnAppLoaded += async () =>
+        {
+            await Task.Delay(TimeSpan.FromSeconds(0.3));
+            await AnimationManager.SlideInNavigationBar();
+        };
+        await base.OnInitializedAsync();
+    }
 
     private bool IsMobileNavbarVisible = false;
 

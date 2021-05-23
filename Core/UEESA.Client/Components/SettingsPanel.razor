@@ -39,11 +39,11 @@
                     @if (ClientState.Settings != null)
                     {
                         <h6>User Interface</h6>
-                        <SettingsPanelToggleButton Title="Show headlines ticker on navbar" Value="ClientState.Settings.ShowHealinesTicker" ToggleValue="(val) => ClientState.Settings.ShowHealinesTicker = val" />
-                        <SettingsPanelToggleButton Title="Show econome ticker on navbar" Value="ClientState.Settings.ShowEconomyTicker" ToggleValue="(val) => ClientState.Settings.ShowEconomyTicker = val" />
+                        <SettingsPanelToggleButton Title="Show Headlines Ticker" Value="ClientState.Settings.ShowHealinesTicker" ToggleValue="(val) => ClientState.Settings.ShowHealinesTicker = val" />
+                        <SettingsPanelToggleButton Title="Show Econome Ticker" Value="ClientState.Settings.ShowEconomeTicker" ToggleValue="(val) => ClientState.Settings.ShowEconomeTicker = val" />
                         <h6>Push Notifications</h6>
-                        <SettingsPanelToggleButton Title="Show notification on news post" Value="ClientState.Settings.ShowBlogUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowBlogUpdateNotification = val" />
-                        <SettingsPanelToggleButton Title="Show notification on roadmap update" Value="ClientState.Settings.ShowRoadmapUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowRoadmapUpdateNotification = val" />
+                        <SettingsPanelToggleButton Title="Show Notification on Blog Post" Value="ClientState.Settings.ShowBlogUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowBlogUpdateNotification = val" />
+                        <SettingsPanelToggleButton Title="Show Notification on Roadmap Update" Value="ClientState.Settings.ShowRoadmapUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowRoadmapUpdateNotification = val" />
                     }
                 </div>
             </div>
@@ -75,7 +75,7 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (UIState.IsSettingsPanelVisible) await AnimationManager.SlideSettingsPanelInOut(true);
+        if (UIState.IsSettingsPanelVisible) await AnimationManager.SlideInOutSettingsPanel(true);
         await base.OnAfterRenderAsync(firstRender);
     }
 

@@ -1,13 +1,6 @@
 ﻿<div id="viewport-overlay">
     <h6>The viewport/screen size is too small! Star Athenaeum strictly enforces a minimum width of 375 (relative) pixels!</h6>
 </div>
-<div id="loading-overlay">
-    <img draggable="false" height="300" width="300" src="favicon.svg" alt="Logo" />
-    <div class="progress progress-infinite">
-        <div class="progress-bar3" />
-    </div>
-</div>
-<div id="background-container" />
 <div id="router">
     <div id="webpage">
         <Router AppAssembly="@typeof(Program).Assembly">
@@ -21,7 +14,7 @@
             </NotFound>
         </Router>
     </div>
-    <UtilitiesSideBar />
+    <ToolsSideBar />
     <SettingsPanel />
     <MainNavigationBar />
 </div>
@@ -60,7 +53,7 @@
             {
                 FormalPageName = "Citizen Blog",
                 InformalPageName = "blog",
-                ForceNavBarTickersInvisible = true,
+                ForceNavBarTickersInvisible = false,
                 PageBackgroundName = null
             },
             new PageContext
@@ -75,7 +68,7 @@
                 FormalPageName = "Star Gazer",
                 InformalPageName = "stargazer",
                 ForceNavBarTickersInvisible = true,
-                PageBackgroundName = null
+                PageBackgroundName = "stargazer"
             },
             new PageContext
             {

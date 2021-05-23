@@ -46,17 +46,52 @@ namespace UEESA.Client.Data.States
                 currentPage = value;
                 OnPageChanged?.Invoke();
                 new Action(async () => await Services.Get<JSInterface.Utilities>().SetTitle("UEESA - " + value.FormalPageName)).Invoke();
+                IsHeadlinesNavBarTickerVisible = !value.ForceNavBarTickersInvisible;
+                IsEconomeNavBarTickerVisible = !value.ForceNavBarTickersInvisible;
             }
         }
         internal bool FirstRender = true;
 
-        internal event Action OnNavBarTickersVisibilityChange;
-        internal bool IsNavBarTickersVisible { get; private set; }
-        internal void SetNavBarTickerVisibility(bool isVisible)
+        internal event Action OnIsHeadlinesNavBarTickerVisibleChange;
+        private bool isHeadlinesNavBarTickerVisible;
+        internal bool IsHeadlinesNavBarTickerVisible
         {
-            bool boolCache = IsNavBarTickersVisible;
-            IsNavBarTickersVisible = isVisible;
-            if (boolCache != IsNavBarTickersVisible) OnNavBarTickersVisibilityChange.Invoke();
+            get
+            {
+                return isHeadlinesNavBarTickerVisible;
+            }
+            set
+            {
+                isHeadlinesNavBarTickerVisible = value;
+                if (!value) new Action(async () =>
+                {
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(false);
+                    await Task.Delay(TimeSpan.FromSeconds(1.5));
+                    OnIsHeadlinesNavBarTickerVisibleChange.Invoke();
+                }).Invoke();
+                else OnIsHeadlinesNavBarTickerVisibleChange.Invoke();
+            }
+        }
+
+        internal event Action OnIsEconomeNavBarTickerVisibleChange;
+        private bool isEconomeNavBarTickerVisible;
+        internal bool IsEconomeNavBarTickerVisible
+        {
+            get
+            {
+                return isEconomeNavBarTickerVisible;
+            }
+            set
+            {
+                isEconomeNavBarTickerVisible = value;
+                if (!value) new Action(async () =>
+                {
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(false);
+                    await Task.Delay(TimeSpan.FromSeconds(1.5));
+                    OnIsEconomeNavBarTickerVisibleChange.Invoke();
+                }).Invoke();
+                else OnIsEconomeNavBarTickerVisibleChange.Invoke();
+            }
         }
 
         internal event Action OnIsSettingsPanelVisibleChange;
@@ -72,8 +107,8 @@ namespace UEESA.Client.Data.States
                 isSettingPanelVisible = value;
                 if (!value) new Action(async () =>
                 {
-                    await Services.Get<JSInterface.AnimationManager>().SlideSettingsPanelInOut(false);
-                    await Task.Delay(TimeSpan.FromSeconds(0.3));
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(false);
+                    await Task.Delay(TimeSpan.FromSeconds(0.5));
                     OnIsSettingsPanelVisibleChange.Invoke();
                 }).Invoke();
                 else OnIsSettingsPanelVisibleChange.Invoke();
@@ -81,24 +116,24 @@ namespace UEESA.Client.Data.States
         }
         internal void ToggleSettingsPanelVisibility() => IsSettingsPanelVisible = !IsSettingsPanelVisible;
 
-        internal event Action OnUtilitiesTypeChanged;
-        private UtilitiesBarType utilitiesType;
-        internal UtilitiesBarType UtilitiesType
+        internal event Action OnToolsBarTypeChanged;
+        private ToolsBarType toolsType;
+        internal ToolsBarType ToolsType
         {
             get
             {
-                return utilitiesType;
+                return toolsType;
             } 
             set 
             {
-                utilitiesType = value;
-                OnUtilitiesTypeChanged();
+                toolsType = value;
+                OnToolsBarTypeChanged.Invoke();
             }
         }
 
-        internal enum UtilitiesBarType
+        internal enum ToolsBarType
         {
-            SocialMedia,
+            Default,
             Roadmap
         }
     }

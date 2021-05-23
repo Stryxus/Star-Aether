@@ -1,10 +1,10 @@
-﻿@if (ClientState.Settings != null)
+﻿@if (UIState.IsEconomeNavBarTickerVisible)
 {
-    <div class="economy-ticker" style="@(ClientState.Settings.ShowEconomyTicker && UIState.IsNavBarTickersVisible ? string.Empty : "display: none")">
-        <div class="col economy-ticker-title">
-            <h6>Economy</h6>
+    <div id="econome-navbar-ticker">
+        <div id="econome-navbar-ticker-title" class="col">
+            <h6>Econome</h6>
         </div>
-        <div class="col economy-ticker-content">
+        <div id="econome-navbar-ticker-content" class="col">
             <div class="row">
                 <div class="col-auto">
                     <h6>Econome coming soon!</h6>
@@ -152,12 +152,23 @@
 @inject ClientState ClientState
 @inject UIState UIState
 
+@inject JSInterface.AnimationManager AnimationManager
+
 @code {
 
     protected override async Task OnInitializedAsync()
     {
-        UIState.OnNavBarTickersVisibilityChange += StateHasChanged;
-        ClientState.OnSettingsChanged += StateHasChanged;
+        UIState.OnIsEconomeNavBarTickerVisibleChange += StateHasChanged;
         await base.OnInitializedAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (UIState.IsEconomeNavBarTickerVisible)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(1.5));
+            await AnimationManager.SlideInOutEonomeNavBarTicker(true);
+        }
+        await base.OnAfterRenderAsync(firstRender);
     }
 }

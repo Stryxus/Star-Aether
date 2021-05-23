@@ -39,10 +39,14 @@ namespace UEESA.Client.Data
 
         public class AnimationManager
         {
-            public async Task ShowRouter() => await JSR.InvokeVoidAsync("animationInterface.showRouter");
             public async Task FadePageOut() => await JSR.InvokeVoidAsync("animationInterface.fadeOutPage");
             public async Task FadePageIn(bool bypass) => await JSR.InvokeVoidAsync("animationInterface.fadeInPage", bypass);
-            public async Task SlideSettingsPanelInOut(bool slideIn) => await JSR.InvokeVoidAsync("animationInterface.slideSettingsPanelInOut", slideIn);
+            public async Task FadeInBackground() => await JSR.InvokeVoidAsync("animationInterface.fadeInBackground");
+            public async Task SlideInNavigationBar() => await JSR.InvokeVoidAsync("animationInterface.slideInNavigationBar");
+            public async Task SlideInToolsBar() => await JSR.InvokeVoidAsync("animationInterface.slideInToolsBar");
+            public async Task SlideInOutHeadlinesNavBarTicker(bool slideOut) => await JSR.InvokeVoidAsync("animationInterface.slideInOutHeadlinesNavBarTicker", slideOut);
+            public async Task SlideInOutEonomeNavBarTicker(bool slideOut) => await JSR.InvokeVoidAsync("animationInterface.slideInOutEonomeNavBarTicker", slideOut);
+            public async Task SlideInOutSettingsPanel(bool slideOut) => await JSR.InvokeVoidAsync("animationInterface.slideInOutSettingsPanel", slideOut);
         }
     }
 }
