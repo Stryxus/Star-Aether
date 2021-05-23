@@ -14,7 +14,6 @@ namespace UEESA.Client.Data.States
         {
             if (
                 Services.Get<ClientState>().Settings != null &&
-                !Services.Get<UIState>().FirstRender &&
                 !SingleAppLoadedLock
                 )
             {

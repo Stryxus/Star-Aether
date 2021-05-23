@@ -16,8 +16,7 @@
         await base.OnAfterRenderAsync(firstRender);
         if (firstRender)
         {
-            UIState.FirstRender = false;
-            await AnimationManager.FadePageIn(UIState.FirstRender);
+            await AnimationManager.FadePageIn(false);
             await Task.Delay(TimeSpan.FromSeconds(0.3));
             await AnimationManager.FadeInBackground();
         }
@@ -25,7 +24,7 @@
         {
             await AnimationManager.FadeInBackground();
             await Task.Delay(TimeSpan.FromSeconds(0.3));
-            await AnimationManager.FadePageIn(UIState.FirstRender);
+            await AnimationManager.FadePageIn(false);
         }
     }
 }
