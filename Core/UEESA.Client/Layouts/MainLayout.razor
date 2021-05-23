@@ -14,17 +14,8 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        if (firstRender)
-        {
-            await AnimationManager.FadePageIn(false);
-            await Task.Delay(TimeSpan.FromSeconds(0.3));
-            await AnimationManager.FadeInBackground();
-        }
-        else
-        {
-            await AnimationManager.FadeInBackground();
-            await Task.Delay(TimeSpan.FromSeconds(0.3));
-            await AnimationManager.FadePageIn(false);
-        }
+        await AnimationManager.FadePageIn(false);
+        await Task.Delay(TimeSpan.FromSeconds(0.3));
+        await AnimationManager.FadeInBackground();
     }
 }
