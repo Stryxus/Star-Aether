@@ -59,22 +59,7 @@ GLOBAL.runtime = function (ref)
         },
         loadWebGL2: () => 
         {
-            var canv = document.getElementById("stargazer-canvas");
-            var gl = canv.getContext("webgl2");
-            if (gl) {
-                if (!webglalerted) {
-                    webglalerted = true;
-                    alert("This is a WebGL2 testing placeholder. If you see a black screen, its_working.gif!");
-                }
-
-                gl.viewportWidth = canv.width;
-                gl.viewportHeight = canv.height;
-                window.addEventListener("resize", () => {
-                    resize(gl, true);
-                });
-                gl.clearColor(0.0, 0.0, 0.0, 1.0);
-                gl.clear(gl.COLOR_BUFFER_BIT);
-            }
+            
         }
     }
 
