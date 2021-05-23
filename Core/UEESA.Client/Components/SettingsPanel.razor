@@ -75,7 +75,11 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (UIState.IsSettingsPanelVisible) await AnimationManager.SlideInOutSettingsPanel(false);
+        if (UIState.IsSettingsPanelVisible)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(0.5));
+            await AnimationManager.SlideInOutSettingsPanel(false);
+        }
         await base.OnAfterRenderAsync(firstRender);
     }
 
