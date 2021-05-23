@@ -56,11 +56,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        InitState.OnAppLoaded += async () =>
-        {
-            await Task.Delay(TimeSpan.FromSeconds(0.3));
-            await AnimationManager.SlideInNavigationBar();
-        };
+        InitState.OnAppLoaded += async () => await AnimationManager.SlideInNavigationBar();
         await base.OnInitializedAsync();
     }
 

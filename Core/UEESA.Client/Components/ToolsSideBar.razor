@@ -20,7 +20,7 @@
     {
         InitState.OnAppLoaded += async () =>
         {
-            await Task.Delay(TimeSpan.FromSeconds(1.3));
+            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
             await AnimationManager.SlideInToolsBar();
         };
         await base.OnInitializedAsync();
