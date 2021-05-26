@@ -29,7 +29,7 @@
     {
         if (UIState.IsHeadlinesNavBarTickerVisible)
         {
-            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarTickerSlide));
+            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
             await AnimationManager.SlideInOutHeadlinesNavBarTicker(false);
         }
         await base.OnAfterRenderAsync(firstRender);
