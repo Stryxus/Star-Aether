@@ -1,3 +1,5 @@
+$settings-panel-width: 406;
+
 #settings-panel {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -5,7 +7,7 @@
     backdrop-filter: $backdrop-blur-heavy;
     position: absolute;
     top: 0px;
-    right: -501px;
+    right: -#{$settings-panel-width + 1 + px};
     overflow: scroll;
     align-items: stretch;
     z-index: $zindex-settings-panel;
@@ -163,7 +165,7 @@
 @include media-breakpoint-up(lg) {
 
     #settings-panel {
-        width: 500px;
+        width: $settings-panel-width + px;
         margin-right: 0px;
         bottom: ($navigation-bar-height - 12) + px;
     }
