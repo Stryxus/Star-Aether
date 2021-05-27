@@ -66,16 +66,25 @@
 @inject NavigationManager NavMan
 
 @code {
+    private bool VisibilityTrigger = false;
 
     protected override async Task OnInitializedAsync()
     {
-        UIState.OnIsSettingsPanelVisibleChange += StateHasChanged;
+        UIState.OnIsSettingsPanelVisibleChange += () =>
+        {
+            VisibilityTrigger = true;
+            StateHasChanged();
+        };
         await base.OnInitializedAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (UIState.IsSettingsPanelVisible) await AnimationManager.SlideInOutSettingsPanel(true);
+        if (UIState.IsSettingsPanelVisible && VisibilityTrigger)
+        {
+            VisibilityTrigger = false;
+            await AnimationManager.SlideInOutSettingsPanel(true);
+        }
         await base.OnAfterRenderAsync(firstRender);
     }
 
