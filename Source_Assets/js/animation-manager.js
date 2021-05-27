@@ -25,13 +25,15 @@ GLOBAL.animationInterface = function (ref)
         },
         fadeInOutBackground: (timeSecs, fadeIn) => 
         {
-            if (!fadeIn) 
-            {
-                TweenMax.to("#background", timeSecs, { opacity: 0, ease: "power3.out" });
-            }
-            else 
-            {
-                TweenMax.to("#background", timeSecs, { opacity: 1, ease: "power3.out" });
+            if (document.getElementById("background") !== null) {
+                if (!fadeIn) 
+                {
+                    TweenMax.to("#background", timeSecs, { opacity: 0, ease: "power3.out" });
+                }
+                else 
+                {
+                    TweenMax.to("#background", timeSecs, { opacity: 1, ease: "power3.out" });
+                }
             }
         },
         slideInNavigationBar: (timeSecs) => 
