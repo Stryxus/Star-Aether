@@ -48,10 +48,10 @@ GLOBAL.animationInterface = function (ref)
             TweenMax.to("#tools-sidebar", 0, { left: -width });
             TweenMax.to("#tools-sidebar", timeSecs, { left: 0, ease: "power3.out" });
         },
-        slideInOutHeadlinesNavBarTicker: (timeSecs, slideIn) => 
+        slideInOutHeadlinesNavBarTicker: (timeSecs, slideOut) => 
         {
             var width = document.getElementById("headlines-navbar-ticker").offsetWidth;
-            if (!slideIn) 
+            if (slideOut) 
             {
                 TweenMax.to("#headlines-navbar-ticker", 0, { right: -width });
                 TweenMax.to("#headlines-navbar-ticker", timeSecs, { right: 0, ease: "power3.out" });
@@ -61,10 +61,10 @@ GLOBAL.animationInterface = function (ref)
                 TweenMax.to("#headlines-navbar-ticker", timeSecs, { right: -width, ease: "power3.out" });
             }
         },
-        slideInOutEonomeNavBarTicker: (timeSecs, slideIn) => 
+        slideInOutEonomeNavBarTicker: (timeSecs, slideOut) => 
         {
             var width = document.getElementById("econome-navbar-ticker").offsetWidth;
-            if (!slideIn) 
+            if (slideOut) 
             {
                 TweenMax.to("#econome-navbar-ticker", 0, { right: -width });
                 TweenMax.to("#econome-navbar-ticker", timeSecs, { right: 0, ease: "power3.out" });
@@ -74,10 +74,10 @@ GLOBAL.animationInterface = function (ref)
                 TweenMax.to("#econome-navbar-ticker", timeSecs, { right: -width, ease: "power3.out" });
             }
         },
-        slideInOutSettingsPanel: (timeSecs, slideIn) => 
+        slideInOutSettingsPanel: (timeSecs, slideOut) => 
         {
             var width = document.getElementById("settings-panel").offsetWidth;
-            if (!slideIn) 
+            if (slideOut) 
             {
                 TweenMax.to("#settings-panel", 0, { right: -width });
                 TweenMax.to("#settings-panel", timeSecs, { right: 0, ease: "power3.out" });

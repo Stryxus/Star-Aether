@@ -66,7 +66,7 @@ namespace UEESA.Client.Data.States
                 if (!value) new Action(async () =>
                 {
                     await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_PageFade));
-                    await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(true);
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(false);
                     await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
                     OnIsHeadlinesNavBarTickerVisibleChange.Invoke();
                 }).Invoke();
@@ -88,7 +88,7 @@ namespace UEESA.Client.Data.States
                 if (!value) new Action(async () =>
                 {
                     await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_PageFade));
-                    await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(true);
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(false);
                     await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
                     OnIsEconomeNavBarTickerVisibleChange.Invoke();
                 }).Invoke();
@@ -109,7 +109,7 @@ namespace UEESA.Client.Data.States
                 isSettingPanelVisible = value;
                 if (!value) new Action(async () =>
                 {
-                    await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(true);
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(false);
                     await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_SettingsPanelSlide));
                     OnIsSettingsPanelVisibleChange.Invoke();
                 }).Invoke();
