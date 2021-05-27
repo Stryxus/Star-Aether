@@ -170,10 +170,14 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (UIState.IsEconomeNavBarTickerVisible && VisibilityTrigger)
+        if (UIState.IsEconomeNavBarTickerVisible && ClientState.Settings.ShowEconomeTicker && VisibilityTrigger)
         {
             VisibilityTrigger = false;
-            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
+            if (!UIState.HasEconomeNavBarTickerInitialRendererd)
+            {
+                UIState.HasEconomeNavBarTickerInitialRendererd = true;
+                await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
+            }
             await AnimationManager.SlideInOutEonomeNavBarTicker(true);
         }
         await base.OnAfterRenderAsync(firstRender);

@@ -33,10 +33,14 @@
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (UIState.IsHeadlinesNavBarTickerVisible && VisibilityTrigger)
+        if (UIState.IsHeadlinesNavBarTickerVisible && ClientState.Settings.ShowHealinesTicker && VisibilityTrigger)
         {
             VisibilityTrigger = false;
-            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
+            if (!UIState.HasHeadlinesNavBarTickerInitialRendererd)
+            {
+                UIState.HasHeadlinesNavBarTickerInitialRendererd = true;
+                await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
+            }
             await AnimationManager.SlideInOutHeadlinesNavBarTicker(true);
         }
         await base.OnAfterRenderAsync(firstRender);

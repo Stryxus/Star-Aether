@@ -53,6 +53,7 @@ namespace UEESA.Client.Data.States
         internal bool FirstRender = true;
 
         internal event Action OnIsHeadlinesNavBarTickerVisibleChange;
+        internal bool HasHeadlinesNavBarTickerInitialRendererd;
         private bool isHeadlinesNavBarTickerVisible;
         internal bool IsHeadlinesNavBarTickerVisible
         {
@@ -75,6 +76,7 @@ namespace UEESA.Client.Data.States
         }
 
         internal event Action OnIsEconomeNavBarTickerVisibleChange;
+        internal bool HasEconomeNavBarTickerInitialRendererd;
         private bool isEconomeNavBarTickerVisible;
         internal bool IsEconomeNavBarTickerVisible
         {
