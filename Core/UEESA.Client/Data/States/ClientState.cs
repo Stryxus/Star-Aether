@@ -29,8 +29,6 @@ namespace UEESA.Client.Data.States
             }
         }
 
-        internal void NotifySettingsChange() => OnSettingsChanged?.Invoke();
-
         private RSI_Roadmap_State _roadmapState;
         internal RSI_Roadmap_State RoadmapState
         {
