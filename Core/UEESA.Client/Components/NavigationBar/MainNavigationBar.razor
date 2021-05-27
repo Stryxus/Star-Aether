@@ -12,7 +12,7 @@
                         <i class="fas fa-bars"></i>
                     </button>
                 </div>
-                <button class="settings-button @(UIState.IsSettingsPanelVisible ? "active" : string.Empty)" @onclick="ToggleSettingsPanel">
+                <button class="settings-button @(UIState.IsSettingsPanelVisible ? "active" : string.Empty)" @onclick="UIState.ToggleSettingsPanelVisibility()">
                     <i class="fas fa-cog"></i>
                 </button>
                 <img class="avatar" draggable="false" src="/img/avatar.svg" alt="Avatar" />
