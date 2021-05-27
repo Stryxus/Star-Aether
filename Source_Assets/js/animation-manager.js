@@ -37,13 +37,13 @@ GLOBAL.animationInterface = function (ref)
         slideInNavigationBar: (timeSecs) => 
         {
             var height = document.getElementById("main-nav").offsetHeight;
-            document.getElementById("main-nav").style.bottom = -height;
+            TweenMax.to("#main-nav", 0, { bottom: -height });
             TweenMax.to("#main-nav", timeSecs, { bottom: 0, ease: "power3.out" });
         },
         slideInToolsBar: (timeSecs) => 
         {
             var width = document.getElementById("tools-sidebar").offsetWidth;
-            document.getElementById("tools-sidebar").style.left = -width;
+            TweenMax.to("#tools-sidebar", 0, { left: -width });
             TweenMax.to("#tools-sidebar", timeSecs, { left: 0, ease: "power3.out" });
         },
         slideInOutHeadlinesNavBarTicker: (timeSecs, slideIn) => 
@@ -51,7 +51,7 @@ GLOBAL.animationInterface = function (ref)
             var width = document.getElementById("headlines-navbar-ticker").offsetWidth;
             if (!slideIn) 
             {
-                document.getElementById("headlines-navbar-ticker").style.right = -width;
+                TweenMax.to("#headlines-navbar-ticker", 0, { right: -width });
                 TweenMax.to("#headlines-navbar-ticker", timeSecs, { right: 0, ease: "power3.out" });
             }
             else 
@@ -64,7 +64,7 @@ GLOBAL.animationInterface = function (ref)
             var width = document.getElementById("econome-navbar-ticker").offsetWidth;
             if (!slideIn) 
             {
-                document.getElementById("econome-navbar-ticker").style.right = -width;
+                TweenMax.to("#econome-navbar-ticker", 0, { right: -width });
                 TweenMax.to("#econome-navbar-ticker", timeSecs, { right: 0, ease: "power3.out" });
             }
             else 
@@ -77,7 +77,7 @@ GLOBAL.animationInterface = function (ref)
             var width = document.getElementById("settings-panel").offsetWidth;
             if (!slideIn) 
             {
-                document.getElementById("settings-panel").style.right = -width;
+                TweenMax.to("#settings-panel", 0, { right: -width });
                 TweenMax.to("#settings-panel", timeSecs, { right: 0, ease: "power3.out" });
             }
             else 
