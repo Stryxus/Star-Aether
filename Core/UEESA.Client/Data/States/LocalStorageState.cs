@@ -15,7 +15,6 @@ namespace UEESA.Client.Data.States
             {
                 case Type t when t == typeof(GlobalSettings):
                     await Services.Get<JSInterface.LocalData>().SetData(t.Name, JsonConvert.SerializeObject(Services.Get<ClientState>().Settings = defaultData ? new GlobalSettings() : Services.Get<ClientState>().Settings));
-                    Services.Get<ClientState>().NotifySettingsChange();
                     break;
             }
         }
@@ -32,7 +31,6 @@ namespace UEESA.Client.Data.States
                         if (((exists, obj) = await LocalDataExists<T>()).exists)
                         {
                             Services.Get<ClientState>().Settings = obj as GlobalSettings ?? new GlobalSettings();
-                            Services.Get<ClientState>().NotifySettingsChange();
                         }
                         else
                         {
