@@ -68,9 +68,9 @@ namespace UEESA.Client.Data.States
                     await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_PageFade));
                     await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(false);
                     await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
-                    OnIsHeadlinesNavBarTickerVisibleChange.Invoke();
+                    OnIsHeadlinesNavBarTickerVisibleChange?.Invoke();
                 }).Invoke();
-                else OnIsHeadlinesNavBarTickerVisibleChange.Invoke();
+                else OnIsHeadlinesNavBarTickerVisibleChange?.Invoke();
             }
         }
 
@@ -90,9 +90,9 @@ namespace UEESA.Client.Data.States
                     await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_PageFade));
                     await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(false);
                     await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
-                    OnIsEconomeNavBarTickerVisibleChange.Invoke();
+                    OnIsEconomeNavBarTickerVisibleChange?.Invoke();
                 }).Invoke();
-                else OnIsEconomeNavBarTickerVisibleChange.Invoke();
+                else OnIsEconomeNavBarTickerVisibleChange?.Invoke();
             }
         }
 
@@ -111,9 +111,9 @@ namespace UEESA.Client.Data.States
                 {
                     await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(false);
                     await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_SettingsPanelSlide));
-                    OnIsSettingsPanelVisibleChange.Invoke();
+                    OnIsSettingsPanelVisibleChange?.Invoke();
                 }).Invoke();
-                else OnIsSettingsPanelVisibleChange.Invoke();
+                else OnIsSettingsPanelVisibleChange?.Invoke();
             }
         }
         internal void ToggleSettingsPanelVisibility() => IsSettingsPanelVisible = !IsSettingsPanelVisible;

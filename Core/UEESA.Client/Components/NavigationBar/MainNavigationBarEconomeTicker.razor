@@ -156,16 +156,23 @@
 
 @code {
 
+    private bool VisibilityTrigger = true;
+
     protected override async Task OnInitializedAsync()
     {
-        UIState.OnIsEconomeNavBarTickerVisibleChange += StateHasChanged;
+        UIState.OnIsEconomeNavBarTickerVisibleChange += () =>
+        {
+            VisibilityTrigger = true;
+            StateHasChanged();
+        };
         await base.OnInitializedAsync();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (UIState.IsEconomeNavBarTickerVisible)
+        if (UIState.IsEconomeNavBarTickerVisible && VisibilityTrigger)
         {
+            VisibilityTrigger = false;
             await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
             await AnimationManager.SlideInOutEonomeNavBarTicker(true);
         }
