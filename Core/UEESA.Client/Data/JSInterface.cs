@@ -46,9 +46,8 @@ namespace UEESA.Client.Data
             public float Time_NavigationBarTickerSlide = 1.5F;
             public float Time_SettingsPanelSlide = 0.5F;
 
-            public async Task FadePageOut() => await JSR.InvokeVoidAsync("animationInterface.fadeOutPage", Time_PageFade);
-            public async Task FadePageIn(bool bypass) => await JSR.InvokeVoidAsync("animationInterface.fadeInPage", Time_PageFade, bypass);
-            public async Task FadeInBackground() => await JSR.InvokeVoidAsync("animationInterface.fadeInBackground", Time_BackgroundFade);
+            public async Task FadePageInOut(bool fadeIn) => await JSR.InvokeVoidAsync("animationInterface.fadeInOutPage", Time_PageFade, fadeIn);
+            public async Task FadeInOutBackground(bool fadeIn) => await JSR.InvokeVoidAsync("animationInterface.fadeInOutBackground", Time_BackgroundFade, fadeIn);
             public async Task SlideInNavigationBar() => await JSR.InvokeVoidAsync("animationInterface.slideInNavigationBar", Time_NavigationBarSlideIn);
             public async Task SlideInToolsBar() => await JSR.InvokeVoidAsync("animationInterface.slideInToolsBar", Time_ToolsBarSlideIn);
             public async Task SlideInOutHeadlinesNavBarTicker(bool slideIn) => await JSR.InvokeVoidAsync("animationInterface.slideInOutHeadlinesNavBarTicker", Time_NavigationBarTickerSlide, slideIn);

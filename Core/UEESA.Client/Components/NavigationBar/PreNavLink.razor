@@ -22,8 +22,9 @@
     {
         if (UIState.CurrentPage.InformalPageName != href[1..])
         {
-            await AnimationManager.FadePageOut();
-            await Task.Delay(TimeSpan.FromSeconds(0.3));
+            await AnimationManager.FadeInOutBackground(false);
+            await AnimationManager.FadePageInOut(false);
+            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_PageFade));
             UIState.CurrentPage = UIState.PageContexts.First(x => x.InformalPageName == href[1..]);
             NavigationManager.NavigateTo(href);
         }

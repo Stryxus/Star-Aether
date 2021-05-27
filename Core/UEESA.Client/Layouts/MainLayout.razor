@@ -1,7 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
 <ContextualBackground />
-<main class="container-fluid">
+<main id="page-body" class="container-fluid">
     @Body
 </main>
 
@@ -14,8 +14,8 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-        await AnimationManager.FadePageIn(false);
-        await Task.Delay(TimeSpan.FromSeconds(0.3));
-        await AnimationManager.FadeInBackground();
+        await AnimationManager.FadeInOutBackground(true);
+        await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_PageFade));
+        await AnimationManager.FadePageInOut(true);
     }
 }

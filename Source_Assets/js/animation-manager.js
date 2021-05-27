@@ -11,24 +11,28 @@ GLOBAL.animationInterface = function (ref)
 
     window.animationInterface = {
 
-        fadeOutPage: (timeSecs) => 
+        fadeInOutPage: (timeSecs, fadeIn) => 
         {
-            TweenMax.to("#webpage", timeSecs, { opacity: 0, ease: "power3.out" });
-        },
-        fadeInPage: (timeSecs, bypass) => 
-        {
-            if (!bypass) 
+            if (!fadeIn) 
             {
-                TweenMax.to("#webpage", timeSecs, { opacity: 1, ease: "power3.out" });
+                TweenMax.to("#page-body", timeSecs, { opacity: 0, yPercent: -5, ease: "power3.out" });
             }
             else 
             {
-                document.getElementById("webpage").style.opacity = 1;
+                TweenMax.to("#page-body", 0, { yPercent: 5 });
+                TweenMax.to("#page-body", timeSecs, { opacity: 1, yPercent: 0, ease: "power3.out" });
             }
         },
-        fadeInBackground: (timeSecs) => 
+        fadeInOutBackground: (timeSecs, fadeIn) => 
         {
-            TweenMax.to("#background", timeSecs, { opacity: 1, ease: "power3.out" });
+            if (!fadeIn) 
+            {
+                TweenMax.to("#background", timeSecs, { opacity: 0, ease: "power3.out" });
+            }
+            else 
+            {
+                TweenMax.to("#background", timeSecs, { opacity: 1, ease: "power3.out" });
+            }
         },
         slideInNavigationBar: (timeSecs) => 
         {

@@ -93,7 +93,9 @@ main {
 #router {
     
     #webpage {
-        opacity: 0;
+        #page-body {
+            opacity: 0;
+        }
     }
 }
 
