@@ -15,9 +15,12 @@
     {
         await base.OnAfterRenderAsync(firstRender);
         await AnimationManager.FadeInOutBackground(true);
-        await AnimationManager.SlideInNavigationBar();
-        await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
-        await AnimationManager.SlideInToolsBar();
+        if (firstRender)
+        {
+            await AnimationManager.SlideInNavigationBar();
+            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
+            await AnimationManager.SlideInToolsBar();
+        }
         await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_PageFade));
         await AnimationManager.FadePageInOut(true);
     }
