@@ -17,11 +17,13 @@
         await AnimationManager.FadeInOutBackground(true);
         if (firstRender)
         {
+            // This delay is here to get past the chug on load.
+            await Task.Delay(TimeSpan.FromSeconds(0.5));
             await AnimationManager.SlideInNavigationBar();
             await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
             await AnimationManager.SlideInToolsBar();
+            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_ToolsBarSlideIn));
+            await AnimationManager.FadePageInOut(true);
         }
-        await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_PageFade));
-        await AnimationManager.FadePageInOut(true);
     }
 }

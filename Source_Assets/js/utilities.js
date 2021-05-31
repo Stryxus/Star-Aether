@@ -6,6 +6,7 @@ GLOBAL.utilities = function (ref)
 
 (function () {
     window.utilities = {
-        setTitle: (title) => document.title = title
+        setTitle: (title) => document.title = title,
+        setVideoSpeed: (elementID, speed) => document.getElementById(elementID).playbackRate = speed
     }
 })();

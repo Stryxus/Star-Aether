@@ -47,63 +47,63 @@
                 FormalPageName = "Home",
                 InformalPageName = "",
                 ForceNavBarTickersInvisible = false,
-                PageBackgroundName = null
+                PageBackgroundFileName = "home.webm"
             },
             new PageContext
             {
                 FormalPageName = "Citizen Blog",
                 InformalPageName = "blog",
                 ForceNavBarTickersInvisible = false,
-                PageBackgroundName = null
+                PageBackgroundFileName = null
             },
             new PageContext
             {
                 FormalPageName = "Roadmap",
                 InformalPageName = "roadmap",
                 ForceNavBarTickersInvisible = true,
-                PageBackgroundName = null
+                PageBackgroundFileName = null
             },
             new PageContext
             {
                 FormalPageName = "Star Gazer",
                 InformalPageName = "stargazer",
                 ForceNavBarTickersInvisible = true,
-                PageBackgroundName = "stargazer"
+                PageBackgroundFileName = "stargazer.webp"
             },
             new PageContext
             {
                 FormalPageName = "Fleeter",
                 InformalPageName = "fleeter",
                 ForceNavBarTickersInvisible = true,
-                PageBackgroundName = "fleeter"
+                PageBackgroundFileName = "fleeter.webp"
             },
             new PageContext
             {
                 FormalPageName = "Load Up & Out",
                 InformalPageName = "loadupout",
                 ForceNavBarTickersInvisible = true,
-                PageBackgroundName = null
+                PageBackgroundFileName = null
             },
             new PageContext
             {
                 FormalPageName = "Econome",
                 InformalPageName = "econome",
                 ForceNavBarTickersInvisible = false,
-                PageBackgroundName = "econome"
+                PageBackgroundFileName = "econome.webp"
             },
             new PageContext
             {
                 FormalPageName = "Xenoguist",
                 InformalPageName = "xenoguist",
                 ForceNavBarTickersInvisible = false,
-                PageBackgroundName = null
+                PageBackgroundFileName = null
             },
             new PageContext
             {
                 FormalPageName = "Service States",
                 InformalPageName = "servicestates",
                 ForceNavBarTickersInvisible = false,
-                PageBackgroundName = null
+                PageBackgroundFileName = null
             }
         });
         if (NavigationManager.Uri == NavigationManager.BaseUri) UIState.CurrentPage = UIState.PageContexts.First(x => x.InformalPageName.IsEmpty());

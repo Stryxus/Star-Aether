@@ -16,6 +16,7 @@ namespace UEESA.Client.Data
         public class Utilities
         {
             public async Task SetTitle(string title) => await JSR.InvokeAsync<string>("utilities.setTitle", title);
+            public async Task SetVideoSpeed(string elementID, float speed) => await JSR.InvokeAsync<string>("utilities.setVideoSpeed", elementID, speed);
         }
 
         public class Runtime
@@ -40,9 +41,9 @@ namespace UEESA.Client.Data
         public class AnimationManager
         {
             public float Time_PageFade = 0.3F;
-            public float Time_BackgroundFade = 1F;
-            public float Time_NavigationBarSlideIn = 1F;
-            public float Time_ToolsBarSlideIn = 1F;
+            public float Time_BackgroundFade = 0.5F;
+            public float Time_NavigationBarSlideIn = 0.5F;
+            public float Time_ToolsBarSlideIn = 0.5F;
             public float Time_NavigationBarTickerSlide = 1.5F;
             public float Time_SettingsPanelSlide = 0.5F;
 

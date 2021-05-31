@@ -103,6 +103,68 @@
     font-display: swap;
 }
 
+
+
+@font-face {
+    font-family: 'Zebulon';
+    font-weight: 600;
+    src: url('/fonts/Zebulon.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Zebulon';
+    font-weight: 600;
+    font-style: italic;
+    src: url('/fonts/Zebulon-Italic.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Zebulon';
+    font-weight: 700;
+    src: url('/fonts/Zebulon-Bold.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Zebulon';
+    font-weight: 700;
+    font-style: italic;
+    src: url('/fonts/Zebulon-Bold-Italic.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Zebulon-Condensed';
+    font-weight: 600;
+    src: url('/fonts/Zebulon-Condensed.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Zebulon-Condensed';
+    font-weight: 600;
+    font-style: italic;
+    src: url('/fonts/Zebulon-Condensed-Italic.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Zebulon-Condensed';
+    font-weight: 600;
+    src: url('/fonts/Zebulon-Condensed-Bold.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Zebulon-Condensed';
+    font-weight: 600;
+    font-style: italic;
+    src: url('/fonts/Zebulon-Condensed-BoldItalic.woff2') format('woff2');
+    font-display: swap;
+}
+
 @import "thirdparty/bootstrap/scss/bootstrap-grid";
 @import "thirdparty/fontawesome/scss/fontawesome";
 @import "thirdparty/fontawesome/scss/brands";

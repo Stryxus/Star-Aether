@@ -1,5 +1,54 @@
 #index-page {
+    padding-left: 100px;
+    padding-right: 100px;
 
+    & > .col > * {
+        margin-bottom: 100px;
+
+        &:first-child {
+            margin-bottom: 50px;
+        }
+
+        &:last-child {
+            margin-bottom: initial;
+        }
+    }
+
+    #welcome {
+        
+        #logo-showcase {
+            width: 400px;
+        }
+    
+        #title {
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        #slogan {
+            margin-top: 4px;
+            font-weight: lighter !important;
+            text-align: center;
+        }
+    }
+
+    #what-is-sa {
+        text-align: center;
+    }
+
+    #founder {
+
+        #founder-img {
+            width: 400px;
+        }
+    }
+
+    #contributing {
+
+        #contributing-img {
+            width: 400px;
+        }
+    }
 }
 
 // BEGIN-Min-Width
@@ -16,7 +65,6 @@
 // Desktop
 
 @include media-breakpoint-up(lg) {
-
     #index-page {
 
     }

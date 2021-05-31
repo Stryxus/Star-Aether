@@ -27,6 +27,7 @@
             await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_PageFade));
             UIState.CurrentPage = UIState.PageContexts.First(x => x.InformalPageName == href[1..]);
             NavigationManager.NavigateTo(href);
+            await AnimationManager.FadePageInOut(true);
         }
     }
 }

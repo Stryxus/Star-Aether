@@ -1,9 +1,18 @@
-﻿@if (UIState.CurrentPage.PageBackgroundName != null)
+﻿@if (UIState.CurrentPage.PageBackgroundFileName != null)
 {
-    <img id="background" src="@("/img/backgrounds/" + UIState.CurrentPage.PageBackgroundName + ".webp")" />
+    @if (UIState.CurrentPage.PageBackgroundFileName.EndsWith(".webp"))
+    {
+        <img id="background" src="@("/img/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName)" />
+    }
+    else if (UIState.CurrentPage.PageBackgroundFileName.EndsWith(".webm"))
+    {
+        <video id="background" src="@("/vid/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName)" autoplay muted loop />
+    }
 }
 
 @inject UIState UIState
+
+@inject JSInterface.Utilities Utilities
 
 @code {
 
