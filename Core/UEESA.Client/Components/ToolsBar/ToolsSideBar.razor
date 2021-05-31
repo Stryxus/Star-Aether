@@ -9,21 +9,8 @@
     }
 </div>
 
-@inject InitializationState InitState
 @inject UIState UIState
 
-@inject JSInterface.AnimationManager AnimationManager
-
 @code {
-
-    protected override async Task OnInitializedAsync()
-    {
-        InitState.OnAppLoaded += async () =>
-        {
-            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
-            await AnimationManager.SlideInToolsBar();
-        };
-        await base.OnInitializedAsync();
-    }
 
 }

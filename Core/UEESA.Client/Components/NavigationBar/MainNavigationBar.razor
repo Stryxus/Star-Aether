@@ -46,19 +46,10 @@
     </div>
 </nav>
 
-@inject InitializationState InitState
 @inject ClientState ClientState
 @inject UIState UIState
 
-@inject JSInterface.AnimationManager AnimationManager
-
 @code {     
-
-    protected override async Task OnInitializedAsync()
-    {
-        InitState.OnAppLoaded += async () => await AnimationManager.SlideInNavigationBar();
-        await base.OnInitializedAsync();
-    }
 
     private bool IsMobileNavbarVisible = false;
 
