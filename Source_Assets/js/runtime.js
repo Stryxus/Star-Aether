@@ -1,21 +1,14 @@
 GLOBAL.JSRuntime = null;
 GLOBAL.runtime = function (ref) 
 {
-    if (GLOBAL.JSRuntime === null)
-    {
-        GLOBAL.JSRuntime = ref;
-    } 
+    if (GLOBAL.JSRuntime === null) GLOBAL.JSRuntime = ref;
 };
 
 (function () {
-
     var index = 0;
     var resources = [];
 
-    var webglalerted = false;
-
     window.runtime = {
-
         load: (relativePath) => 
         {
             function createResource(type, location, url) {
@@ -57,10 +50,6 @@ GLOBAL.runtime = function (ref)
             }
             return false;
         },
-        loadWebGL2: () => 
-        {
-            
-        }
+        loadWebGL2: () => {}
     }
-
 })();

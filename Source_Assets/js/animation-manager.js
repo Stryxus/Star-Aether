@@ -1,22 +1,15 @@
 GLOBAL.JSAnimationInterface = null;
 GLOBAL.animationInterface = function (ref) 
 {
-    if (GLOBAL.JSAnimationInterface === null)
-    {
-        GLOBAL.JSAnimationInterface = ref;
-    } 
+    if (GLOBAL.JSAnimationInterface === null) GLOBAL.JSAnimationInterface = ref;
 };
 
 (function () {
 
     window.animationInterface = {
-
         fadeInOutPage: (timeSecs, fadeIn) => 
         {
-            if (!fadeIn) 
-            {
-                TweenMax.to("#page-body", timeSecs, { opacity: 0, yPercent: -5, ease: "power3.out" });
-            }
+            if (!fadeIn) TweenMax.to("#page-body", timeSecs, { opacity: 0, yPercent: -5, ease: "power3.out" });
             else 
             {
                 TweenMax.to("#page-body", 0, { yPercent: 5 });
@@ -26,14 +19,8 @@ GLOBAL.animationInterface = function (ref)
         fadeInOutBackground: (timeSecs, fadeIn) => 
         {
             if (document.getElementById("background") !== null) {
-                if (!fadeIn) 
-                {
-                    TweenMax.to("#background", timeSecs, { opacity: 0, ease: "power3.out" });
-                }
-                else 
-                {
-                    TweenMax.to("#background", timeSecs, { opacity: 1, ease: "power3.out" });
-                }
+                if (!fadeIn) TweenMax.to("#background", timeSecs, { opacity: 0, ease: "power3.out" });
+                else TweenMax.to("#background", timeSecs, { opacity: 1, ease: "power3.out" });
             }
         },
         slideInNavigationBar: (timeSecs) => 
@@ -56,10 +43,7 @@ GLOBAL.animationInterface = function (ref)
                 TweenMax.to("#headlines-navbar-ticker", 0, { right: -width });
                 TweenMax.to("#headlines-navbar-ticker", timeSecs, { right: 0, ease: "power3.out" });
             }
-            else 
-            {
-                TweenMax.to("#headlines-navbar-ticker", timeSecs, { right: -width, ease: "power3.out" });
-            }
+            else TweenMax.to("#headlines-navbar-ticker", timeSecs, { right: -width, ease: "power3.out" });
         },
         slideInOutEonomeNavBarTicker: (timeSecs, slideOut) => 
         {
@@ -69,10 +53,7 @@ GLOBAL.animationInterface = function (ref)
                 TweenMax.to("#econome-navbar-ticker", 0, { right: -width });
                 TweenMax.to("#econome-navbar-ticker", timeSecs, { right: 0, ease: "power3.out" });
             }
-            else 
-            {
-                TweenMax.to("#econome-navbar-ticker", timeSecs, { right: -width, ease: "power3.out" });
-            }
+            else TweenMax.to("#econome-navbar-ticker", timeSecs, { right: -width, ease: "power3.out" });
         },
         slideInOutSettingsPanel: (timeSecs, slideOut) => 
         {
@@ -82,11 +63,7 @@ GLOBAL.animationInterface = function (ref)
                 TweenMax.to("#settings-panel", 0, { right: -width });
                 TweenMax.to("#settings-panel", timeSecs, { right: 0, ease: "power3.out" });
             }
-            else 
-            {
-                TweenMax.to("#settings-panel", timeSecs, { right: -width, ease: "power3.out" });
-            }
+            else TweenMax.to("#settings-panel", timeSecs, { right: -width, ease: "power3.out" });
         }
     }
-
 })();
