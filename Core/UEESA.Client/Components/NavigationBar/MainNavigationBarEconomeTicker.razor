@@ -1,4 +1,4 @@
-﻿@if (UIState.IsEconomeNavBarTickerVisible)
+﻿@if (UIState.IsEconomeNavBarTickerVisible && ClientState.Settings.ShowEconomeTicker)
 {
     <div id="econome-navbar-ticker">
         <div id="econome-navbar-ticker-title" class="col">
@@ -152,34 +152,11 @@
 @inject ClientState ClientState
 @inject UIState UIState
 
-@inject JSInterface.AnimationManager AnimationManager
-
 @code {
-
-    private bool VisibilityTrigger = true;
 
     protected override async Task OnInitializedAsync()
     {
-        UIState.OnIsEconomeNavBarTickerVisibleChange += () =>
-        {
-            VisibilityTrigger = true;
-            StateHasChanged();
-        };
+        UIState.OnIsEconomeNavBarTickerVisibleChange += StateHasChanged;
         await base.OnInitializedAsync();
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (UIState.IsEconomeNavBarTickerVisible && ClientState.Settings.ShowEconomeTicker && VisibilityTrigger)
-        {
-            VisibilityTrigger = false;
-            if (!UIState.HasEconomeNavBarTickerInitialRendererd)
-            {
-                UIState.HasEconomeNavBarTickerInitialRendererd = true;
-                await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
-            }
-            await AnimationManager.SlideInOutEonomeNavBarTicker(true);
-        }
-        await base.OnAfterRenderAsync(firstRender);
     }
 }

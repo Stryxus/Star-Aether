@@ -1,4 +1,4 @@
-﻿@if (UIState.IsHeadlinesNavBarTickerVisible)
+﻿@if (UIState.IsHeadlinesNavBarTickerVisible && ClientState.Settings.ShowHealinesTicker)
 {
     <div id="headlines-navbar-ticker">
         <div id="headlines-navbar-ticker-title" class="col-auto">
@@ -15,34 +15,11 @@
 @inject ClientState ClientState
 @inject UIState UIState
 
-@inject JSInterface.AnimationManager AnimationManager
-
 @code {
-
-    private bool VisibilityTrigger = true;
 
     protected override async Task OnInitializedAsync()
     {
-        UIState.OnIsEconomeNavBarTickerVisibleChange += () =>
-        {
-            VisibilityTrigger = true;
-            StateHasChanged();
-        };
+        UIState.OnIsHeadlinesNavBarTickerVisibleChange += StateHasChanged;
         await base.OnInitializedAsync();
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (UIState.IsHeadlinesNavBarTickerVisible && ClientState.Settings.ShowHealinesTicker && VisibilityTrigger)
-        {
-            VisibilityTrigger = false;
-            if (!UIState.HasHeadlinesNavBarTickerInitialRendererd)
-            {
-                UIState.HasHeadlinesNavBarTickerInitialRendererd = true;
-                await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
-            }
-            await AnimationManager.SlideInOutHeadlinesNavBarTicker(true);
-        }
-        await base.OnAfterRenderAsync(firstRender);
     }
 }
