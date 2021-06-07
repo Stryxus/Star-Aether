@@ -6,7 +6,7 @@
     }
     else if (UIState.CurrentPage.PageBackgroundFileName.EndsWith(".webm"))
     {
-        <video id="background" src="@("/vid/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName)" autoplay muted loop />
+        <video id="background" src="@("/vid/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName)" autoplay muted loop @onloadend="SetBackgroundSpeed" />
     }
 }
 
@@ -21,4 +21,6 @@
         UIState.OnPageChanged += StateHasChanged;
         await base.OnInitializedAsync();
     }
+
+    private async void SetBackgroundSpeed() => await Utilities.SetVideoSpeed("background", 0.5F);
 }
