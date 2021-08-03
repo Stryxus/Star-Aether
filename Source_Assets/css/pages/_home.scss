@@ -1,6 +1,4 @@
 #index-page {
-    padding-left: 100px;
-    padding-right: 100px;
 
     & > .col > * {
         margin-bottom: 100px;
@@ -12,6 +10,24 @@
         &:last-child {
             margin-bottom: initial;
         }
+    }
+
+    #warning {
+        background-color: rgba(200, 0, 0, 0.75);
+        color: white;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        
+        h6 {
+            width: 100%;
+            text-align: center;
+            margin: 0px;
+        }
+    }
+
+    #welcome, #what-is-sa, #founder, #contributing {
+        padding-left: 100px;
+        padding-right: 100px;
     }
 
     #welcome {
