@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Platforms>x64</Platforms>
     <UserSecretsId>6bbb3e48-422e-4fbc-9133-003a99c3d85c</UserSecretsId>
     <Configurations>Debug;Release;Release Testing</Configurations>
