@@ -64,7 +64,7 @@
                         width: 221px;
             
                         &.active {
-                            background-color: $colour-grey-3-trans-high;
+                            background-color: $colour-grey-10-trans-low;
                         }
             
                         &:hover {
@@ -73,10 +73,10 @@
             
                         img {
                             position: absolute;
-                            height: 160px;
-                            width: 160px;
-                            bottom: 20px;
-                            left: 10px;
+                            height: 120px;
+                            width: 120px;
+                            bottom: 30px;
+                            left: 20px;
                             cursor: pointer;
                         }
                     }
