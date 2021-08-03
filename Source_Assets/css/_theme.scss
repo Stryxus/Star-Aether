@@ -52,6 +52,11 @@ main {
     & > .row {
         margin: 0px !important;
 
+        & > * {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+        }
+
         &.no-scroll {
             height: calc(100% - #{$navigation-bar-height + px} + 12px) !important;
             overflow-y: hidden !important;
