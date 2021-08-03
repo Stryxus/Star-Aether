@@ -83,6 +83,17 @@ GLOBAL.animationInterface = function (ref)
                 }
                 else TweenMax.to("#settings-panel", timeSecs, { right: -width, ease: "power3.out" });
             }
+        },
+        scrollTo: (position) => 
+        {
+            TweenMax.to(document.getElementById("page-body").children[0].children[0], {duration: 1, ease: "power3.out", scrollTo: position});
+        },
+        scrollToElement: (elementID) => 
+        {
+            if (document.getElementById(elementID) !== null) 
+            {
+                TweenMax.to(document.getElementById("page-body").children[0].children[0], {duration: 1, ease: "power3.out", scrollTo: '#' + elementID});
+            }
         }
     }
 })();

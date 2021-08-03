@@ -54,6 +54,10 @@ namespace UEESA.Client.Data
             public async Task SlideInOutHeadlinesNavBarTicker(bool slideIn) => await JSR.InvokeVoidAsync("animationInterface.slideInOutHeadlinesNavBarTicker", Time_NavigationBarTickerSlide, slideIn);
             public async Task SlideInOutEonomeNavBarTicker(bool slideIn) => await JSR.InvokeVoidAsync("animationInterface.slideInOutEonomeNavBarTicker", Time_NavigationBarTickerSlide, slideIn);
             public async Task SlideInOutSettingsPanel(bool slideIn) => await JSR.InvokeVoidAsync("animationInterface.slideInOutSettingsPanel", Time_SettingsPanelSlide, slideIn);
+
+            // Universal
+            public async Task ScrollTo(int position) => await JSR.InvokeVoidAsync("animationInterface.scrollTo", position);
+            public async Task ScrollToElement(string elementID) => await JSR.InvokeVoidAsync("animationInterface.scrollToElement", elementID);
         }
     }
 }
