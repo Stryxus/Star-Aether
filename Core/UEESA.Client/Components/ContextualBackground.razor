@@ -4,7 +4,7 @@
     {
         <img id="background" src="@("/img/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName)" />
     }
-    else if (UIState.CurrentPage.PageBackgroundFileName.EndsWith(".webm"))
+    else if (UIState.CurrentPage.PageBackgroundFileName.EndsWith(".mp4"))
     {
         <video id="background" src="@("/vid/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName)" autoplay muted loop @onloadend="SetBackgroundSpeed" />
     }

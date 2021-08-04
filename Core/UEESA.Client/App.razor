@@ -47,28 +47,28 @@
                 FormalPageName = "Home",
                 InformalPageName = "",
                 ForceNavBarTickersInvisible = false,
-                PageBackgroundFileName = "home.webm"
+                PageBackgroundFileName = "home.mp4"
             },
             new PageContext
             {
                 FormalPageName = "Citizen Blog",
                 InformalPageName = "blog",
                 ForceNavBarTickersInvisible = false,
-                PageBackgroundFileName = null
+                PageBackgroundFileName = "blog.webp"
             },
             new PageContext
             {
                 FormalPageName = "Roadmap",
                 InformalPageName = "roadmap",
                 ForceNavBarTickersInvisible = true,
-                PageBackgroundFileName = null
+                PageBackgroundFileName = "roadmap.webp"
             },
             new PageContext
             {
                 FormalPageName = "Star Gazer",
                 InformalPageName = "stargazer",
                 ForceNavBarTickersInvisible = true,
-                PageBackgroundFileName = "stargazer.webp"
+                PageBackgroundFileName = null
             },
             new PageContext
             {
@@ -82,7 +82,7 @@
                 FormalPageName = "Load Up & Out",
                 InformalPageName = "loadupout",
                 ForceNavBarTickersInvisible = true,
-                PageBackgroundFileName = null
+                PageBackgroundFileName = "loadupout.webp"
             },
             new PageContext
             {
@@ -96,14 +96,14 @@
                 FormalPageName = "Xenoguist",
                 InformalPageName = "xenoguist",
                 ForceNavBarTickersInvisible = false,
-                PageBackgroundFileName = null
+                PageBackgroundFileName = "xenoguist.webp"
             },
             new PageContext
             {
                 FormalPageName = "Service States",
                 InformalPageName = "servicestates",
                 ForceNavBarTickersInvisible = false,
-                PageBackgroundFileName = null
+                PageBackgroundFileName = "servicestates.webp"
             }
         });
         if (NavigationManager.Uri == NavigationManager.BaseUri) UIState.CurrentPage = UIState.PageContexts.First(x => x.InformalPageName.IsEmpty());
