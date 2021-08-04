@@ -7,7 +7,7 @@
     <Configurations>Debug;Release;Release Testing</Configurations>
     <Nullable>annotations</Nullable>
     <AssemblyName>UEESA.Server</AssemblyName>
-    <ApplicationInsightsResourceId>/subscriptions/12b3bc2f-8120-4584-89a0-4d79087cc5b1/resourceGroups/Star-Athenaeum-Public/providers/microsoft.insights/components/Star-Athenaeum-Application-Insights</ApplicationInsightsResourceId>
+    <ApplicationInsightsResourceId>/subscriptions/12b3bc2f-8120-4584-89a0-4d79087cc5b1/resourceGroups/UEESA/providers/microsoft.insights/components/UEESA-App-Insights</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|x64'">
@@ -48,6 +48,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.18.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.0-preview.6.21355.2" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.6.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.13.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Stryxus.Lib" Version="2021.5.6" />
     <PackageReference Include="Stryxus.Lib.AspNet" Version="2021.5.6" />

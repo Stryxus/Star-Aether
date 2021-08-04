@@ -13,6 +13,7 @@ using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 #endif
 
 using UEESA.Server.WebSockets;
+using UEESA.Server.Data;
 using UEESA.Shared;
 
 namespace UEESA.Server
@@ -40,6 +41,7 @@ namespace UEESA.Server
                     });
                     services.AddResponseCaching();
                     services.AddWebSocketManager();
+                    services.AddSingleton<RSIRoadmapScraper>();
                 });
 
                 webBuilder.Configure((app) => 
@@ -71,6 +73,8 @@ namespace UEESA.Server
                         endpoints.MapRazorPages();
                         endpoints.MapFallbackToFile("index.html");
                     });
+
+                    Services.Get<RSIRoadmapScraper>();
                 });
             }).Build().RunAsync();
     }
