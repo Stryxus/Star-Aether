@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="C:\Users\conno\.nuget\packages\microsoft.azure.cosmos\3.20.1\contentFiles\any\netstandard2.0\ThirdPartyNotice.txt" />
     <Content Remove="C:\Users\conno\.nuget\packages\stryxus.lib.aspnet\2021.5.6\contentFiles\any\net5.0\BrowserDebugHost.dll" />
     <Content Remove="C:\Users\conno\.nuget\packages\stryxus.lib.aspnet\2021.5.6\contentFiles\any\net5.0\BrowserDebugHost.runtimeconfig.json" />
     <Content Remove="C:\Users\conno\.nuget\packages\stryxus.lib.aspnet\2021.5.6\contentFiles\any\net5.0\BrowserDebugProxy.dll" />
