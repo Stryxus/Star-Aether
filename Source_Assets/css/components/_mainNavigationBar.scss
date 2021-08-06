@@ -300,7 +300,7 @@
             
                 #settings-button {
                     height: ($navigation-bar-height - 18) + px !important;
-                    background-color: $colour-grey-3-trans-low;
+                    background-color: $colour-grey-1-trans-low;
                     backdrop-filter: $backdrop-blur-heavy;
                     border-left: 1px solid $colour-grey-10;
                     cursor: pointer;
@@ -329,7 +329,7 @@
                 #id-card {
                     width: ($navigation-bar-height * 4) + px;
                     height: ($navigation-bar-height - 18) + px !important;
-                    background-color: $colour-grey-3-trans-low;
+                    background-color: $colour-grey-1-trans-low;
                     backdrop-filter: $backdrop-blur-heavy;
                     border-left: 1px solid $colour-grey-10;
                     overflow: hidden;
