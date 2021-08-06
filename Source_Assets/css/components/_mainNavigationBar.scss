@@ -294,7 +294,7 @@
                     }
                 }
             
-                #settings-button {
+                .settings-button {
                     height: ($navigation-bar-height - 18) + px !important;
                     background-color: $colour-grey-1-trans-low;
                     backdrop-filter: $backdrop-blur-heavy;
@@ -322,7 +322,7 @@
                     }
                 }
             
-                #id-card {
+                .id-card {
                     width: ($navigation-bar-height * 4) + px;
                     height: ($navigation-bar-height - 18) + px !important;
                     background-color: $colour-grey-1-trans-low;

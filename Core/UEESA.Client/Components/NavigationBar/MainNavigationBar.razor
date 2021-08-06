@@ -4,19 +4,17 @@
             @if (IsMobileNavbarVisible)
             {
                 <MainNavigationBarNavigator IsMobileNavbarVisible="@IsMobileNavbarVisible" />
-            }
-            <div class="row justify-content-center bordered-line-top">
-                <img class="logo" src="favicon.svg" draggable="false" alt="Logo" />
-                <div class="col-auto">
-                    <button class="collapsing-button" @onclick="ToggleMobileNavbar">
-                        <i class="fas fa-bars"></i>
-                    </button>
+                <div class="row justify-content-center bordered-line-top">
+                    <img class="logo" src="favicon.svg" draggable="false" alt="Logo" />
+                    <div class="col-auto">
+                        <button class="collapsing-button" @onclick="ToggleMobileNavbar">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    <MainNavigationBarSettingsButton />
+                    <MainNavigationBarPersonalSection />
                 </div>
-                <button class="settings-button @(UIState.IsSettingsPanelVisible ? "active" : string.Empty)" @onclick="ToggleSettingsPanel">
-                    <i class="fas fa-cog"></i>
-                </button>
-                <img class="avatar" draggable="false" src="/img/avatar.svg" alt="Avatar" />
-            </div>
+            }
         </div>
     </div>
     <div class="row">
@@ -40,19 +38,16 @@
                 <div class="col">
                     <MainNavigationBarNavigator IsMobileNavbarVisible="@IsMobileNavbarVisible" />
                 </div>
+                <MainNavigationBarSettingsButton />
                 <MainNavigationBarPersonalSection />
             </div>
         </div>
     </div>
 </nav>
 
-@inject ClientState ClientState
-@inject UIState UIState
-
 @code {     
 
     private bool IsMobileNavbarVisible = false;
 
     private void ToggleMobileNavbar() => IsMobileNavbarVisible = !IsMobileNavbarVisible;
-    private void ToggleSettingsPanel() => UIState.ToggleSettingsPanelVisibility();
 }

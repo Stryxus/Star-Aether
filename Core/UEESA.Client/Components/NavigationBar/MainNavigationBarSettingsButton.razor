@@ -1,0 +1,16 @@
+﻿<div class="settings-button col-auto @(UIState.IsSettingsPanelVisible ? "active" : string.Empty)" @onclick="ToggleSettingsPanel">
+    <i class="fas fa-cog"></i>
+</div>
+
+@inject UIState UIState
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        UIState.OnIsSettingsPanelVisibleChange += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+
+    private void ToggleSettingsPanel() => UIState.ToggleSettingsPanelVisibility();
+}
