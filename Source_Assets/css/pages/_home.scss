@@ -1,14 +1,13 @@
 #index-page {
 
-    & > .col > * {
-        margin-bottom: 100px;
+    & > .col > .row {
 
-        &:first-child {
-            margin-bottom: 50px;
+        & > div {
+            padding: 100px;
         }
 
-        &:last-child {
-            margin-bottom: initial;
+        &:nth-child(3n) {
+            background-color: $colour-grey-2-trans-low;
         }
     }
 
@@ -27,15 +26,11 @@
         }
     }
 
-    #what-is-sa, #founder, #contributing {
-        padding-left: 100px;
-        padding-right: 100px;
-    }
-
     #welcome {
         width: 100%;
         height: calc(100% + #{ $navigation-bar-height + px });
         display: table;
+        margin: initial !important;
 
         & > * {
             display: table-cell; 
