@@ -88,6 +88,15 @@
       "quality": 90,
       "format": "webp"
     },
+
+    "/vid/backgrounds/home.png": {
+      "enabled": true,
+      "width": 1280,
+      "height": 720,
+      "quality": 90,
+      "format": "webp"
+    },
+
     "/css/bundle.scss": {
       "enabled": true
     },

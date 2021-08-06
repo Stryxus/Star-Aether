@@ -6,7 +6,7 @@
     }
     else if (UIState.CurrentPage.PageBackgroundFileName.EndsWith(".mp4"))
     {
-        <video id="background" src="@("/vid/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName)" autoplay muted loop @onloadend="SetBackgroundSpeed" />
+        <video id="background" src="@("/vid/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName)" autoplay muted loop @onloadend="SetBackgroundSpeed" poster="@("/vid/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName.Replace(".mp4", ".webp"))" />
     }
 }
 
