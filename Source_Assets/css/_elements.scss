@@ -103,7 +103,10 @@ select {
 }
 
 hr {
-    border-color: $colour-grey-10;
+    border-top: 1px $colour-grey-10 solid;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
 }
 
 // BEGIN-Min-Width
