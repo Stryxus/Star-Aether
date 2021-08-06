@@ -29,7 +29,7 @@ namespace UEESA.Client.WebSockets
 #if DEBUG || RELEASE_TEST
                     await ClientSocket.ConnectAsync(new Uri("wss://localhost:5001/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
 #else
-                    await ClientSocket.ConnectAsync(new Uri("wss://ueesa.net/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
+                    await ClientSocket.ConnectAsync(new Uri("wss://staraether.net/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
 #endif
 
                     async Task Continued()
