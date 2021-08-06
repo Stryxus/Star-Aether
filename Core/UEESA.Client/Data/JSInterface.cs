@@ -41,7 +41,7 @@ namespace UEESA.Client.Data
         public class AnimationManager
         {
             public float Time_PageFade = 0.3F;
-            public float Time_BackgroundFade = 0.5F;
+            public float Time_BackgroundFade = 1.5F;
             public float Time_NavigationBarSlideIn = 0.5F;
             public float Time_ToolsBarSlideIn = 0.5F;
             public float Time_NavigationBarTickerSlide = 1.5F;
