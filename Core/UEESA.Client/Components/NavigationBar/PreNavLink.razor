@@ -1,4 +1,4 @@
-﻿<a class="@(UIState.CurrentPage.InformalPageName == href[1..] ? "active" : string.Empty)" draggable="false" @onclick="ToggleUIState">@ChildContent</a>
+﻿<a class="@(UIState.CurrentPage.InformalPageName == href[1..] ? "active" : string.Empty)" draggable="false" @onclick="ToggleUIState" href="@UIState.CurrentPage.InformalPageName">@ChildContent</a>
 
 @inject UIState UIState
 @inject NavigationManager NavigationManager
