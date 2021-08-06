@@ -120,32 +120,7 @@
                     right: calc(-100%);
                     width: calc(100% - #{(($navigation-bar-height * 2)) + px});
                     clip-path: polygon(12px 0%, 100% 0px, 100% 100%, 34px 100%);
-                }
-            
-                #headlines-navbar-ticker, #econome-navbar-ticker {
-                    position: absolute;
-                    backdrop-filter: $backdrop-blur-heavy;
-            
-                    h6 {
-                        float: left;
-                        padding-top: 10px;
-                        padding-bottom: 10px;
-                        padding-left: 14px;
-                        padding-right: 14px;
-                        margin: 0px;
-                        font-weight: 300;
-                        font-size: 13px;
-                    }
-            
-                    #econome-navbar-ticker-title, #headlines-navbar-ticker-title {
-                        border-right: 1px solid $colour-grey-10;
-                        
-                        h6 {
-                            padding-left: 30px;
-                            background-color: $colour-grey-1-trans-high;
-                        }
-                    }
-            
+
                     #econome-navbar-ticker-content {
                         background-color: $colour-grey-1-trans-high;
                         overflow-y: hidden;
@@ -184,6 +159,31 @@
                                     padding-right: 24px;
                                 }
                             }
+                        }
+                    }
+                }
+            
+                #headlines-navbar-ticker, #econome-navbar-ticker {
+                    position: absolute;
+                    backdrop-filter: $backdrop-blur-heavy;
+            
+                    h6 {
+                        float: left;
+                        padding-top: 10px;
+                        padding-bottom: 10px;
+                        padding-left: 14px;
+                        padding-right: 14px;
+                        margin: 0px;
+                        font-weight: 300;
+                        font-size: 13px;
+                    }
+            
+                    #econome-navbar-ticker-title, #headlines-navbar-ticker-title {
+                        border-right: 1px solid $colour-grey-10;
+                        
+                        h6 {
+                            padding-left: 30px;
+                            background-color: $colour-grey-1-trans-high;
                         }
                     }
                 }
