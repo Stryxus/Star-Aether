@@ -99,20 +99,6 @@
                     width: calc(100% - #{(($navigation-bar-height * 2) - 28) + px});
                     clip-path: polygon(12px 0%, 100% 0px, 100% 100%, 34px 100%);
                     padding-right: 0px !important;
-            
-                    #headlines-navbar-ticker-content {
-                        background-color: $colour-grey-1-trans-high;
-                        overflow-y: hidden;
-                        overflow-x: scroll;
-            
-                        & > .row {
-                            flex-wrap: nowrap;
-            
-                            & > .col-auto {
-                                padding-right: 0px;
-                            }
-                        }
-                    }
                 }
             
                 #econome-navbar-ticker {
@@ -122,15 +108,10 @@
                     clip-path: polygon(12px 0%, 100% 0px, 100% 100%, 34px 100%);
 
                     #econome-navbar-ticker-content {
-                        background-color: $colour-grey-1-trans-high;
-                        overflow-y: hidden;
-                        overflow-x: scroll;
             
                         & > .row {
-                            flex-wrap: nowrap;
             
                             & > .col-auto {
-                                padding-right: 0px;
             
                                 h6 {
             
@@ -184,6 +165,20 @@
                         h6 {
                             padding-left: 30px;
                             background-color: $colour-grey-1-trans-high;
+                        }
+                    }
+
+                    #headlines-navbar-ticker-content, #econome-navbar-ticker-content {
+                        background-color: $colour-grey-1-trans-high;
+                        overflow-y: hidden;
+                        overflow-x: scroll;
+
+                        & > .row {
+                            flex-wrap: nowrap;
+            
+                            & > .col-auto {
+                                padding-right: 0px;
+                            }
                         }
                     }
                 }
