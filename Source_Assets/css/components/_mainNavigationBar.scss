@@ -120,7 +120,7 @@
                                     }
             
                                     &:nth-child(1) {
-                                        background-color: $colour-grey-4-trans-low;
+                                        background-color: $colour-grey-1-trans-low;
                                     }
                     
                                     &:nth-child(2) {
@@ -128,7 +128,7 @@
                                     }
                     
                                     &:nth-child(3) {
-                                        color: $colour-red-main;
+                                        color: $colour-green-main;
                                     }
                     
                                     &:nth-child(4) {
@@ -169,7 +169,7 @@
                     }
 
                     #headlines-navbar-ticker-content, #econome-navbar-ticker-content {
-                        background-color: $colour-grey-1-trans-high;
+                        background-color: $colour-grey-1-trans-low;
                         overflow-y: hidden;
                         overflow-x: scroll;
 
