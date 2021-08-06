@@ -44,7 +44,7 @@ main {
     padding: 0px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-    margin-left: $sidebar-width;
+    margin-left: $sidebar-width + 1 + px !important;
     margin-right: 0px !important;
     clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 130px 100%, 0px calc(100% - 226px));
 
