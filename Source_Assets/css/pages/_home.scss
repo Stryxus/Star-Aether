@@ -28,7 +28,7 @@
 
     #welcome {
         width: 100%;
-        height: calc(100% + #{ $navigation-bar-height + px });
+        height: calc(100% + #{ $navigation-bar-height * 2 + px });
         display: table;
         margin: initial !important;
 
