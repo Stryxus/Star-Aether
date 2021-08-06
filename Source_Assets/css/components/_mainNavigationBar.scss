@@ -225,7 +225,7 @@
 
                     & > .col {
                         backdrop-filter: $backdrop-blur-heavy;
-                        background-color: $colour-grey-1-trans-high;
+                        background-color: $colour-grey-2-trans-high;
                         clip-path: polygon(1px 0%, 100% 0px, 100% 100%, 38px 100%);
                         padding-right: ($navigation-bar-height * 7.1) + px;
                         height: inherit;
