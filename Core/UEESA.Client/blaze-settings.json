@@ -27,51 +27,51 @@
   "fileConfigs": {
     "/img/backgrounds/loadupout.png": {
       "enabled": true,
-      "width": 3840,
-      "height": 2160,
-      "quality": 90,
+      "width": 1920,
+      "height": 1080,
+      "quality": 80,
       "format": "webp"
     },
     "/img/backgrounds/fleeter.png": {
       "enabled": true,
-      "width": 3840,
-      "height": 2160,
-      "quality": 90,
+      "width": 1920,
+      "height": 1080,
+      "quality": 80,
       "format": "webp"
     },
     "/img/backgrounds/econome.png": {
       "enabled": true,
-      "width": 3840,
-      "height": 2160,
-      "quality": 90,
+      "width": 1920,
+      "height": 1080,
+      "quality": 80,
       "format": "webp"
     },
     "/img/backgrounds/xenoguist.png": {
       "enabled": true,
-      "width": 3840,
-      "height": 2160,
-      "quality": 90,
+      "width": 1920,
+      "height": 1080,
+      "quality": 80,
       "format": "webp"
     },
     "/img/backgrounds/servicestates.png": {
       "enabled": true,
-      "width": 3840,
-      "height": 2160,
-      "quality": 90,
+      "width": 1920,
+      "height": 1080,
+      "quality": 80,
       "format": "webp"
     },
     "/img/backgrounds/roadmap.png": {
       "enabled": true,
-      "width": 3840,
-      "height": 2160,
-      "quality": 90,
+      "width": 1920,
+      "height": 1080,
+      "quality": 80,
       "format": "webp"
     },
     "/img/backgrounds/blog.png": {
       "enabled": true,
-      "width": 3840,
-      "height": 2160,
-      "quality": 90,
+      "width": 1920,
+      "height": 1080,
+      "quality": 80,
       "format": "webp"
     },
     "/img/home/stryxus.png": {
