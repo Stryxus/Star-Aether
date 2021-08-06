@@ -63,6 +63,7 @@ namespace UEESA.Server
 
                     app.UseBlazorFrameworkFiles();
                     app.UseStaticFiles();
+                    app.UseHttpsRedirection();
                     app.UseResponseCompression();
                     app.UseResponseCaching();
                     app.UseWebSockets();
