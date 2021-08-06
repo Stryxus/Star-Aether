@@ -357,7 +357,7 @@ Core/UEESA.Client/wwwroot/**/*
 
 Core/UEESA.Server/Properties/serviceDependencies.json
 Core/UEESA.Server/Properties/serviceDependencies.local.json
-Core/UEESA.Server/Properties/serviceDependencies.ueesa - Web Deploy.json
+Core/UEESA.Server/Properties/serviceDependencies.ueesaapp - Zip Deploy.json
 Core/UEESA.Server/Properties/ServiceDependencies/*
 Core/UEESA.Server/GPUCache
 Core/UEESA.Server/debug.log
