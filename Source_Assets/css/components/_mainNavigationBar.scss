@@ -103,6 +103,7 @@
             
                 #econome-navbar-ticker {
                     bottom: ($navigation-bar-height) + px;
+                    padding-right: 0px !important;
                     right: calc(-100%);
                     width: calc(100% - #{(($navigation-bar-height * 2)) + px});
                     clip-path: polygon(12px 0%, 100% 0px, 100% 100%, 34px 100%);
