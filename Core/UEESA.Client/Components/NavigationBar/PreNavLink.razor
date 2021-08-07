@@ -1,4 +1,4 @@
-﻿<a class="@(PageState.CurrentPageContext.InformalPageName == href[1..] ? "active" : string.Empty)" draggable="false" @onclick="() => PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName == href[1..])">@ChildContent</a>
+﻿<a class="@(PageState.CurrentPageContext.InformalPageName == href[1..] ? "active" : string.Empty)" draggable="false" @onclick="SetPageContext">@ChildContent</a>
 
 @inject UIState.PageState PageState
 @inject NavigationManager NavigationManager
@@ -16,5 +16,10 @@
     {
         PageState.OnPagePreTransition += StateHasChanged;
         await base.OnInitializedAsync();
+    }
+
+    private void SetPageContext()
+    {
+        if (!PageState.IsPageTransitioning) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName == href[1..]);
     }
 }
