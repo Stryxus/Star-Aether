@@ -63,12 +63,12 @@ namespace UEESA.Client.Data.States
             }
             set
             {
-                if (isHeadlinesNavBarTickerVisible != value)
+                if (isHeadlinesNavBarTickerVisible != value && Services.Get<ClientState>().Settings != null)
                 {
                     isHeadlinesNavBarTickerVisible = value;
                     new Action(async () =>
                     {
-                        if (value)
+                        if (!CurrentPage.ForceNavBarTickersInvisible && Services.Get<ClientState>().Settings.ShowHealinesTicker)
                         {
                             if (!HasHeadlinesNavBarTickerInitialRendererd)
                             {
@@ -101,12 +101,12 @@ namespace UEESA.Client.Data.States
             }
             set
             {
-                if (isEconomeNavBarTickerVisible != value)
+                if (isEconomeNavBarTickerVisible != value && Services.Get<ClientState>().Settings != null)
                 {
                     isEconomeNavBarTickerVisible = value;
                     new Action(async () =>
                     {
-                        if (value)
+                        if (!CurrentPage.ForceNavBarTickersInvisible && Services.Get<ClientState>().Settings.ShowEconomeTicker)
                         {
                             if (!HasEconomeNavBarTickerInitialRendererd)
                             {

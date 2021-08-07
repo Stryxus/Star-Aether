@@ -1,4 +1,4 @@
-﻿@if (UIState.IsHeadlinesNavBarTickerVisible && ClientState.Settings.ShowHealinesTicker)
+﻿@if (UIState.IsHeadlinesNavBarTickerVisible)
 {
     <div id="headlines-navbar-ticker">
         <div id="headlines-navbar-ticker-title" class="col-auto">
@@ -12,8 +12,8 @@
     </div>
 }
 
-@inject ClientState ClientState
 @inject UIState UIState
+@inject ClientState ClientState
 
 @code {
 

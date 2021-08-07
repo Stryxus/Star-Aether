@@ -26,6 +26,10 @@ namespace UEESA.Client.Data.States
                 settings = value;
                 OnSettingsChanged?.Invoke();
                 Services.Get<InitializationState>().CheckAppLoaded();
+
+                // This is to trigger and apply the initial settings load.
+                Services.Get<UIState>().IsHeadlinesNavBarTickerVisible = value.ShowHealinesTicker;
+                Services.Get<UIState>().IsEconomeNavBarTickerVisible = value.ShowEconomeTicker;
             }
         }
 
