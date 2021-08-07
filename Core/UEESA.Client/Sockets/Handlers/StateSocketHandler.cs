@@ -2,12 +2,12 @@
 using System.Net.WebSockets;
 
 using UEESA.Client.Data.States;
-using UEESA.Shared.WebSockets;
+using UEESA.Shared.Sockets;
 using UEESA.Json.Roadmap;
 
 using Newtonsoft.Json;
 
-namespace UEESA.Client.WebSockets
+namespace UEESA.Client.Sockets.Handlers
 {
     public class StateSocketHandler : WebSocketHandler<ClientWebSocket>
     {

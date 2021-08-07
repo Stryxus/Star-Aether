@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net.WebSockets;
 
-namespace UEESA.Shared.WebSockets
+namespace UEESA.Shared.Sockets
 {
     public abstract class WebSocketHandler<T> where T : WebSocket
     {

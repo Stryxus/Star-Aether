@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Net.WebSockets;
 
-namespace UEESA.Shared.WebSockets
+namespace UEESA.Shared.Sockets
 {
     public class ConnectionManager<T> where T : WebSocket
     {

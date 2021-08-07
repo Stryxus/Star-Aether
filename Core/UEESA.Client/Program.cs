@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
-using UEESA.Client.WebSockets;
+using UEESA.Client.Sockets;
+using UEESA.Client.Sockets.Handlers;
 using UEESA.Client.Data;
 using UEESA.Client.Data.States;
 using UEESA.Client.Data.States.Roadmap;
-using UEESA.Shared.WebSockets;
+using UEESA.Shared.Sockets;
 
 namespace UEESA.Client
 {

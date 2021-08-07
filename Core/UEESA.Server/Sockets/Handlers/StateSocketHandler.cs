@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Net.WebSockets;
 
-using UEESA.Shared.WebSockets;
+using UEESA.Shared.Sockets;
 using UEESA.Json.Roadmap;
 
-namespace UEESA.Server.WebSockets
+namespace UEESA.Server.Sockets.Handlers
 {
     public class StateSocketHandler : WebSocketHandler<WebSocket>
     {

@@ -11,9 +11,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 using UEESA.Shared;
-using UEESA.Shared.WebSockets;
+using UEESA.Shared.Sockets;
 
-namespace UEESA.Server.WebSockets
+namespace UEESA.Server.Sockets
 {
     public class WebSocketManagerMiddleware
     {

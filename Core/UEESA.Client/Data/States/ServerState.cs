@@ -2,8 +2,9 @@
 using System.Net.WebSockets;
 using System.Threading.Tasks;
 
-using UEESA.Client.WebSockets;
-using UEESA.Shared.WebSockets;
+using UEESA.Client.Sockets;
+using UEESA.Client.Sockets.Handlers;
+using UEESA.Shared.Sockets;
 using UEESA.Json.Roadmap;
 
 namespace UEESA.Client.Data.States

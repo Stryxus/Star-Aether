@@ -4,11 +4,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net.WebSockets;
 
-using UEESA.Shared;
+using UEESA.Client.Sockets.Handlers;
 using UEESA.Client.Data.States;
-using UEESA.Shared.WebSockets;
+using UEESA.Shared;
+using UEESA.Shared.Sockets;
 
-namespace UEESA.Client.WebSockets
+namespace UEESA.Client.Sockets
 {
     internal class WebSocketManagerMiddleware
     {
