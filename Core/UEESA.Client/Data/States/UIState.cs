@@ -30,7 +30,6 @@ namespace UEESA.Client.Data.States
                 IsPageContextsSet = true;
                 PageContexts = contexts;
             }
-            else Logger.LogError("Page Contexts have already been set!");
         }
 
         internal event Action OnPageChanged;
