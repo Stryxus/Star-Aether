@@ -12,10 +12,7 @@ namespace UEESA.Client.Data.States
         private bool SingleAppLoadedLock;
         internal void CheckAppLoaded()
         {
-            if (
-                Services.Get<ClientState>().Settings != null &&
-                !SingleAppLoadedLock
-                )
+            if (Services.Get<ClientState>().Settings != null && !SingleAppLoadedLock)
             {
                 SingleAppLoadedLock = true;
                 OnAppLoaded?.Invoke();

@@ -1,4 +1,4 @@
-﻿@if (UIState.IsEconomeNavBarTickerVisible)
+﻿@if (ComponentState.IsNavBarTickerEconomeVisible)
 {
     <div id="econome-navbar-ticker">
         <div id="econome-navbar-ticker-title" class="col">
@@ -150,13 +150,13 @@
 }
 
 @inject ClientState ClientState
-@inject UIState UIState
+@inject UIState.ComponentState ComponentState
 
 @code {
 
     protected override async Task OnInitializedAsync()
     {
-        UIState.OnIsEconomeNavBarTickerVisibleChange += StateHasChanged;
+        ComponentState.OnNavBarTickerEconomeChanged += StateHasChanged;
         await base.OnInitializedAsync();
     }
 }

@@ -1,4 +1,4 @@
-﻿@if (UIState.IsHeadlinesNavBarTickerVisible)
+﻿@if (ComponentState.IsNavBarTickerHeadlinesVisible)
 {
     <div id="headlines-navbar-ticker">
         <div id="headlines-navbar-ticker-title" class="col-auto">
@@ -12,14 +12,14 @@
     </div>
 }
 
-@inject UIState UIState
+@inject UIState.ComponentState ComponentState
 @inject ClientState ClientState
 
 @code {
 
     protected override async Task OnInitializedAsync()
     {
-        UIState.OnIsHeadlinesNavBarTickerVisibleChange += StateHasChanged;
+        ComponentState.OnNavBarTickerHeadlinesChanged += StateHasChanged;
         await base.OnInitializedAsync();
     }
 }

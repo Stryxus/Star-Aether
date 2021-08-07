@@ -2,176 +2,178 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Components;
+
 namespace UEESA.Client.Data.States
 {
     internal class UIState
     {
-        private bool IsPageContextsSet = false;
-        internal bool IsPageTransitioning = false;
-        internal event Action OnPageContextsSet;
-        private List<PageContext> pageContexts = new();
-        internal List<PageContext> PageContexts
+        internal class PageState
         {
-            get
-            {
-                return pageContexts;
-            }
+            internal bool HasSiteBeenRendered;
+            internal bool IsPageTransitioning;
 
-            private set
-            {
-                pageContexts = value;
-                OnPageContextsSet.Invoke();
-            }
-        }
-        internal void SetPageContexts(List<PageContext> contexts)
-        {
-            if (!IsPageContextsSet)
-            {
-                IsPageContextsSet = true;
-                PageContexts = contexts;
-            }
-        }
+            internal event Action OnPagePreTransition;
+            internal event Action OnPageTransitionStart;
 
-        internal event Action OnPageChanged;
-        private PageContext currentPage;
-        internal PageContext CurrentPage 
-        {
-            get
-            {
-                return currentPage;
-            }
+            internal event Action OnPageTransitionBackgroundStage;
 
-            set
-            {
-                currentPage = value;
-                new Action(async () => await Services.Get<JSInterface.Utilities>().SetTitle("UEESA - " + value.FormalPageName)).Invoke();
-                OnPageChanged?.Invoke();
-                IsHeadlinesNavBarTickerVisible = !value.ForceNavBarTickersInvisible;
-                IsEconomeNavBarTickerVisible = !value.ForceNavBarTickersInvisible;
-            }
-        }
-        internal bool FirstRender = true;
+            internal event Action OnPageTransitionEnd;
+            internal event Action OnPagePostTransition;
 
-        internal event Action OnIsHeadlinesNavBarTickerVisibleChange;
-        internal bool HasHeadlinesNavBarTickerInitialRendererd;
-        private bool isHeadlinesNavBarTickerVisible;
-        internal bool IsHeadlinesNavBarTickerVisible
-        {
-            get
+            internal event Action OnPageContextsSet;
+            private List<PageContext> pageContexts;
+            internal List<PageContext> PageContexts
             {
-                return isHeadlinesNavBarTickerVisible;
-            }
-            set
-            {
-                if (isHeadlinesNavBarTickerVisible != value && Services.Get<ClientState>().Settings != null)
+                get
                 {
-                    isHeadlinesNavBarTickerVisible = value;
+                    return pageContexts;
+                }
+
+                set
+                {
+                    pageContexts = value;
+                    OnPageContextsSet?.Invoke();
+                }
+            }
+
+            internal bool IsCurrentContextPageSet;
+            private PageContext currentPageContext;
+            internal PageContext CurrentPageContext
+            {
+                get 
+                { 
+                    return currentPageContext; 
+                }
+
+                set
+                {
+                    currentPageContext = value;
                     new Action(async () =>
                     {
-                        if (!CurrentPage.ForceNavBarTickersInvisible && Services.Get<ClientState>().Settings.ShowHealinesTicker)
+                        IsCurrentContextPageSet = true;
+                        OnPagePreTransition?.Invoke();
+                        await Services.Get<JSInterface.Utilities>().SetTitle("UEESA - " + value.FormalPageName);
+                        if (HasSiteBeenRendered)
                         {
-                            if (!HasHeadlinesNavBarTickerInitialRendererd)
-                            {
-                                HasHeadlinesNavBarTickerInitialRendererd = true;
-                                await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarSlideIn));
-                            }
-                            OnIsHeadlinesNavBarTickerVisibleChange?.Invoke();
-                            await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(true);
+                            await Services.Get<ComponentState>().UpdateSettingsPanelState(true);
+                            IsPageTransitioning = true;
                         }
-                        else
-                        {
-                            await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_PageFade));
-                            await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(false);
-                            await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
-                            OnIsHeadlinesNavBarTickerVisibleChange?.Invoke();
-                        }
+                        OnPageTransitionStart?.Invoke();
+                        await Services.Get<JSInterface.AnimationManager>().FadeInOutBackground(false);
+                        await Services.Get<JSInterface.AnimationManager>().FadePageInOut(false);
+                        await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_PageFade));
+                        Services.Get<NavigationManager>().NavigateTo(value.InformalPageName);
+                        OnPageTransitionBackgroundStage?.Invoke();
+                        await Services.Get<ComponentState>().UpdateNavBarTickerHealinesState();
+                        await Services.Get<ComponentState>().UpdateNavBarTickerEconomeState();
+                        OnPageTransitionEnd?.Invoke();
+                        IsPageTransitioning = false;
+                        await Services.Get<JSInterface.AnimationManager>().FadeInOutBackground(true);
+                        await Services.Get<JSInterface.AnimationManager>().FadePageInOut(true);
+                        OnPagePostTransition?.Invoke();
+                        HasSiteBeenRendered = true;
                     }).Invoke();
                 }
             }
         }
 
-        internal event Action OnIsEconomeNavBarTickerVisibleChange;
-        internal bool HasEconomeNavBarTickerInitialRendererd;
-        private bool isEconomeNavBarTickerVisible;
-        internal bool IsEconomeNavBarTickerVisible
+        internal class ComponentState
         {
-            get
+
+            // Headlines Navigation Bar Ticker
+
+            internal event Action OnNavBarTickerHeadlinesChanged;
+            internal bool IsNavBarTickerHeadlinesVisible { private set; get; }
+
+            internal async Task UpdateNavBarTickerHealinesState()
             {
-                return isEconomeNavBarTickerVisible;
-            }
-            set
-            {
-                if (isEconomeNavBarTickerVisible != value && Services.Get<ClientState>().Settings != null)
+                if (Services.Get<PageState>().CurrentPageContext.AllowsNavBarTickers && Services.Get<ClientState>().Settings.ShowHealinesTicker)
                 {
-                    isEconomeNavBarTickerVisible = value;
-                    new Action(async () =>
-                    {
-                        if (!CurrentPage.ForceNavBarTickersInvisible && Services.Get<ClientState>().Settings.ShowEconomeTicker)
-                        {
-                            if (!HasEconomeNavBarTickerInitialRendererd)
-                            {
-                                HasEconomeNavBarTickerInitialRendererd = true;
-                                await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarSlideIn));
-                            }
-                            OnIsEconomeNavBarTickerVisibleChange?.Invoke();
-                            await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(true);
-                        }
-                        else
-                        {
-                            await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_PageFade));
-                            await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(false);
-                            await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
-                            OnIsEconomeNavBarTickerVisibleChange?.Invoke();
-                        }
-                    }).Invoke();
+                    IsNavBarTickerHeadlinesVisible = true;
+                    OnNavBarTickerHeadlinesChanged?.Invoke();
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(true);
+                }
+                else
+                {
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(false);
+                    await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
+                    IsNavBarTickerHeadlinesVisible = false;
+                    OnNavBarTickerHeadlinesChanged?.Invoke();
                 }
             }
-        }
 
-        internal event Action OnIsSettingsPanelVisibleChange;
-        private bool isSettingPanelVisible;
-        internal bool IsSettingsPanelVisible 
-        {
-            get
+            // Econome Navigation Bar Ticker
+
+            internal event Action OnNavBarTickerEconomeChanged;
+            internal bool IsNavBarTickerEconomeVisible { private set; get; }
+
+            internal async Task UpdateNavBarTickerEconomeState()
             {
-                return isSettingPanelVisible;
-            }
-            private set
-            {
-                if (!IsPageTransitioning)
+                if (Services.Get<PageState>().CurrentPageContext.AllowsNavBarTickers && Services.Get<ClientState>().Settings.ShowEconomeTicker)
                 {
-                    isSettingPanelVisible = value;
-                    if (!value) new Action(async () =>
+                    IsNavBarTickerEconomeVisible = true;
+                    OnNavBarTickerEconomeChanged?.Invoke();
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(true);
+                }
+                else
+                {
+                    await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(false);
+                    await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
+                    IsNavBarTickerEconomeVisible = false;
+                    OnNavBarTickerEconomeChanged?.Invoke();
+                }
+            }
+
+            // Settings Panel
+
+            internal event Action OnSettingsPanelVisibilityChanged;
+            internal bool IsSettingsPanelVisible { private set; get; }
+
+            internal async Task UpdateSettingsPanelState(bool forceClose = false)
+            {
+                if (!Services.Get<PageState>().IsPageTransitioning)
+                {
+                    if (IsSettingsPanelVisible || forceClose)
                     {
                         await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(false);
                         await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_SettingsPanelSlide));
-                        OnIsSettingsPanelVisibleChange?.Invoke();
-                    }).Invoke();
-                    else OnIsSettingsPanelVisibleChange?.Invoke();
+                        IsSettingsPanelVisible = false;
+                        OnSettingsPanelVisibilityChanged?.Invoke();
+                    }
+                    else
+                    {
+                        IsSettingsPanelVisible = true;
+                        OnSettingsPanelVisibilityChanged?.Invoke();
+                        // For some reason a very slight delay is needed. Im not sure why, this issue needs to be solved and the delay removed.
+                        await Task.Delay(TimeSpan.FromSeconds(0.005));
+                        await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(true);
+                    }
                 }
             }
-        }
-        internal void ToggleSettingsPanelVisibility() => IsSettingsPanelVisible = !IsSettingsPanelVisible;
 
-        internal event Action OnToolsBarTypeChanged;
-        private ToolsBarType toolsType;
-        internal ToolsBarType ToolsType
-        {
-            get
+            // Tools Bar
+
+            internal event Action OnToolsBarTypeChanged;
+            private ToolsBarType toolsType;
+            internal ToolsBarType ToolsType
             {
-                return toolsType;
-            } 
-            set 
-            {
-                toolsType = value;
-                OnToolsBarTypeChanged.Invoke();
+                get
+                {
+                    return toolsType;
+                }
+                set
+                {
+                    toolsType = value;
+                    OnToolsBarTypeChanged.Invoke();
+                }
             }
-        }
 
-        internal enum ToolsBarType
-        {
-            Default,
-            Roadmap
+            internal enum ToolsBarType
+            {
+                Default,
+                Roadmap
+            }
         }
     }
 }

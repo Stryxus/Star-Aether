@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using UEESA.Client.Data.Json;
 using UEESA.Json.Roadmap;
@@ -9,7 +10,7 @@ namespace UEESA.Client.Data.States
     {
         // Global Variables
 
-        internal Random Random = new Random();
+        internal Random Random = new();
 
         //
 
@@ -26,10 +27,6 @@ namespace UEESA.Client.Data.States
                 settings = value;
                 OnSettingsChanged?.Invoke();
                 Services.Get<InitializationState>().CheckAppLoaded();
-
-                // This is to trigger and apply the initial settings load.
-                Services.Get<UIState>().IsHeadlinesNavBarTickerVisible = value.ShowHealinesTicker;
-                Services.Get<UIState>().IsEconomeNavBarTickerVisible = value.ShowEconomeTicker;
             }
         }
 

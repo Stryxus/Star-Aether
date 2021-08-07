@@ -1,26 +1,22 @@
-﻿@if (UIState.CurrentPage.PageBackgroundFileName != null)
+﻿@if (PageState.CurrentPageContext.PageBackgroundFileName != null)
 {
-    @if (UIState.CurrentPage.PageBackgroundFileName.EndsWith(".webp"))
+    @if (PageState.CurrentPageContext.PageBackgroundFileName.EndsWith(".webp"))
     {
-        <img id="background" src="@("/img/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName)" />
+        <img id="background" src="@("/img/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName)" />
     }
-    else if (UIState.CurrentPage.PageBackgroundFileName.EndsWith(".mp4"))
+    else if (PageState.CurrentPageContext.PageBackgroundFileName.EndsWith(".mp4"))
     {
-        <video id="background" src="@("/vid/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName)" autoplay muted loop @onloadend="SetBackgroundSpeed" poster="@("/vid/backgrounds/" + UIState.CurrentPage.PageBackgroundFileName.Replace(".mp4", ".webp"))" />
+        <video id="background" src="@("/vid/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName)" autoplay muted loop poster="@("/vid/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName.Replace(".mp4", ".webp"))" />
     }
 }
 
-@inject UIState UIState
-
-@inject JSInterface.Utilities Utilities
+@inject UIState.PageState PageState
 
 @code {
 
     protected override async Task OnInitializedAsync()
     {
-        UIState.OnPageChanged += StateHasChanged;
+        PageState.OnPageTransitionBackgroundStage += StateHasChanged;
         await base.OnInitializedAsync();
     }
-
-    private async void SetBackgroundSpeed() => await Utilities.SetVideoSpeed("background", 0.5F);
 }

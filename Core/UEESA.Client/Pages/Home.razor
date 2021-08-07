@@ -22,7 +22,7 @@
                         </div>
                         <div id="scroll-down" class="row justify-content-center">
                             <div class="col-auto">
-                                <button @onclick="@ScrollDownFromTop"><p>Scroll down to learn a little more! <i class="fas fa-mouse"></i></p></button>
+                                <button @onclick="@(async () => await AnimationManager.ScrollToElement("what-is-sa"))"><p>Scroll down to learn a little more! <i class="fas fa-mouse"></i></p></button>
                             </div>
                         </div>
                     </div>
@@ -89,5 +89,4 @@
 
 @code {
 
-    private async void ScrollDownFromTop() => await AnimationManager.ScrollToElement("what-is-sa");
 }

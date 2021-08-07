@@ -25,11 +25,14 @@ namespace UEESA.Client
             HostBuilder.Services.AddScoped<StateSocketHandler>();
             HostBuilder.Services.AddScoped<ClientState>();
             HostBuilder.Services.AddScoped<InitializationState>();
-            HostBuilder.Services.AddScoped<UIState>();
             HostBuilder.Services.AddScoped<RoadmapV1State>();
             HostBuilder.Services.AddScoped<ServerState>();
             HostBuilder.Services.AddScoped<LocalStorageState>();
             HostBuilder.Services.AddScoped<WebSocketManagerMiddleware>();
+
+            HostBuilder.Services.AddScoped<UIState>();
+            HostBuilder.Services.AddScoped<UIState.PageState>();
+            HostBuilder.Services.AddScoped<UIState.ComponentState>();
 
             HostBuilder.Services.AddScoped<JSInterface>();
             HostBuilder.Services.AddScoped<JSInterface.Utilities>();

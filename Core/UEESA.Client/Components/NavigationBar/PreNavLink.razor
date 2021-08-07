@@ -1,6 +1,6 @@
-﻿<a class="@(UIState.CurrentPage.InformalPageName == href[1..] ? "active" : string.Empty)" draggable="false" @onclick="ToggleUIState">@ChildContent</a>
+﻿<a class="@(PageState.CurrentPageContext.InformalPageName == href[1..] ? "active" : string.Empty)" draggable="false" @onclick="() => PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName == href[1..])">@ChildContent</a>
 
-@inject UIState UIState
+@inject UIState.PageState PageState
 @inject NavigationManager NavigationManager
 @inject JSInterface.AnimationManager AnimationManager 
 
@@ -14,23 +14,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        UIState.OnPageChanged += StateHasChanged;
+        PageState.OnPagePreTransition += StateHasChanged;
         await base.OnInitializedAsync();
-    }
-
-    private async Task ToggleUIState()
-    {
-        if (UIState.CurrentPage.InformalPageName != href[1..])
-        {
-            if (UIState.IsSettingsPanelVisible) UIState.ToggleSettingsPanelVisibility();
-            UIState.IsPageTransitioning = true;
-            await AnimationManager.FadeInOutBackground(false);
-            await AnimationManager.FadePageInOut(false);
-            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_PageFade));
-            UIState.CurrentPage = UIState.PageContexts.First(x => x.InformalPageName == href[1..]);
-            NavigationManager.NavigateTo(href);
-            await AnimationManager.FadePageInOut(true);
-            UIState.IsPageTransitioning = false;
-        }
     }
 }

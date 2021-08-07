@@ -22,7 +22,7 @@
 @inject NavigationManager NavigationManager
 
 @inject InitializationState InitializationState
-@inject UIState UIState
+@inject UIState.PageState PageState
 @inject ClientState ClientState
 @inject ServerState ServerState
 @inject LocalStorageState LocalStorageState
@@ -39,75 +39,75 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await InitializationState.Init();
-        UIState.SetPageContexts(new List<PageContext>()
-    {
+        PageState.PageContexts = new()
+        {
             new PageContext
             {
                 FormalPageName = "Home",
                 InformalPageName = "",
-                ForceNavBarTickersInvisible = false,
+                AllowsNavBarTickers = true,
                 PageBackgroundFileName = "home.mp4"
             },
             new PageContext
             {
                 FormalPageName = "Citizen Blog",
                 InformalPageName = "blog",
-                ForceNavBarTickersInvisible = false,
+                AllowsNavBarTickers = true,
                 PageBackgroundFileName = "blog.webp"
             },
             new PageContext
             {
                 FormalPageName = "Roadmap",
                 InformalPageName = "roadmap",
-                ForceNavBarTickersInvisible = true,
+                AllowsNavBarTickers = false,
                 PageBackgroundFileName = "roadmap.webp"
             },
             new PageContext
             {
                 FormalPageName = "Star Gazer",
                 InformalPageName = "stargazer",
-                ForceNavBarTickersInvisible = true,
+                AllowsNavBarTickers = false,
                 PageBackgroundFileName = null
             },
             new PageContext
             {
                 FormalPageName = "Fleeter",
                 InformalPageName = "fleeter",
-                ForceNavBarTickersInvisible = true,
+                AllowsNavBarTickers = false,
                 PageBackgroundFileName = "fleeter.webp"
             },
             new PageContext
             {
                 FormalPageName = "Load Up & Out",
                 InformalPageName = "loadupout",
-                ForceNavBarTickersInvisible = true,
+                AllowsNavBarTickers = false,
                 PageBackgroundFileName = "loadupout.webp"
             },
             new PageContext
             {
                 FormalPageName = "Econome",
                 InformalPageName = "econome",
-                ForceNavBarTickersInvisible = false,
+                AllowsNavBarTickers = true,
                 PageBackgroundFileName = "econome.webp"
             },
             new PageContext
             {
                 FormalPageName = "Xenoguist",
                 InformalPageName = "xenoguist",
-                ForceNavBarTickersInvisible = false,
+                AllowsNavBarTickers = true,
                 PageBackgroundFileName = "xenoguist.webp"
             },
             new PageContext
             {
                 FormalPageName = "Service States",
                 InformalPageName = "servicestates",
-                ForceNavBarTickersInvisible = false,
+                AllowsNavBarTickers = true,
                 PageBackgroundFileName = "servicestates.webp"
             }
-        });
-        if (NavigationManager.Uri == NavigationManager.BaseUri) UIState.CurrentPage = UIState.PageContexts.First(x => x.InformalPageName.IsEmpty());
-        else UIState.CurrentPage = UIState.PageContexts.First(x => x.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1));
+        };
+        if (NavigationManager.Uri == NavigationManager.BaseUri) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());
+        else PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1));
+        await InitializationState.Init();
         await base.OnInitializedAsync();
     }
 }

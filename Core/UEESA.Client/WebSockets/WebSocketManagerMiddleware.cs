@@ -46,7 +46,7 @@ namespace UEESA.Client.WebSockets
                                 {
                                     string message = Encoding.UTF8.GetString(buffer);
                                     message = message.Replace("\0", string.Empty);
-                                    SocketHandler.Receive(ClientSocket, result, message.Substring(7, message.IndexOf("|MEND") - 7));
+                                    SocketHandler.Receive(ClientSocket, result, message[7..message.IndexOf("|MEND")]);
                                     return;
                                 }
                                 else if (result.MessageType == WebSocketMessageType.Close)
@@ -68,7 +68,7 @@ namespace UEESA.Client.WebSockets
 
         private async Task Receive(ClientWebSocket socket, Action<WebSocketReceiveResult, byte[]> handleMessage)
         {
-            ArraySegment<byte> buffer = new ArraySegment<byte>(new byte[Globals.MaxSocketBufferSize]);
+            ArraySegment<byte> buffer = new(new byte[Globals.MaxSocketBufferSize]);
             try
             {
                 while (socket.State == WebSocketState.Open)

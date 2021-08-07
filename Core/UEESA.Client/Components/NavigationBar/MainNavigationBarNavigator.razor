@@ -1,41 +1,44 @@
-﻿@if (IsMobileNavbarVisible)
+﻿@if (PageState.IsCurrentContextPageSet)
 {
-    <div class="row">
-        <div class="col">
-            @foreach (PageContext page in UIState.PageContexts)
-            {
-                @if (!page.InformalPageName.IsEmpty())
-                {
-                    <div class="row">
-                        <div class="col">
-                            <PreNavLink href="@("/" + page.InformalPageName.ToLower())"><p>@(page.FormalPageName)</p></PreNavLink>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-    </div>
-}
-else
-{
-    <div class="row">
-        <div class="col">
-            <div class="row">
-                @foreach (PageContext page in UIState.PageContexts)
+    @if (IsMobileNavbarVisible)
+    {
+        <div class="row">
+            <div class="col">
+                @foreach (PageContext page in PageState.PageContexts)
                 {
                     @if (!page.InformalPageName.IsEmpty())
                     {
-                        <div class="col-auto">
-                            <PreNavLink href="@("/" + page.InformalPageName.ToLower())"><p>@(page.FormalPageName)</p></PreNavLink>
+                        <div class="row">
+                            <div class="col">
+                                <PreNavLink href="@("/" + page.InformalPageName.ToLower())"><p>@(page.FormalPageName)</p></PreNavLink>
+                            </div>
                         </div>
                     }
                 }
             </div>
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    @foreach (PageContext page in PageState.PageContexts)
+                    {
+                        @if (!page.InformalPageName.IsEmpty())
+                        {
+                            <div class="col-auto">
+                                <PreNavLink href="@("/" + page.InformalPageName.ToLower())"><p>@(page.FormalPageName)</p></PreNavLink>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
 }
 
-@inject UIState UIState 
+@inject UIState.PageState PageState 
 
 @code {
 
@@ -44,7 +47,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        UIState.OnPageContextsSet += StateHasChanged;
+        PageState.OnPageContextsSet += StateHasChanged;
         await base.OnInitializedAsync();
     }
 }
