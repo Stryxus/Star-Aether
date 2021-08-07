@@ -74,24 +74,25 @@
       "quality": 80,
       "format": "webp"
     },
+
+    "/vid/backgrounds/home.png": {
+      "enabled": true,
+      "width": 1280,
+      "height": 720,
+      "quality": 90,
+      "format": "webp"
+    },
+
     "/img/home/stryxus.png": {
       "enabled": true,
-      "width": 656,
-      "height": 2029,
+      "width": 1683,
+      "height": 1838,
       "quality": 90,
       "format": "webp"
     },
     "/img/home/contributing.png": {
       "enabled": true,
       "width": 1310,
-      "height": 720,
-      "quality": 90,
-      "format": "webp"
-    },
-
-    "/vid/backgrounds/home.png": {
-      "enabled": true,
-      "width": 1280,
       "height": 720,
       "quality": 90,
       "format": "webp"
