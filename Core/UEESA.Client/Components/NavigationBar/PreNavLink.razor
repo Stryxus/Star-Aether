@@ -22,12 +22,15 @@
     {
         if (UIState.CurrentPage.InformalPageName != href[1..])
         {
+            if (UIState.IsSettingsPanelVisible) UIState.ToggleSettingsPanelVisibility();
+            UIState.IsPageTransitioning = true;
             await AnimationManager.FadeInOutBackground(false);
             await AnimationManager.FadePageInOut(false);
             await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_PageFade));
             UIState.CurrentPage = UIState.PageContexts.First(x => x.InformalPageName == href[1..]);
             NavigationManager.NavigateTo(href);
             await AnimationManager.FadePageInOut(true);
+            UIState.IsPageTransitioning = false;
         }
     }
 }

@@ -7,6 +7,7 @@ namespace UEESA.Client.Data.States
     internal class UIState
     {
         private bool IsPageContextsSet = false;
+        internal bool IsPageTransitioning = false;
         internal event Action OnPageContextsSet;
         private List<PageContext> pageContexts = new();
         internal List<PageContext> PageContexts
@@ -138,14 +139,17 @@ namespace UEESA.Client.Data.States
             }
             private set
             {
-                isSettingPanelVisible = value;
-                if (!value) new Action(async () =>
+                if (!IsPageTransitioning)
                 {
-                    await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(false);
-                    await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_SettingsPanelSlide));
-                    OnIsSettingsPanelVisibleChange?.Invoke();
-                }).Invoke();
-                else OnIsSettingsPanelVisibleChange?.Invoke();
+                    isSettingPanelVisible = value;
+                    if (!value) new Action(async () =>
+                    {
+                        await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(false);
+                        await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_SettingsPanelSlide));
+                        OnIsSettingsPanelVisibleChange?.Invoke();
+                    }).Invoke();
+                    else OnIsSettingsPanelVisibleChange?.Invoke();
+                }
             }
         }
         internal void ToggleSettingsPanelVisibility() => IsSettingsPanelVisible = !IsSettingsPanelVisible;
