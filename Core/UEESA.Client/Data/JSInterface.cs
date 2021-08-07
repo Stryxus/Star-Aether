@@ -40,11 +40,11 @@ namespace UEESA.Client.Data
 
         public class AnimationManager
         {
-            public float Time_PageFade = 0.25F;
-            public float Time_BackgroundFade = 0.5F;
+            public float Time_PageFade = 0.2F;
+            public float Time_BackgroundFade = 0.2F;
             public float Time_NavigationBarSlideIn = 0.5F;
             public float Time_ToolsBarSlideIn = 0.5F;
-            public float Time_NavigationBarTickerSlide = 1.5F;
+            public float Time_NavigationBarTickerSlide = 0.5F;
             public float Time_SettingsPanelSlide = 0.25F;
 
             public async Task FadePageInOut(bool fadeIn) => await JSR.InvokeVoidAsync("animationInterface.fadeInOutPage", Time_PageFade, fadeIn);
