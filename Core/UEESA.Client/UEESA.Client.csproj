@@ -19,7 +19,7 @@
 	<Nullable>annotations</Nullable>
 	<AssemblyName>UEESA.Client</AssemblyName>
 	<TypeScriptModuleKind>amd</TypeScriptModuleKind>
-	<RunAOTCompilation>true</RunAOTCompilation>
+	<RunAOTCompilation>false</RunAOTCompilation>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|AnyCPU'">
