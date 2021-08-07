@@ -89,18 +89,22 @@ namespace UEESA.Client.Data.States
 
             internal async Task UpdateNavBarTickerHealinesState()
             {
-                if (Services.Get<PageState>().CurrentPageContext.AllowsNavBarTickers && Services.Get<ClientState>().Settings.ShowHealinesTicker)
+                bool ShouldBeVisible = Services.Get<PageState>().CurrentPageContext.AllowsNavBarTickers && Services.Get<ClientState>().Settings.ShowHealinesTicker;
+                if (ShouldBeVisible != IsNavBarTickerHeadlinesVisible)
                 {
-                    IsNavBarTickerHeadlinesVisible = true;
-                    OnNavBarTickerHeadlinesChanged?.Invoke();
-                    await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(true);
-                }
-                else
-                {
-                    await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(false);
-                    await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
-                    IsNavBarTickerHeadlinesVisible = false;
-                    OnNavBarTickerHeadlinesChanged?.Invoke();
+                    if (ShouldBeVisible)
+                    {
+                        IsNavBarTickerHeadlinesVisible = true;
+                        OnNavBarTickerHeadlinesChanged?.Invoke();
+                        await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(true);
+                    }
+                    else
+                    {
+                        await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(false);
+                        await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
+                        IsNavBarTickerHeadlinesVisible = false;
+                        OnNavBarTickerHeadlinesChanged?.Invoke();
+                    }
                 }
             }
 
@@ -111,18 +115,22 @@ namespace UEESA.Client.Data.States
 
             internal async Task UpdateNavBarTickerEconomeState()
             {
-                if (Services.Get<PageState>().CurrentPageContext.AllowsNavBarTickers && Services.Get<ClientState>().Settings.ShowEconomeTicker)
+                bool ShouldBeVisible = Services.Get<PageState>().CurrentPageContext.AllowsNavBarTickers && Services.Get<ClientState>().Settings.ShowEconomeTicker;
+                if (ShouldBeVisible != IsNavBarTickerEconomeVisible)
                 {
-                    IsNavBarTickerEconomeVisible = true;
-                    OnNavBarTickerEconomeChanged?.Invoke();
-                    await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(true);
-                }
-                else
-                {
-                    await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(false);
-                    await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
-                    IsNavBarTickerEconomeVisible = false;
-                    OnNavBarTickerEconomeChanged?.Invoke();
+                    if (ShouldBeVisible)
+                    {
+                        IsNavBarTickerEconomeVisible = true;
+                        OnNavBarTickerEconomeChanged?.Invoke();
+                        await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(true);
+                    }
+                    else
+                    {
+                        await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(false);
+                        await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
+                        IsNavBarTickerEconomeVisible = false;
+                        OnNavBarTickerEconomeChanged?.Invoke();
+                    }
                 }
             }
 
