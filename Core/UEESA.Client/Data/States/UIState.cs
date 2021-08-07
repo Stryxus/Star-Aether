@@ -65,6 +65,7 @@ namespace UEESA.Client.Data.States
                         await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_PageFade));
                         Services.Get<NavigationManager>().NavigateTo(value.InformalPageName);
                         OnPageTransitionBackgroundStage?.Invoke();
+                        if (!HasSiteBeenRendered) await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
                         await Services.Get<ComponentState>().UpdateNavBarTickerHealinesState();
                         await Services.Get<ComponentState>().UpdateNavBarTickerEconomeState();
                         OnPageTransitionEnd?.Invoke();
