@@ -45,8 +45,8 @@ namespace UEESA.Client.Data.States
             set
             {
                 currentPage = value;
-                OnPageChanged?.Invoke();
                 new Action(async () => await Services.Get<JSInterface.Utilities>().SetTitle("UEESA - " + value.FormalPageName)).Invoke();
+                OnPageChanged?.Invoke();
                 IsHeadlinesNavBarTickerVisible = !value.ForceNavBarTickersInvisible;
                 IsEconomeNavBarTickerVisible = !value.ForceNavBarTickersInvisible;
             }
