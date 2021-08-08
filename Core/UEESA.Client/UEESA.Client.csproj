@@ -20,6 +20,7 @@
 	<AssemblyName>UEESA.Client</AssemblyName>
 	<TypeScriptModuleKind>amd</TypeScriptModuleKind>
 	<RunAOTCompilation>false</RunAOTCompilation>
+	<LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|AnyCPU'">

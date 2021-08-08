@@ -6,6 +6,7 @@
     <Configurations>Debug;Release;Release Testing</Configurations>
     <Nullable>annotations</Nullable>
     <AssemblyName>UEESA.Shared</AssemblyName>
+	<LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|AnyCPU'">

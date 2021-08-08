@@ -8,6 +8,7 @@
     <Nullable>annotations</Nullable>
     <AssemblyName>UEESA.Server</AssemblyName>
     <ApplicationInsightsResourceId>/subscriptions/12b3bc2f-8120-4584-89a0-4d79087cc5b1/resourceGroups/UEESA/providers/microsoft.insights/components/UEESA-App-Insights</ApplicationInsightsResourceId>
+	<LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|x64'">
