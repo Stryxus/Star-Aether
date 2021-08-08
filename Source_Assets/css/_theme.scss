@@ -30,6 +30,9 @@ html, body {
 }
 
 #background {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover !important;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -119,10 +122,6 @@ main {
 
 @include media-breakpoint-up(lg) {
 
-    #background {
-        width: 100vw;
-    }
-
     main {
     
         & > .row {
@@ -179,10 +178,6 @@ main {
 // Desktop
 
 @include media-breakpoint-down(lg) {
-
-    #background {
-        height: 100vh;
-    }
 
     main {
     
