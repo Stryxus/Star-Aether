@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Authentication;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +26,14 @@ namespace UEESA.Server
 
         public static async Task Main() => await Host.CreateDefaultBuilder().ConfigureWebHostDefaults((webBuilder) => 
             {
+                webBuilder.UseKestrel(kestrelOptions =>
+                {
+                    kestrelOptions.ConfigureHttpsDefaults(httpsOptions =>
+                    {
+                        httpsOptions.SslProtocols = SslProtocols.Tls13;
+                    });
+                });
+
                 webBuilder.ConfigureServices((services) =>
                 {
 #if DEBUG
