@@ -7,6 +7,7 @@ public class PrivateData
 {
     public string MongoDBConnectionString { get; set; }
     public string ApplicationInsightsConnectionString { get; set; }
+    public string MicrosoftIdentityPlatformClientID { get; set; }
 
     //
 

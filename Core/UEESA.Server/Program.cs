@@ -6,9 +6,15 @@ using System.Security.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Identity.Web;
+using Microsoft.Identity.Web.UI;
 #if RELEASE
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 #endif
@@ -16,7 +22,6 @@ using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using UEESA.Server.Sockets;
 using UEESA.Server.Sockets.Handlers;
 using UEESA.Server.Data;
-using UEESA.Shared;
 
 namespace UEESA.Server
 {
@@ -41,13 +46,28 @@ namespace UEESA.Server
 #else
                     services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.ApplicationInsightsConnectionString });
 #endif
-                    services.AddRazorPages();
+                    services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme).AddMicrosoftIdentityWebApp((MicrosoftIdentityOptions options) => 
+                    {
+                        options.Instance = "https://login.microsoftonline.com/";
+                        options.ClientId = PrivateData.Instance.MicrosoftIdentityPlatformClientID;
+                        options.TenantId = "common";
+                    });
+                    services.AddControllersWithViews(options =>
+                    {
+                        AuthorizationPolicy policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                        options.Filters.Add(new AuthorizeFilter(policy));
+                    });
+                    services.AddRazorPages().AddMicrosoftIdentityUI();
                     services.AddRouting();
                     services.AddResponseCompression(options =>
                     {
                         options.Providers.Add<BrotliCompressionProvider>();
                         options.Providers.Add<GzipCompressionProvider>();
                         options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
+                    });
+                    services.Configure<ForwardedHeadersOptions>(options =>
+                    {
+                        options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
                     });
                     services.AddResponseCaching();
                     services.AddWebSocketManager();
@@ -72,15 +92,18 @@ namespace UEESA.Server
                     }
 
                     app.UseBlazorFrameworkFiles();
-                    app.UseStaticFiles();
                     app.UseHttpsRedirection();
+                    app.UseStaticFiles();
                     app.UseResponseCompression();
                     app.UseResponseCaching();
                     app.UseWebSockets();
                     app.MapWebSocketManager("/state", Services.Get<StateSocketHandler>());
                     app.UseRouting();
+                    app.UseAuthentication();
+                    app.UseAuthorization();
                     app.UseEndpoints(endpoints =>
                     {
+                        endpoints.MapControllers();
                         endpoints.MapRazorPages();
                         endpoints.MapFallbackToFile("index.html");
                     });
