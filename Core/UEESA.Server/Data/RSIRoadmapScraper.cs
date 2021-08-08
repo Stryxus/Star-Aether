@@ -8,18 +8,35 @@ using System.Threading.Tasks;
 
 using MongoDB.Driver;
 using MongoDB.Bson;
+
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-using UEESA.Server.Data.Bson;
+using UEESA.Server.Data.Json.RSI;
+using UEESA.Shared.Data.Bson;
+using UEESA.Server.Sockets.Handlers;
 
 namespace UEESA.Server.Data
 {
-    public class RSIRoadmapScraper
+    internal class RSIRoadmapScraper
     {
-        private Uri RSI_Roadmap_JSON_Link = new("https://robertsspaceindustries.com/api/roadmap/v1/boards/1");
         private MongoClient DB;
         private IMongoDatabase RSI_DB;
-        private IMongoCollection<RSI_State_Indicator> RSI_STATE_INDICATORS_COLLECTION;
+
+        private RSI_Bson_Roadmap roadmap_Data;
+        internal RSI_Bson_Roadmap Roadmap_Data
+        {
+            get
+            {
+                return roadmap_Data;
+            }
+
+            set
+            {
+                roadmap_Data = value;
+                new Action(() => Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(RSI_Bson_Roadmap).Name + JsonConvert.SerializeObject(value)) ).Invoke();
+            }
+        }
 
         public RSIRoadmapScraper()
         {
@@ -32,7 +49,7 @@ namespace UEESA.Server.Data
             while (true)
             {
                 await CheckForUpdate();
-                await Task.Delay(TimeSpan.FromMinutes(2));
+                await Task.Delay(TimeSpan.FromMinutes(2.5));
             }
         }
 
@@ -43,45 +60,91 @@ namespace UEESA.Server.Data
             settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
             DB = new(settings);
             RSI_DB = DB.GetDatabase("rsidb");
-            RSI_STATE_INDICATORS_COLLECTION = RSI_DB.GetCollection<RSI_State_Indicator>("rsi_state_indicators");
-            Logger.LogInfo("Connection to UEESA Successful!");
+
+            Logger.LogInfo("Connection to UEESA Database Successful!");
         }
 
         private async Task CheckForUpdate()
         {
             Logger.LogInfo("Checking for RSI update...");
             HttpClient client = new();
-            HttpResponseMessage response = await client.GetAsync(RSI_Roadmap_JSON_Link);
-            JObject jo = JObject.Parse(await response.Content.ReadAsStringAsync());
-            string description = (string)jo["data"]["description"];
+            HttpResponseMessage response = await client.GetAsync("https://robertsspaceindustries.com/api/roadmap/v1/boards/1");
+            JObject rsi_json = JObject.Parse(await response.Content.ReadAsStringAsync());
+            RSI_Json_Roadmap parsed = JsonConvert.DeserializeObject<RSI_Json_Roadmap>(rsi_json["data"].ToString());
 
-            int livePos = description.IndexOf("Live Version:") + "Live Version:".Length + 1;
-            int ptuPos = description.IndexOf("PTU Version:") + "PTU Version".Length + 1;
-            int datePos = description.IndexOf("Latest Roadmap Roundup:") + "Latest Roadmap Roundup:".Length + 1;
+            DateTime updateDate = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(JsonConvert.DeserializeObject<long>(rsi_json["data"]["last_updated"].ToString()));
 
-            if (await RSI_STATE_INDICATORS_COLLECTION.CountDocumentsAsync(bson => true) > 0)
+            if (DateTime.UtcNow.Day - updateDate.Day >= 14 || Globals.IsDevelopmentMode) ProcessData();
+            else Logger.LogInfo("No RSI update available...");
+
+            void ProcessData()
             {
-                List<RSI_State_Indicator> indicators = await RSI_STATE_INDICATORS_COLLECTION.Find(bson => true).ToListAsync();
-                RSI_State_Indicator latestIndicator = indicators.OrderBy(x => x.change_date.TimeOfDay).Last();
-                if (latestIndicator.change_date < DateTime.ParseExact(description.Substring(datePos, 10), "MM/dd/yyyy", CultureInfo.InvariantCulture).ToUniversalTime() ||
-                    latestIndicator.live_version != description.Substring(livePos, description[livePos..].IndexOf(' ')) ||
-                    latestIndicator.ptu_version != description[ptuPos..]) await CreateNewIndicatorEntry();
-                else Logger.LogInfo("No RSI update available...");
+                Logger.LogInfo("- New RSI update available!");
+                Logger.LogInfo("| - Roadmap Update Date: " + updateDate.ToShortDateString() + " | " + updateDate.ToShortTimeString());
+                ConvertRSIJsonToUsableBson();
             }
-            else await CreateNewIndicatorEntry();
 
-            async Task CreateNewIndicatorEntry()
+            void ConvertRSIJsonToUsableBson()
             {
-                RSI_State_Indicator ind = new();
-                ind.Id = ObjectId.GenerateNewId();
-                ind.change_date = DateTime.ParseExact(description.Substring(datePos, 10), "MM/dd/yyyy", CultureInfo.InvariantCulture).ToUniversalTime();
-                ind.live_version = description.Substring(livePos, description[livePos..].IndexOf(' '));
-                ind.ptu_version = description[ptuPos..];
-                await RSI_STATE_INDICATORS_COLLECTION.InsertOneAsync(ind);
-                Logger.LogInfo("New RSI update available:");
-                Logger.LogInfo(" - Roadmap Update Date: " + ind.change_date.ToShortDateString() + " | " + ind.change_date.ToShortTimeString());
-                Logger.LogInfo(" - Live Update Version: " + ind.live_version);
-                Logger.LogInfo(" - PTU Update Version: " + ind.ptu_version);
+                Logger.LogInfo("  | - Converting RSI Json to Mongo Bson...");
+
+                RSI_Bson_Roadmap roadmap = new();
+                roadmap.updated_datetime = updateDate;
+                roadmap.releases = new();
+                int relIndex = 0;
+                int caIndex = 0;
+                foreach (RSI_Json_Roadmap_Release rel in parsed.releases)
+                {
+                    RSI_Bson_Roadmap_Release release = new();
+                    try
+                    {
+                        release.version = rel.name;
+                        release.release_date = rel.description;
+                        release.creation_datetime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(rel.time_created);
+                        release.updated_datetime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(rel.time_created);
+                        release.has_released = Convert.ToBoolean(rel.released);
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.LogError(ex.Message + " : " + ex.StackTrace);
+                    }
+                    release.cards = new();
+                    foreach (RSI_Json_Roadmap_Card ca in rel.cards)
+                    {
+                        RSI_Bson_Roadmap_Card card = new();
+                        try
+                        {
+                            card.name = ca.name;
+                            card.description = ca.body;
+                            card.category = (RSI_Bson_Roadmap_Card_Category)ca.category_id;
+                            card.creation_datetime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(ca.time_created);
+                            card.updated_datetime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(ca.time_modified);
+                            card.thumnail_path = rsi_json["data"]["releases"][relIndex]["cards"][caIndex]["thumbnail"]["urls"]["source"].ToString();
+                            card.status = Enum.Parse<RSI_Bson_Roadmap_Card_Status>(ca.status);
+                            card.has_released = Convert.ToBoolean(ca.released);
+                            card.teams = new();
+                            //foreach (RSI_Json_Roadmap_Card_Teams tea in ca.teams.Values) card.teams.Add(tea.title);
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.LogError(ex.Message + " : " + ex.StackTrace);
+                        }
+                        release.cards.Add(card);
+                        caIndex++;
+                    }
+                    roadmap.releases.Add(release);
+                    relIndex++;
+                    caIndex = 0;
+                }
+                roadmap.releases.Reverse();
+                Roadmap_Data = roadmap;
+
+                Logger.LogInfo("  | - RSI Json Conversion to Mongo Bson Successful!");
+                Logger.LogInfo("  | - Mongo Bson uploading to DB...");
+
+
+
+                Logger.LogInfo("  | - Mongo Bson successfully uploaded!");
             }
         }
     }

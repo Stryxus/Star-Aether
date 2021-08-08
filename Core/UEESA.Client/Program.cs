@@ -9,7 +9,6 @@ using UEESA.Client.Sockets;
 using UEESA.Client.Sockets.Handlers;
 using UEESA.Client.Data;
 using UEESA.Client.Data.States;
-using UEESA.Client.Data.States.Roadmap;
 using UEESA.Shared.Sockets;
 
 namespace UEESA.Client
@@ -26,7 +25,6 @@ namespace UEESA.Client
             HostBuilder.Services.AddScoped<StateSocketHandler>();
             HostBuilder.Services.AddScoped<ClientState>();
             HostBuilder.Services.AddScoped<InitializationState>();
-            HostBuilder.Services.AddScoped<RoadmapV1State>();
             HostBuilder.Services.AddScoped<ServerState>();
             HostBuilder.Services.AddScoped<LocalStorageState>();
             HostBuilder.Services.AddScoped<WebSocketManagerMiddleware>();

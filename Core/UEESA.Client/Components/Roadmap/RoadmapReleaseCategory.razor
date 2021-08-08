@@ -1,0 +1,20 @@
+﻿<div class="col">
+    <hr />
+    <div class="row category">
+        <div class="col">
+            @foreach (RSI_Bson_Roadmap_Card card in FilteredCards)
+            {
+                <RoadmapReleaseCardFrame Title="@(card.name)">
+                    <RoadmapReleaseCard Card="card" />
+                </RoadmapReleaseCardFrame>
+                <hr />
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public List<RSI_Bson_Roadmap_Card> FilteredCards { get; set; }
+}

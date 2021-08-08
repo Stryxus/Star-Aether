@@ -8,7 +8,7 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <h6>@Title</h6>
+                        <h6>@(new Regex(@" (?<=[A-Z])(?=[A-Z][a-z]) | (?<=[^A-Z])(?=[A-Z]) | (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace).Replace(Title, " "))</h6>
                     </div>
                 </div>
             </div>

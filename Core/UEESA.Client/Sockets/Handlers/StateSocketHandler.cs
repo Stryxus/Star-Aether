@@ -3,7 +3,7 @@ using System.Net.WebSockets;
 
 using UEESA.Client.Data.States;
 using UEESA.Shared.Sockets;
-using UEESA.Json.Roadmap;
+using UEESA.Shared.Data.Bson;
 
 using Newtonsoft.Json;
 
@@ -25,7 +25,7 @@ namespace UEESA.Client.Sockets.Handlers
             {
                 message = message.Replace("JSON.", string.Empty);
 
-                TryConvertJSON<RSI_Roadmap_State>((data) => Services.Get<ClientState>().NotifyRoadmapCardDataChange(data, false));
+                TryConvertJSON<RSI_Bson_Roadmap>((data) => Services.Get<ClientState>().NotifyRoadmapCardDataChange(data, false));
 
                 void TryConvertJSON<T>(Action<T> conversion)
                 {

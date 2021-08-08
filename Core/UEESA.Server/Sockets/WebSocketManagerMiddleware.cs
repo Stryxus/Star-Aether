@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-using UEESA.Shared;
 using UEESA.Shared.Sockets;
 
 namespace UEESA.Server.Sockets

@@ -3,22 +3,22 @@
         <div class="col">
             <div class="row">
                 <div class="col feature-img">
-                    @if (Feature.ThumbnailLink != null)
+                    @if (Card.thumnail_path != null)
                     {
-                        <img src="@(Feature.ThumbnailLink)" draggable="false" alt="Feature Image" />
+                        <img src="@("https://robertsspaceindustries.com" + Card.thumnail_path)" draggable="false" alt="Feature Image" />
                     }
-                    <div class="task-overlay @(Feature.Status.ToString().ToLower())">
+                    <div class="task-overlay @(Card.status.ToString().ToLower())">
                         <small>
-                            @Feature.Status.ToString()
+                            @Card.status.ToString()
                         </small>
                     </div>
                 </div>
             </div>
-            @if (Feature.Description != null)
+            @if (Card.description != null)
             {
                 <div class="row">
                     <div class="col feature-description">
-                        <small>@Feature.Description</small>
+                        <small>@Card.description</small>
                     </div>
                 </div>
             }
@@ -26,10 +26,8 @@
     </div>
 </div>
 
-@inject RoadmapV1State RoadmapV1State
-
 @code {
 
     [Parameter]
-    public RSI_Roadmap_State_Feature Feature { get; set; }
+    public RSI_Bson_Roadmap_Card Card { get; set; }
 }

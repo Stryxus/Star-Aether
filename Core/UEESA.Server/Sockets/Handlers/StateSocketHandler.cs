@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Net.WebSockets;
 
+using UEESA.Server.Data;
+using UEESA.Shared.Data.Bson;
 using UEESA.Shared.Sockets;
-using UEESA.Json.Roadmap;
+
+using Newtonsoft.Json;
 
 namespace UEESA.Server.Sockets.Handlers
 {
@@ -18,7 +21,7 @@ namespace UEESA.Server.Sockets.Handlers
 
             if (message.StartsWith("CMD.") && Enum.TryParse(typeof(Commands), message.Replace("CMD.", string.Empty), out object cmd))
             {
-                if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(RSI_Roadmap_State).Name /*+ Services.Get<MongoDBInterface>().GetRoadmapData()*/);
+                if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(RSI_Bson_Roadmap).Name + JsonConvert.SerializeObject(Services.Get<RSIRoadmapScraper>().Roadmap_Data));
             }
 
             return;

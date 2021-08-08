@@ -2,13 +2,13 @@
     width: 400px;
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 12px;
+    margin-right: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
     padding-right: 0px;
-    background-color: $colour-grey-1-trans-low;
+    background-color: $colour-grey-3-trans-high;
     backdrop-filter: $backdrop-blur-heavy;
     border-left: 1px solid $colour-grey-7-trans-high;
     border-right: 1px solid $colour-grey-7-trans-high;
@@ -130,7 +130,7 @@
                     background-color: $colour-grey-9-trans-low;
                 }
 
-                h6 {
+                small {
                     background-color: rgba($colour-grey-1, 0.1);
                     text-align: left;
                     padding-top: 8px;
@@ -139,9 +139,6 @@
                     padding-right: 10px;
                     margin-top: 0px;
                     margin-bottom: 0px;
-                    letter-spacing: 0.75px;
-                    font-size: 14px;
-                    font-weight: 200;
                 }
             }
 
