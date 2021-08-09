@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,7 +31,7 @@ namespace UEESA.Server
     {
         internal static IConfiguration Configuration { get; private set; }
 
-        public static async Task Main() => await Host.CreateDefaultBuilder().ConfigureWebHostDefaults((webBuilder) => 
+        public static async Task Main() => await Host.CreateDefaultBuilder().ConfigureWebHostDefaults(webBuilder => 
             {
                 webBuilder.UseKestrel(kestrelOptions =>
                 {
@@ -46,11 +48,22 @@ namespace UEESA.Server
 #else
                     services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.ApplicationInsightsConnectionString });
 #endif
-                    services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme).AddMicrosoftIdentityWebApp((MicrosoftIdentityOptions options) => 
+                    services.AddAuthentication(options =>
+                    {
+                        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    }).AddMicrosoftIdentityWebApp(options => 
                     {
                         options.Instance = "https://login.microsoftonline.com/";
                         options.ClientId = PrivateData.Instance.MicrosoftIdentityPlatformClientID;
                         options.TenantId = "common";
+                    });
+                    services.AddAuthentication(options =>
+                    {
+                        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    }).AddGoogle(options =>
+                    {
+                        options.ClientId = PrivateData.Instance.GoogleIdentityPlatformClientID;
+                        options.ClientSecret = PrivateData.Instance.GoogleIdentityPlatformClientSecret;
                     });
                     services.AddControllersWithViews(options =>
                     {
