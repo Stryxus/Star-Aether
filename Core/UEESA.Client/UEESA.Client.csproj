@@ -63,5 +63,9 @@
 	<ProjectReference Include="..\..\JSON\UEESA.Json\UEESA.Json.csproj" />
 	<ProjectReference Include="..\UEESA.Shared\UEESA.Shared.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Components\Profile\" />
+  </ItemGroup>
 
 </Project>
