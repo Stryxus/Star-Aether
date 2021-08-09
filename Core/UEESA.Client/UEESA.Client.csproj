@@ -41,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	<PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
 	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-preview.6.21355.2" />
 	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-preview.6.21355.2" PrivateAssets="all" />
 	<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0-preview.6.21352.12" />
@@ -62,10 +63,6 @@
   <ItemGroup>
 	<ProjectReference Include="..\..\JSON\UEESA.Json\UEESA.Json.csproj" />
 	<ProjectReference Include="..\UEESA.Shared\UEESA.Shared.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Components\Profile\" />
   </ItemGroup>
 
 </Project>
