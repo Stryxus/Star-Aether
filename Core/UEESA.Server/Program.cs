@@ -57,6 +57,8 @@ namespace UEESA.Server
                         options.ClientId = PrivateData.Instance.MicrosoftIdentityPlatformClientID;
                         options.TenantId = "common";
                     });
+#if DEBUG
+                    /*
                     services.AddAuthentication(options =>
                     {
                         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -65,6 +67,8 @@ namespace UEESA.Server
                         options.ClientId = PrivateData.Instance.GoogleIdentityPlatformClientID;
                         options.ClientSecret = PrivateData.Instance.GoogleIdentityPlatformClientSecret;
                     });
+                    */
+#endif
                     services.AddControllersWithViews(options =>
                     {
                         AuthorizationPolicy policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
