@@ -7,8 +7,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -60,18 +58,6 @@ namespace UEESA.Server
                             options.TenantId = "common";
                         });
                     }
-#if DEBUG
-                    /*
-                    services.AddAuthentication(options =>
-                    {
-                        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    }).AddGoogle(options =>
-                    {
-                        options.ClientId = PrivateData.Instance.GoogleIdentityPlatformClientID;
-                        options.ClientSecret = PrivateData.Instance.GoogleIdentityPlatformClientSecret;
-                    });
-                    */
-#endif
                     services.AddControllersWithViews(options =>
                     {
                         AuthorizationPolicy policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
