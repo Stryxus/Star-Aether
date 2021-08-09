@@ -100,7 +100,7 @@ namespace UEESA.Server
                     }
                     else
                     {
-                        app.UseExceptionHandler("/Error");
+                        app.UseExceptionHandler("/error");
                         app.UseHsts();
                     }
 
