@@ -24,7 +24,7 @@ namespace UEESA.Server.Data
             set
             {
                 roadmap_Data = value;
-                new Action(() => Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(RSI_Bson_Roadmap).Name + JsonConvert.SerializeObject(value)) ).Invoke();
+                Task.Run(() => Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(RSI_Bson_Roadmap).Name + JsonConvert.SerializeObject(value)) );
             }
         }
 

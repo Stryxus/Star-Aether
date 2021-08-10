@@ -49,7 +49,7 @@ namespace UEESA.Client.Data.States
                 set
                 {
                     currentPageContext = value;
-                    new Action(async () =>
+                    Task.Run(async () =>
                     {
                         IsCurrentContextPageSet = true;
                         OnPagePreTransition?.Invoke();
@@ -80,7 +80,7 @@ namespace UEESA.Client.Data.States
                         await Task.WhenAll(endStageTasks);
                         OnPagePostTransition?.Invoke();
                         HasSiteBeenRendered = true;
-                    }).Invoke();
+                    });
                 }
             }
         }

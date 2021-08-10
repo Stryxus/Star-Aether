@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Authentication;
+using System.Threading.Tasks;
 
 using MongoDB.Driver;
 using MongoDB.Bson;
@@ -23,7 +24,7 @@ namespace UEESA.Server.Data
 
         public MongoDBHandler()
         {
-            new Action(() => 
+            Task.Run(() => 
             {
                 Logger.LogInfo("Connecting to UEESA Database...");
                 MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(PrivateData.Instance.MongoDBConnectionString));
@@ -33,7 +34,7 @@ namespace UEESA.Server.Data
                 UEESA_USERS = UEESA_DB.GetCollection<UEESA_Bson_User>("users");
                 UEESA_ROADMAP_DATA = UEESA_DB.GetCollection<RSI_Bson_Roadmap>("roadmap_data");
                 Logger.LogInfo("Connection to UEESA Database Successful!");
-            }).Invoke();
+            });
         }
     }
 }
