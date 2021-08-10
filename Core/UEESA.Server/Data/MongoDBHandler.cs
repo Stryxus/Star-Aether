@@ -9,6 +9,10 @@ using UEESA.Shared.Data.Bson.Users;
 
 namespace UEESA.Server.Data
 {
+    /*
+     * For local testing, the default local standalone connection string is usually mongodb://mongodb0.example.com:27017 but this is not enforced for flexability depending on your setup.
+     */
+
     public class MongoDBHandler
     {
         private MongoClient Client;
