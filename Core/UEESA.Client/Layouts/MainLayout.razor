@@ -5,22 +5,6 @@
     @Body
 </main>
 
-@inject ClientState ClientState
-@inject JSInterface.AnimationManager AnimationManager
-
 @code {
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await base.OnAfterRenderAsync(firstRender);
-        await AnimationManager.FadeInOutBackground(true);
-        if (firstRender)
-        {
-            // This delay is here to get past the chug on load.
-            await AnimationManager.SlideInNavigationBar();
-            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_NavigationBarSlideIn));
-            await AnimationManager.SlideInToolsBar();
-            await Task.Delay(TimeSpan.FromSeconds(AnimationManager.Time_ToolsBarSlideIn));
-        }
-    }
 }

@@ -21,21 +21,7 @@ namespace UEESA.Client.Data.States
             internal event Action OnPageTransitionEnd;
             internal event Action OnPagePostTransition;
 
-            internal event Action OnPageContextsSet;
-            private List<PageContext> pageContexts;
-            internal List<PageContext> PageContexts
-            {
-                get
-                {
-                    return pageContexts;
-                }
-
-                set
-                {
-                    pageContexts = value;
-                    OnPageContextsSet?.Invoke();
-                }
-            }
+            internal List<PageContext> PageContexts;
 
             internal bool IsCurrentContextPageSet;
             private PageContext currentPageContext;
@@ -52,6 +38,17 @@ namespace UEESA.Client.Data.States
                     Task.Run(async () =>
                     {
                         IsCurrentContextPageSet = true;
+                        if (!HasSiteBeenRendered)
+                        {
+                            new Action(async () => 
+                            {
+                                await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarSlideIn));
+                                await Services.Get<JSInterface.AnimationManager>().SlideInNavigationBar();
+                                await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarSlideIn));
+                                await Services.Get<JSInterface.AnimationManager>().SlideInToolsBar();
+                                await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_ToolsBarSlideIn));
+                            }).Invoke();
+                        }
                         OnPagePreTransition?.Invoke();
                         await Services.Get<JSInterface.Utilities>().SetTitle("UEESA - " + value.FormalPageName);
                         if (HasSiteBeenRendered)

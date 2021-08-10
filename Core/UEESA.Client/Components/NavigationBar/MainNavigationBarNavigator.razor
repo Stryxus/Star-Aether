@@ -47,7 +47,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        PageState.OnPageContextsSet += StateHasChanged;
+        PageState.OnPagePreTransition += StateHasChanged;
         await base.OnInitializedAsync();
     }
 }
