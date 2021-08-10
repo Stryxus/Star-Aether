@@ -3,6 +3,9 @@ using System.Net.WebSockets;
 
 using UEESA.Shared.Sockets;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 namespace UEESA.Client.Sockets.Handlers
 {
     public class ConfidentialSocketHandler : WebSocketHandler<WebSocket>
@@ -11,7 +14,7 @@ namespace UEESA.Client.Sockets.Handlers
 
         public override void OnConnected(WebSocket socket) => base.OnConnected(socket);
 
-        public override void Receive(WebSocket socket, WebSocketReceiveResult result, string message)
+        public override void Receive(WebSocket socket, WebSocketReceiveResult result, JObject message)
         {
 
         }

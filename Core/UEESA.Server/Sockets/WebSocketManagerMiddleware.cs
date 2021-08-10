@@ -12,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 using UEESA.Shared.Sockets;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 namespace UEESA.Server.Sockets
 {
     public class WebSocketManagerMiddleware
@@ -31,7 +34,10 @@ namespace UEESA.Server.Sockets
                 {
                     string message = Encoding.UTF8.GetString(buffer);
                     message = message.Replace("\0", string.Empty);
-                    SocketHandler.Receive(socket, result, message.Substring(7, message.IndexOf("|MEND") - 7));
+                    try
+                    {
+                        SocketHandler.Receive(socket, result, JObject.Parse(message));
+                    } catch (JsonReaderException) { }
                     return;
                 }
                 else if (result.MessageType == WebSocketMessageType.Close)

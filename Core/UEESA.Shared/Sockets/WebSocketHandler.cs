@@ -4,6 +4,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net.WebSockets;
 
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+using UEESA.Shared.Data.Json;
+
 namespace UEESA.Shared.Sockets
 {
     public abstract class WebSocketHandler<T> where T : WebSocket
@@ -16,18 +21,18 @@ namespace UEESA.Shared.Sockets
 
         public virtual async Task OnDisconnected(T socket) => await WebSocketConnectionManager.RemoveSocket(WebSocketConnectionManager.GetId(socket));
 
-        public async void SendMessageAsync(T socket, string message)
+        public async void SendMessageAsync<M>(T socket, UEESA_Json_StateSocketDataCapsule<M> message)
         {
-            byte[] msg = Encoding.UTF8.GetBytes("MBEGIN|" + message + "|MEND");
+            byte[] msg = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
             if (socket == null || socket.State != WebSocketState.Open) return;
             else await socket.SendAsync(msg, WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
-        public void SendMessageToAllAsync(string message)
+        public void SendMessageToAllAsync<M>(UEESA_Json_StateSocketDataCapsule<M> message)
         {
             foreach (var pair in WebSocketConnectionManager.GetAll()) if (pair.Value.State == WebSocketState.Open) SendMessageAsync(pair.Value, message);
         }
 
-        public abstract void Receive(T socket, WebSocketReceiveResult result, string message);
+        public abstract void Receive(T socket, WebSocketReceiveResult result, JObject message);
     }
 }

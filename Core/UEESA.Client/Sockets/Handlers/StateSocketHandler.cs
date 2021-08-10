@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.WebSockets;
 
 using UEESA.Client.Data.States;
 using UEESA.Shared.Sockets;
 using UEESA.Shared.Data.Bson.Roadmap;
+using UEESA.Shared.Data.Json;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace UEESA.Client.Sockets.Handlers
 {
@@ -15,41 +18,31 @@ namespace UEESA.Client.Sockets.Handlers
 
         public override void OnConnected(ClientWebSocket socket) => base.OnConnected(socket);
 
-        public override void Receive(ClientWebSocket socket, WebSocketReceiveResult result, string message)
+        public override void Receive(ClientWebSocket socket, WebSocketReceiveResult result, JObject message)
         {
-            if (message.StartsWith("CMD.") && Enum.TryParse(typeof(Commands), message.Replace("CMD.", string.Empty), out object cmd))
+            if (message.ContainsKey("datetime_sent") && message.ContainsKey("attributes") && message.ContainsKey("data_type") && message.ContainsKey("data") && message.Count == 4)
             {
-
-            }
-            else if (message.StartsWith("JSON."))
-            {
-                message = message.Replace("JSON.", string.Empty);
-
-                TryConvertJSON<UEESA_Bson_Roadmap>((data) => Services.Get<ClientState>().NotifyRoadmapCardDataChange(data, false));
-
-                void TryConvertJSON<T>(Action<T> conversion)
+                if (message["datetime_sent"].Type != JTokenType.Null && message["attributes"].Type != JTokenType.Null && message["data_type"].Type != JTokenType.Null)
                 {
-                    Type type;
-                    T data;
-                    if (message.StartsWith((type = typeof(T)).Name))
+                    if (message["data_type"].ToString() == typeof(UEESA_Bson_Roadmap).Name)
                     {
-                        message = message[type.Name.Length..];
-                        try
+                        UEESA_Json_StateSocketDataCapsule<UEESA_Bson_Roadmap> data = message.ToObject<UEESA_Json_StateSocketDataCapsule<UEESA_Bson_Roadmap>>();
+
+                        if (data.attributes.Contains(StateSocketDataCapsuleAttributes.GetRoadmapData.ToString())) Services.Get<ClientState>().NotifyRoadmapCardDataChange(data.data, false);
+
+                        if (data.data != null)
                         {
-                            if ((data = JsonConvert.DeserializeObject<T>(message)) != null) conversion.Invoke(data);
+
                         }
-#if DEBUG || RELEASE_TEST
-                        catch (JsonException e) 
-                        {
-                            Logger.LogDebug(e.Message);
-                        }
-#else
-                        catch (JsonException) {}
-#endif
+                    }
+                    else
+                    {
+                        UEESA_Json_StateSocketDataCapsule<object> data = message.ToObject<UEESA_Json_StateSocketDataCapsule<object>>();
+
+                        // Lone Attributes
                     }
                 }
             }
-            return;
         }
     }
 }

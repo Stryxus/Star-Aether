@@ -6,8 +6,10 @@ using System.Net.WebSockets;
 
 using UEESA.Client.Sockets.Handlers;
 using UEESA.Client.Data.States;
-using UEESA.Shared;
 using UEESA.Shared.Sockets;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace UEESA.Client.Sockets
 {
@@ -47,7 +49,11 @@ namespace UEESA.Client.Sockets
                                 {
                                     string message = Encoding.UTF8.GetString(buffer);
                                     message = message.Replace("\0", string.Empty);
-                                    SocketHandler.Receive(ClientSocket, result, message[7..message.IndexOf("|MEND")]);
+                                    try
+                                    {
+                                        SocketHandler.Receive(ClientSocket, result, JObject.Parse(message));
+                                    }
+                                    catch (JsonReaderException) { }
                                     return;
                                 }
                                 else if (result.MessageType == WebSocketMessageType.Close)

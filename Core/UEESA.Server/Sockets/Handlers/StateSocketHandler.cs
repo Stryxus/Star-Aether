@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.WebSockets;
 
 using UEESA.Server.Data;
+using UEESA.Shared.Data.Json;
 using UEESA.Shared.Data.Bson.Roadmap;
 using UEESA.Shared.Sockets;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace UEESA.Server.Sockets.Handlers
 {
@@ -15,16 +18,28 @@ namespace UEESA.Server.Sockets.Handlers
 
         public override void OnConnected(WebSocket socket)  => base.OnConnected(socket);
 
-        public override void Receive(WebSocket socket, WebSocketReceiveResult result, string message)
+        public override void Receive(WebSocket socket, WebSocketReceiveResult result, JObject message)
         {
-            message = message.Replace("\0", string.Empty);
-
-            if (message.StartsWith("CMD.") && Enum.TryParse(typeof(Commands), message.Replace("CMD.", string.Empty), out object cmd))
+            if (message.ContainsKey("datetime_sent") && message.ContainsKey("attributes") && message.ContainsKey("data_type") && message.ContainsKey("data") && message.Count == 4)
             {
-                if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(UEESA_Bson_Roadmap).Name + JsonConvert.SerializeObject(Services.Get<RSIRoadmapScraper>().Roadmap_Data));
-            }
+                if (message["datetime_sent"].Type != JTokenType.Null && message["attributes"].Type != JTokenType.Null && message["data_type"].Type != JTokenType.Null)
+                {
+                    if (message["data_type"].ToString() == typeof(UEESA_Bson_Roadmap).Name)
+                    {
 
-            return;
+                    }
+                    else
+                    {
+                        UEESA_Json_StateSocketDataCapsule<object> data = message.ToObject<UEESA_Json_StateSocketDataCapsule<object>>();
+
+                        if (data.attributes.Contains(StateSocketDataCapsuleAttributes.GetRoadmapData.ToString())) SendMessageAsync(socket, new UEESA_Json_StateSocketDataCapsule<UEESA_Bson_Roadmap>
+                        {
+                            attributes = new List<string>() { StateSocketDataCapsuleAttributes.GetRoadmapData.ToString() },
+                            data = Services.Get<RSIRoadmapScraper>().Roadmap_Data
+                        });
+                    }
+                }
+            }
         }
     }
 }

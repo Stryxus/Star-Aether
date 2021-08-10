@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-using UEESA.Server.Data.Json.RSI;
-using UEESA.Shared.Data.Bson.Roadmap;
 using UEESA.Server.Sockets.Handlers;
+using UEESA.Server.Data.Json.RSI;
+using UEESA.Shared.Data.Json;
+using UEESA.Shared.Data.Bson.Roadmap;
 
 namespace UEESA.Server.Data
 {
@@ -24,7 +26,11 @@ namespace UEESA.Server.Data
             set
             {
                 roadmap_Data = value;
-                Task.Run(() => Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(UEESA_Bson_Roadmap).Name + JsonConvert.SerializeObject(value)) );
+                Task.Run(() => Services.Get<StateSocketHandler>().SendMessageToAllAsync(new UEESA_Json_StateSocketDataCapsule<UEESA_Bson_Roadmap>
+                {
+                    attributes = new List<string>() { StateSocketDataCapsuleAttributes.GetRoadmapData.ToString() }, 
+                    data = value
+                }));
             }
         }
 
