@@ -2,7 +2,7 @@
 
 namespace UEESA.Shared.Data.Bson.Roadmap
 {
-    public enum RSI_Bson_Roadmap_Card_Category : int
+    public enum UEESA_Bson_Roadmap_Card_Category : int
     {
         CoreTech = 1,
         Gameplay = 2,

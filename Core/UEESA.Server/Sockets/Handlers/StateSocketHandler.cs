@@ -21,7 +21,7 @@ namespace UEESA.Server.Sockets.Handlers
 
             if (message.StartsWith("CMD.") && Enum.TryParse(typeof(Commands), message.Replace("CMD.", string.Empty), out object cmd))
             {
-                if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(RSI_Bson_Roadmap).Name + JsonConvert.SerializeObject(Services.Get<RSIRoadmapScraper>().Roadmap_Data));
+                if ((Commands)cmd == Commands.GetRoadmapData) SendMessageAsync(socket, "JSON." + typeof(UEESA_Bson_Roadmap).Name + JsonConvert.SerializeObject(Services.Get<RSIRoadmapScraper>().Roadmap_Data));
             }
 
             return;

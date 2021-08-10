@@ -25,7 +25,7 @@ namespace UEESA.Client.Sockets.Handlers
             {
                 message = message.Replace("JSON.", string.Empty);
 
-                TryConvertJSON<RSI_Bson_Roadmap>((data) => Services.Get<ClientState>().NotifyRoadmapCardDataChange(data, false));
+                TryConvertJSON<UEESA_Bson_Roadmap>((data) => Services.Get<ClientState>().NotifyRoadmapCardDataChange(data, false));
 
                 void TryConvertJSON<T>(Action<T> conversion)
                 {

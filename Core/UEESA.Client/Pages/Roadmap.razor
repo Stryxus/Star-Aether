@@ -5,7 +5,7 @@
         <div id="roadmap-cards" class="row align-items-stretch">
             @if (ClientState.RoadmapData != null && ClientState.RoadmapData.releases != null)
             {
-                @foreach (RSI_Bson_Roadmap_Release release in ClientState.RoadmapData.releases)
+                @foreach (UEESA_Bson_Roadmap_Release release in ClientState.RoadmapData.releases)
                 {
                     <RoadmapRelease Release="@release" />
                 }

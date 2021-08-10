@@ -1,6 +1,6 @@
 ﻿<div class="row body">
     <div class="col">
-        @foreach (RSI_Bson_Roadmap_Card_Category category in Enum.GetValues(typeof(RSI_Bson_Roadmap_Card_Category)))
+        @foreach (UEESA_Bson_Roadmap_Card_Category category in Enum.GetValues(typeof(UEESA_Bson_Roadmap_Card_Category)))
         {
             @if (Release.cards.Exists(x => x.category == category))
             {
@@ -15,6 +15,6 @@
 @code {
 
     [Parameter]
-    public RSI_Bson_Roadmap_Release Release { get; set; }
+    public UEESA_Bson_Roadmap_Release Release { get; set; }
 
 }

@@ -13,8 +13,8 @@ namespace UEESA.Server.Data
 {
     internal class RSIRoadmapScraper
     {
-        private RSI_Bson_Roadmap roadmap_Data;
-        internal RSI_Bson_Roadmap Roadmap_Data
+        private UEESA_Bson_Roadmap roadmap_Data;
+        internal UEESA_Bson_Roadmap Roadmap_Data
         {
             get
             {
@@ -24,7 +24,7 @@ namespace UEESA.Server.Data
             set
             {
                 roadmap_Data = value;
-                Task.Run(() => Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(RSI_Bson_Roadmap).Name + JsonConvert.SerializeObject(value)) );
+                Task.Run(() => Services.Get<StateSocketHandler>().SendMessageToAllAsync("JSON." + typeof(UEESA_Bson_Roadmap).Name + JsonConvert.SerializeObject(value)) );
             }
         }
 
@@ -66,14 +66,14 @@ namespace UEESA.Server.Data
             {
                 Logger.LogInfo("  | - Converting RSI Json to Mongo Bson...");
 
-                RSI_Bson_Roadmap roadmap = new();
+                UEESA_Bson_Roadmap roadmap = new();
                 roadmap.updated_datetime = updateDate;
                 roadmap.releases = new();
                 int relIndex = 0;
                 int caIndex = 0;
                 foreach (RSI_Json_Roadmap_Release rel in parsed.releases)
                 {
-                    RSI_Bson_Roadmap_Release release = new();
+                    UEESA_Bson_Roadmap_Release release = new();
                     try
                     {
                         release.version = rel.name;
@@ -89,12 +89,12 @@ namespace UEESA.Server.Data
                     release.cards = new();
                     foreach (RSI_Json_Roadmap_Card ca in rel.cards)
                     {
-                        RSI_Bson_Roadmap_Card card = new();
+                        UEESA_Bson_Roadmap_Card card = new();
                         try
                         {
                             card.name = ca.name;
                             card.description = ca.body;
-                            card.category = (RSI_Bson_Roadmap_Card_Category)ca.category_id;
+                            card.category = (UEESA_Bson_Roadmap_Card_Category)ca.category_id;
                             card.creation_datetime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(ca.time_created);
                             card.updated_datetime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(ca.time_modified);
                             card.thumnail_path = rsi_json["data"]["releases"][relIndex]["cards"][caIndex]["thumbnail"]["urls"]["source"].ToString();

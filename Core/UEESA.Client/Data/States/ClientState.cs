@@ -29,8 +29,8 @@ namespace UEESA.Client.Data.States
             }
         }
 
-        private RSI_Bson_Roadmap roadmapData;
-        internal RSI_Bson_Roadmap RoadmapData
+        private UEESA_Bson_Roadmap roadmapData;
+        internal UEESA_Bson_Roadmap RoadmapData
         {
             get
             {
@@ -45,12 +45,12 @@ namespace UEESA.Client.Data.States
         }
 
         internal event Action OnRoadmapDataUpdated;
-        internal async void NotifyRoadmapCardDataChange(RSI_Bson_Roadmap data, bool isLocalData)
+        internal async void NotifyRoadmapCardDataChange(UEESA_Bson_Roadmap data, bool isLocalData)
         {
             if (!isLocalData)
             {
                 RoadmapData = data;
-                await Services.Get<LocalStorageState>().SetLocalData<RSI_Bson_Roadmap>();
+                await Services.Get<LocalStorageState>().SetLocalData<UEESA_Bson_Roadmap>();
                 Logger.LogInfo("Received Roadmap State.");
             }
         }

@@ -16,7 +16,7 @@ namespace UEESA.Server.Data
         private IMongoDatabase UEESA_DB;
 
         private IMongoCollection<UEESA_Bson_User> UEESA_USERS;
-        private IMongoCollection<RSI_Bson_Roadmap> UEESA_ROADMAP_DATA;
+        private IMongoCollection<UEESA_Bson_Roadmap> UEESA_ROADMAP_DATA;
 
         public MongoDBHandler()
         {
@@ -32,7 +32,7 @@ namespace UEESA.Server.Data
                 Client = new(settings);
                 UEESA_DB = Client.GetDatabase("ueesadb");
                 UEESA_USERS = UEESA_DB.GetCollection<UEESA_Bson_User>("users");
-                UEESA_ROADMAP_DATA = UEESA_DB.GetCollection<RSI_Bson_Roadmap>("roadmap_data");
+                UEESA_ROADMAP_DATA = UEESA_DB.GetCollection<UEESA_Bson_Roadmap>("roadmap_data");
                 Logger.LogInfo("Connection to UEESA Database Successful!");
             });
         }
