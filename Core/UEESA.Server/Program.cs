@@ -15,9 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-#if RELEASE
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
-#endif
 
 using UEESA.Server.Sockets;
 using UEESA.Server.Sockets.Handlers;
@@ -42,11 +40,8 @@ namespace UEESA.Server
                 webBuilder.ConfigureServices((services) =>
                 {
 #if DEBUG
-                    services.AddApplicationInsightsTelemetry("00000000-0000-0000-0000-000000000000");
-#else
-                    services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.ApplicationInsightsConnectionString });
-#endif
-                    if (!PrivateData.Instance.MicrosoftIdentityPlatformClientID.IsEmpty())
+                    services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.DEV_ApplicationInsightsConnectionString });
+                    if (!PrivateData.Instance.DEV_MicrosoftIdentityPlatformClientID.IsEmpty())
                     {
                         services.AddAuthentication(options =>
                         {
@@ -54,10 +49,22 @@ namespace UEESA.Server
                         }).AddMicrosoftIdentityWebApp(options =>
                         {
                             options.Instance = "https://login.microsoftonline.com/";
-                            options.ClientId = PrivateData.Instance.MicrosoftIdentityPlatformClientID;
+                            options.ClientId = PrivateData.Instance.DEV_MicrosoftIdentityPlatformClientID;
                             options.TenantId = "common";
                         });
                     }
+#else
+                    services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.ApplicationInsightsConnectionString });
+                    services.AddAuthentication(options =>
+                    {
+                        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                    }).AddMicrosoftIdentityWebApp(options =>
+                    {
+                        options.Instance = "https://login.microsoftonline.com/";
+                        options.ClientId = PrivateData.Instance.MicrosoftIdentityPlatformClientID;
+                        options.TenantId = "common";
+                    });
+#endif
                     services.AddControllersWithViews(options =>
                     {
                         AuthorizationPolicy policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
