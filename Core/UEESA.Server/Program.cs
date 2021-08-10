@@ -27,6 +27,8 @@ namespace UEESA.Server
     {
         internal static IConfiguration Configuration { get; private set; }
 
+        private static string CORSAuthorityName = "_starAetherCORSAuthority";
+
         public static async Task Main() => await Host.CreateDefaultBuilder().ConfigureWebHostDefaults(webBuilder => 
             {
                 webBuilder.UseKestrel(kestrelOptions =>
@@ -53,6 +55,14 @@ namespace UEESA.Server
                             options.TenantId = "common";
                         });
                     }
+                    services.AddCors(options =>
+                    {
+                        options.AddPolicy(name: CORSAuthorityName
+                                          builder =>
+                                          {
+                                              builder.WithOrigins("https://localhost:5001");
+                                          });
+                    });
 #else
                     services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.ApplicationInsightsConnectionString });
                     services.AddAuthentication(options =>
@@ -63,6 +73,14 @@ namespace UEESA.Server
                         options.Instance = "https://login.microsoftonline.com/";
                         options.ClientId = PrivateData.Instance.MicrosoftIdentityPlatformClientID;
                         options.TenantId = "common";
+                    });
+                    services.AddCors(options =>
+                    {
+                        options.AddPolicy(name: "_starAetherCORSAuthority",
+                                          builder =>
+                                          {
+                                              builder.WithOrigins("https://staraether.com");
+                                          });
                     });
 #endif
                     services.AddControllersWithViews(options =>
@@ -109,10 +127,11 @@ namespace UEESA.Server
                     app.UseHttpsRedirection();
                     app.UseStaticFiles();
                     app.UseResponseCompression();
-                    app.UseResponseCaching();
                     app.UseWebSockets();
                     app.MapWebSocketManager("/state", Services.Get<StateSocketHandler>());
                     app.UseRouting();
+                    app.UseCors(CORSAuthorityName);
+                    app.UseResponseCaching();
                     app.UseAuthentication();
                     app.UseAuthorization();
                     app.UseEndpoints(endpoints =>
