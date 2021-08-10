@@ -57,7 +57,7 @@ namespace UEESA.Server
                     }
                     services.AddCors(options =>
                     {
-                        options.AddPolicy(name: CORSAuthorityName
+                        options.AddPolicy(name: CORSAuthorityName,
                                           builder =>
                                           {
                                               builder.WithOrigins("https://localhost:5001");
