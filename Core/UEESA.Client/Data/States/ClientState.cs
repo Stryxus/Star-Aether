@@ -1,7 +1,7 @@
 ﻿using System;
 
 using UEESA.Client.Data.Json;
-using UEESA.Shared.Data.Bson;
+using UEESA.Shared.Data.Bson.Roadmap;
 
 namespace UEESA.Client.Data.States
 {
