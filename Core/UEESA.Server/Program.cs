@@ -77,6 +77,7 @@ namespace UEESA.Server
                     });
                     services.AddResponseCaching();
                     services.AddWebSocketManager();
+                    services.AddSingleton<MongoDBHandler>();
                     services.AddSingleton<RSIRoadmapScraper>();
                 });
 
@@ -114,6 +115,7 @@ namespace UEESA.Server
                         endpoints.MapFallbackToFile("index.html");
                     });
 
+                    Services.Get<MongoDBHandler>();
                     Services.Get<RSIRoadmapScraper>();
                 });
             }).Build().RunAsync();

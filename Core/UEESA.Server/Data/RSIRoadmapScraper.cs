@@ -1,28 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Net.Http;
-using System.Security.Authentication;
 using System.Threading.Tasks;
-
-using MongoDB.Driver;
-using MongoDB.Bson;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 using UEESA.Server.Data.Json.RSI;
-using UEESA.Shared.Data.Bson;
+using UEESA.Shared.Data.Bson.Roadmap;
 using UEESA.Server.Sockets.Handlers;
 
 namespace UEESA.Server.Data
 {
     internal class RSIRoadmapScraper
     {
-        private MongoClient DB;
-        private IMongoDatabase RSI_DB;
-
         private RSI_Bson_Roadmap roadmap_Data;
         internal RSI_Bson_Roadmap Roadmap_Data
         {
@@ -45,23 +35,11 @@ namespace UEESA.Server.Data
 
         internal async Task Run()
         {
-            ConnectMongo();
             while (true)
             {
                 await CheckForUpdate();
                 await Task.Delay(TimeSpan.FromMinutes(2.5));
             }
-        }
-
-        private void ConnectMongo()
-        {
-            Logger.LogInfo("Connecting to UEESA Database...");
-            MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(PrivateData.Instance.MongoDBConnectionString));
-            settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
-            DB = new(settings);
-            RSI_DB = DB.GetDatabase("rsidb");
-
-            Logger.LogInfo("Connection to UEESA Database Successful!");
         }
 
         private async Task CheckForUpdate()

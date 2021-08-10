@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace UEESA.Shared.Data.Bson
+namespace UEESA.Shared.Data.Bson.Roadmap
 {
     public class RSI_Bson_Roadmap
     {
