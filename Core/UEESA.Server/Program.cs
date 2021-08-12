@@ -50,24 +50,24 @@ builder.Services.AddCors(options =>
                       });
 });
 #else
-                    services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.ApplicationInsightsConnectionString });
-                    services.AddAuthentication(options =>
-                    {
-                        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    }).AddMicrosoftIdentityWebApp(options =>
-                    {
-                        options.Instance = "https://login.microsoftonline.com/";
-                        options.ClientId = PrivateData.Instance.MicrosoftIdentityPlatformClientID;
-                        options.TenantId = "common";
-                    });
-                    services.AddCors(options =>
-                    {
-                        options.AddPolicy(name: "_starAetherCORSAuthority",
-                                          builder =>
-                                          {
-                                              builder.WithOrigins("https://staraether.com");
-                                          });
-                    });
+builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.ApplicationInsightsConnectionString });
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    }).AddMicrosoftIdentityWebApp(options =>
+    {
+        options.Instance = "https://login.microsoftonline.com/";
+        options.ClientId = PrivateData.Instance.MicrosoftIdentityPlatformClientID;
+        options.TenantId = "common";
+    });
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy(name: "_starAetherCORSAuthority",
+                            builder =>
+                            {
+                                builder.WithOrigins("https://staraether.com");
+                            });
+    });
 #endif
 
 builder.Services.AddControllersWithViews(options =>
