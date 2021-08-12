@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace UEESA.Shared.Data.Bson.Roadmap
+﻿namespace UEESA.Shared.Data.Bson.Roadmap
 {
     public enum RSI_Bson_Roadmap_Card_Status
     {

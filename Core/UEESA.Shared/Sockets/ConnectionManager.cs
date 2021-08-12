@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Linq;
+﻿using System.Collections.Concurrent;
 using System.Net.WebSockets;
 
 namespace UEESA.Shared.Sockets
 {
     public class ConnectionManager<T> where T : WebSocket
     {
-        private ConcurrentDictionary<Guid, T> socketDictionary = new ConcurrentDictionary<Guid, T>();
+        private readonly ConcurrentDictionary<Guid, T> socketDictionary = new ConcurrentDictionary<Guid, T>();
 
         public T GetSocketById(Guid id) => socketDictionary.FirstOrDefault(p => p.Key == id).Value;
 

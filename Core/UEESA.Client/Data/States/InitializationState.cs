@@ -1,8 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using UEESA.Client.Sockets;
+﻿
 using UEESA.Client.Data.Json;
+using UEESA.Client.Sockets;
 
 namespace UEESA.Client.Data.States
 {

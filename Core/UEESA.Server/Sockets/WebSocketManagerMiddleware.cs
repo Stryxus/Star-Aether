@@ -1,19 +1,9 @@
-﻿using System;
-using System.Text;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Net.WebSockets;
 using System.Reflection;
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-
+using System.Text;
 using UEESA.Shared.Sockets;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace UEESA.Server.Sockets
 {
@@ -37,7 +27,8 @@ namespace UEESA.Server.Sockets
                     try
                     {
                         SocketHandler.Receive(socket, result, JObject.Parse(message));
-                    } catch (JsonReaderException) { }
+                    }
+                    catch (JsonReaderException) { }
                     return;
                 }
                 else if (result.MessageType == WebSocketMessageType.Close)
@@ -58,7 +49,7 @@ namespace UEESA.Server.Sockets
                     WebSocketReceiveResult result = await socket.ReceiveAsync(buffer, CancellationToken.None);
                     handleMessage(result, buffer.ToArray());
                 }
-            } 
+            }
             catch (WebSocketException)
             {
                 await SocketHandler.OnDisconnected(socket);
@@ -73,7 +64,7 @@ namespace UEESA.Server.Sockets
         public static IServiceCollection AddWebSocketManager(this IServiceCollection services)
         {
             services.AddTransient<ConnectionManager<WebSocket>>();
-            foreach (var type in Assembly.GetEntryAssembly().ExportedTypes)
+            foreach (Type type in Assembly.GetEntryAssembly().ExportedTypes)
             {
                 if (type.GetTypeInfo().BaseType == typeof(WebSocketHandler<WebSocket>)) services.AddScoped(type);
             }

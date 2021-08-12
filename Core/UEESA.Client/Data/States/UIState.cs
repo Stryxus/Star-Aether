@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
+﻿
 using Microsoft.AspNetCore.Components;
 
 namespace UEESA.Client.Data.States
@@ -27,9 +24,9 @@ namespace UEESA.Client.Data.States
             private PageContext currentPageContext;
             internal PageContext CurrentPageContext
             {
-                get 
-                { 
-                    return currentPageContext; 
+                get
+                {
+                    return currentPageContext;
                 }
 
                 set
@@ -40,7 +37,7 @@ namespace UEESA.Client.Data.States
                         IsCurrentContextPageSet = true;
                         if (!HasSiteBeenRendered)
                         {
-                            new Action(async () => 
+                            new Action(async () =>
                             {
                                 await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarSlideIn));
                                 await Services.Get<JSInterface.AnimationManager>().SlideInNavigationBar();

@@ -1,6 +1,4 @@
-﻿using System;
-
-public static class Services
+﻿public static class Services
 {
     public static IServiceProvider Provider { get; private set; }
 

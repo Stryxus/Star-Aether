@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json.Linq;
 using System.Net.WebSockets;
-
 using UEESA.Client.Data.States;
-using UEESA.Shared.Sockets;
 using UEESA.Shared.Data.Bson.Roadmap;
 using UEESA.Shared.Data.Json;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using UEESA.Shared.Sockets;
 
 namespace UEESA.Client.Sockets.Handlers
 {
     public class StateSocketHandler : WebSocketHandler<ClientWebSocket>
     {
-        public StateSocketHandler(ConnectionManager<ClientWebSocket> webSocketConnectionManager) : base (webSocketConnectionManager) { }
+        public StateSocketHandler(ConnectionManager<ClientWebSocket> webSocketConnectionManager) : base(webSocketConnectionManager) { }
 
         public override void OnConnected(ClientWebSocket socket) => base.OnConnected(socket);
 

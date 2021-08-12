@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json.Linq;
 using System.Net.WebSockets;
-
 using UEESA.Server.Data;
-using UEESA.Shared.Data.Json;
 using UEESA.Shared.Data.Bson.Roadmap;
+using UEESA.Shared.Data.Json;
 using UEESA.Shared.Sockets;
-
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace UEESA.Server.Sockets.Handlers
 {
@@ -16,7 +11,7 @@ namespace UEESA.Server.Sockets.Handlers
     {
         public StateSocketHandler(ConnectionManager<WebSocket> webSocketConnectionManager) : base(webSocketConnectionManager) { }
 
-        public override void OnConnected(WebSocket socket)  => base.OnConnected(socket);
+        public override void OnConnected(WebSocket socket) => base.OnConnected(socket);
 
         public override void Receive(WebSocket socket, WebSocketReceiveResult result, JObject message)
         {

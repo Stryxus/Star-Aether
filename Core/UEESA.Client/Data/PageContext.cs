@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace UEESA.Client.Data
+﻿namespace UEESA.Client.Data
 {
     public struct PageContext
     {

@@ -1,8 +1,4 @@
-﻿using System;
-
-using UEESA.Client.Data.States;
-
-namespace UEESA.Client.Data.Json
+﻿namespace UEESA.Client.Data.Json
 {
     public class GlobalSettings
     {

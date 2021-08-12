@@ -1,10 +1,5 @@
-﻿using System;
+﻿using MongoDB.Driver;
 using System.Security.Authentication;
-using System.Threading.Tasks;
-
-using MongoDB.Driver;
-using MongoDB.Bson;
-
 using UEESA.Shared.Data.Bson.Roadmap;
 using UEESA.Shared.Data.Bson.Users;
 
@@ -20,7 +15,7 @@ namespace UEESA.Server.Data
 
         public MongoDBHandler()
         {
-            Task.Run(() => 
+            Task.Run(() =>
             {
                 Logger.LogInfo("Connecting to UEESA Database...");
 #if DEBUG

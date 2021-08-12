@@ -1,12 +1,7 @@
-﻿using System;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Net.WebSockets;
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+using System.Net.WebSockets;
+using System.Text;
 using UEESA.Shared.Data.Json;
 
 namespace UEESA.Shared.Sockets
@@ -30,7 +25,7 @@ namespace UEESA.Shared.Sockets
 
         public void SendMessageToAllAsync<M>(UEESA_Json_StateSocketDataCapsule<M> message)
         {
-            foreach (var pair in WebSocketConnectionManager.GetAll()) if (pair.Value.State == WebSocketState.Open) SendMessageAsync(pair.Value, message);
+            foreach (KeyValuePair<Guid, T> pair in WebSocketConnectionManager.GetAll()) if (pair.Value.State == WebSocketState.Open) SendMessageAsync(pair.Value, message);
         }
 
         public abstract void Receive(T socket, WebSocketReceiveResult result, JObject message);

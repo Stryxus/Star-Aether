@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 using UEESA.Client.Data.Json;
 using UEESA.Shared.Data.Bson.Roadmap;
 
@@ -15,9 +14,9 @@ namespace UEESA.Client.Data.States
 
         internal event Action OnSettingsChanged;
         private GlobalSettings settings;
-        internal GlobalSettings Settings 
-        { 
-            get 
+        internal GlobalSettings Settings
+        {
+            get
             {
                 return settings;
             }

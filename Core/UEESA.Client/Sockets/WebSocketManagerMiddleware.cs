@@ -1,15 +1,10 @@
-﻿using System;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Net.WebSockets;
-
-using UEESA.Client.Sockets.Handlers;
-using UEESA.Client.Data.States;
-using UEESA.Shared.Sockets;
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net.WebSockets;
+using System.Text;
+using UEESA.Client.Data.States;
+using UEESA.Client.Sockets.Handlers;
+using UEESA.Shared.Sockets;
 
 namespace UEESA.Client.Sockets
 {
@@ -84,7 +79,7 @@ namespace UEESA.Client.Sockets
                     handleMessage(result, buffer.ToArray());
                 }
             }
-            catch (WebSocketException) 
+            catch (WebSocketException)
             {
                 await SocketHandler.OnDisconnected(socket);
             }
