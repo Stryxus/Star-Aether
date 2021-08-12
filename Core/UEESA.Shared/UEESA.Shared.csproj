@@ -3,20 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Platforms>AnyCPU</Platforms>
-    <Configurations>Debug;Release;Release Testing</Configurations>
+    <Configurations>Debug;Release</Configurations>
     <Nullable>annotations</Nullable>
     <AssemblyName>UEESA.Shared</AssemblyName>
 	<LangVersion>preview</LangVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|AnyCPU'">
-    <DefineConstants>TRACE;RELEASE_TEST</DefineConstants>
-    <Optimize>true</Optimize>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>
@@ -28,4 +18,7 @@
     <ProjectReference Include="..\..\JSON\UEESA.Json\UEESA.Json.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
 </Project>

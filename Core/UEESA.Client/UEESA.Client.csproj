@@ -1,39 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
-
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <TypeScriptTarget>ES2021</TypeScriptTarget>
-  </PropertyGroup>
-
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <TypeScriptTarget>ES2021</TypeScriptTarget>
-  </PropertyGroup>
-
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release Testing|AnyCPU'">
-    <TypeScriptTarget>ES2021</TypeScriptTarget>
-  </PropertyGroup>
-
+	
   <PropertyGroup>
 	<TargetFramework>net6.0</TargetFramework>
-	<Configurations>Debug;Release;Release Testing</Configurations>
+	<Configurations>Debug;Release</Configurations>
 	<Platforms>AnyCPU</Platforms>
 	<Nullable>annotations</Nullable>
 	<AssemblyName>UEESA.Client</AssemblyName>
-	<TypeScriptModuleKind>amd</TypeScriptModuleKind>
 	<RunAOTCompilation>false</RunAOTCompilation>
 	<LangVersion>preview</LangVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release Testing|AnyCPU'">
-	<Optimize>true</Optimize>
-	<DefineConstants>RELEASE_TEST</DefineConstants>
-	<DebugType>none</DebugType>
-	<DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-	<DebugType>none</DebugType>
-	<DebugSymbols>false</DebugSymbols>
-	<GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,7 +18,6 @@
 	<PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
 	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-preview.7.21378.6" />
 	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-preview.7.21378.6" PrivateAssets="all" />
-	<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0-preview.7.21377.19" />
 	<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	<PackageReference Include="Stryxus.Lib" Version="2021.5.6" />
 	<PackageReference Include="Stryxus.Lib.AspNet.WebAssembly" Version="2021.5.6" />

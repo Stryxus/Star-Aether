@@ -123,12 +123,9 @@ app.UseCors(CORSAuthorityName);
 app.UseResponseCaching();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapRazorPages();
-    endpoints.MapFallbackToFile("index.html");
-});
+app.MapControllers();
+app.MapRazorPages();
+app.MapFallbackToFile("index.html");
 
 Services.Get<MongoDBHandler>();
 Services.Get<RSIRoadmapScraper>();
