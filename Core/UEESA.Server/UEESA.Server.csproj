@@ -2,13 +2,21 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Platforms>x64</Platforms>
+    <Platforms>x64;AnyCPU</Platforms>
     <UserSecretsId>6bbb3e48-422e-4fbc-9133-003a99c3d85c</UserSecretsId>
     <Configurations>Debug;Release</Configurations>
     <Nullable>annotations</Nullable>
     <AssemblyName>UEESA.Server</AssemblyName>
     <ApplicationInsightsResourceId>/subscriptions/12b3bc2f-8120-4584-89a0-4d79087cc5b1/resourceGroups/UEESA/providers/microsoft.insights/components/UEESA-App-Insights</ApplicationInsightsResourceId>
 	<LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
