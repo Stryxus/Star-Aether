@@ -24,7 +24,7 @@
         left: #{-$sidebar-width - 1 + px};
         width: $sidebar-width + px;
         padding: 0px;
-        background-color: $colour-grey-2-trans-high;
+        background-color: $colour-black-trans-high;
         clip-path: polygon(0px 0px, 100% 0px, 100% calc(100% - 225px), 0px calc(100% - 400px));
 
         & > * {

@@ -1,5 +1,5 @@
 #index-page {
-    background-color: $colour-grey-5-trans-low;
+    background-color: $colour-grey-3-trans-low;
 
     & > .col > .row {
 
@@ -8,7 +8,7 @@
         }
 
         &:nth-child(4n) {
-            background-color: $colour-grey-1-trans-low;
+            background-color: $colour-black-trans-low;
         }
     }
 
