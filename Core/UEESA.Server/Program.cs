@@ -1,4 +1,6 @@
-﻿using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+﻿using System.Security.Authentication;
+
+using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -6,7 +8,8 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
-using System.Security.Authentication;
+
+using UEESA;
 using UEESA.Server.Data;
 using UEESA.Server.Sockets;
 using UEESA.Server.Sockets.Handlers;

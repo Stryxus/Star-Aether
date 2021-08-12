@@ -1,11 +1,13 @@
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using System.Net.WebSockets;
+
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+
+using UEESA.Sockets;
 using UEESA.Client;
 using UEESA.Client.Data;
 using UEESA.Client.Data.States;
 using UEESA.Client.Sockets;
 using UEESA.Client.Sockets.Handlers;
-using UEESA.Shared.Sockets;
 
 WebAssemblyHost Host;
 

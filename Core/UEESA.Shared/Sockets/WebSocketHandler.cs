@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Net.WebSockets;
+﻿using System.Net.WebSockets;
 using System.Text;
-using UEESA.Shared.Data.Json;
 
-namespace UEESA.Shared.Sockets
+using UEESA.Data.Json;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+namespace UEESA.Sockets
 {
     public abstract class WebSocketHandler<T> where T : WebSocket
     {

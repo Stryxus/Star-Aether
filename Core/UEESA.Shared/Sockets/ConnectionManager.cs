@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Net.WebSockets;
 
-namespace UEESA.Shared.Sockets
+namespace UEESA.Sockets
 {
     public class ConnectionManager<T> where T : WebSocket
     {

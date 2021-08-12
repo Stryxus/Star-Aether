@@ -1,4 +1,4 @@
-﻿namespace UEESA.Shared.Data.Json
+﻿namespace UEESA.Data.Json
 {
     public class UEESA_Json_StateSocketDataCapsule<T>
     {

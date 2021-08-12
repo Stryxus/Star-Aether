@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Net.WebSockets;
+﻿using System.Net.WebSockets;
 using System.Text;
+
 using UEESA.Client.Data.States;
 using UEESA.Client.Sockets.Handlers;
-using UEESA.Shared.Sockets;
+using UEESA.Sockets;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace UEESA.Client.Sockets
 {

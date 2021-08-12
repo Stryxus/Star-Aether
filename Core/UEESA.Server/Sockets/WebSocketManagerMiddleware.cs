@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Net.WebSockets;
+﻿using System.Net.WebSockets;
 using System.Reflection;
 using System.Text;
-using UEESA.Shared.Sockets;
+
+using UEESA.Sockets;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace UEESA.Server.Sockets
 {

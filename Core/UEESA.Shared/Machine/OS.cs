@@ -1,4 +1,4 @@
-﻿namespace UEESA.Shared.Machine
+﻿namespace UEESA.Machine
 {
     public static class OS
     {

@@ -1,6 +1,6 @@
-﻿
+﻿using UEESA.Client.Data.Json;
+
 using Newtonsoft.Json;
-using UEESA.Client.Data.Json;
 
 namespace UEESA.Client.Data.States
 {

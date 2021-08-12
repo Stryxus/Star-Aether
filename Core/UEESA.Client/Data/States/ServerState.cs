@@ -1,8 +1,9 @@
 ﻿using System.Net.WebSockets;
+
 using UEESA.Client.Sockets;
 using UEESA.Client.Sockets.Handlers;
-using UEESA.Shared.Data.Bson.Roadmap;
-using UEESA.Shared.Data.Json;
+using UEESA.Data.Bson.Roadmap;
+using UEESA.Data.Json;
 
 namespace UEESA.Client.Data.States
 {

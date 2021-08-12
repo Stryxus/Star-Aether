@@ -3,7 +3,7 @@ using System.Text;
 
 using Newtonsoft.Json;
 
-namespace UEESA.Shared.IO
+namespace UEESA.IO
 {
     public static class FileIO
     {

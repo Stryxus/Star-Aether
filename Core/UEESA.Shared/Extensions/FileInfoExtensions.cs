@@ -1,4 +1,4 @@
-﻿namespace UEESA.Shared.Extensions
+﻿namespace UEESA
 {
     public static class FileInfoExtensions
     {

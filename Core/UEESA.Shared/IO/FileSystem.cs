@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace UEESA.Shared.IO
+namespace UEESA.IO
 {
     public static class FileSystem
     {

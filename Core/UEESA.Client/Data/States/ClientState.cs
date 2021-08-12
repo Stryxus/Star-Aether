@@ -1,6 +1,5 @@
-﻿
-using UEESA.Client.Data.Json;
-using UEESA.Shared.Data.Bson.Roadmap;
+﻿using UEESA.Client.Data.Json;
+using UEESA.Data.Bson.Roadmap;
 
 namespace UEESA.Client.Data.States
 {

@@ -5,7 +5,7 @@
     <Platforms>AnyCPU</Platforms>
     <Configurations>Debug;Release</Configurations>
     <Nullable>annotations</Nullable>
-    <AssemblyName>UEESA.Shared</AssemblyName>
+    <AssemblyName>UEESA</AssemblyName>
 	<LangVersion>preview</LangVersion>
   </PropertyGroup>
 

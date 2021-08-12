@@ -1,4 +1,4 @@
-﻿namespace UEESA.Shared.Data
+﻿namespace UEESA.Data
 {
     public class UserState
     {

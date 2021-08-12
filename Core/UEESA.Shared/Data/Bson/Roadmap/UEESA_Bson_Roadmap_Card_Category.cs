@@ -1,4 +1,4 @@
-﻿namespace UEESA.Shared.Data.Bson.Roadmap
+﻿namespace UEESA.Data.Bson.Roadmap
 {
     public enum UEESA_Bson_Roadmap_Card_Category : int
     {

@@ -1,4 +1,6 @@
-﻿public static class Logger
+﻿using UEESA.Machine;
+
+public static class Logger
 {
 	private static string PreviousMessage;
 
@@ -11,7 +13,7 @@
 		try
 		{
 			IsWebPlatform = Runtime.IsWASM;
-			if (!IsWebPlatform && Stryxus.Lib.OS.OperatingSystem.IsWindows)
+			if (!IsWebPlatform && OS.IsWindows)
 			{
 				Console.BufferWidth = Console.WindowWidth;
 			}

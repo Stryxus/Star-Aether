@@ -1,5 +1,4 @@
-﻿
-using UEESA.Client.Data.Json;
+﻿using UEESA.Client.Data.Json;
 using UEESA.Client.Sockets;
 
 namespace UEESA.Client.Data.States
