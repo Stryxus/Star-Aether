@@ -3,7 +3,7 @@
 </div>
 <div id="router">
     <div id="webpage">
-        <Router AppAssembly="@typeof(Program).Assembly">
+        <Router AppAssembly="Assembly.GetEntryAssembly()">
             <Found Context="routeData">
                 <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
             </Found>
