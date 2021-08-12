@@ -64,11 +64,11 @@
                         width: 221px;
             
                         &.active {
-                            background-color: $colour-blue-darkest-trans-low;
+                            background-color: $colour-red-darkest-trans-low;
                         }
             
                         &:hover {
-                            background-color: $colour-blue-darker-trans-low;
+                            background-color: $colour-red-darker-trans-low;
                         }
             
                         img {
@@ -133,7 +133,7 @@
                                     }
                     
                                     &:nth-child(4) {
-                                        color: $colour-blue-main;
+                                        color: $colour-red-main;
                                     }
                                 }
             
@@ -278,12 +278,12 @@
                                             }
                         
                                             &.active {
-                                                background-color: $colour-blue-darkest-trans-low;
+                                                background-color: $colour-red-darkest-trans-low;
                                                 color: $colour-white !important;
                                             }
                         
                                             &:hover {
-                                                background-color: $colour-blue-darker-trans-low;
+                                                background-color: $colour-red-darker-trans-low;
                                                 color: $colour-white !important;
                                             }
                                         }
@@ -314,11 +314,11 @@
                     }
             
                     &.active {
-                        background-color: $colour-blue-darkest-trans-low;
+                        background-color: $colour-red-darkest-trans-low;
                     }
             
                     &:hover {
-                        background-color: $colour-blue-darker-trans-low;
+                        background-color: $colour-red-darker-trans-low;
                     }
                 }
             
@@ -363,11 +363,11 @@
                     }
                     
                     &.active {
-                        background-color: $colour-blue-darkest-trans-low;
+                        background-color: $colour-red-darkest-trans-low;
                     }
             
                     &:hover {
-                        background-color: $colour-blue-darker-trans-low;
+                        background-color: $colour-red-darker-trans-low;
                     }
                 }
             }
