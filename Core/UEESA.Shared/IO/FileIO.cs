@@ -1,6 +1,8 @@
 ﻿using System.Collections.Concurrent;
 using System.Text;
 
+using Newtonsoft.Json;
+
 namespace UEESA.Shared.IO
 {
     public static class FileIO
@@ -87,6 +89,31 @@ namespace UEESA.Shared.IO
 				throw new ArgumentNullException("info");
 			}
 			await File.WriteAllTextAsync(info.FullName, string.Empty);
+		}
+
+		public static class Json
+        {
+			public static async Task WriteJSON<T>(T data, FileInfo info)
+			{
+				if (data == null)
+				{
+					throw new ArgumentNullException("data");
+				}
+				if (info == null)
+				{
+					throw new ArgumentNullException("info");
+				}
+				await FileIO.WriteText(info, JsonConvert.SerializeObject((object)data), Encoding.UTF8);
+			}
+
+			public static async Task<T> ReadJSON<T>(FileInfo info) where T : new()
+			{
+				if (info == null)
+				{
+					throw new ArgumentNullException("info");
+				}
+				return JsonConvert.DeserializeObject<T>(await FileIO.ReadText(info));
+			}
 		}
 	}
 }
