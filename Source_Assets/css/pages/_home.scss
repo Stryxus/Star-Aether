@@ -6,28 +6,31 @@
         & > div {
             padding: 100px;
         }
-
-        &:nth-child(4n) {
-            background-color: $colour-black-trans-low;
-        }
     }
 
-    #warning {
-        background-color: rgba(200, 0, 0, 0.75);
-        color: white;
-        padding-top: 14px;
-        padding-bottom: 14px;
-        width: 100%;
-        backdrop-filter: $backdrop-blur-heavy;
-        
-        h6 {
-            width: 100%;
-            text-align: center;
-            margin: 0px;
+    #what-is-sa, #what-can-do, #how-it-works, #contributing {
+
+        h2 {
+            background-color: $colour-black-trans-low;
+            padding: 20px;
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            margin-bottom: 0px;
+        }
+
+        p {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 50px;
+            margin-right: 50px;
+            background-color: $colour-grey-4-trans-low;
+            padding: 30px;
         }
     }
 
     #welcome {
+        background-color: $colour-black-trans-low;
         width: 100%;
         height: calc(100% + #{ $navigation-bar-height * 2 + px });
         display: table;
@@ -56,8 +59,12 @@
         #scroll-down {
             margin-top: 100px;
             
-            p {
-                margin: 10px;
+            button {
+                background-color: $colour-red-dark-trans-low !important;
+                
+                p {
+                    margin: 10px;
+                }
             }
         }
     }
@@ -66,15 +73,16 @@
         text-align: center;
     }
 
-    #founder {
+    #what-can-do {
+        background-color: $colour-black-trans-low;
+    }
 
-        #founder-img {
-            width: 400px;
-            margin-right: 30px;
-        }
+    #how-it-works {
+
     }
 
     #contributing {
+        background-color: $colour-black-trans-low;
 
         #contributing-img {
             width: 400px;

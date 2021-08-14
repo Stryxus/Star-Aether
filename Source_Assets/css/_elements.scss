@@ -37,8 +37,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p, li {
-    font-weight: 200;
+    font-weight: 300;
     letter-spacing: 0.75px;
+    line-height: 24px;
 
     a {
         display: inline;
@@ -85,7 +86,7 @@ button {
     cursor: pointer;
 
     &:hover {
-        background-color: $colour-grey-8-trans-low;
+        background-color: $colour-red-darkest-trans-low;
     }
 }
 

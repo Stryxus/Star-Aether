@@ -57,4 +57,10 @@ namespace UEESA.Client.Data
             public async Task ScrollToElement(string elementID) => await JSR.InvokeVoidAsync("animationInterface.scrollToElement", elementID);
         }
     }
+
+    public class BrowserDimensions
+    {
+        public int Width { get; set; }
+        public int Height { get; set; }
+    }
 }

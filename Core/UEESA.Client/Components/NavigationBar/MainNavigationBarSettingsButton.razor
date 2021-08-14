@@ -1,4 +1,4 @@
-﻿<div class="settings-button col-auto @(ComponentState.IsSettingsPanelVisible ? "active" : string.Empty)" @onclick="@(async () => await ComponentState.UpdateSettingsPanelState())">
+﻿<div id="settings-button" class="col-auto @(ComponentState.IsSettingsPanelVisible ? "active" : string.Empty)" @onclick="@(async () => await ComponentState.UpdateSettingsPanelState())">
     <i class="fas fa-cog"></i>
 </div>
 

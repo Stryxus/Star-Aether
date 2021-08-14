@@ -30,261 +30,263 @@
 
     #main-nav {
         height: ($navigation-bar-height - 12) + px;
-    
-        & > .row {
+        
+        #desktop-nav {
+            $rotationalDegrees: -31deg;
+            $rotationalDegreesPixels: 38px;
+            $navbarButtonsHeight: 63px;
+            $cornerLogoWidth: 222px;
+            $cornerLogoHeight: 368px;
 
-            &:nth-child(1) {
-                display: none;
-            }
-    
-            &:nth-child(2) {
+            flex-wrap: nowrap !important;
+            flex-direction: row !important;
+
+            .row {
                 flex-wrap: nowrap !important;
                 flex-direction: row !important;
-    
-                .row {
-                    flex-wrap: nowrap !important;
-                    flex-direction: row !important;
-                }
+            }
 
-                .main-navbar-buttons-offset {
-                    width: 210px;
-                }
+            #main-navbar-buttons-offset {
+                width: 210px;
+            }
 
-                .logo-container {
-                    height: 382px;
-                    width: 221px;
-                    padding: 0px;
-                    position: absolute;
-                    left: 0px;
-                    bottom: 0px;
-                    clip-path: polygon(0px 0px, 100% 100%, 0px 100%);
-            
-                    a {
-                        height: 382px;
-                        width: 221px;
-            
-                        &.active {
-                            background-color: $colour-red-darkest-trans-low;
-                        }
-            
-                        &:hover {
-                            background-color: $colour-red-darker-trans-low;
-                        }
-            
-                        img {
-                            position: absolute;
-                            height: 120px;
-                            width: 120px;
-                            bottom: 30px;
-                            left: 30px;
-                            cursor: pointer;
-                        }
+            #logo-container {
+                width: $cornerLogoWidth;
+                height: $cornerLogoHeight;
+                padding: 0px;
+                position: absolute;
+                left: 0px;
+                bottom: 0px;
+                clip-path: polygon(0px 0px, 100% 100%, 0px 100%);
+                backdrop-filter: $backdrop-blur-heavy;
+        
+                a {
+                    width: $cornerLogoWidth;
+                    height: $cornerLogoHeight;
+        
+                    &.active {
+                        background-color: $colour-red-darkest-trans-low;
+                    }
+        
+                    &:hover {
+                        background-color: $colour-red-darker-trans-low;
+                    }
+        
+                    img {
+                        position: absolute;
+                        height: 120px;
+                        width: 120px;
+                        bottom: 30px;
+                        left: 30px;
+                        cursor: pointer;
                     }
                 }
-            
-                .corner-background {
-                    position: absolute;
-                    bottom: -130px;
-                    left: -200.5px;
-                    height: 600px;
-                    width: 300px;
-                    transform: rotate(-30deg);
-                    backdrop-filter: $backdrop-blur-heavy;
-                }
-            
-                #headlines-navbar-ticker {
-                    bottom: ($navigation-bar-height * 1.625) + px;
-                    right: calc(-100%);
-                    width: calc(100% - #{(($navigation-bar-height * 2) - 28) + px});
-                    clip-path: polygon(12px 0%, 100% 0px, 100% 100%, 34px 100%);
-                    padding-right: 0px !important;
-                }
-            
-                #econome-navbar-ticker {
-                    bottom: ($navigation-bar-height) + px;
-                    padding-right: 0px !important;
-                    right: calc(-100%);
-                    width: calc(100% - #{(($navigation-bar-height * 2)) + px});
-                    clip-path: polygon(12px 0%, 100% 0px, 100% 100%, 34px 100%);
+            }
+        
+            #corner-background {
+                position: absolute;
+                bottom: -130px;
+                left: -200.5px;
+                width: $cornerLogoWidth;
+                height: $cornerLogoHeight;
+                transform: rotate($rotationalDegrees);
+            }
+        
+            #headlines-navbar-ticker {
+                bottom: ($navigation-bar-height * 1.625) + px;
+                right: calc(-100%);
+                width: calc(100% - #{(($navigation-bar-height * 2) - 28) + px});
+                clip-path: polygon(12px 0%, 100% 0px, 100% 100%, 34px 100%);
+                padding-right: 0px !important;
+            }
+        
+            #econome-navbar-ticker {
+                bottom: ($navigation-bar-height) + px;
+                padding-right: 0px !important;
+                right: calc(-100%);
+                width: calc(100% - #{(($navigation-bar-height * 2)) + px});
+                clip-path: polygon(12px 0%, 100% 0px, 100% 100%, 34px 100%);
 
-                    #econome-navbar-ticker-content {
-            
-                        & > .row {
-            
-                            & > .col-auto {
-            
-                                h6 {
-            
-                                    &:nth-child(2), &:nth-child(2), &:nth-child(3) {
-                                        font-weight: 300;
-                                    }
-            
-                                    &:nth-child(1) {
-                                        background-color: $colour-black-trans-low;
-                                    }
-                    
-                                    &:nth-child(2) {
-                                        color: $colour-green-main;
-                                    }
-                    
-                                    &:nth-child(3) {
-                                        color: $colour-green-main;
-                                    }
-                    
-                                    &:nth-child(4) {
-                                        color: $colour-red-main;
-                                    }
+                #econome-navbar-ticker-content {
+        
+                    & > .row {
+        
+                        & > .col-auto {
+        
+                            h6 {
+        
+                                &:nth-child(2), &:nth-child(2), &:nth-child(3) {
+                                    font-weight: 300;
                                 }
-            
-                                &:last-child {
-                                    padding-right: 24px;
+        
+                                &:nth-child(1) {
+                                    background-color: $colour-black-trans-low;
                                 }
+                
+                                &:nth-child(2) {
+                                    color: $colour-green-main;
+                                }
+                
+                                &:nth-child(3) {
+                                    color: $colour-green-main;
+                                }
+                
+                                &:nth-child(4) {
+                                    color: $colour-red-main;
+                                }
+                            }
+        
+                            &:last-child {
+                                padding-right: 24px;
                             }
                         }
                     }
                 }
-            
-                #headlines-navbar-ticker, #econome-navbar-ticker {
-                    position: absolute;
-                    backdrop-filter: $backdrop-blur-heavy;
-            
+            }
+        
+            #headlines-navbar-ticker, #econome-navbar-ticker {
+                position: absolute;
+                backdrop-filter: $backdrop-blur-heavy;
+        
+                h6 {
+                    float: left;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+                    padding-left: 14px;
+                    padding-right: 14px;
+                    margin: 0px;
+                    font-weight: 300;
+                    font-size: 13px;
+                }
+        
+                #econome-navbar-ticker-title, #headlines-navbar-ticker-title {
+                    border-right: 1px solid $colour-grey-10;
+                    
                     h6 {
-                        float: left;
-                        padding-top: 10px;
-                        padding-bottom: 10px;
-                        padding-left: 14px;
-                        padding-right: 14px;
-                        margin: 0px;
-                        font-weight: 300;
-                        font-size: 13px;
-                    }
-            
-                    #econome-navbar-ticker-title, #headlines-navbar-ticker-title {
-                        border-right: 1px solid $colour-grey-10;
-                        
-                        h6 {
-                            padding-left: 30px;
-                            background-color: $colour-black-trans-high;
-                        }
-                    }
-
-                    #headlines-navbar-ticker-content, #econome-navbar-ticker-content {
-                        background-color: $colour-black-trans-low;
-                        overflow-y: hidden;
-                        overflow-x: scroll;
-
-                        & > .row {
-                            flex-wrap: nowrap;
-            
-                            & > .col-auto {
-                                padding-right: 0px;
-                            }
-                        }
-                    }
-                }
-
-                .bordered-line-v {
-                    transform: rotate(-30deg);
-                }
-        
-                .bordered-line-above {
-                    border-top-width: 0px;
-                    border-bottom-width: 0px;
-                    border-left-width: 1px;
-                    border-right-width: 1px;
-                    height: 400px;
-                    width: 9px;
-                    bottom: ($navigation-bar-height - 41.8) + px;
-                    left: 82.5px;
-                    transform: rotate(-30deg);
-                }
-        
-                .bordered-line-patch {
-                    border-top-width: 0px;
-                    border-bottom-width: 0px;
-                    border-left-width: 1px;
-                    border-right-width: 0px;
-                    height: 500px;
-                    width: 0px;
-                    bottom: -50px;
-                    left: 105px;
-                    transform: rotate(-30deg);
-                }
-        
-                .bordered-line-above, .bordered-line-patch {
-                    border-color: $colour-grey-10;
-                    border-style: solid;
-                    position: absolute;
-                    padding-left: 0px !important;
-                    padding-right: 0px !important;
-                }
-            
-                #main-nav-buttons {
-                    height: 64px;
-
-                    & > .col {
-                        backdrop-filter: $backdrop-blur-heavy;
+                        padding-left: 30px;
                         background-color: $colour-black-trans-high;
-                        clip-path: polygon(1px 0%, 100% 0px, 100% 100%, 38px 100%);
-                        padding-right: ($navigation-bar-height * 7.1) + px;
-                        height: inherit;
+                    }
+                }
+
+                #headlines-navbar-ticker-content, #econome-navbar-ticker-content {
+                    background-color: $colour-black-trans-low;
+                    overflow-y: hidden;
+                    overflow-x: scroll;
+
+                    & > .row {
+                        flex-wrap: nowrap;
         
-                        & > .row {
+                        & > .col-auto {
+                            padding-right: 0px;
+                        }
+                    }
+                }
+            }
+
+            .bordered-line-v {
+                transform: rotate($rotationalDegrees);
+                margin-left: 7.6px !important;
+            }
+    
+            #bordered-line-above {
+                border-top-width: 0px;
+                border-bottom-width: 0px;
+                border-left-width: 1px;
+                border-right-width: 1px;
+                height: 400px;
+                width: 9.5px;
+                bottom: 38.2px;
+                left: 79.1px;
+                transform: rotate(-31.1deg);
+            }
+    
+            #bordered-line-patch {
+                border-top-width: 0px;
+                border-bottom-width: 0px;
+                border-left-width: 1.5px;
+                border-right-width: 0px;
+                height: 5px;
+                width: 0px;
+                bottom: 60px;
+                left: 183.7px;
+                transform: rotate($rotationalDegrees);
+            }
+    
+            #bordered-line-above, #bordered-line-patch {
+                border-color: $colour-grey-10;
+                border-style: solid;
+                position: absolute;
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+        
+            #main-nav-buttons {
+                height: $navbarButtonsHeight;
+                margin-top: 0.5px;
+
+                & > .col {
+                    backdrop-filter: $backdrop-blur-heavy;
+                    background-color: $colour-black-trans-high;
+                    padding-right: 568px;
+                    height: inherit;
+                    clip-path: polygon(0px 0px, 100% 0px, 100% 100%, $rotationalDegreesPixels 100%);
+    
+                    & > .row {
+                        height: inherit;
+
+                        & > .col {
+                            overflow-y: hidden;
+                            overflow-x: scroll;
+                            margin-top: 0px;
+                            margin-bottom: 0px;
+                            margin-left: 0px;
+                            margin-right: 0px;
+                            padding-top: 0px;
+                            padding-bottom: 0px;
+                            padding-left: 0px;
+                            padding-right: 10px;
                             height: inherit;
+                            clip-path: polygon(0px 0px, calc(100% - #{$rotationalDegreesPixels}) 0px, 100% 100%, 0px 100%);
 
-                            & > .col {
-                                overflow-y: hidden;
-                                overflow-x: scroll;
-                                margin-top: 0px;
-                                margin-bottom: 0px;
-                                margin-left: 0px;
-                                margin-right: 0px;
-                                padding-top: 0px;
-                                padding-bottom: 0px;
-                                padding-left: 0px;
-                                padding-right: 10px;
+                            & > .row {
+                                padding: 0px;
+                                margin: 0px;
                                 height: inherit;
-
-                                & > .row {
+                
+                                & > .col-auto {
                                     padding: 0px;
-                                    margin: 0px;
                                     height: inherit;
                     
-                                    & > .col-auto {
-                                        padding: 0px;
+                                    &:first-child {
+                                        a {
+                                            padding-left: 20px;
+                                        }
+                                    }
+                
+                                    a {
+                                        text-decoration: none;
+                                        transform: skewX(30deg);
                                         height: inherit;
-                        
-                                        &:first-child {
-                                            a {
-                                                padding-left: 20px;
-                                            }
+                    
+                                        p {
+                                            transform: skewX(-30deg);
+                                            font-size: 14px;
+                                            font-weight: 300;
+                                            padding-top: 20px;
+                                            padding-bottom: 24px;
+                                            padding-left: 50px;
+                                            padding-right: 50px;
+                                            margin: 0px;
                                         }
                     
-                                        a {
-                                            text-decoration: none;
-                                            transform: skewX(30deg);
-                                            height: inherit;
-                        
-                                            p {
-                                                transform: skewX(-30deg);
-                                                font-size: 14px;
-                                                font-weight: 300;
-                                                padding-top: 22px;
-                                                padding-bottom: 22px;
-                                                padding-left: 50px;
-                                                padding-right: 50px;
-                                                margin: 0px;
-                                            }
-                        
-                                            &.active {
-                                                background-color: $colour-red-darkest-trans-low;
-                                                color: $colour-white !important;
-                                            }
-                        
-                                            &:hover {
-                                                background-color: $colour-red-darker-trans-low;
-                                                color: $colour-white !important;
-                                            }
+                                        &.active {
+                                            background-color: $colour-red-darkest-trans-low;
+                                            color: $colour-white !important;
+                                        }
+                    
+                                        &:hover {
+                                            background-color: $colour-red-darker-trans-low;
+                                            color: $colour-white !important;
                                         }
                                     }
                                 }
@@ -292,82 +294,90 @@
                         }
                     }
                 }
-            
-                .settings-button {
-                    height: ($navigation-bar-height - 18) + px !important;
-                    background-color: $colour-grey-2-trans-low;
-                    backdrop-filter: $backdrop-blur-heavy;
-                    border-left: 1px solid $colour-grey-10;
-                    cursor: pointer;
-                    transform: skewX(30deg);
-                    position: absolute;
-                    bottom: 0px;
-                    right: (($navigation-bar-height * 4) - 26) + px;
-            
-                    i {
-                        padding-top: 20px;
-                        padding-left: 26px;
-                        padding-right: 16px;
-                        font-size: 20px;
-                        transform: skewX(-30deg);
+            }
+        
+            #settings-button {
+                height: $navbarButtonsHeight;
+                margin-top: 0.5px;
+                background-color: $colour-grey-2-trans-low;
+                backdrop-filter: $backdrop-blur-heavy;
+                border-left: 1px solid $colour-grey-10;
+                cursor: pointer;
+                transform: skewX(30deg);
+                position: absolute;
+                bottom: 0px;
+                right: 274px;
+        
+                i {
+                    padding-top: 20px;
+                    padding-left: 26px;
+                    padding-right: 16px;
+                    font-size: 20px;
+                    transform: skewX(-30deg);
+                }
+        
+                &.active {
+                    background-color: $colour-red-darkest-trans-low;
+                }
+        
+                &:hover {
+                    background-color: $colour-red-darker-trans-low;
+                }
+            }
+        
+            #id-card {
+                width: 300px;
+                height: $navbarButtonsHeight;
+                margin-top: 0.5px;
+                background-color: $colour-grey-2-trans-low;
+                backdrop-filter: $backdrop-blur-heavy;
+                border-left: 1px solid $colour-grey-10;
+                overflow: hidden;
+                cursor: pointer;
+                transform: skewX(30deg);
+                margin-right: -26px;
+                padding-right: 34px;
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+        
+                & > .row {
+                    transform: skewX(-30deg);
+
+                    h5 {
+                        margin-top: 18px;
+                        margin-left: 110px;
+                        font-weight: 200;
                     }
-            
-                    &.active {
-                        background-color: $colour-red-darkest-trans-low;
+
+                    small {
+                        padding-top: 5px;
+                        padding-bottom: 5px;
+                        text-align: right;
                     }
-            
-                    &:hover {
-                        background-color: $colour-red-darker-trans-low;
+        
+                    #id-card-name {
+                        height: 100%;
+                        word-wrap: break-word;
+                        padding-left: 10px;
+                    }
+        
+                    #id-card-avatar {
+        
+                        img {
+                            width: ($navigation-bar-height - 24) + px;
+                            height: ($navigation-bar-height - 24) + px;
+                            margin: 6px;
+                        }
                     }
                 }
-            
-                .id-card {
-                    width: ($navigation-bar-height * 4) + px;
-                    height: ($navigation-bar-height - 18) + px !important;
-                    background-color: $colour-grey-2-trans-low;
-                    backdrop-filter: $backdrop-blur-heavy;
-                    border-left: 1px solid $colour-grey-10;
-                    overflow: hidden;
-                    cursor: pointer;
-                    transform: skewX(30deg);
-                    margin-right: -26px;
-                    padding-right: 34px;
-                    position: absolute;
-                    bottom: 0px;
-                    right: 0px;
-            
-                    & > .row {
-                        transform: skewX(-30deg);
-            
-                        small {
-                            padding-top: 5px;
-                            padding-bottom: 5px;
-                            text-align: right;
-                        }
-            
-                        #id-card-name {
-                            height: 100%;
-                            word-wrap: break-word;
-                            padding-left: 10px;
-                        }
-            
-                        #id-card-avatar {
-            
-                            img {
-                                width: ($navigation-bar-height - 24) + px;
-                                height: ($navigation-bar-height - 24) + px;
-                                margin: 6px;
-                            }
-                        }
-                    }
-                    
-                    &.active {
-                        background-color: $colour-red-darkest-trans-low;
-                    }
-            
-                    &:hover {
-                        background-color: $colour-red-darker-trans-low;
-                    }
+                
+                &.active {
+                    background-color: $colour-red-darkest-trans-low;
+                }
+        
+                &:hover {
+                    background-color: $colour-red-darker-trans-low;
                 }
             }
         }
@@ -404,63 +414,56 @@
         padding-right: 0px;
         z-index: $zindex-navigation-bar;
 
-        & > .row {
-    
-            &:nth-child(1) {
-                background-color: $colour-grey-3-trans-low;
-                backdrop-filter: $backdrop-blur-heavy;
-                overflow: hidden;
-    
-                .logo {
-                    position: absolute;
-                    bottom: 8px;
-                    left: 22px;
-                    width: 40px;
-                    height: 40px;
-                    padding: 0px;
-                }
-    
-                .avatar {
-                    position: absolute;
-                    right: 16px;
-                    width: 50px;
-                    height: 50px;
-                    padding: 0px;
-                }
+        #mobile-nav {
+            background-color: $colour-grey-3-trans-low;
+            backdrop-filter: $backdrop-blur-heavy;
+            overflow: hidden;
 
-                .collapsing-button, .settings-button {
-                    width: 50px;
-                    height: 50px;
-                    background-color: transparent;
-                    backdrop-filter: none;
-                }
-
-                .settings-button {
-                    position: absolute;
-                    bottom: 0px;
-                    right: 70px;
-                }
-    
-                a {
-                    width: 100vh;
-                    padding-top: 12px;
-                    padding-bottom: 12px;
-                    padding-left: 20px;
-                    padding-right: 20px;
-                    text-decoration: none;
-    
-                    &.active {
-                        background-color: $colour-grey-10-trans-low;
-                    }
-    
-                    p {
-                        margin: 0px;
-                    }
-                }
+            .logo {
+                position: absolute;
+                bottom: 8px;
+                left: 22px;
+                width: 40px;
+                height: 40px;
+                padding: 0px;
             }
-    
-            &:nth-child(2) {
-                display: none;
+
+            .avatar {
+                position: absolute;
+                right: 16px;
+                width: 50px;
+                height: 50px;
+                padding: 0px;
+            }
+
+            .collapsing-button, .settings-button {
+                width: 50px;
+                height: 50px;
+                background-color: transparent;
+                backdrop-filter: none;
+            }
+
+            .settings-button {
+                position: absolute;
+                bottom: 0px;
+                right: 70px;
+            }
+
+            a {
+                width: 100vh;
+                padding-top: 12px;
+                padding-bottom: 12px;
+                padding-left: 20px;
+                padding-right: 20px;
+                text-decoration: none;
+
+                &.active {
+                    background-color: $colour-grey-10-trans-low;
+                }
+
+                p {
+                    margin: 0px;
+                }
             }
         }
     }
