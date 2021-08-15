@@ -1,9 +1,0 @@
-[submodule "Core/UEESA.Client/wwwroot-dev/css/thirdparty/bootstrap"]
-	path = Core/UEESA.Client/wwwroot-dev/css/thirdparty/bootstrap
-	url = https://github.com/twbs/bootstrap
-[submodule "Core/UEESA.Client/wwwroot-dev/css/thirdparty/fontawesome"]
-	path = Core/UEESA.Client/wwwroot-dev/css/thirdparty/fontawesome
-	url = https://github.com/FortAwesome/Font-Awesome
-[submodule "JSON"]
-	path = JSON
-	url = https://github.com/Star-Aether/JSON
