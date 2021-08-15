@@ -2,25 +2,33 @@
   "version": "1.0.0",
   "name": "ueesa",
   "scripts": {
-    "build": "webpack -c ./webpack.dev.js --mode=development",
-    "build:dev": "webpack -c ./webpack.dev.js --mode=development",
-    "build:prod": "webpack -c ./webpack.prod.js --mode=production --node-env=production",
-    "watch": "webpack -c ./webpack.dev.js --watch"
+    "build": "webpack --mode=development",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch"
   },
   "dependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "babel-loader": "^8.2.2",
+    "@squoosh/lib": "^0.4.0",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
+    "image-minimizer-webpack-plugin": "github:webpack-contrib/image-minimizer-webpack-plugin#a078ce7c670213694f6a104944b4445fda0c699c",
+    "imagemin": "^8.0.1",
+    "imagemin-svgo": "^9.0.0",
     "mini-css-extract-plugin": "^2.2.0",
-    "node-sass": "^6.0.1",
     "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "resolve-url-loader": "^4.0.0",
     "sass": "^1.37.5",
     "sass-loader": "^12.1.0",
+    "squoosh": "github:GoogleChromeLabs/squoosh#eeaa19589e9e865ebd7bbc7e15b5d69a2595bf07",
+    "style-loader": "^3.2.1",
     "terser-webpack-plugin": "^5.1.4",
     "webpack": "^5.50.0",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "devDependencies": {
     "webpack-cli": "^4.7.2"
   }
 }

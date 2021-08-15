@@ -5,3 +5,5 @@ import * as cacheStorage from "./cache-storage"
 import * as runtime from "./runtime"
 import * as utilities from "./utilities"
 import "../css/bundle.scss"
+
+import "../img/backgrounds/blog.png"
