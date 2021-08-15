@@ -9,9 +9,12 @@
 	<RunAOTCompilation>false</RunAOTCompilation>
 	<LangVersion>preview</LangVersion>
   </PropertyGroup>
-
+	
   <ItemGroup>
-	<Content Remove="blaze-settings.json" />
+    <Compile Remove="wwwroot-dev\**" />
+    <Content Remove="wwwroot-dev\**" />
+    <EmbeddedResource Remove="wwwroot-dev\**" />
+	<None Remove="wwwroot-dev\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,17 +29,15 @@
 	</ItemGroup>
   
   <ItemGroup>
-	<None Include="blaze-settings.json">
-	  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	</None>
-  </ItemGroup>
-  
-  <ItemGroup>
 	<ProjectReference Include="..\UEESA.Shared\UEESA.Shared.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\" />
 	</ItemGroup>
 
 </Project>

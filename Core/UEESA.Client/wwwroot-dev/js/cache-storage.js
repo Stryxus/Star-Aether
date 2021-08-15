@@ -6,6 +6,6 @@ GLOBAL.cacheStorageInterface = function (ref)
 
 (function () {
     window.cacheStorageInterface = {
-        clear: () => caches.keys().then(keys => { keys.forEach(key => caches.delete(key)); });
+        clear: () => caches.keys().then(keys => { keys.forEach(key => caches.delete(key)); })
     }
 })();

@@ -1,8 +1,8 @@
-[submodule "Source_Assets/css/thirdparty/bootstrap"]
-	path = Source_Assets/css/thirdparty/bootstrap
+[submodule "Core/UEESA.Client/wwwroot-dev/css/thirdparty/bootstrap"]
+	path = Core/UEESA.Client/wwwroot-dev/css/thirdparty/bootstrap
 	url = https://github.com/twbs/bootstrap
-[submodule "Source_Assets/css/thirdparty/fontawesome"]
-	path = Source_Assets/css/thirdparty/fontawesome
+[submodule "Core/UEESA.Client/wwwroot-dev/css/thirdparty/fontawesome"]
+	path = Core/UEESA.Client/wwwroot-dev/css/thirdparty/fontawesome
 	url = https://github.com/FortAwesome/Font-Awesome
 [submodule "JSON"]
 	path = JSON
