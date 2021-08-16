@@ -1,0 +1,10 @@
+﻿<div class="col-auto roadmap-release-view-card needs-status">
+    <RoadmapReleaseHeader RoadmapRelease="@Release" />
+    <RoadmapReleaseBody Release="@Release" />
+</div>
+
+@code {
+
+    [Parameter]
+    public UEESA_Bson_Roadmap_Release Release { get; set; }
+}

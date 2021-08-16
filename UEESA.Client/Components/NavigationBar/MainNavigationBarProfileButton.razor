@@ -1,0 +1,38 @@
+﻿<a id="id-card" class="col-auto">
+    <div class="row">
+        @if (UserState.IsLoggedIn) 
+        {
+            <div class="col">
+                <div id="id-card-name" class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <small>Concierge Stryxus</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <small>View Profile</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col">
+                <h5>Login</h5>
+            </div>
+        }
+        <div id="id-card-avatar" class="col-auto">
+            <img draggable="false" src="/img/avatar.svg" alt="Avatar" />
+        </div>
+    </div>
+</a>
+
+@inject UserState UserState
+
+@code {        
+
+}

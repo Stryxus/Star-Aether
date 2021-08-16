@@ -1,0 +1,233 @@
+* {
+    user-select: none;
+}
+
+html {
+
+}
+
+body {
+    background-color: $black;
+    color: $colour-white;
+    font-family: 'Roboto';
+    padding: 0px;
+    margin: 0px;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+}
+
+#app {
+    overflow: hidden;
+}
+
+#background {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover !important;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+}
+
+main {
+    z-index: $zindex-main;
+    overflow: hidden;
+    height: 100vh;
+    width: calc(100% - #{($sidebar-width) + px}) !important;
+    padding: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    margin-left: $sidebar-width + 1 + px !important;
+    margin-right: 0px !important;
+    clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 130px 100%, 0px calc(100% - 220px));
+
+    & > .row {
+        margin: 0px !important;
+
+        & > * {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+        }
+
+        &.no-scroll {
+            height: calc(100% - #{$navigation-bar-height + px} + 12px) !important;
+            overflow-y: hidden !important;
+    
+            & > [class*='col-'].alt-scroll, & > .col.alt-scroll {
+                overflow-y: scroll !important;
+                height: 100%;
+            }
+
+            & > [class*='col-'].padded-no-scroll, & > .col.padded-no-scroll {
+                overflow-y: hidden !important;
+                height: 100% !important;
+            }
+        }
+    }
+}
+
+#viewport-overlay {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: black;
+    color: white;
+    z-index: $zindex-viewport-overlay;
+    display: none;
+
+    h6 {
+        position: absolute;
+        top: 20px;
+        bottom: 20px;
+        left: 50px;
+        right: 50px;
+        text-align: center;
+    }
+}
+
+#router {
+    
+    #webpage {
+        #page-body {
+            opacity: 0;
+        }
+    }
+}
+
+// BEGIN-Min-Width
+
+@include media-breakpoint-up(xs) {
+}
+
+@include media-breakpoint-up(sm) {
+}
+
+@include media-breakpoint-up(md) {
+
+}
+
+// Desktop
+
+@include media-breakpoint-up(lg) {
+
+    main {
+    
+        & > .row {
+    
+            [class*='col-'].padded-scroll, .col.padded-scroll {
+                padding-bottom: ($navigation-bar-height * 2.25) + px;
+            }
+    
+            [class*='col-'].padded-no-scroll, .col.padded-no-scroll {
+                padding-bottom: ($navigation-bar-height * 2.25) + px;
+            }
+    
+            &.no-scroll {
+    
+                [class*='col-'].alt-scroll, .col.alt-scroll {
+                    padding-bottom: ($navigation-bar-height * 4.5) + px;
+    
+                    &.alt-scroll-left {
+                        padding-bottom: ($navigation-bar-height * 4.5) + px;
+                    }
+    
+                    &:not(.alt-scroll-left) {
+                        padding-bottom: 155px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+}
+
+// END-Min-Width
+
+// BEGIN-Max-Width
+
+@media (max-width: 375px) {
+
+    #viewport-overlay {
+        display: block;
+    }
+}
+
+@include media-breakpoint-down(xs) {
+}
+
+@include media-breakpoint-down(sm) {
+}
+
+@include media-breakpoint-down(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-down(lg) {
+
+    main {
+    
+        & > .row {
+    
+            [class*='col-'].padded-scroll, .col.padded-scroll {
+                padding-bottom: $navigation-bar-mobile-height + px;
+            }
+    
+            [class*='col-'].padded-no-scroll, .col.padded-no-scroll {
+                padding-bottom: $navigation-bar-mobile-height + px;
+            }
+    
+            &.no-scroll {
+    
+                [class*='col-'].alt-scroll, .col.alt-scroll {
+                    padding-bottom: $navigation-bar-mobile-height + px;
+    
+                    &.alt-scroll-left {
+                        padding-bottom: $navigation-bar-mobile-height + px;
+                    }
+    
+                    &:not(.alt-scroll-left) {
+                        padding-bottom: $navigation-bar-mobile-height + px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// END-Max-Width
+
+// BEGIN-Width-Exclusivity
+
+@include media-breakpoint-only(xs) {
+}
+
+@include media-breakpoint-only(sm) {
+}
+
+@include media-breakpoint-only(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-only(lg) {
+}
+
+@include media-breakpoint-only(xl) {
+}
+
+// END-Width-Exclusivity

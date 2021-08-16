@@ -1,0 +1,16 @@
+﻿<div id="tools-sidebar" class="container-fluid bordered bordered-line-right">
+    @if (ComponentState.ToolsType == UIState.ComponentState.ToolsBarType.Default)
+    {
+        <ToolsBarDefaultTools />
+    }
+    else if (ComponentState.ToolsType == UIState.ComponentState.ToolsBarType.Roadmap)
+    {
+
+    }
+</div>
+
+@inject UIState.ComponentState ComponentState
+
+@code {
+
+}

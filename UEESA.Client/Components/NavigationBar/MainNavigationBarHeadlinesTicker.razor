@@ -1,0 +1,25 @@
+﻿@if (ComponentState.IsNavBarTickerHeadlinesVisible)
+{
+    <div id="headlines-navbar-ticker">
+        <div id="headlines-navbar-ticker-title" class="col-auto">
+            <h6>Headlines</h6>
+        </div>
+        <div id="headlines-navbar-ticker-content" class="col">
+            <div class="row">
+                <div class="col-auto"></div>
+            </div>
+        </div>
+    </div>
+}
+
+@inject UIState.ComponentState ComponentState
+@inject ClientState ClientState
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        ComponentState.OnNavBarTickerHeadlinesChanged += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+}

@@ -1,0 +1,33 @@
+﻿<div class="col">
+    <div class="row feature">
+        <div class="col">
+            <div class="row">
+                <div class="col feature-img">
+                    @if (Card.thumnail_path != null)
+                    {
+                        <img src="@("https://robertsspaceindustries.com" + Card.thumnail_path)" draggable="false" alt="Feature Image" />
+                    }
+                    <div class="task-overlay @(Card.status.ToString().ToLower())">
+                        <small>
+                            @Card.status.ToString()
+                        </small>
+                    </div>
+                </div>
+            </div>
+            @if (Card.description != null)
+            {
+                <div class="row">
+                    <div class="col feature-description">
+                        <small>@Card.description</small>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public UEESA_Bson_Roadmap_Card Card { get; set; }
+}

@@ -1,0 +1,44 @@
+﻿<div class="row section-category-frame @SpecialClasses">
+    <div class="col-auto section-line" />
+    <div class="col">
+        <div class="row section-title" @onclick="ToggleVisibility">
+            <div class="col-auto d-flex align-items-center">
+                <i class="fas @(IsVisible ? "fa-chevron-up" : "fa-chevron-down")"></i>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <h6>@(new Regex(@" (?<=[A-Z])(?=[A-Z][a-z]) | (?<=[^A-Z])(?=[A-Z]) | (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace).Replace(Title, " "))</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (IsVisible)
+        {
+            <div class="row section-items-dropdown">
+                @ChildContent
+            </div>
+        }
+    </div>
+</div>
+<hr />
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string SpecialClasses { get; set; } = string.Empty;
+
+    private bool IsVisible { get; set; } = false;
+
+    private void ToggleVisibility()
+    {
+        IsVisible = !IsVisible;
+        StateHasChanged();
+    }
+}

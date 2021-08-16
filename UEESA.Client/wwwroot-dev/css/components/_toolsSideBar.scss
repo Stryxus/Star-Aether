@@ -1,0 +1,132 @@
+#tools-sidebar {
+    backdrop-filter: $backdrop-blur-heavy;
+}
+
+// BEGIN-Min-Width
+
+@include media-breakpoint-up(xs) {
+}
+
+@include media-breakpoint-up(sm) {
+}
+
+@include media-breakpoint-up(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-up(lg) {
+
+    #tools-sidebar {
+        position: fixed;
+        top: 0px;
+        bottom: 0px;
+        left: #{-$sidebar-width - 1 + px};
+        width: $sidebar-width + px;
+        padding: 0px;
+        background-color: $colour-black-trans-high;
+        clip-path: polygon(0px 0px, 100% 0px, 100% calc(100% - 219.5px), 0px calc(100% - 387.5px));
+
+        & > * {
+            height: 100%;
+        }
+
+        .vr {
+            height: 32px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #tools-bar-default {
+            text-align: center;
+
+            & > .col {
+
+                .vr {
+
+                    &:last-child {
+                        height: 100% !important;
+                    }
+                }
+
+                & > .row {
+
+                    &:first-child {
+                        margin-top: 32px;
+                    }
+    
+                    &:last-child {
+                        margin-bottom: 32px;
+                    }
+                }
+
+                a {
+                    border: solid 1px $colour-grey-10;
+                    border-radius: 6px;
+                    padding: 12px;
+                    display: inline-block !important;
+
+                    i {
+                        color: $colour-grey-10;
+                        font-size: 24px;
+                    }
+
+                    &:hover {
+                        background-color: $colour-grey-10;
+
+                        i {
+                            color: $colour-grey-1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+}
+
+// END-Min-Width
+
+// BEGIN-Max-Width
+
+@include media-breakpoint-down(xs) {
+}
+
+@include media-breakpoint-down(sm) {
+}
+
+@include media-breakpoint-down(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-down(lg) {
+    #utilities-sidebar {
+        
+    }
+}
+
+// END-Max-Width
+
+// BEGIN-Width-Exclusivity
+
+@include media-breakpoint-only(xs) {
+}
+
+@include media-breakpoint-only(sm) {
+}
+
+@include media-breakpoint-only(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-only(lg) {
+}
+
+@include media-breakpoint-only(xl) {
+}
+
+// END-Width-Exclusivity

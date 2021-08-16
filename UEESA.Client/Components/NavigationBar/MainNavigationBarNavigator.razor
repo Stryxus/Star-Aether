@@ -1,0 +1,57 @@
+﻿<div id="main-nav-buttons" class="row">
+    <div class="col">
+@if (PageState.IsCurrentContextPageSet)
+{
+    @if (IsMobileNavbarVisible)
+    {
+        <div class="row">
+            <div class="col">
+                @foreach (PageContext page in PageState.PageContexts)
+                {
+                    @if (!page.InformalPageName.IsEmpty())
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <PreNavLink href="@("/" + page.InformalPageName.ToLower())"><p>@(page.FormalPageName)</p></PreNavLink>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    @foreach (PageContext page in PageState.PageContexts)
+                    {
+                        @if (!page.InformalPageName.IsEmpty())
+                        {
+                            <div class="col-auto">
+                                <PreNavLink href="@("/" + page.InformalPageName.ToLower())"><p>@(page.FormalPageName)</p></PreNavLink>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+    </div>
+</div>
+
+@inject UIState.PageState PageState
+
+@code {
+
+    [Parameter]
+    public bool IsMobileNavbarVisible { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        PageState.OnPagePreTransition += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+}

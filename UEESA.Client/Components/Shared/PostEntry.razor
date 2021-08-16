@@ -1,0 +1,69 @@
+﻿<div class="row post-entry">
+    <div class="col">
+        <div class="row">
+            <div class="col-auto post-header">
+                <h4>@Title</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col post-content">
+                @if (Content != null)
+                {
+                    <Virtualize Items="Content" Context="c">
+                        <p>
+                            @foreach (string f in c.Split(" "))
+                            {
+                                @if (f.StartsWith("https://") && (f.EndsWith(".webp") || f.EndsWith(".png") || f.EndsWith(".gif") || f.EndsWith("jpg")))
+                                {
+                                    <img src="@f" draggable="false" alt="Blog Image" />
+                                }
+                                else if (f.StartsWith("https://"))
+                                {
+                                    <a href="@f" target="_blank" draggable="false">@f</a> @(" ")
+                                }
+                                else
+                                {
+                                    @(f + " ")
+                                }
+                            }
+                        </p>
+                    </Virtualize>
+                }
+                else if (ChildContent != null)
+                {
+                    @ChildContent
+                }
+            </div>
+        </div>
+        @if (PostedOn != null)
+        {
+            <div class="row">
+                <div class="col-auto post-footer">
+                    <small>
+                        Posted on @(((DateTime)PostedOn).ToShortDateString()) at @(((DateTime)PostedOn).ToShortTimeString()) @(LastEditedOn != null ?
+                                                "and last edited on " + ((DateTime)LastEditedOn).ToShortDateString() + " at " + ((DateTime)LastEditedOn).ToShortTimeString() : string.Empty)
+                    </small>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public List<string>? Content { get; set; }
+
+    [Parameter]
+    public DateTime? PostedOn { get; set; }
+
+    [Parameter]
+    public DateTime? LastEditedOn { get; set; }
+
+}

@@ -1,0 +1,22 @@
+﻿@if (PageState.CurrentPageContext.PageBackgroundFileName != null)
+{
+    @if (PageState.CurrentPageContext.PageBackgroundFileName.EndsWith(".webp"))
+    {
+        <img id="background" src="@("/img/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName)" />
+    }
+    else if (PageState.CurrentPageContext.PageBackgroundFileName.EndsWith(".mp4"))
+    {
+        <video id="background" src="@("/vid/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName)" autoplay muted loop poster="@("/vid/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName.Replace(".mp4", ".webp"))" />
+    }
+}
+
+@inject UIState.PageState PageState
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        PageState.OnPageTransitionBackgroundStage += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+}
