@@ -16,18 +16,20 @@
     <meta property="og:url" content="https://staraether.com/" />
     <meta property="og:title" content="UEE Star Aether" />
     <meta property="og:description" content="Home to the cutting edge corner of the verse, where each and every citizen, pirate, syndicate leader and alike can learn a little more." />
-    <meta property="og:image" content="https://staraether.com/pwa-192.png" />
+    <meta property="og:image" content="https://staraether.com/pwa-192.webp" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary" />
     <meta property="twitter:url" content="https://staraether.com/" />
     <meta property="twitter:title" content="UEE Star Aether" />
     <meta property="twitter:description" content="Home to the cutting edge corner of the verse, where each and every citizen, pirate, syndicate leader and alike can learn a little more." />
-    <meta property="twitter:image" content="https://staraether.com/pwa-192.png" />
+    <meta property="twitter:image" content="https://staraether.com/pwa-192.webp" />
 
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json" />
-    <link rel="apple-touch-icon" href="/pwa-192.png" />
+    <link rel="apple-touch-icon" href="/pwa-192.webp" />
+
+    <link type="text/css" href="css/bundle.scss"></link>
 </head>
 <body>
     <noscript>
@@ -39,5 +41,6 @@
         navigator.serviceWorker.register('service-worker.js').then(reg => { reg.onupdatefound = () => { const installingWorker = reg.installing; installingWorker.onstatechange = () => { switch (installingWorker.state) { case 'installed': if (navigator.serviceWorker.controller) { location.reload(true) } break } } } }).catch(err => console.error('[SERVICE WORKER]', err));
     </script>
     <script defer type="text/javascript" charset="UTF-8" src="_framework/blazor.webassembly.js"></script>
+    <script defer type="text/javascript" charset="UTF-8" src="js/bundle.js"></script>
 </body>
 </html>

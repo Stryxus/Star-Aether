@@ -8,6 +8,7 @@
 	<AssemblyName>UEESA.Client</AssemblyName>
 	<RunAOTCompilation>false</RunAOTCompilation>
 	<LangVersion>preview</LangVersion>
+	  <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
 	
   <ItemGroup>

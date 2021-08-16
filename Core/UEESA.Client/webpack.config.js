@@ -1,7 +1,5 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
@@ -10,7 +8,10 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 
 var config = {
     devtool: 'source-map',
-    entry: './wwwroot-dev/js/bundle.js',
+    entry: [
+        path.resolve(__dirname, 'wwwroot-dev', 'js', 'bundle.js'),
+        path.resolve(__dirname, 'wwwroot-dev', 'css', 'bundle.scss')
+    ],
     externals: [nodeExternals()],
     output: {
         filename: 'bundle.[contenthash].min.js',
@@ -18,18 +19,11 @@ var config = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            filename: path.resolve('wwwroot', 'index.html'),
-            inject: true,
-            template: path.resolve('wwwroot-dev', 'index.html'),
-        }),
-        new MiniCssExtractPlugin({
-            filename: 'bundle.[contenthash].min.css'
-        }),
         new ImageMinimizerPlugin({
             minify: ImageMinimizerPlugin.squooshMinify,
             test: /\.(png)$/i,
             filename: "[name].webp",
+            maxConcurrency: 1,
             minimizerOptions: {
                 encodeOptions: {
                     webp: {
@@ -60,8 +54,7 @@ var config = {
                         near_lossless: 100,
                         use_delta_palette: 0,
                         use_sharp_yuv: 0,
-                    }
-                    /*
+                    },
                     avif: {
                         cqLevel: 33,
                         cqAlphaLevel: -1,
@@ -70,23 +63,27 @@ var config = {
                         subsample: 1,
                         chromaDeltaQ: false,
                         sharpness: 0,
-                    },
-                    */
+                    }
                 },
+            },
+        }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: 'wwwroot-dev/*.svg',
+                    to({ context, absoluteFilename }) {
+                        return '[name][ext]';
+                    },
+                }
+            ],
+            options: {
+                concurrency: 100,
             },
         }),
     ],
     optimization: {
         minimize: true,
         minimizer: [
-            new OptimizeCssAssetsPlugin({
-                cssProcessorOptions: {
-                    map: {
-                        inline: false,
-                        annotation: true,
-                    },
-                },
-            }),
             new TerserPlugin({
                 parallel: true,
                 extractComments: false,
@@ -113,17 +110,8 @@ module.exports = (env, argv) => {
                     test: /\.scss$/,
                     use: [
                         {
-                            loader: 'style-loader',
-                        },
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: true,
-                                importLoaders: 2
-                            }
-                        },
-                        {
-                            loader: 'resolve-url-loader',
+                            loader: 'file-loader',
+                            options: { outputPath: '', name: 'bundle.[hash].min.css' }
                         },
                         {
                             loader: 'sass-loader',
@@ -144,17 +132,8 @@ module.exports = (env, argv) => {
                     test: /\.scss$/,
                     use: [
                         {
-                            loader: 'style-loader',
-                        },
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: true,
-                                importLoaders: 2
-                            }
-                        },
-                        {
-                            loader: 'resolve-url-loader',
+                            loader: 'file-loader',
+                            options: { outputPath: '', name: 'bundle.[hash].min.css' }
                         },
                         {
                             loader: 'sass-loader',
