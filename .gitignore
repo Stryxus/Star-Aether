@@ -353,8 +353,7 @@ MigrationBackup/
 *.resx
 
 ###############################################################################################################################################################
-Core/UEESA.Client/wwwroot/css/thirdparty
-Core/UEESA.Client/dist
+Core/UEESA.Client/wwwroot
 
 Core/UEESA.Server/Properties/serviceDependencies.json
 Core/UEESA.Server/Properties/serviceDependencies.local.json
