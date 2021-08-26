@@ -357,3 +357,7 @@ ueesa-cache.json
 package-lock.json
 
 UEESA.Client/wwwroot
+
+UEESA.Server/Properties/ServiceDependencies
+UEESA.Server/Properties/serviceDependencies.json
+UEESA.Server/Properties/serviceDependencies.local.json
