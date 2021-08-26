@@ -9,6 +9,7 @@ import imageminAvif from 'imagemin-avif'
 import sass from 'sass'
 import { minify } from 'terser'
 import ffmpeg from 'ffmpeg-static'
+import commandExistsSync from 'command-exists'
 
 // Global Variables //
 
@@ -208,14 +209,28 @@ async function processing()
             const output = item.path.replace('wwwroot-dev', 'wwwroot').replace('.mp4', '.webm')
             console.log('  | Transcoding Video: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
             mkdirSync(dirname(output), { recursive: true })
-            // Change CRF to 5 once librav1e is able to be used
-            execSync('start cmd /C ' + ffmpeg + ' -y -i ' + item.path + ' -c:v libaom-av1 -crf 50 -b:v 500k -movflags +faststart -c:a libopus -q:a 128 ' + output, err =>
+            if (commandExistsSync('ffmpeg'))
             {
-                if (err)
+                execSync('start cmd /C ffmpeg -y -i ' + item.path + ' -c:v librav1e -b:v 200K -rav1e-params speed=0:low_latency=true -movflags +faststart -c:a libopus -q:a 128 ' + output, err =>
                 {
-                    throw err
-                }
-            })
+                    if (err)
+                    {
+                        throw err
+                    }
+                })
+            }
+            else
+            {
+                console.error('No FFmpeg detected in enviroment variables - falling back to libaom, video transcoding will take substantially longer and will be much lower quality!')
+                // Change CRF to 5 once librav1e is able to be used
+                execSync('start cmd /C ' + ffmpeg + ' -y -i ' + item.path + ' -c:v libaom-av1 -crf 50 -b:v 200k -movflags +faststart -c:a libopus -q:a 128 ' + output, err =>
+                {
+                    if (err)
+                    {
+                        throw err
+                    }
+                })
+            }
         }
     })
 
