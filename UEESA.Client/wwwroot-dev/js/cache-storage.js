@@ -1,11 +1,12 @@
-GLOBAL.JSCacheStorageInterface = null;
-GLOBAL.cacheStorageInterface = function (ref) 
+GLOBAL.JSCacheStorageInterface = null
+GLOBAL.cacheStorageInterface = (ref) =>
 {
-    if (GLOBAL.JSCacheStorageInterface === null) GLOBAL.JSCacheStorageInterface = ref;
-};
+    if (GLOBAL.JSCacheStorageInterface === null) GLOBAL.JSCacheStorageInterface = ref
+}
 
-(function () {
+(() =>
+{
     window.cacheStorageInterface = {
-        clear: () => caches.keys().then(keys => { keys.forEach(key => caches.delete(key)); })
+        clear: () => caches.keys().then(keys => { keys.forEach(key => caches.delete(key)) })
     }
-})();
+})()

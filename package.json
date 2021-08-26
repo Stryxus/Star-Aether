@@ -1,0 +1,32 @@
+{
+  "name": "ueesa",
+  "version": "1.0.0",
+  "description": "The bundler for the UEESA Core project",
+  "type": "module",
+  "main": "bundler.js",
+  "scripts": {
+    "build": "node bundler.js",
+    "build:debug": "node bundler.js",
+    "build:release": "node bundler.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Star-Aether/Core.git"
+  },
+  "author": "Connor 'Stryxus' Shearer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Star-Aether/Core/issues"
+  },
+  "homepage": "https://github.com/Star-Aether/Core#readme",
+  "dependencies": {
+    "chokidar": "^3.5.2",
+    "ffmpeg-static": "^4.4.0",
+    "fs-extra": "^10.0.0",
+    "get-folder-size": "^3.1.0",
+    "imagemin": "^8.0.1",
+    "imagemin-avif": "^0.1.2",
+    "sass": "^1.38.1",
+    "terser": "^5.7.2"
+  }
+}
