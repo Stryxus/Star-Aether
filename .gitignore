@@ -353,12 +353,12 @@ MigrationBackup/
 *.resx
 
 ###############################################################################################################################################################
-Core/UEESA.Client/wwwroot
+UEESA.Client/wwwroot
 
-Core/UEESA.Server/Properties/serviceDependencies.json
-Core/UEESA.Server/Properties/serviceDependencies.local.json
-Core/UEESA.Server/Properties/serviceDependencies.ueesaapp - Zip Deploy.json
-Core/UEESA.Server/Properties/ServiceDependencies/*
-Core/UEESA.Server/private.json
+UEESA.Server/Properties/serviceDependencies.json
+UEESA.Server/Properties/serviceDependencies.local.json
+UEESA.Server/Properties/serviceDependencies.ueesaapp - Zip Deploy.json
+UEESA.Server/Properties/ServiceDependencies/*
+UEESA.Server/private.json
 ueesa-cache.json
 package-lock.json
