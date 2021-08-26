@@ -83,7 +83,7 @@ async function processJS(jsFiles)
 {
     const minJSFilePath = __client_wwwroot_dirname + sep + 'bundle.min.js'
     const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.js.map'
-    console.log('  | Minifying JS: ' + minJSFilePath.replace(__client_wwwrootdev_dirname, ''))
+    console.log('  | Minifying JS: ' + minJSFilePath.replace(__client_wwwroot_dirname, ''))
     var orderedJS = 'var GLOBAL = {}\n' // Define this to silence errors made from Blazor's GLOBAL variable missing
     jsFiles.forEach(async item =>
     {
@@ -134,7 +134,6 @@ function processSASS(scssFile)
 
 async function processing()
 {
-    console.log('\n----------------------------------------------------------------------------------------------------\n')
     console.log('\\  Changes Made > Running Bundle Pass...')
     console.log(' \\')
 
@@ -214,7 +213,9 @@ async function processing()
     const inputSize = await getFolderSize.loose(__client_wwwrootdev_dirname)
     const outputSize = await getFolderSize.loose(__client_wwwroot_dirname)
     console.log('  |')
-    console.log('  | > Size Before: ' + inputSize.toLocaleString('en') + ' bytes - Size After: ' + outputSize.toLocaleString('en') + ' bytes - Compression: ' + (100 - (outputSize / inputSize * 100)).toFixed(4).toString() + '%')
+    console.log('  | > Size Before: ' + inputSize.toLocaleString('en') + ' bytes')
+    console.log('  | > Size After: ' + outputSize.toLocaleString('en') + ' bytes')
+    console.log('  | > Compression: ' + (100 - (outputSize / inputSize * 100)).toFixed(4).toString() + '%')
     console.log(' /')
     console.log('/')
     console.log('\n----------------------------------------------------------------------------------------------------\n')
