@@ -1,6 +1,15 @@
-﻿public static class Services
+﻿using Microsoft.Extensions.Configuration;
+
+public static class Services
 {
+    public static IConfiguration Configuration { get; private set; }
     public static IServiceProvider Provider { get; private set; }
+
+    public static void SetConfiguration(IConfiguration configuration)
+    {
+        if (Configuration != null) return;
+        Configuration = configuration;
+    }
 
     public static void SetServiceProvider(IServiceProvider provider)
     {

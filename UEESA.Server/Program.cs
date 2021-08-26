@@ -14,10 +14,10 @@ using UEESA.Server.Data;
 using UEESA.Server.Sockets;
 using UEESA.Server.Sockets.Handlers;
 
-IConfiguration Configuration;
 string CORSAuthorityName = "_starAetherCORSAuthority";
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+Services.SetConfiguration(builder.Configuration);
 
 builder.WebHost.UseKestrel(kestrelOptions =>
 {
@@ -28,8 +28,8 @@ builder.WebHost.UseKestrel(kestrelOptions =>
 });
 
 #if DEBUG
-builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.DEV_ApplicationInsightsConnectionString });
-if (!PrivateData.Instance.DEV_MicrosoftIdentityPlatformClientID.IsEmpty())
+builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = "00000000-0000-0000-0000-000000000000" });
+if (!Services.Configuration["DEV_MIP_CID"].IsEmpty())
 {
     builder.Services.AddAuthentication(options =>
     {
@@ -37,7 +37,7 @@ if (!PrivateData.Instance.DEV_MicrosoftIdentityPlatformClientID.IsEmpty())
     }).AddMicrosoftIdentityWebApp(options =>
     {
         options.Instance = "https://login.microsoftonline.com/";
-        options.ClientId = PrivateData.Instance.DEV_MicrosoftIdentityPlatformClientID;
+        options.ClientId = Services.Configuration["DEV_MIP_CID"];
         options.TenantId = "common";
     });
 }
@@ -50,14 +50,14 @@ builder.Services.AddCors(options =>
                       });
 });
 #else
-builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = PrivateData.Instance.ApplicationInsightsConnectionString });
+builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = Services.Configuration["APPINSIGHTS_CONNECTIONSTRING"] });
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     }).AddMicrosoftIdentityWebApp(options =>
     {
         options.Instance = "https://login.microsoftonline.com/";
-        options.ClientId = PrivateData.Instance.MicrosoftIdentityPlatformClientID;
+        options.ClientId = Services.Configuration["MIP_CID"];
         options.TenantId = "common";
     });
 builder.Services.AddCors(options =>
@@ -96,8 +96,6 @@ builder.Services.AddSingleton<MongoDBHandler>();
 builder.Services.AddSingleton<RSIRoadmapScraper>();
 
 WebApplication app = builder.Build();
-
-Configuration = app.Configuration;
 Services.SetServiceProvider(app.Services.CreateScope().ServiceProvider);
 Globals.IsDevelopmentMode = app.Environment.IsDevelopment();
 

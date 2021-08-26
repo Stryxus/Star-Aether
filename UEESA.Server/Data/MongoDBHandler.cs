@@ -21,9 +21,9 @@ namespace UEESA.Server.Data
             {
                 Logger.LogInfo("Connecting to UEESA Database...");
 #if DEBUG
-                MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(PrivateData.Instance.DEV_MongoDBConnectionString));
+                MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(Services.Configuration["DEV_COSMOSDB_CONNECTIONSTRING"]));
 #else
-                MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(PrivateData.Instance.MongoDBConnectionString));
+                MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(Services.Configuration["COSMOSDB_CONNECTIONSTRING"]));
 #endif
                 settings.SslSettings = new SslSettings() { EnabledSslProtocols = SslProtocols.Tls12 };
                 Client = new(settings);
