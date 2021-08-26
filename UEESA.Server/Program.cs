@@ -29,7 +29,7 @@ builder.WebHost.UseKestrel(kestrelOptions =>
 
 #if DEBUG
 builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = "00000000-0000-0000-0000-000000000000" });
-if (!Services.Configuration["DEV_MIP_CID"].IsEmpty())
+if (Services.Configuration["DEV_MIP_CID"] != null && !Services.Configuration["DEV_MIP_CID"].IsEmpty())
 {
     builder.Services.AddAuthentication(options =>
     {
