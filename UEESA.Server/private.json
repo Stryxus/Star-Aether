@@ -1,9 +1,0 @@
-{
-  "MongoDBConnectionString": "mongodb://ueesa-db:x6ZxTq9rl1chj3GqIxsQr0UDUpqXOkFBPnSEmLlAtmyNUcA0QqZpnwyItw7GvOGscRRo8qQqgN914qBHzY3YrQ==@ueesa-db.mongo.cosmos.azure.com:10255/?ssl=true&retrywrites=false&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@ueesa-db@",
-  "ApplicationInsightsConnectionString": "InstrumentationKey=084ad023-e221-43be-8c2c-3ec2f302c052;IngestionEndpoint=https://uksouth-1.in.applicationinsights.azure.com/",
-  "MicrosoftIdentityPlatformClientID": "d9f1f805-1b52-4d04-a556-ee51066dba83",
-
-  "DEV_MongoDBConnectionString": "mongodb://localhost:27017",
-  "DEV_ApplicationInsightsConnectionString": "00000000-0000-0000-0000-000000000000",
-  "DEV_MicrosoftIdentityPlatformClientID": "d9f1f805-1b52-4d04-a556-ee51066dba83"
-}
