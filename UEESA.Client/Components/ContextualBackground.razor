@@ -1,10 +1,10 @@
 ﻿@if (PageState.CurrentPageContext.PageBackgroundFileName != null)
 {
-    @if (PageState.CurrentPageContext.PageBackgroundFileName.EndsWith(".webp"))
+    @if (PageState.CurrentPageContext.PageBackgroundFileName.EndsWith(".avif"))
     {
         <img id="background" src="@("/img/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName)" />
     }
-    else if (PageState.CurrentPageContext.PageBackgroundFileName.EndsWith(".mp4"))
+    else if (PageState.CurrentPageContext.PageBackgroundFileName.EndsWith(".webm"))
     {
         <video id="background" src="@("/vid/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName)" autoplay muted loop poster="@("/vid/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName.Replace(".mp4", ".webp"))" />
     }
