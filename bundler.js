@@ -151,23 +151,32 @@ async function processing()
 
     htmlFiles.forEach(item =>
     {
-        const output = item.path.replace('wwwroot-dev', 'wwwroot')
-        console.log('  | Copying HTML: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
-        copyFileSync(item.path, output)
+        if (needsCaching(item.path, 'html'))
+        {
+            const output = item.path.replace('wwwroot-dev', 'wwwroot')
+            console.log('  | Copying HTML: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
+            copyFileSync(item.path, output)
+        }
     })
 
     svgFiles.forEach(item =>
     {
-        const output = item.path.replace('wwwroot-dev', 'wwwroot')
-        console.log('  | Copying SVG: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
-        copyFileSync(item.path, output)
+        if (needsCaching(item.path, 'svg'))
+        {
+            const output = item.path.replace('wwwroot-dev', 'wwwroot')
+            console.log('  | Copying SVG: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
+            copyFileSync(item.path, output)
+        }
     })
 
     jsonFiles.forEach(item =>
     {
-        const output = item.path.replace('wwwroot-dev', 'wwwroot')
-        console.log('  | Copying JSON: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
-        copyFileSync(item.path, output)
+        if (needsCaching(item.path, 'json'))
+        {
+            const output = item.path.replace('wwwroot-dev', 'wwwroot')
+            console.log('  | Copying JSON: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
+            copyFileSync(item.path, output)
+        }
     })
 
     pngFiles.forEach(async item =>
