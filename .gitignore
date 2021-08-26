@@ -360,3 +360,4 @@ Core/UEESA.Server/Properties/serviceDependencies.local.json
 Core/UEESA.Server/Properties/serviceDependencies.ueesaapp - Zip Deploy.json
 Core/UEESA.Server/Properties/ServiceDependencies/*
 Core/UEESA.Server/private.json
+ueesa-cache.json
