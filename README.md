@@ -25,8 +25,7 @@ Have a question? There is currently 1 way of doing this!
 
 # Distribution
 
-This website is distributed to [Azure](https://azure.microsoft.com/) with [Blaze](https://github.com/Star-Athenaeum/Blaze).
-
+This website is distributed to [Azure](https://azure.microsoft.com/) with the help of the home made NodeJS based bundler which is also in this repo.
 # Contributing
 
 ### Requirements
