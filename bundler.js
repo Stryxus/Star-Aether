@@ -80,6 +80,18 @@ function loadConfig()
     }
 }
 
+function addCacheEntry(filepath)
+{
+    const relativeFilePath = filepath.replace(__client_wwwrootdev_dirname, '')
+    cacheEntities.cached = cacheEntities.cached.filter(f => f.relativeFilePath !== relativeFilePath)
+    cacheEntities.cached.push({ relativeFilePath: relativeFilePath, lastModified: statSync(filepath).mtime })
+    if (fileExists(__cache_filename))
+    {
+        truncateSync(__cache_filename, 0)
+    }
+    writeFileSync(__cache_filename, JSON.stringify(cacheEntities, null, "\t"), 'utf8')
+}
+
 function needsCaching(filepath, procExt)
 {
     if (fileExists(__cache_filename))
@@ -87,17 +99,23 @@ function needsCaching(filepath, procExt)
         cacheEntities = JSON.parse(readFileSync(__cache_filename))
     }
     const procFilePath = filepath.replace('wwwroot-dev', 'wwwroot')
-    const containsEntry = cacheEntities.cached.some(file => file.relativeFilePath == filepath.replace(__client_wwwrootdev_dirname, ''))
+    const containsEntry = cacheEntities.cached.some(file => file.relativeFilePath === filepath.replace(__client_wwwrootdev_dirname, ''))
     if (!containsEntry)
     {
-        cacheEntities.cached.push({ relativeFilePath: filepath.replace(__client_wwwrootdev_dirname, ''), lastModified: statSync(filepath).mtime })
-        if (fileExists(__cache_filename))
-        {
-            truncateSync(__cache_filename, 0)
-        }
-        writeFileSync(__cache_filename, JSON.stringify(cacheEntities, null, "\t"), 'utf8')
+        addCacheEntry(filepath)
     }
     return !(containsEntry && fileExists(procFilePath.substring(0, procFilePath.lastIndexOf('.')) + '.' + procExt))
+}
+
+function needsProcessing(filepath)
+{
+    const cachedFile = cacheEntities.cached.filter(file => file.relativeFilePath === filepath.replace(__client_wwwrootdev_dirname, ''))[0]
+    const needsProc = new Date(cachedFile.lastModified).getTime() < statSync(filepath).mtime.getTime()
+    if (needsProc)
+    {
+        addCacheEntry(filepath)
+    }
+    return needsProc
 }
 
 async function processJS(jsFiles)
@@ -187,7 +205,7 @@ async function processing()
 
     htmlFiles.forEach(item =>
     {
-        if (needsCaching(item.path, 'html'))
+        if (needsCaching(item.path, 'html') || needsProcessing(item.path))
         {
             const output = item.path.replace('wwwroot-dev', 'wwwroot')
             console.log('  | Copying HTML: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
@@ -198,7 +216,7 @@ async function processing()
 
     svgFiles.forEach(item =>
     {
-        if (needsCaching(item.path, 'svg'))
+        if (needsCaching(item.path, 'svg') || needsProcessing(item.path))
         {
             const output = item.path.replace('wwwroot-dev', 'wwwroot')
             console.log('  | Copying SVG: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
@@ -209,7 +227,7 @@ async function processing()
 
     jsonFiles.forEach(item =>
     {
-        if (needsCaching(item.path, 'json'))
+        if (needsCaching(item.path, 'json') || needsProcessing(item.path))
         {
             const output = item.path.replace('wwwroot-dev', 'wwwroot')
             console.log('  | Copying JSON: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
@@ -220,7 +238,7 @@ async function processing()
 
     woff2Files.forEach(item =>
     {
-        if (needsCaching(item.path, 'woff2'))
+        if (needsCaching(item.path, 'woff2') || needsProcessing(item.path))
         {
             const output = item.path.replace('wwwroot-dev', 'wwwroot')
             console.log('  | Copying Font: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
@@ -231,7 +249,7 @@ async function processing()
 
     ttfFiles.forEach(item =>
     {
-        if (needsCaching(item.path, 'ttf'))
+        if (needsCaching(item.path, 'ttf') || needsProcessing(item.path))
         {
             const output = item.path.replace('wwwroot-dev', 'wwwroot')
             console.log('  | Copying Font: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
@@ -242,7 +260,7 @@ async function processing()
 
     pngFiles.forEach(async item =>
     {
-        if (needsCaching(item.path, 'avif'))
+        if (needsCaching(item.path, 'avif') || needsProcessing(item.path))
         {
             const output = item.path.replace('wwwroot-dev', 'wwwroot').replace('.png', '.avif')
             console.log('  | Transcoding Image: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
@@ -265,7 +283,7 @@ async function processing()
 
     mp4Files.forEach(item =>
     {
-        if (needsCaching(item.path, 'webm'))
+        if (needsCaching(item.path, 'webm') || needsProcessing(item.path))
         {
             const output = item.path.replace('wwwroot-dev', 'wwwroot').replace('.mp4', '.webm')
             console.log('  | Transcoding Video: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
