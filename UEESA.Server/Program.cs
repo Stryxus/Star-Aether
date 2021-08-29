@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 
@@ -110,9 +112,15 @@ else
     app.UseHsts();
 }
 
+FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
+provider.Mappings[".avif"] = "image/avif";
+
 app.UseBlazorFrameworkFiles();
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    ContentTypeProvider = provider
+});
 app.UseResponseCompression();
 app.UseWebSockets();
 app.MapWebSocketManager("/state", Services.Get<StateSocketHandler>());
