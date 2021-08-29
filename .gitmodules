@@ -7,3 +7,6 @@
 [submodule "Core/UEESA.Client/wwwroot-dev/css/thirdparty/bootstrap"]
 	path = bootstrap
 	url = https://github.com/twbs/bootstrap
+[submodule "GSAP"]
+	path = GSAP
+	url = https://github.com/greensock/GSAP

@@ -17,11 +17,17 @@ const __dirname = resolve()
 const __client_dirname = __dirname + sep + 'UEESA.Client'
 const __client_wwwroot_dirname = __client_dirname + sep + 'wwwroot'
 const __client_wwwrootdev_dirname = __client_dirname + sep + 'wwwroot-dev'
+const __config_filename = __dirname + sep + 'ueesa-config.json'
 const __cache_filename = __dirname + sep + 'ueesa-cache.json'
 
 // Global Variables //
 
 // JSON //
+
+var config =
+{
+    jsDependencies: []
+}
 
 var cacheEntities =
 {
@@ -60,6 +66,18 @@ function filterFiles(files, ext)
     return Object.values(files).filter(file => String(file.name).split('.').pop() == ext)
 }
 
+function loadConfig()
+{
+    if (fileExists(__config_filename))
+    {
+        config = JSON.parse(readFileSync(__config_filename))
+    }
+    else
+    {
+        writeFileSync(__config_filename, JSON.stringify(config, null, "\t"), 'utf8')
+    }
+}
+
 function needsCaching(filepath, procExt)
 {
     if (fileExists(__cache_filename))
@@ -85,7 +103,20 @@ async function processJS(jsFiles)
     const minJSFilePath = __client_wwwroot_dirname + sep + 'bundle.min.js'
     const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.js.map'
     console.log('  | Minifying JS: ' + minJSFilePath.replace(__client_wwwroot_dirname, ''))
-    var orderedJS = 'var GLOBAL = {}\n' // Define this to silence errors made from Blazor's GLOBAL variable missing
+    var orderedJS = 'var GLOBAL = {};' // Define this to silence errors made from Blazor's GLOBAL variable missing
+    config.jsDependencies.forEach(async item =>
+    {
+        const fullPath = __dirname + sep + item
+        if (item.substring(item.lastIndexOf('.')) == '.js' && fileExists(fullPath))
+        {
+            console.log('  | - Including Dependency: ' + item)
+            orderedJS += readFileSync(item, 'utf8') + '\n'
+        }
+        else
+        {
+            console.error('  | - Dependency "' + item + '" does not exist or is not a .js file - skipping...')
+        }
+    })
     jsFiles.forEach(async item =>
     {
         if (item.name == 'service-worker.js' || item.name == 'service-worker.published.js')
@@ -258,6 +289,7 @@ async function processing()
     console.log('####################################################################################################\n')
     //
 
+    loadConfig()
     await processing()
     chokidar.watch(__client_wwwrootdev_dirname, { awaitWriteFinish: true }).on('change', async () =>
     {

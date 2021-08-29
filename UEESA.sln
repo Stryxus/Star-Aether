@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Node", "Node", "{A4D98FF0-B
 		bundle_release.cmd = bundle_release.cmd
 		bundler.js = bundler.js
 		package.json = package.json
+		ueesa-cache.json = ueesa-cache.json
+		ueesa-config.json = ueesa-config.json
 	EndProjectSection
 EndProject
 Global
