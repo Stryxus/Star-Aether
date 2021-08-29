@@ -254,7 +254,7 @@ async function processing()
                 destination: dirname(output),
                 plugins:
                 [
-                    imageminAvif({ quality: 40, speed: 0 })
+                    imageminAvif({ quality: 66, speed: 0 })
                 ]
             })
             renameSync(output.replace('.avif', '.png'), output)
