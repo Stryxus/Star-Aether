@@ -5,9 +5,9 @@
   "type": "module",
   "main": "bundler.js",
   "scripts": {
-    "build": "node bundler.js",
-    "build:debug": "node bundler.js",
-    "build:release": "node bundler.js"
+    "build": "node bundler.js build:debug",
+    "build:debug": "node bundler.js build:debug",
+    "build:release": "node bundler.js build:release"
   },
   "repository": {
     "type": "git",

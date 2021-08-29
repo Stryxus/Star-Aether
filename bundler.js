@@ -20,6 +20,8 @@ const __client_wwwrootdev_dirname = __client_dirname + sep + 'wwwroot-dev'
 const __config_filename = __dirname + sep + 'ueesa-config.json'
 const __cache_filename = __dirname + sep + 'ueesa-cache.json'
 
+var isDebug
+
 // Global Variables //
 
 // JSON //
@@ -131,7 +133,7 @@ async function processJS(jsFiles)
             orderedJS += readFileSync(item.path, 'utf8') + '\n'
         }
     })
-    const result = await minify(orderedJS, { sourceMap: true, module: false, mangle: false, ecma: 2021, compress: true })
+    const result = await minify(orderedJS, { sourceMap: true, module: false, mangle: false, ecma: 2021, compress: !isDebug })
     if (fileExists(minJSFilePath))
     {
         truncateSync(minJSFilePath, 0)
@@ -150,7 +152,7 @@ function processSASS(scssFile)
     const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.css.map'
     console.log('  | Minifying SASS: ' + minCSSFilePath.replace(__client_wwwroot_dirname, ''))
     const result = sass.renderSync({
-        file: scssFile, sourceMap: true, outFile: 'bundle.css.map', outputStyle: "compressed", indentType: "tab", indentWidth: 1, quietDeps: true, includePaths: [__client_wwwrootdev_dirname + sep + 'css' + sep + 'thirdparty']
+        file: scssFile, sourceMap: true, outFile: 'bundle.css.map', outputStyle: isDebug ? 'expanded' : 'compressed', indentType: 'tab', indentWidth: 1, quietDeps: true, includePaths: [__client_wwwrootdev_dirname + sep + 'css' + sep + 'thirdparty']
     })
     if (fileExists(minCSSFilePath))
     {
@@ -254,7 +256,7 @@ async function processing()
                 destination: dirname(output),
                 plugins:
                 [
-                    imageminAvif({ quality: 66, speed: 0 })
+                        imageminAvif({ quality: 66, speed: isDebug ? 5 : 0 })
                 ]
             })
             renameSync(output.replace('.avif', '.png'), output)
@@ -270,7 +272,7 @@ async function processing()
             mkdirSync(dirname(output), { recursive: true })
             if (commandExistsSync('ffmpeg'))
             {
-                execSync('start cmd /C ffmpeg -y -i ' + item.path + ' -c:v librav1e -b:v 200K -rav1e-params speed=0:low_latency=true -movflags +faststart -c:a libopus -q:a 128 ' + output, err =>
+                execSync('start cmd /C ffmpeg -y -i ' + item.path + (isDebug ? ' -c:v librav1e -rav1e-params speed=10:low_latency=true' : ' -c:v librav1e -b:v 200K -rav1e-params speed=0:low_latency=true') + ' -movflags +faststart -c:a libopus -q:a 128 ' + output, err =>
                 {
                     if (err)
                     {
@@ -280,9 +282,8 @@ async function processing()
             }
             else
             {
-                console.error('No FFmpeg detected in enviroment variables - falling back to libaom, video transcoding will take substantially longer and will be much lower quality!')
-                // Change CRF to 5 once librav1e is able to be used
-                execSync('start cmd /C ' + ffmpeg + ' -y -i ' + item.path + ' -c:v libaom-av1 -crf 50 -b:v 200k -movflags +faststart -c:a libopus -q:a 128 ' + output, err =>
+                console.error('No non-GPL compliant FFmpeg build detected in enviroment variables - falling back to libaom, video transcoding will take substantially longer and will be much lower quality!')
+                execSync('start cmd /C ' + ffmpeg + ' -y -i ' + item.path + ' -c:v libaom-av1 ' + (isDebug ? '-crf 52' : '-crf 30 -b:v 200k') + ' -movflags +faststart -c:a libopus -q:a 128 ' + output, err =>
                 {
                     if (err)
                     {
@@ -316,6 +317,19 @@ async function processing()
     console.log('##                                                                                                ##')
     console.log('####################################################################################################\n')
     //
+
+    process.argv.forEach(item =>
+    {
+        switch (item)
+        {
+            case 'build:debug':
+                isDebug = true
+                break
+            case 'build:release':
+                isDebug = false
+                break
+        }
+    })
 
     loadConfig()
     await processing()
