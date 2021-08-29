@@ -99,12 +99,12 @@ $colour-green-darkest-trans-high: rgba($colour-green-darkest, $colour-trans-high
 
 // Colours Blue
 $colour-blue-lightest: rgb(77, 255, 255);
-$colour-blue-lighter: rgb(51, 251, 255);
-$colour-blue-light: rgb(26, 226, 251);
-$colour-blue-main: rgb(0, 200, 225);
-$colour-blue-dark: rgb(0, 175, 200);
-$colour-blue-darker: rgb(0, 149, 174);
-$colour-blue-darkest: rgb(0, 124, 149);
+$colour-blue-lighter: rgb(51, 255, 255);
+$colour-blue-light: rgb(26, 255, 255);
+$colour-blue-main: rgb(0, 255, 255);
+$colour-blue-dark: rgb(0, 230, 230);
+$colour-blue-darker: rgb(0, 204, 204);
+$colour-blue-darkest: rgb(0, 179, 179);
 
 $colour-blue-lightest-trans-low: rgba($colour-blue-lightest, $colour-trans-low);
 $colour-blue-lighter-trans-low: rgba($colour-blue-lighter, $colour-trans-low);

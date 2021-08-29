@@ -65,11 +65,11 @@
                     height: $cornerLogoHeight;
         
                     &.active {
-                        background-color: $colour-red-darkest-trans-low;
+                        background-color: $colour-blue-darkest-trans-low;
                     }
         
                     &:hover {
-                        background-color: $colour-red-darker-trans-low;
+                        background-color: $colour-blue-darker-trans-low;
                     }
         
                     img {
@@ -280,12 +280,12 @@
                                         }
                     
                                         &.active {
-                                            background-color: $colour-red-darkest-trans-low;
+                                            background-color: $colour-blue-darkest-trans-low;
                                             color: $colour-white !important;
                                         }
                     
                                         &:hover {
-                                            background-color: $colour-red-darker-trans-low;
+                                            background-color: $colour-blue-darker-trans-low;
                                             color: $colour-white !important;
                                         }
                                     }
@@ -317,11 +317,11 @@
                 }
         
                 &.active {
-                    background-color: $colour-red-darkest-trans-low;
+                    background-color: $colour-blue-darkest-trans-low;
                 }
         
                 &:hover {
-                    background-color: $colour-red-darker-trans-low;
+                    background-color: $colour-blue-darker-trans-low;
                 }
             }
         
@@ -373,11 +373,11 @@
                 }
                 
                 &.active {
-                    background-color: $colour-red-darkest-trans-low;
+                    background-color: $colour-blue-darkest-trans-low;
                 }
         
                 &:hover {
-                    background-color: $colour-red-darker-trans-low;
+                    background-color: $colour-blue-darker-trans-low;
                 }
             }
         }
