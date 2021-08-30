@@ -4,12 +4,13 @@ import { execSync } from 'child_process'
 
 import chokidar from 'chokidar'
 import getFolderSize from 'get-folder-size'
-import imagemin from 'imagemin'
-import imageminAvif from 'imagemin-avif'
 import sass from 'sass'
 import { minify } from 'terser'
 import ffmpeg from 'ffmpeg-static'
 import commandExistsSync from 'command-exists'
+//import { ImagePool } from '@squoosh/lib'
+import imagemin from 'imagemin'
+import imageminAvif from 'imagemin-avif'
 
 // Global Variables //
 
@@ -21,6 +22,8 @@ const __config_filename = __dirname + sep + 'ueesa-config.json'
 const __cache_filename = __dirname + sep + 'ueesa-cache.json'
 
 var isDebug
+
+//const imagePool = new ImagePool()
 
 // Global Variables //
 
@@ -274,10 +277,38 @@ async function processing()
                 destination: dirname(output),
                 plugins:
                 [
-                        imageminAvif({ quality: 66, speed: isDebug ? 5 : 0 })
+                    imageminAvif({ quality: 66, speed: isDebug ? 5 : 0 })
                 ]
             })
             renameSync(output.replace('.avif', '.png'), output)
+            /*
+            try
+            {
+                const image = imagePool.ingestImage(item.path)
+                await image.decoded
+                await image.encode({
+                    avif:
+                    {
+                        cqLevel: 45,
+                        cqAlphaLevel: -1,
+                        denoiseLevel: 0,
+                        tileColsLog2: 0,
+                        tileRowsLog2: 0,
+                        speed: 0,
+                        subsample: 1,
+                        chromaDeltaQ: false,
+                        sharpness: 0,
+                        tune: 0
+                    }
+                })
+                const result = (await image.encodedWith.avif).binary
+                writeFileSync(output, result)
+            }
+            catch (e)
+            {
+                console.error(e)
+            }
+            */
         }
     })
 
