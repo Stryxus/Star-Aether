@@ -43,11 +43,11 @@ html, body {
 main {
     position: absolute;
     top: 0px;
-    left: #{$navbarCornerContainterTopWidth}px;
+    left: #{$navbarCornerContainterTopWidth + 1}px;
     z-index: $zindex-main;
     overflow: hidden;
     height: 100vh;
-    width: calc(100% - #{$navbarCornerContainterTopWidth}px);
+    width: calc(100% - #{$navbarCornerContainterTopWidth * 2 + ($duo-line-seperator-size * 4) + 2}px) !important;
     padding-top: 0px;
     padding-bottom: 0px;
     padding-left: 0px;
@@ -56,7 +56,7 @@ main {
     margin-bottom: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    clip-path: polygon(0px 0px, calc(100% - #{$navbarCornerContainterTopWidth}px) 0px, calc(100% - #{$navbarCornerContainterTopWidth}px) calc(100% - #{$navbarCornerContainerHeight}px), calc(100% - #{$navbarCornerContainerWidth}px) 100%, #{math.div($navbarCornerContainerWidth, 2)}px 100%, 0px calc(100% - #{$navbarCornerContainerHeight}px));
+    clip-path: polygon(0px 0px, 100% 0px, 100% calc(100% - #{$navbarCornerContainerHeight}px), calc(100% - #{math.div($navbarCornerContainerWidth, 2)}px) 100%, #{math.div($navbarCornerContainerWidth, 2)}px 100%, 0px calc(100% - #{$navbarCornerContainerHeight}px));
 
     & > .row {
         margin: 0px;
