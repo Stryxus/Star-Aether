@@ -84,6 +84,7 @@ button {
     backdrop-filter: $backdrop-blur-heavy;
     color: white;
     cursor: pointer;
+    font: unset !important;
 
     &:hover {
         background-color: $colour-red-darkest-trans-low;

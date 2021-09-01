@@ -62,8 +62,6 @@ namespace UEESA.Client.Data.States
                         OnPageTransitionBackgroundStage?.Invoke();
                         if (!HasSiteBeenRendered) await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
                         List<Task> pageComponents = new();
-                        pageComponents.Add(Services.Get<ComponentState>().UpdateNavBarTickerHealinesState());
-                        pageComponents.Add(Services.Get<ComponentState>().UpdateNavBarTickerEconomeState());
                         OnPageTransitionEnd?.Invoke();
                         await Task.WhenAll(pageComponents);
                         IsPageTransitioning = false;
@@ -80,59 +78,6 @@ namespace UEESA.Client.Data.States
 
         internal class ComponentState
         {
-
-            // Headlines Navigation Bar Ticker
-
-            internal event Action OnNavBarTickerHeadlinesChanged;
-            internal bool IsNavBarTickerHeadlinesVisible { private set; get; }
-
-            internal async Task UpdateNavBarTickerHealinesState()
-            {
-                bool ShouldBeVisible = Services.Get<PageState>().CurrentPageContext.AllowsNavBarTickers && Services.Get<ClientState>().Settings.ShowHealinesTicker;
-                if (ShouldBeVisible != IsNavBarTickerHeadlinesVisible)
-                {
-                    if (ShouldBeVisible)
-                    {
-                        IsNavBarTickerHeadlinesVisible = true;
-                        OnNavBarTickerHeadlinesChanged?.Invoke();
-                        await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(true);
-                    }
-                    else
-                    {
-                        await Services.Get<JSInterface.AnimationManager>().SlideInOutHeadlinesNavBarTicker(false);
-                        await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
-                        IsNavBarTickerHeadlinesVisible = false;
-                        OnNavBarTickerHeadlinesChanged?.Invoke();
-                    }
-                }
-            }
-
-            // Econome Navigation Bar Ticker
-
-            internal event Action OnNavBarTickerEconomeChanged;
-            internal bool IsNavBarTickerEconomeVisible { private set; get; }
-
-            internal async Task UpdateNavBarTickerEconomeState()
-            {
-                bool ShouldBeVisible = Services.Get<PageState>().CurrentPageContext.AllowsNavBarTickers && Services.Get<ClientState>().Settings.ShowEconomeTicker;
-                if (ShouldBeVisible != IsNavBarTickerEconomeVisible)
-                {
-                    if (ShouldBeVisible)
-                    {
-                        IsNavBarTickerEconomeVisible = true;
-                        OnNavBarTickerEconomeChanged?.Invoke();
-                        await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(true);
-                    }
-                    else
-                    {
-                        await Services.Get<JSInterface.AnimationManager>().SlideInOutEonomeNavBarTicker(false);
-                        await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
-                        IsNavBarTickerEconomeVisible = false;
-                        OnNavBarTickerEconomeChanged?.Invoke();
-                    }
-                }
-            }
-
             // Settings Panel
 
             internal event Action OnSettingsPanelVisibilityChanged;
@@ -158,29 +103,6 @@ namespace UEESA.Client.Data.States
                         await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(true);
                     }
                 }
-            }
-
-            // Tools Bar
-
-            internal event Action OnToolsBarTypeChanged;
-            private ToolsBarType toolsType;
-            internal ToolsBarType ToolsType
-            {
-                get
-                {
-                    return toolsType;
-                }
-                set
-                {
-                    toolsType = value;
-                    OnToolsBarTypeChanged.Invoke();
-                }
-            }
-
-            internal enum ToolsBarType
-            {
-                Default,
-                Roadmap
             }
         }
     }

@@ -3,32 +3,52 @@
     {
         @if (IsDesktop == true)
         {
-            <div id="desktop-nav" class="row">
-                <div id="corner-background"></div>
-                <div id="bordered-line-above"></div>
-                <div id="bordered-line-patch"></div>
-                <MainNavigationBarHeadlinesTicker />
-                <MainNavigationBarEconomeTicker />
-                <div id="main-navbar-buttons-offset" class="col-auto"></div>
-                <div id="logo-container">
+            <div id="main-nav-bordered-lines">
+                <div id="main-nav-sidebar-left-near"></div>
+                <div id="main-nav-sidebar-left-far"></div>
+                <div id="main-nav-sidebar-right-near"></div>
+                <div id="main-nav-sidebar-right-far"></div>
+
+                <div id="logo-corner-straight-top"></div>
+                <div id="logo-corner-straight-bottom"></div>
+                <div id="logo-corner-sloped-near"></div>
+                <div id="logo-corner-sloped-far"></div>
+
+                <div id="main-nav-left-side"></div>
+                <div id="main-nav-left-top"></div>
+                <div id="main-nav-left-bottom"></div>
+                <div id="main-nav-hex-left-top"></div>
+                <div id="main-nav-hex-left-bottom"></div>
+                <div id="main-nav-hex-middle-top"></div>
+                <div id="main-nav-hex-middle-bottom"></div>
+                <div id="main-nav-hex-right-top"></div>
+                <div id="main-nav-hex-right-bottom"></div>
+                <div id="main-nav-right-top"></div>
+                <div id="main-nav-right-bottom"></div>
+                <div id="main-nav-right-side"></div>
+
+                <div id="settings-corner-straight-top"></div>
+                <div id="settings-corner-straight-bottom"></div>
+                <div id="settings-corner-sloped-near"></div>
+                <div id="settings-corner-sloped-far"></div>
+			</div>
+            <div class="row">
+                <div id="logo-corner"  class="col-auto">
                     <PreNavLink href="/">
                         <img src="favicon.svg" draggable="false" alt="Logo" />
                     </PreNavLink>
                 </div>
-                <div class="col-auto bordered-line-v"></div>
                 <div class="col">
-                    <div class="row">
-                        <div id="bordered-line-navbar-buttons-top" class="col bordered-line-h"></div>
-                    </div>
                     <MainNavigationBarNavigator IsMobileNavbarVisible="@IsMobileNavbarVisible" />
                 </div>
-                <MainNavigationBarSettingsButton />
-                <MainNavigationBarProfileButton />
+                <div id="settings-corner" class="col-auto">
+                    <a target="_blank" rel="noreferrer" href="https://robertsspaceindustries.com/"><img src="/img/cig.svg" draggable="false" alt="Logo" /></a>
+                </div>
             </div>
         }
         else
         {
-            <div id="mobile-nav" class="row">
+            <div class="row">
                 <div class="col">
                     <MainNavigationBarNavigator IsMobileNavbarVisible="@IsMobileNavbarVisible" />
                     <div class="row justify-content-center bordered-line-top">
@@ -38,8 +58,6 @@
                                 <i class="fas fa-bars"></i>
                             </button>
                         </div>
-                        <MainNavigationBarSettingsButton />
-                        <MainNavigationBarProfileButton />
                     </div>
                 </div>
             </div>

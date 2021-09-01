@@ -1,45 +1,34 @@
 ﻿<div id="main-nav-buttons" class="row">
     <div class="col">
-@if (PageState.IsCurrentContextPageSet)
-{
-    @if (IsMobileNavbarVisible)
-    {
         <div class="row">
-            <div class="col">
-                @foreach (PageContext page in PageState.PageContexts)
-                {
-                    @if (!page.InformalPageName.IsEmpty())
-                    {
-                        <div class="row">
-                            <div class="col">
-                                <PreNavLink href="@("/" + page.InformalPageName.ToLower())"><p>@(page.FormalPageName)</p></PreNavLink>
-                            </div>
-                        </div>
-                    }
-                }
-            </div>
-        </div>
-    }
-    else
-    {
-        <div class="row">
-            <div class="col">
-                <div class="row">
-                    @foreach (PageContext page in PageState.PageContexts)
-                    {
-                        @if (!page.InformalPageName.IsEmpty())
+            @if (PageState.IsCurrentContextPageSet)
+            {
+                <div class="col nav-section">
+                    <div class="row justify-content-center">
+                        @for (int i = 1; i < (int)Math.Ceiling((double)(PageState.PageContexts.Count / 2)) + 1; i++)
                         {
+                            int local = i;
                             <div class="col-auto">
-                                <PreNavLink href="@("/" + page.InformalPageName.ToLower())"><p>@(page.FormalPageName)</p></PreNavLink>
+                                <PreNavLink href="@("/" + PageState.PageContexts[local].InformalPageName.ToLower())"><p>@(PageState.PageContexts[local].FormalPageName)</p></PreNavLink>
                             </div>
                         }
-                    }
+                    </div>
                 </div>
-            </div>
-        </div>
-    }
-}
-    </div>
+                <ProfileButton />
+                <div class="col nav-section">
+                    <div class="row justify-content-center">
+                        @for (int i = (int)Math.Floor((double)(PageState.PageContexts.Count / 2)) + 1; i < PageState.PageContexts.Count; i++)
+                        {
+                            int local = i;
+                            <div class="col-auto">
+                                <PreNavLink href="@("/" + PageState.PageContexts[local].InformalPageName.ToLower())"><p>@(PageState.PageContexts[local].FormalPageName)</p></PreNavLink>
+                            </div>
+                        }
+                    </div>
+                </div>       
+            }
+		</div>
+	</div>
 </div>
 
 @inject UIState.PageState PageState

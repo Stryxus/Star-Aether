@@ -1,0 +1,81 @@
+﻿@if (ClientState.Settings != null && ComponentState.IsSettingsPanelVisible)
+{
+    <div id="settings-panel" class="row bordered bordered-line-left">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <small style="text-align:center;">@("v" + Globals.VersionString) - <a href="https://github.com/Star-Athenaeum/Core/milestones" target="_blank">Changelogs</a></small>
+                    <small>
+                        Powered by <a target="_blank" rel="noreferrer" href="https://azure.microsoft.com/">Microsoft Azure</a> &amp; <a target="_blank" rel="noreferrer" href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor">.NET 6 Blazor</a>
+                    </small>
+                    <small>
+                        Strictly no Cookies &amp; Trackers in use!
+                    </small>
+                    <small>
+                        Date: UTC - UK Order YYYY/MM/DD &amp; DD/MM/YYYY
+                    </small>
+                </div>
+            </div>
+            <div id="clear-and-donate" class="row">
+                <div class="col">
+                    <div class="row">
+                        <button class="col" onclick="window.open('https://www.paypal.com/donate/?business=34XKEAHD8RALY&no_recurring=0&item_name=Star+Aether&currency_code=GBP','_blank')">
+                            <p>Help out and donate!</p>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <button class="col" @onclick="ClearAllData" title="Clears the applications cache, including all stored local data.">
+                            <p>Refresh App Cache</p>
+                        </button>
+                        <button class="col" @onclick="ClearDatabases" title="Clears the applications local data.">
+                            <p>Refresh Data Cache</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h5>Settings</h5>
+                    @if (ClientState.Settings != null)
+                    {
+                        <h6>User Interface</h6>
+
+                        <h6>Push Notifications</h6>
+                        <SettingsPanelToggleButton Title="Show Notification on Blog Post" Value="ClientState.Settings.ShowBlogUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowBlogUpdateNotification = val" />
+                        <SettingsPanelToggleButton Title="Show Notification on Roadmap Update" Value="ClientState.Settings.ShowRoadmapUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowRoadmapUpdateNotification = val" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@inject UIState.ComponentState ComponentState
+@inject ClientState ClientState
+@inject ServerState ServerState
+@inject JSInterface.Cache Cache
+@inject JSInterface.LocalData LocalData
+@inject NavigationManager NavMan
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        ComponentState.OnSettingsPanelVisibilityChanged += StateHasChanged;
+        await base.OnInitializedAsync();
+    }
+
+    private async Task ClearAllData()
+    {
+        await LocalData.Clear();
+        await Cache.Clear();
+        NavMan.NavigateTo(NavMan.Uri, forceLoad: true);
+    }
+
+    private async Task ClearDatabases()
+    {
+        await LocalData.Clear();
+        await ServerState.RequestRoadmapData(true);
+        NavMan.NavigateTo(NavMan.Uri, forceLoad: true);
+    }
+}

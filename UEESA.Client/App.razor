@@ -15,6 +15,16 @@
         </Router>
     </div>
     <SettingsPanel />
+    <div id="sidebar-bordered-lines">
+        <div id="sidebar-left-near"></div>
+        <div id="sidebar-left-far"></div>
+        <div id="sidebar-right-near"></div>
+        <div id="sidebar-right-far"></div>
+	</div>
+    <HeadlinesTicker />
+    <EconomeTicker />
+    <SidebarLeftSide />
+    <SidebarRightSide />
     <MainNavigationBar />
 </div>
 
@@ -49,17 +59,24 @@
             },
             new PageContext
             {
-                FormalPageName = "Citizen Blog",
+                FormalPageName = "Blog",
                 InformalPageName = "blog",
                 AllowsNavBarTickers = true,
                 PageBackgroundFileName = "blog.avif"
             },
             new PageContext
             {
-                FormalPageName = "Roadmap",
-                InformalPageName = "roadmap",
+                FormalPageName = "Changelog",
+                InformalPageName = "changelog",
+                AllowsNavBarTickers = true,
+                PageBackgroundFileName = null
+            },
+            new PageContext
+            {
+                FormalPageName = "Load Out",
+                InformalPageName = "loadout",
                 AllowsNavBarTickers = false,
-                PageBackgroundFileName = "roadmap.avif"
+                PageBackgroundFileName = "loadupout.avif"
             },
             new PageContext
             {
@@ -77,10 +94,10 @@
             },
             new PageContext
             {
-                FormalPageName = "Load Up & Out",
-                InformalPageName = "loadupout",
+                FormalPageName = "Roadmap",
+                InformalPageName = "roadmap",
                 AllowsNavBarTickers = false,
-                PageBackgroundFileName = "loadupout.avif"
+                PageBackgroundFileName = "roadmap.avif"
             },
             new PageContext
             {
@@ -95,13 +112,6 @@
                 InformalPageName = "xenoguist",
                 AllowsNavBarTickers = true,
                 PageBackgroundFileName = "xenoguist.avif"
-            },
-            new PageContext
-            {
-                FormalPageName = "Service States",
-                InformalPageName = "servicestates",
-                AllowsNavBarTickers = true,
-                PageBackgroundFileName = "servicestates.avif"
             }
         };
         if (NavigationManager.Uri == NavigationManager.BaseUri) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());

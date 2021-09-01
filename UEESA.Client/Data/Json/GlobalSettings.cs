@@ -3,8 +3,6 @@
     public class GlobalSettings
     {
         // User Interface
-        public bool ShowHealinesTicker = true;
-        public bool ShowEconomeTicker = true;
 
         // Push notifications
         public bool ShowBlogUpdateNotification { get; set; } = true;

@@ -1,0 +1,190 @@
+
+
+// BEGIN-Min-Width
+
+@include media-breakpoint-up(xs) {
+}
+
+@include media-breakpoint-up(sm) {
+}
+
+@include media-breakpoint-up(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-up(lg) {
+    .side-bar {
+        width: $navbarCornerContainterTopWidth + px;
+        position: absolute;
+        background-color: rgba($colour-black, 0.5);
+        backdrop-filter: $backdrop-blur-heavy;
+        border-radius: 0px;
+        padding: 0px;
+    }
+
+    button.side-bar {
+        &.active {
+            background-color: $colour-blue-darkest-trans-low;
+        }
+
+        &:hover {
+            background-color: $colour-blue-darker-trans-low;
+        }
+    }
+
+    #sidebar-bordered-lines {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        pointer-events: none;
+        z-index: $zindex-navigation-bar-borders;
+
+        & > * {
+            border-color: $colour-grey-10;
+            border-style: solid;
+            border-top-width: 1px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-right-width: 0px;
+            position: absolute;
+        }
+
+        #sidebar-left-near, #sidebar-left-far, #sidebar-right-near, #sidebar-right-far {
+            border-top-width: 0px;
+            border-left-width: 1px;
+        }
+
+        #sidebar-left-near {
+            left: $navbarCornerContainterTopWidth + px;
+            height: calc(100% - #{$navbarCornerContainerHeight + $duo-line-seperator-size}px);
+        }
+
+        #sidebar-left-far {
+            left: #{$navbarCornerContainterTopWidth + $duo-line-seperator-size} + px;
+            height: calc(100% - #{$navbarCornerContainerHeight + $duo-line-seperator-size}px);
+        }
+
+        #sidebar-right-near {
+            right: $navbarCornerContainterTopWidth + px;
+            height: calc(100% - #{$navbarCornerContainerHeight + $duo-line-seperator-size}px);
+        }
+
+        #sidebar-right-far {
+            right: #{$navbarCornerContainterTopWidth + $duo-line-seperator-size} + px;
+            height: calc(100% - #{$navbarCornerContainerHeight + $duo-line-seperator-size}px);
+        }
+    }
+
+    #sidebar-left, #sidebar-right {
+        top: 0px;
+        height: calc(100% - #{$navbarCornerContainerHeight + $duo-line-seperator-size}px);
+        text-align: center;
+        margin: 0px;
+
+        .vr {
+            height: 32px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .col {
+            padding: 0px;
+
+            .row {
+                margin: 0px;
+            }
+
+            a, button {
+                border: solid 1px $colour-grey-10;
+                border-radius: 6px;
+                padding: 12px;
+                display: inline-block !important;
+                background-color: $colour-grey-2-trans-low;
+
+                p {
+                    margin: 0px;
+                }
+
+                i {
+                    color: rgba($colour-white, 0.6);
+                    font-size: 24px;
+                }
+
+                &:hover {
+                    background-color: $colour-grey-10;
+
+                    i {
+                        color: rgba($colour-white, 0.6);
+                    }
+                }
+            }
+        }
+    }
+
+    #sidebar-left {
+        left: 0px;
+    }
+
+    #sidebar-right {
+        right: 0px;
+    }
+}
+
+@include media-breakpoint-up(xl) {
+}
+
+// END-Min-Width
+
+// BEGIN-Max-Width
+
+@include media-breakpoint-down(xs) {
+}
+
+@include media-breakpoint-down(sm) {
+}
+
+@include media-breakpoint-down(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-down(lg) {
+
+    #headlines-navbar-ticker {
+
+    }
+
+    #econome-navbar-ticker {
+
+    }
+
+    #headlines-navbar-ticker, #econome-navbar-ticker {
+
+    }
+}
+
+// END-Max-Width
+
+// BEGIN-Width-Exclusivity
+
+@include media-breakpoint-only(xs) {
+}
+
+@include media-breakpoint-only(sm) {
+}
+
+@include media-breakpoint-only(md) {
+}
+
+// Desktop
+
+@include media-breakpoint-only(lg) {
+}
+
+@include media-breakpoint-only(xl) {
+}
+
+// END-Width-Exclusivity

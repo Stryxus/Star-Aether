@@ -1,5 +1,5 @@
 // Colours Transparent
-$colour-trans-low: 0.35;
+$colour-trans-low: 0.25;
 $colour-trans-high: 0.75;
 
 // Colours
@@ -146,11 +146,17 @@ $box-shadow-right-sharp: 15px -9px 10px -10px rgba(0, 0, 0, 0.4);
 $zindex-background-container: 0;
 $zindex-main: 1;
 $zindex-navigation-bar: 2;
-$zindex-settings-panel: 3;
+$zindex-tickers: 3;
+$zindex-navigation-bar-borders: 4;
+$zindex-settings-panel: 4;
 
 $zindex-viewport-overlay: 10000;
 
 // Elements
-$navigation-bar-height: 82;
-$navigation-bar-mobile-height: 50;
-$sidebar-width: 100;
+$navigation-bar-height: 100;
+$navigation-bar-mobile-height: 56;
+$duo-line-seperator-size: 6;
+
+$navbarCornerContainerWidth: 200;
+$navbarCornerContainerHeight: 200;
+$navbarCornerContainterTopWidth: 100;
