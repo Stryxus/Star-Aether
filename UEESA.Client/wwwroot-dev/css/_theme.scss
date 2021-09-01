@@ -69,6 +69,10 @@ main {
         &.no-scroll {
             height: calc(100% - #{$navigation-bar-height + $duo-line-seperator-size + 1}px) !important;
             overflow-y: hidden !important;
+
+            & > [class*='col-'], & > .col {
+                height: 100%;
+            }
     
             & > [class*='col-'].alt-scroll, & > .col.alt-scroll {
                 overflow-y: scroll !important;
