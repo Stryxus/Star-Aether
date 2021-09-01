@@ -67,11 +67,12 @@ main {
         }
 
         &.no-scroll {
-            height: calc(100% - #{$navigation-bar-height + $duo-line-seperator-size + 1}px);
+            height: calc(100% - #{$navigation-bar-height + $duo-line-seperator-size}px);
             overflow-y: hidden;
 
             & > [class*='col-'], & > .col {
                 height: 100%;
+                border-bottom: 1px solid $colour-grey-7-trans-high;
             }
     
             & > [class*='col-'].alt-scroll, & > .col.alt-scroll {
