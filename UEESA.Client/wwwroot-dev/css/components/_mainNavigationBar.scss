@@ -60,33 +60,6 @@
 
             //
 
-            #main-nav-sidebar-left-near, #main-nav-sidebar-left-far, #main-nav-sidebar-right-near, #main-nav-sidebar-right-far {
-                border-top-width: 0px;
-                border-left-width: 1px;
-            }
-
-            #main-nav-sidebar-left-near {
-                left: $navbarCornerContainterTopWidth + px;
-                height: calc(100% - #{$navbarCornerContainerHeight + $duo-line-seperator-size}px);
-            }
-
-            #main-nav-sidebar-left-far {
-                left: #{$navbarCornerContainterTopWidth + $duo-line-seperator-size} + px;
-                height: calc(100% - #{$navbarCornerContainerHeight + $duo-line-seperator-size}px);
-            }
-
-            #main-nav-sidebar-right-near {
-                right: $navbarCornerContainterTopWidth + px;
-                height: calc(100% - #{$navbarCornerContainerHeight + $duo-line-seperator-size}px);
-            }
-
-            #main-nav-sidebar-right-far {
-                right: #{$navbarCornerContainterTopWidth + $duo-line-seperator-size} + px;
-                height: calc(100% - #{$navbarCornerContainerHeight + $duo-line-seperator-size}px);
-            }
-
-            //
-
             #logo-corner-straight-top {
                 bottom: #{$navbarCornerContainerWidth + $duo-line-seperator-size} + px;
                 left: 0px;
