@@ -33,7 +33,7 @@ html, body {
 #background {
     width: 100vw;
     height: 100vh;
-    object-fit: cover !important;
+    object-fit: cover;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -47,41 +47,41 @@ main {
     z-index: $zindex-main;
     overflow: hidden;
     height: 100vh;
-    width: calc(100% - #{$navbarCornerContainterTopWidth}px) !important;
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    margin-left: 0px !important;
-    margin-right: 0px !important;
+    width: calc(100% - #{$navbarCornerContainterTopWidth}px);
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
     clip-path: polygon(0px 0px, calc(100% - #{$navbarCornerContainterTopWidth}px) 0px, calc(100% - #{$navbarCornerContainterTopWidth}px) calc(100% - #{$navbarCornerContainerHeight}px), calc(100% - #{$navbarCornerContainerWidth}px) 100%, #{math.div($navbarCornerContainerWidth, 2)}px 100%, 0px calc(100% - #{$navbarCornerContainerHeight}px));
 
     & > .row {
-        margin: 0px !important;
+        margin: 0px;
 
         & > * {
-            padding-left: 0px !important;
-            padding-right: 0px !important;
+            padding-left: 0px;
+            padding-right: 0px;
         }
 
         &.no-scroll {
-            height: calc(100% - #{$navigation-bar-height + $duo-line-seperator-size + 1}px) !important;
-            overflow-y: hidden !important;
+            height: calc(100% - #{$navigation-bar-height + $duo-line-seperator-size + 1}px);
+            overflow-y: hidden;
 
             & > [class*='col-'], & > .col {
                 height: 100%;
             }
     
             & > [class*='col-'].alt-scroll, & > .col.alt-scroll {
-                overflow-y: scroll !important;
+                overflow-y: scroll;
                 height: 100%;
             }
 
             & > [class*='col-'].padded-no-scroll, & > .col.padded-no-scroll {
-                overflow-y: hidden !important;
-                height: 100% !important;
+                overflow-y: hidden;
+                height: 100%;
             }
         }
     }
