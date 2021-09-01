@@ -41,16 +41,22 @@ html, body {
 }
 
 main {
+    position: absolute;
+    top: 0px;
+    left: #{$navbarCornerContainterTopWidth}px;
     z-index: $zindex-main;
     overflow: hidden;
     height: 100vh;
-    width: 100% !important;
-    padding: 0px !important;
+    width: calc(100% - #{$navbarCornerContainterTopWidth}px) !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
     margin-top: 0px !important;
     margin-bottom: 0px !important;
     margin-left: 0px !important;
     margin-right: 0px !important;
-    clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 130px 100%, 0px calc(100% - 220px));
+    clip-path: polygon(0px 0px, calc(100% - #{$navbarCornerContainterTopWidth}px) 0px, calc(100% - #{$navbarCornerContainterTopWidth}px) calc(100% - #{$navbarCornerContainerHeight}px), calc(100% - #{$navbarCornerContainerWidth}px) 100%, #{math.div($navbarCornerContainerWidth, 2)}px 100%, 0px calc(100% - #{$navbarCornerContainerHeight}px));
 
     & > .row {
         margin: 0px !important;
@@ -61,7 +67,7 @@ main {
         }
 
         &.no-scroll {
-            height: calc(100% - #{$navigation-bar-height + px} + 12px) !important;
+            height: calc(100% - #{$navigation-bar-height + $duo-line-seperator-size + 1}px) !important;
             overflow-y: hidden !important;
     
             & > [class*='col-'].alt-scroll, & > .col.alt-scroll {
