@@ -173,7 +173,7 @@ function processSASS(scssFile)
     const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.css.map'
     console.log('  | Minifying SASS: ' + minCSSFilePath.replace(__client_wwwroot_dirname, ''))
     const result = sass.renderSync({
-        file: scssFile, sourceMap: true, outFile: 'bundle.css.map', outputStyle: isDebug ? 'expanded' : 'compressed', indentType: 'tab', indentWidth: 1, quietDeps: true, includePaths: [__client_wwwrootdev_dirname + sep + 'css' + sep + 'thirdparty']
+        file: scssFile, sourceMap: true, outFile: 'bundle.css', outputStyle: isDebug ? 'expanded' : 'compressed', indentType: 'tab', indentWidth: 1, quietDeps: true, includePaths: [__client_wwwrootdev_dirname + sep + 'css' + sep + 'thirdparty']
     })
     if (fileExists(minCSSFilePath))
     {
