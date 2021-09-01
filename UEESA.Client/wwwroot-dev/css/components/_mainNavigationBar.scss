@@ -270,8 +270,8 @@
                         width: #{$hexSize * 3 + px};
                         height: #{$hexSize * 3 + px};
                         padding: 0px;
-                        padding-left: #{$hexSize * 0.3 + px};
-                        padding-right: #{$hexSize * 0.3 + px};
+                        padding-left: 12.5px;
+                        padding-right: 12.5px;
                         cursor: pointer;
 
                         img {
