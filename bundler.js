@@ -140,20 +140,7 @@ async function processJS(jsFiles)
             console.error('  | - Dependency "' + item + '" does not exist or is not a .js file - skipping...')
         }
     })
-    jsFiles.forEach(async item =>
-    {
-        if (item.name == 'service-worker.js' || item.name == 'service-worker.published.js')
-        {
-            const output = item.path.replace('wwwroot-dev', 'wwwroot')
-            console.log('  | Minifying Service Worker: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
-            const result = await minify(readFileSync(item.path, 'utf8') , { sourceMap: false, module: false, mangle: false, ecma: 2021, compress: true })
-            writeFileSync(minJSFilePath, result.code, 'utf8')
-        }
-        else
-        {
-            orderedJS += readFileSync(item.path, 'utf8') + '\n'
-        }
-    })
+    jsFiles.forEach(async item => orderedJS += readFileSync(item.path, 'utf8') + '\n')
     const result = await minify(orderedJS, { sourceMap: true, module: false, mangle: false, ecma: 2021, compress: !isDebug })
     if (fileExists(minJSFilePath))
     {
@@ -193,7 +180,8 @@ async function processing()
     console.log(' \\')
 
     const files = findFiles(__client_wwwrootdev_dirname)
-    const jsFiles = filterFiles(files, 'js').filter(file => String(dirname(file.path)).split(sep).pop() == 'js')
+    const jsFiles = filterFiles(files, 'js').filter(file => String(dirname(file.path)).split(sep).pop() == 'js' && String(file.name) != 'service-worker.js' && String(file.name) != 'service-worker.published.js')
+    const svjsFiles = filterFiles(files, 'js').filter(file => String(file.name) == 'service-worker.js' || String(file.name) == 'service-worker.published.js')
     const scssFile = __client_wwwrootdev_dirname + sep + 'css' + sep + 'bundle.scss'
     const htmlFiles = filterFiles(files, 'html')
     const svgFiles = filterFiles(files, 'svg')
@@ -205,6 +193,17 @@ async function processing()
 
     await processJS(jsFiles)
     processSASS(scssFile)
+
+    svjsFiles.forEach(async item =>
+    {
+        if (needsCaching(item.path, 'js') || needsProcessing(item.path))
+        {
+            const output = item.path.replace('wwwroot-dev', 'wwwroot')
+            console.log('  | Minifying Service Worker: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
+            const result = await minify(readFileSync(item.path, 'utf8'), { sourceMap: false, module: false, mangle: false, ecma: 2021, compress: true })
+            writeFileSync(output, result.code, 'utf8')
+        }
+    })
 
     htmlFiles.forEach(item =>
     {
