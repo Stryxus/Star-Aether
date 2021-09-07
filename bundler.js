@@ -193,7 +193,7 @@ async function processing()
     console.log(' \\')
 
     const files = findFiles(__client_wwwrootdev_dirname)
-    const jsFiles = filterFiles(files, 'js')
+    const jsFiles = filterFiles(files, 'js').filter(file => String(dirname(file.path)).split(sep).pop() == 'js')
     const scssFile = __client_wwwrootdev_dirname + sep + 'css' + sep + 'bundle.scss'
     const htmlFiles = filterFiles(files, 'html')
     const svgFiles = filterFiles(files, 'svg')
