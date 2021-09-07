@@ -21,6 +21,7 @@ namespace UEESA.Server.Data
             {
                 Logger.LogInfo("Connecting to UEESA Database...");
 #if DEBUG
+                // Download MongoDB Community - The default connection string should be mongodb://localhost:27017. Modify the connection string if you have too.
                 MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(Services.Configuration["DEV_COSMOSDB_CONNECTIONSTRING"]));
 #else
                 MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(Services.Configuration["COSMOSDB_CONNECTIONSTRING"]));
