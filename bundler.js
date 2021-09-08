@@ -180,7 +180,7 @@ async function processing()
     console.log(' \\')
 
     const files = findFiles(__client_wwwrootdev_dirname)
-    const jsFiles = filterFiles(files, 'js').filter(file => String(dirname(file.path)).split(sep).pop() == 'js' && String(file.name) != 'service-worker.js' && String(file.name) != 'service-worker.published.js')
+    const jsFiles = filterFiles(files, 'js').filter(file => String(file.name) != 'service-worker.js' && String(file.name) != 'service-worker.published.js')
     const svjsFiles = filterFiles(files, 'js').filter(file => String(file.name) == 'service-worker.js' || String(file.name) == 'service-worker.published.js')
     const scssFile = __client_wwwrootdev_dirname + sep + 'css' + sep + 'bundle.scss'
     const htmlFiles = filterFiles(files, 'html')
