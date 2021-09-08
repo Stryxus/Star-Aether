@@ -72,7 +72,7 @@ main {
 
             & > [class*='col-'], & > .col {
                 height: 100%;
-                border-bottom: 1px solid $colour-grey-7-trans-high;
+                padding-bottom: 8px;
             }
     
             & > [class*='col-'].alt-scroll, & > .col.alt-scroll {

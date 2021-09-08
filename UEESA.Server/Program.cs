@@ -1,17 +1,10 @@
 ﻿using System.Security.Authentication;
 
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.StaticFiles;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Identity.Web;
-using Microsoft.Identity.Web.UI;
 
-using UEESA;
 using UEESA.Server.Data;
 using UEESA.Server.Sockets;
 using UEESA.Server.Sockets.Handlers;
@@ -31,54 +24,24 @@ builder.WebHost.UseKestrel(kestrelOptions =>
 
 #if DEBUG
 builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = "00000000-0000-0000-0000-000000000000" });
-if (Services.Configuration["DEV_MIP_CID"] != null && !Services.Configuration["DEV_MIP_CID"].IsEmpty())
-{
-    builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    }).AddMicrosoftIdentityWebApp(options =>
-    {
-        options.Instance = "https://login.microsoftonline.com/";
-        options.ClientId = Services.Configuration["DEV_MIP_CID"];
-        options.TenantId = "common";
-    });
-}
+#else
+builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = Services.Configuration["APPINSIGHTS_CONNECTIONSTRING"] });
+#endif
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: CORSAuthorityName,
                       builder =>
                       {
+#if DEBUG
                           builder.WithOrigins("https://localhost:5001");
+#else
+                          builder.WithOrigins("https://staraether.com");
+#endif
                       });
 });
-#else
-builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = Services.Configuration["APPINSIGHTS_CONNECTIONSTRING"] });
-builder.Services.AddAuthentication(options =>
-    {
-        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    }).AddMicrosoftIdentityWebApp(options =>
-    {
-        options.Instance = "https://login.microsoftonline.com/";
-        options.ClientId = Services.Configuration["MIP_CID"];
-        options.TenantId = "common";
-    });
-builder.Services.AddCors(options =>
-    {
-        options.AddPolicy(name: "_starAetherCORSAuthority",
-                            builder =>
-                            {
-                                builder.WithOrigins("https://staraether.com");
-                            });
-    });
-#endif
 
-builder.Services.AddControllersWithViews(options =>
-{
-    AuthorizationPolicy policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
-    options.Filters.Add(new AuthorizeFilter(policy));
-});
-builder.Services.AddRazorPages().AddMicrosoftIdentityUI();
-builder.Services.AddRouting();
+builder.Services.AddRazorPages();
+builder.Services.AddServerSideBlazor();
 
 builder.Services.AddResponseCompression(options =>
 {
@@ -112,7 +75,7 @@ else
     app.UseHsts();
 }
 
-FileExtensionContentTypeProvider provider = new FileExtensionContentTypeProvider();
+FileExtensionContentTypeProvider provider = new();
 provider.Mappings[".avif"] = "image/avif";
 
 app.UseBlazorFrameworkFiles();
@@ -127,10 +90,6 @@ app.MapWebSocketManager("/state", Services.Get<StateSocketHandler>());
 app.UseRouting();
 app.UseCors(CORSAuthorityName);
 app.UseResponseCaching();
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllers();
-app.MapRazorPages();
 app.MapFallbackToFile("index.html");
 
 Services.Get<MongoDBHandler>();

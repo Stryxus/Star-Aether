@@ -12,6 +12,7 @@
     backdrop-filter: $backdrop-blur-heavy;
     border-left: 1px solid $colour-grey-7-trans-high;
     border-right: 1px solid $colour-grey-7-trans-high;
+    border-bottom: 1px solid $colour-grey-7-trans-high;
 
     &:first-child .body > .col {
         margin-bottom: 128px;

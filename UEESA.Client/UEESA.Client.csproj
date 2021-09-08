@@ -2,30 +2,25 @@
 	
   <PropertyGroup>
 	<TargetFramework>net6.0</TargetFramework>
-	<Configurations>Debug;Release</Configurations>
-	<Platforms>AnyCPU</Platforms>
 	<Nullable>annotations</Nullable>
 	<AssemblyName>UEESA.Client</AssemblyName>
-	<RunAOTCompilation>false</RunAOTCompilation>
+	<RunAOTCompilation>true</RunAOTCompilation>
 	<LangVersion>preview</LangVersion>
-	  <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+	<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
   </PropertyGroup>
 	
   <ItemGroup>
     <Compile Remove="wwwroot-dev\**" />
-    <Compile Remove="wwwroot\css\**" />
     <Content Remove="wwwroot-dev\**" />
-    <Content Remove="wwwroot\css\**" />
     <EmbeddedResource Remove="wwwroot-dev\**" />
-    <EmbeddedResource Remove="wwwroot\css\**" />
-	<None Remove="wwwroot-dev\**" />
-	<None Remove="wwwroot\css\**" />
+    <None Remove="wwwroot-dev\**" />
   </ItemGroup>
 
   <ItemGroup>
 	<PackageReference Include="BCrypt.Net-Next" Version="4.0.2" />
 	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-preview.7.21378.6" />
 	<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-preview.7.21378.6" PrivateAssets="all" />
+	<PackageReference Include="Microsoft.Authentication.WebAssembly.Msal" Version="6.0.0-preview.7.21378.6" />
 	<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
@@ -39,11 +34,6 @@
 
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Components\Overlays\Notifications\" />
-	  <Folder Include="wwwroot\" />
 	</ItemGroup>
 
 </Project>
