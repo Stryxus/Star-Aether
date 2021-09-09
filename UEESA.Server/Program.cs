@@ -1,9 +1,11 @@
 ﻿using System.Security.Authentication;
 
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Identity.Web;
 
 using UEESA.Server.Data;
 using UEESA.Server.Sockets;
@@ -27,6 +29,12 @@ builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceO
 #else
 builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions { ConnectionString = Services.Configuration["APPINSIGHTS_CONNECTIONSTRING"] });
 #endif
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddMicrosoftIdentityWebApi(Services.Configuration.GetSection("AZURE_AD_B2C"));
+builder.Services.Configure<JwtBearerOptions>(
+    JwtBearerDefaults.AuthenticationScheme, options =>
+    {
+        options.TokenValidationParameters.NameClaimType = "name";
+    });
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: CORSAuthorityName,
@@ -40,6 +48,7 @@ builder.Services.AddCors(options =>
                       });
 });
 
+builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
@@ -88,8 +97,12 @@ app.UseResponseCompression();
 app.UseWebSockets();
 app.MapWebSocketManager("/state", Services.Get<StateSocketHandler>());
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseCors(CORSAuthorityName);
 app.UseResponseCaching();
+app.MapRazorPages();
+app.MapControllers();
 app.MapFallbackToFile("index.html");
 
 Services.Get<MongoDBHandler>();

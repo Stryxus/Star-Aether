@@ -1,32 +1,42 @@
-﻿<div id="viewport-overlay">
-    <h6>The viewport/screen size is too small! Star Athenaeum strictly enforces a minimum width of 375 (relative) pixels!</h6>
-</div>
-<div id="router">
-    <div id="webpage">
-        <Router AppAssembly="@typeof(App).Assembly">
-            <Found Context="routeData">
-                <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-            </Found>
-            <NotFound>
-                <LayoutView Layout="@typeof(MainLayout)">
-                    <h4 id="page-load-error">Uh oh! There seems to be an error loading this page!</h4>
-                </LayoutView>
-            </NotFound>
-        </Router>
+﻿<CascadingAuthenticationState>
+    <div id="router">
+        <div id="webpage">
+            <Router AppAssembly="@typeof(App).Assembly">
+                <Found Context="routeData">
+                    <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+                        <NotAuthorized>
+                            @if (!context.User.Identity.IsAuthenticated)
+                            {
+                                <RedirectToLogin />
+                            }
+                            else
+                            {
+                                <p>You are not authorized to access this resource.</p>
+                            }
+                        </NotAuthorized>
+                    </AuthorizeRouteView>
+                </Found>
+                <NotFound>
+                    <LayoutView Layout="@typeof(MainLayout)">
+                        <h4 id="page-load-error">Uh oh! There seems to be an error loading this page!</h4>
+                    </LayoutView>
+                </NotFound>
+            </Router>
+        </div>
+        <SettingsPanel />
+        <div id="sidebar-bordered-lines">
+            <div id="sidebar-left-near"></div>
+            <div id="sidebar-left-far"></div>
+            <div id="sidebar-right-near"></div>
+            <div id="sidebar-right-far"></div>
+	    </div>
+        <HeadlinesTicker />
+        <EconomeTicker />
+        <SidebarLeftSide />
+        <SidebarRightSide />
+        <MainNavigationBar />
     </div>
-    <SettingsPanel />
-    <div id="sidebar-bordered-lines">
-        <div id="sidebar-left-near"></div>
-        <div id="sidebar-left-far"></div>
-        <div id="sidebar-right-near"></div>
-        <div id="sidebar-right-far"></div>
-	</div>
-    <HeadlinesTicker />
-    <EconomeTicker />
-    <SidebarLeftSide />
-    <SidebarRightSide />
-    <MainNavigationBar />
-</div>
+</CascadingAuthenticationState>
 
 @inject NavigationManager NavigationManager
 
