@@ -26,6 +26,8 @@ jobs:
       with:
         dotnet-version: '6.0'
         include-prerelease: True
+    - name: Install WASM Tools
+      run: dotnet workloads install wasm-tools
     - name: Install dependencies
       run: dotnet restore
     - name: Build
