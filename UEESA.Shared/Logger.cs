@@ -1,4 +1,6 @@
-﻿using UEESA.Machine;
+﻿using System;
+
+using UEESA.Machine;
 
 public static class Logger
 {

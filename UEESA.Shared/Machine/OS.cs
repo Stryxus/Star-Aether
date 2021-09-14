@@ -1,4 +1,6 @@
-﻿namespace UEESA.Machine
+﻿using System;
+
+namespace UEESA.Machine
 {
     public static class OS
     {

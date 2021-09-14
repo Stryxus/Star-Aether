@@ -1,4 +1,6 @@
-﻿namespace UEESA
+﻿using System;
+
+namespace UEESA
 {
     public static class TypeExtensions
     {

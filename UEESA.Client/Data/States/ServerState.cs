@@ -1,4 +1,7 @@
-﻿using System.Net.WebSockets;
+﻿using System;
+using System.Threading.Tasks;
+using System.Net.WebSockets;
+using System.Collections.Generic;
 
 using UEESA.Client.Sockets;
 using UEESA.Client.Sockets.Handlers;

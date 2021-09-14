@@ -1,4 +1,7 @@
-﻿using System.Net.WebSockets;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Net.WebSockets;
 using System.Text;
 
 using UEESA.Client.Data.States;

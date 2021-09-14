@@ -1,6 +1,13 @@
-﻿using System.Net.WebSockets;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Net.WebSockets;
 using System.Reflection;
 using System.Text;
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 using UEESA.Sockets;
 

@@ -1,4 +1,6 @@
-﻿public static class Globals
+﻿using System;
+
+public static class Globals
 {
     public static string YearVersion { get; } = "2021";
     public static string MonthVersion { get; } = "05";

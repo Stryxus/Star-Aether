@@ -1,7 +1,11 @@
+using System;
 using System.Net.WebSockets;
+using System.Net.Http;
 
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
 using UEESA.Sockets;
 using UEESA.Client;

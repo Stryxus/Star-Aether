@@ -1,4 +1,7 @@
-﻿namespace UEESA.Data.Bson.Roadmap
+﻿using System;
+using System.Collections.Generic;
+
+namespace UEESA.Data.Bson.Roadmap
 {
     public class UEESA_Bson_Roadmap
     {

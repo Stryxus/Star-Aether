@@ -1,4 +1,7 @@
-﻿namespace UEESA.Data.Json
+﻿using System;
+using System.Collections.Generic;
+
+namespace UEESA.Data.Json
 {
     public class UEESA_Json_StateSocketDataCapsule<T>
     {

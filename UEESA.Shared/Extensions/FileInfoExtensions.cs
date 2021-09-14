@@ -1,4 +1,7 @@
-﻿namespace UEESA
+﻿using System;
+using System.IO;
+
+namespace UEESA
 {
     public static class FileInfoExtensions
     {

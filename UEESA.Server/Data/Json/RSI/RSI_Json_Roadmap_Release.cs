@@ -1,4 +1,6 @@
-﻿namespace UEESA.Server.Data.Json.RSI
+﻿using System.Collections.Generic;
+
+namespace UEESA.Server.Data.Json.RSI
 {
     public class RSI_Json_Roadmap_Release
     {

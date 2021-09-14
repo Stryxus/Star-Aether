@@ -1,4 +1,6 @@
-﻿using UEESA.Client.Data.Json;
+﻿using System;
+
+using UEESA.Client.Data.Json;
 using UEESA.Data.Bson.Roadmap;
 
 namespace UEESA.Client.Data.States
