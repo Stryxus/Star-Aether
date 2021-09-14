@@ -26,9 +26,13 @@ jobs:
       with:
         dotnet-version: '6.0'
         include-prerelease: True
-    - name: Install dependencies
+    - name: Install Dotnet WASM Tools
+      run: dotnet workload install wasm-tools
+    - name: Install Solution Dependencies
       run: dotnet restore
-    - name: Build
+    - name: Build UEESA Debug
+      run: dotnet build --configuration Debug --no-restore
+    - name: Build UEESA Release
       run: dotnet build --configuration Release --no-restore
-    - name: Test
+    - name: Test UEESA
       run: dotnet test --no-restore --verbosity normal
