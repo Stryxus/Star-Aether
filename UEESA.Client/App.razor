@@ -83,13 +83,6 @@
             },
             new PageContext
             {
-                FormalPageName = "Star Gazer",
-                InformalPageName = "stargazer",
-                AllowsNavBarTickers = false,
-                PageBackgroundFileName = null
-            },
-            new PageContext
-            {
                 FormalPageName = "Load Out",
                 InformalPageName = "loadout",
                 AllowsNavBarTickers = false,
@@ -115,13 +108,6 @@
                 InformalPageName = "econome",
                 AllowsNavBarTickers = true,
                 PageBackgroundFileName = "econome.avif"
-            },
-            new PageContext
-            {
-                FormalPageName = "Xenoguist",
-                InformalPageName = "xenoguist",
-                AllowsNavBarTickers = true,
-                PageBackgroundFileName = "xenoguist.avif"
             }
         };
         if (NavigationManager.Uri == NavigationManager.BaseUri) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());
