@@ -123,40 +123,45 @@ function needsProcessing(filepath)
 
 async function processJS(jsFiles)
 {
-    const minJSFilePath = __client_wwwroot_dirname + sep + 'bundle.min.js'
-    const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.js.map'
-    console.log('  | Minifying JS: ' + minJSFilePath.replace(__client_wwwroot_dirname, ''))
-    var orderedJS = 'var GLOBAL = {};' // Define this to silence errors made from Blazor's GLOBAL variable missing
-    config.jsDependencies.forEach(async item =>
+    try
     {
-        const fullPath = __dirname + sep + item
-        if (item.substring(item.lastIndexOf('.')) == '.js' && fileExists(fullPath))
-        {
-            console.log('  | - Including Dependency: ' + item)
-            orderedJS += readFileSync(item, 'utf8') + '\n'
+        const minJSFilePath = __client_wwwroot_dirname + sep + 'bundle.min.js'
+        const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.js.map'
+        console.log('  | Minifying JS: ' + minJSFilePath.replace(__client_wwwroot_dirname, ''))
+        var orderedJS = 'var GLOBAL = {};' // Define this to silence errors made from Blazor's GLOBAL variable missing
+        config.jsDependencies.forEach(async item => {
+            const fullPath = __dirname + sep + item
+            if (item.substring(item.lastIndexOf('.')) == '.js' && fileExists(fullPath)) {
+                console.log('  | - Including Dependency: ' + item)
+                orderedJS += readFileSync(item, 'utf8') + '\n'
+            }
+            else {
+                console.error('  | - Dependency "' + item + '" does not exist or is not a .js file - skipping...')
+            }
+        })
+        jsFiles.forEach(async item => orderedJS += readFileSync(item.path, 'utf8') + '\n')
+        const result = await minify(orderedJS, { sourceMap: true, module: false, mangle: false, ecma: 2021, compress: !isDebug })
+        if (fileExists(minJSFilePath)) {
+            truncateSync(minJSFilePath, 0)
         }
-        else
-        {
-            console.error('  | - Dependency "' + item + '" does not exist or is not a .js file - skipping...')
+        if (fileExists(minMapFilePath)) {
+            truncateSync(minMapFilePath, 0)
         }
-    })
-    jsFiles.forEach(async item => orderedJS += readFileSync(item.path, 'utf8') + '\n')
-    const result = await minify(orderedJS, { sourceMap: true, module: false, mangle: false, ecma: 2021, compress: !isDebug })
-    if (fileExists(minJSFilePath))
-    {
-        truncateSync(minJSFilePath, 0)
+        writeFileSync(minJSFilePath, result.code, 'utf8')
+        writeFileSync(minMapFilePath, result.map, 'utf8')
     }
-    if (fileExists(minMapFilePath))
+    catch (e)
     {
-        truncateSync(minMapFilePath, 0)
+        console.error('  | ------------------------------------------------------------------------------------------------')
+        console.error('  | JS Minification Error: ' + e)
+        console.error('  | ------------------------------------------------------------------------------------------------')
     }
-    writeFileSync(minJSFilePath, result.code, 'utf8')
-    writeFileSync(minMapFilePath, result.map, 'utf8')
 }
 
 function processSASS(scssFile)
 {
-    try {
+    try
+    {
         const minCSSFilePath = __client_wwwroot_dirname + sep + 'bundle.min.css'
         const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.css.map'
         console.log('  | Minifying SASS: ' + minCSSFilePath.replace(__client_wwwroot_dirname, ''))
@@ -171,9 +176,11 @@ function processSASS(scssFile)
         }
         writeFileSync(minCSSFilePath, result.css.toString(), 'utf8')
         writeFileSync(minMapFilePath, result.map.toString(), 'utf8')
-    } catch (e) {
+    }
+    catch (e)
+    {
         console.error('  | ------------------------------------------------------------------------------------------------')
-        console.error('  | SCSS Compilation Error: ' + e)
+        console.error('  | SCSS Minification Error: ' + e)
         console.error('  | ------------------------------------------------------------------------------------------------')
     }
 }
