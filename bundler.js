@@ -156,22 +156,26 @@ async function processJS(jsFiles)
 
 function processSASS(scssFile)
 {
-    const minCSSFilePath = __client_wwwroot_dirname + sep + 'bundle.min.css'
-    const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.css.map'
-    console.log('  | Minifying SASS: ' + minCSSFilePath.replace(__client_wwwroot_dirname, ''))
-    const result = sass.renderSync({
-        file: scssFile, sourceMap: true, outFile: 'bundle.css', outputStyle: isDebug ? 'expanded' : 'compressed', indentType: 'tab', indentWidth: 1, quietDeps: true, includePaths: [__client_wwwrootdev_dirname + sep + 'css' + sep + 'thirdparty']
-    })
-    if (fileExists(minCSSFilePath))
-    {
-        truncateSync(minCSSFilePath, 0)
+    try {
+        const minCSSFilePath = __client_wwwroot_dirname + sep + 'bundle.min.css'
+        const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.css.map'
+        console.log('  | Minifying SASS: ' + minCSSFilePath.replace(__client_wwwroot_dirname, ''))
+        const result = sass.renderSync({
+            file: scssFile, sourceMap: true, outFile: 'bundle.css', outputStyle: isDebug ? 'expanded' : 'compressed', indentType: 'tab', indentWidth: 1, quietDeps: true, includePaths: [__client_wwwrootdev_dirname + sep + 'css' + sep + 'thirdparty']
+        })
+        if (fileExists(minCSSFilePath)) {
+            truncateSync(minCSSFilePath, 0)
+        }
+        if (fileExists(minMapFilePath)) {
+            truncateSync(minMapFilePath, 0)
+        }
+        writeFileSync(minCSSFilePath, result.css.toString(), 'utf8')
+        writeFileSync(minMapFilePath, result.map.toString(), 'utf8')
+    } catch (e) {
+        console.error('  | ------------------------------------------------------------------------------------------------')
+        console.error('  | SCSS Compilation Error: ' + e)
+        console.error('  | ------------------------------------------------------------------------------------------------')
     }
-    if (fileExists(minMapFilePath))
-    {
-        truncateSync(minMapFilePath, 0)
-    }
-    writeFileSync(minCSSFilePath, result.css.toString(), 'utf8')
-    writeFileSync(minMapFilePath, result.map.toString(), 'utf8')
 }
 
 async function processing()
