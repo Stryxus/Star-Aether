@@ -1,0 +1,15 @@
+﻿<div id="settings-panel" class="row">
+    <div class="col">
+        <h6>User Interface</h6>
+
+        <h6>Push Notifications</h6>
+        <ProfilePanelSettingsPanelToggleButton Title="Show Notification on Blog Post" Value="ClientState.Settings.ShowBlogUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowBlogUpdateNotification = val" />
+        <ProfilePanelSettingsPanelToggleButton Title="Show Notification on Roadmap Update" Value="ClientState.Settings.ShowRoadmapUpdateNotification" ToggleValue="(val) => ClientState.Settings.ShowRoadmapUpdateNotification = val" />
+    </div>
+</div>
+
+@inject ClientState ClientState
+
+@code {
+
+}

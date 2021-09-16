@@ -1,0 +1,41 @@
+﻿<div id="@id.ToString()" class="row profile-panel-dropdown bordered bordered-line-bottom">
+    <div class="col">
+        <div class="row profile-panel-dropdown-button" 
+@onclick="@(async () => 
+{
+    toggle = !toggle;
+    await AnimationManager.SlideInOutProfilePanelDropdown(toggle, id);
+})">
+            <div class="col-auto">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="col">
+                @Name
+            </div>
+        </div>
+        <div class="row profile-panel-dropdown-content" style="display: none">
+            <div class="col">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+</div>
+
+@inject JSInterface.AnimationManager AnimationManager
+
+@code {
+    private bool toggle = false;
+    private int id = 0;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string Name { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        id = Random.Shared.Next();
+        await base.OnInitializedAsync();
+    }
+}

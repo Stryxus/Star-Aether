@@ -1,7 +1,14 @@
-﻿<div id="profile-button" class="col-auto">
+﻿<div id="profile-button" class="col-auto @(toggle ? "active" : string.Empty)" 
+@onclick="@(async () => 
+{
+	toggle = !toggle;
+	await AnimationManager.SlideInOutProfilePanel(toggle);
+})">
 	<img src="/img/avatar.avif" alt="Avatar" />
 </div>
 
-@code {
+@inject JSInterface.AnimationManager AnimationManager
 
+@code {
+	private bool toggle = false;
 }

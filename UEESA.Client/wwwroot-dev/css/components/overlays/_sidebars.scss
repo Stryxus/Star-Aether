@@ -102,7 +102,7 @@
                 border-radius: 6px;
                 padding: 12px;
                 display: inline-block !important;
-                background-color: $colour-grey-2-trans-low;
+                background-color: $colour-black-trans-low;
 
                 p {
                     margin: 0px;
@@ -111,7 +111,7 @@
                 i {
                     color: rgba($colour-white, 0.6);
                     font-size: 24px;
-                    transform: translateY(2.5px);
+                    transform: translateY(1.5px);
                 }
 
                 &:hover {

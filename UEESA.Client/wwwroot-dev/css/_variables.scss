@@ -132,6 +132,7 @@ $colour-conic-trans-high: conic-gradient($colour-red-main-trans-high, $colour-gr
 // Stylings
 $backdrop-blur-light: blur(10px);
 $backdrop-blur-heavy: blur(20px);
+$border-radius: 10px;
 
 $box-shadow-down-smooth: 0px 10px 50px -10px rgba(0, 0, 0, 0.75);
 $box-shadow-down-sharp: 0px 15px 10px -10px rgba(0, 0, 0, 0.4);
@@ -145,17 +146,16 @@ $box-shadow-right-sharp: 15px -9px 10px -10px rgba(0, 0, 0, 0.4);
 // Z-Index
 $zindex-background-container: 0;
 $zindex-main: 1;
-$zindex-navigation-bar: 2;
-$zindex-tickers: 3;
-$zindex-navigation-bar-borders: 4;
-$zindex-settings-panel: 4;
-
-$zindex-viewport-overlay: 10000;
+$zindex-profile-panel: 2;
+$zindex-navigation-bar: 3;
+$zindex-tickers: 4;
+$zindex-navigation-bar-borders: 5;
 
 // Elements
 $navigation-bar-height: 100;
 $navigation-bar-mobile-height: 56;
 $duo-line-seperator-size: 6;
+$navbar-top-padding: 8;
 
 $navbarCornerContainerWidth: 200;
 $navbarCornerContainerHeight: 200;

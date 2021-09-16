@@ -60,7 +60,7 @@
 }
 
 .bordered {
-    border-color: $colour-grey-10;
+    border-color: $colour-grey-10-trans-low;
     border-style: solid;
     border-top-width: 0px;
     border-bottom-width: 0px;
@@ -69,13 +69,13 @@
 }
 
 .bordered-line-h, .bordered-line-v, .bordered-line-h-alt, .bordered-line-v-alt {
-    border-color: $colour-grey-10;
+    border-color: $colour-grey-10-trans-low;
     border-style: solid;
 }
 
 .vr {
     width: 0px;
-    border-left: solid 1px $colour-grey-10;
+    border-left: solid 1px $colour-grey-10-trans-low;
 }
 
 // BEGIN-Min-Width

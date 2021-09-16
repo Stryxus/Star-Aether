@@ -1,0 +1,43 @@
+﻿@inject NavigationManager Navigation
+@inject SignOutSessionStateManager SignOutManager
+
+<div id="profile-panel" class="row bordered bordered-line-all">
+    <div class="col">
+        <AuthorizeView>
+            <Authorized>
+                <div id="details-bar" class="row bordered bordered-line-bottom">
+                    <div class="col-auto">
+                        <img src="/img/avatar.avif" alt="Avatar" />
+                    </div>
+                    <div class="col">
+                        <small>@context.User.Identity.Name</small>
+                    </div>
+                    <div class="col-auto">
+                        <button id="sign-out-button" @onclick="BeginSignOut">Sign out</button>
+                    </div>
+                </div>
+                <ProfilePanelDropdown Name="Your Footprint">
+                    <ProfilePanelEditProfilePanel />
+                </ProfilePanelDropdown>
+                <ProfilePanelDropdown Name="Edit Profile">
+                    <ProfilePanelEditProfilePanel />
+                </ProfilePanelDropdown>
+                <ProfilePanelDropdown Name="Settings">
+                    <ProfilePanelSettingsPanel />
+                </ProfilePanelDropdown>
+            </Authorized>
+            <NotAuthorized>
+                <a href="authentication/login">Sign in</a>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</div>
+
+@code {
+
+    private async Task BeginSignOut(MouseEventArgs args)
+    {
+        await SignOutManager.SetSignOutState();
+        Navigation.NavigateTo("authentication/logout");
+    }
+}

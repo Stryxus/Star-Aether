@@ -51,11 +51,7 @@ namespace UEESA.Client.Data.States
                         }
                         OnPagePreTransition?.Invoke();
                         await Services.Get<JSInterface.Utilities>().SetTitle("UEESA - " + value.FormalPageName);
-                        if (HasSiteBeenRendered)
-                        {
-                            await Services.Get<ComponentState>().UpdateSettingsPanelState(true);
-                            IsPageTransitioning = true;
-                        }
+                        if (HasSiteBeenRendered) IsPageTransitioning = true;
                         OnPageTransitionStart?.Invoke();
                         List<Task> startStageTasks = new();
                         startStageTasks.Add(Services.Get<JSInterface.AnimationManager>().FadeInOutBackground(false));
@@ -82,32 +78,7 @@ namespace UEESA.Client.Data.States
 
         internal class ComponentState
         {
-            // Settings Panel
 
-            internal event Action OnSettingsPanelVisibilityChanged;
-            internal bool IsSettingsPanelVisible { private set; get; }
-
-            internal async Task UpdateSettingsPanelState(bool forceClose = false)
-            {
-                if (!Services.Get<PageState>().IsPageTransitioning)
-                {
-                    if (IsSettingsPanelVisible || forceClose)
-                    {
-                        await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(false);
-                        await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_SettingsPanelSlide));
-                        IsSettingsPanelVisible = false;
-                        OnSettingsPanelVisibilityChanged?.Invoke();
-                    }
-                    else
-                    {
-                        IsSettingsPanelVisible = true;
-                        OnSettingsPanelVisibilityChanged?.Invoke();
-                        // For some reason a very slight delay is needed. Im not sure why, this issue needs to be solved and the delay removed.
-                        await Task.Delay(TimeSpan.FromSeconds(0.005));
-                        await Services.Get<JSInterface.AnimationManager>().SlideInOutSettingsPanel(true);
-                    }
-                }
-            }
         }
     }
 }

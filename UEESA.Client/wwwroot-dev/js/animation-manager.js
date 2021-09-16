@@ -72,17 +72,44 @@ GLOBAL.animationInterface = (ref) =>
                 else TweenMax.to("#econome-navbar-ticker", timeSecs, { right: -width, ease: "power3.out" })
             }
         },
-        slideInOutSettingsPanel: (timeSecs, slideOut) => 
+        slideInOutProfilePanel : (timeSecs, slideOut) => 
         {
-            if (document.getElementById("settings-panel") !== null) 
+            if (document.getElementById("profile-panel") !== null) 
             {
-                var width = document.getElementById("settings-panel").offsetWidth
+                var height = document.getElementById("profile-panel").offsetHeight
                 if (slideOut) 
                 {
-                    TweenMax.to("#settings-panel", 0, { right: -width })
-                    TweenMax.to("#settings-panel", timeSecs, { right: 0, ease: "power3.out" })
+                    TweenMax.to("#profile-panel", timeSecs, { bottom: 114, ease: "power3.out" })
+                    TweenMax.to("#profile-panel", timeSecs, { opacity: 1, ease: "power3.out" })
                 }
-                else TweenMax.to("#settings-panel", timeSecs, { right: -width, ease: "power3.out" })
+                else 
+                {
+                    TweenMax.to("#profile-panel", timeSecs, { bottom: -height, ease: "power3.out" })
+                    TweenMax.to("#profile-panel", timeSecs, { opacity: 0, ease: "power3.out" })
+                }
+            }
+        },
+        slideInOutProfileDropdownPanel : (timeSecs, slideOut, id) => 
+        {
+            if (document.getElementById(id) !== null) 
+            {
+                var parent = document.getElementById(id)
+                var chevron = parent.getElementsByClassName('profile-panel-dropdown-button')[0].getElementsByTagName('i')[0];
+                var content = parent.getElementsByClassName('profile-panel-dropdown-content')[0];
+                if (slideOut) 
+                {
+                    content.style.display = 'block'
+                    TweenMax.to(chevron, timeSecs, { rotate: 180, ease: "power3.out" })
+                    TweenMax.to(content, timeSecs, { webkitClipPath: 'polygon(0px 0px, 100% 0px, 100% 100%, 0px 100%)', ease: "power3.out" })
+                }
+                else 
+                {
+                    TweenMax.to(chevron, timeSecs, { rotate: 0, ease: "power3.out" })
+                    TweenMax.to(content, timeSecs, { webkitClipPath: 'polygon(0px 0px, 100% 0px, 100% 0px, 0px 0px)', ease: "power3.out", onComplete: () =>
+                    {
+                        content.style.display = 'none'
+                    }})
+                }
             }
         },
         scrollTo: (position) => 

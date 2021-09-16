@@ -277,7 +277,7 @@
                         img {
                             width: #{$hexSize * 2.5 + px};
                             height: #{$hexSize * 2.5 + px};
-                            transform: translateY(-20px);
+                            transform: translateY(6px);
                         }
 
                         &.active {

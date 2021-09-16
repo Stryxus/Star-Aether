@@ -44,7 +44,7 @@ namespace UEESA.Client.Data
             public float Time_NavigationBarSlideIn = 0.5F;
             public float Time_ToolsBarSlideIn = 0.5F;
             public float Time_NavigationBarTickerSlide = 0.5F;
-            public float Time_SettingsPanelSlide = 0.25F;
+            public float Time_ProfilePanelDropdownSlide = 0.25F;
 
             public async Task FadePageInOut(bool fadeIn) => await JSR.InvokeVoidAsync("animationInterface.fadeInOutPage", Time_PageFade, fadeIn);
             public async Task FadeInOutBackground(bool fadeIn) => await JSR.InvokeVoidAsync("animationInterface.fadeInOutBackground", Time_BackgroundFade, fadeIn);
@@ -52,7 +52,11 @@ namespace UEESA.Client.Data
             public async Task SlideInToolsBar() => await JSR.InvokeVoidAsync("animationInterface.slideInToolsBar", Time_ToolsBarSlideIn);
             public async Task SlideInOutHeadlinesNavBarTicker(bool slideOut) => await JSR.InvokeVoidAsync("animationInterface.slideInOutHeadlinesNavBarTicker", Time_NavigationBarTickerSlide, slideOut);
             public async Task SlideInOutEonomeNavBarTicker(bool slideOut) => await JSR.InvokeVoidAsync("animationInterface.slideInOutEonomeNavBarTicker", Time_NavigationBarTickerSlide, slideOut);
-            public async Task SlideInOutSettingsPanel(bool slideOut) => await JSR.InvokeVoidAsync("animationInterface.slideInOutSettingsPanel", Time_SettingsPanelSlide, slideOut);
+
+            // Profile Panel
+
+            public async Task SlideInOutProfilePanel(bool slideOut) => await JSR.InvokeVoidAsync("animationInterface.slideInOutProfilePanel", Time_ProfilePanelDropdownSlide, slideOut);
+            public async Task SlideInOutProfilePanelDropdown(bool slideOut, int id) => await JSR.InvokeVoidAsync("animationInterface.slideInOutProfileDropdownPanel", Time_ProfilePanelDropdownSlide, slideOut, id);
 
             // Universal
             public async Task ScrollTo(int position) => await JSR.InvokeVoidAsync("animationInterface.scrollTo", position);
