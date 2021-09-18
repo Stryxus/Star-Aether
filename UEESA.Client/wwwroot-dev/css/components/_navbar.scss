@@ -29,7 +29,8 @@
 
     #main-nav {
         height: $navigation-bar-height + px;
-        bottom: -($navbarCornerContainterTopWidth + px);
+        bottom: 0px;
+        opacity: 0;
 
         & > .row {
             margin: 0px;
@@ -209,11 +210,11 @@
                 height: $navbarCornerContainerHeight + px;
     
                 &.active {
-                    background-color: $colour-blue-darkest-trans-low;
+                    background-color: $colour-red-darkest-trans-low;
                 }
     
                 &:hover {
-                    background-color: $colour-blue-darker-trans-low;
+                    background-color: $colour-red-darker-trans-low;
                 }
             }
         }
@@ -322,12 +323,12 @@
                                     }
                 
                                     &.active {
-                                        background-color: $colour-blue-darkest-trans-low;
+                                        background-color: $colour-red-dark-trans-low;
                                         color: $colour-white !important;
                                     }
                 
                                     &:hover {
-                                        background-color: $colour-blue-darker-trans-low;
+                                        background-color: $colour-red-darkest-trans-low;
                                         color: $colour-white !important;
                                     }
                                 }

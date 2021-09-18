@@ -42,11 +42,7 @@ namespace UEESA.Client.Data.States
                         {
                             new Action(async () =>
                             {
-                                await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarSlideIn));
-                                await Services.Get<JSInterface.AnimationManager>().SlideInNavigationBar();
-                                await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarSlideIn));
-                                await Services.Get<JSInterface.AnimationManager>().SlideInToolsBar();
-                                await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_ToolsBarSlideIn));
+                                await Services.Get<JSInterface.AnimationManager>().InOutNavbar();
                             }).Invoke();
                         }
                         OnPagePreTransition?.Invoke();
@@ -54,20 +50,19 @@ namespace UEESA.Client.Data.States
                         if (HasSiteBeenRendered) IsPageTransitioning = true;
                         OnPageTransitionStart?.Invoke();
                         List<Task> startStageTasks = new();
-                        startStageTasks.Add(Services.Get<JSInterface.AnimationManager>().FadeInOutBackground(false));
-                        startStageTasks.Add(Services.Get<JSInterface.AnimationManager>().FadePageInOut(false));
-                        startStageTasks.Add(Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_PageFade)));
+                        startStageTasks.Add(Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_Fastest)));
+                        startStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutBackground(false));
+                        startStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutPage(false));
                         await Task.WhenAll(startStageTasks);
                         Services.Get<NavigationManager>().NavigateTo(value.InformalPageName);
                         OnPageTransitionBackgroundStage?.Invoke();
-                        if (!HasSiteBeenRendered) await Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_NavigationBarTickerSlide));
                         List<Task> pageComponents = new();
                         OnPageTransitionEnd?.Invoke();
                         await Task.WhenAll(pageComponents);
                         IsPageTransitioning = false;
                         List<Task> endStageTasks = new();
-                        endStageTasks.Add(Services.Get<JSInterface.AnimationManager>().FadeInOutBackground(true));
-                        endStageTasks.Add(Services.Get<JSInterface.AnimationManager>().FadePageInOut(true));
+                        endStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutBackground(true));
+                        endStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutPage(true));
                         await Task.WhenAll(endStageTasks);
                         OnPagePostTransition?.Invoke();
                         HasSiteBeenRendered = true;

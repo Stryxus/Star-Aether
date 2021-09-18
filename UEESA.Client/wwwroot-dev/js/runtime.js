@@ -1,23 +1,24 @@
 GLOBAL.JSRuntime = null
-GLOBAL.runtime = (ref) =>
-{
-    if (GLOBAL.JSRuntime === null) GLOBAL.JSRuntime = ref
-}
-
+GLOBAL.runtime = (ref) => { if (GLOBAL.JSRuntime === null) GLOBAL.JSRuntime = ref }
 (() =>
 {
     var index = 0
     var resources = []
 
-    window.runtime = {
+    window.runtime = 
+    {
         load: (relativePath) => 
         {
-            function createResource(type, location, url) {
+            function createResource(type, location, url) 
+            {
                 var obj = document.createElement(type)
         
-                if (type === 'script') {
+                if (type === 'script') 
+                {
                     if (url) obj.src = url
-                } else {
+                } 
+                else 
+                {
                     obj.href = url
                     obj.rel = 'stylesheet'
                 }
@@ -26,17 +27,20 @@ GLOBAL.runtime = (ref) =>
                 return obj
             }
         
-            function sendScript(index) {
+            function sendScript(index) 
+            {
                 return resources[index].location.appendChild(resources[index])
             }
         
-            function indexCount() {
-                if (index < resources.length) {
+            function indexCount() 
+            {
+                if (index < resources.length) 
+                {
                     sendScript(index)
                     index++
                 }
             }
-
+            
             resources.push(createResource('script', document.body, relativePath)) 
             indexCount()
         },
@@ -44,13 +48,9 @@ GLOBAL.runtime = (ref) =>
         {
             for (var i = 0 ; i < resources.length - 1; i++) 
             {
-                if (resources[i].src == relativePath)
-                {
-                    return true
-                }
+                if (resources[i].src == relativePath) return true
             }
             return false
-        },
-        loadWebGL2: () => {}
+        }
     }
 })()

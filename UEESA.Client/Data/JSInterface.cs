@@ -15,14 +15,12 @@ namespace UEESA.Client.Data
         public class Utilities
         {
             public async Task SetTitle(string title) => await JSR.InvokeAsync<string>("utilities.setTitle", title);
-            public async Task SetVideoSpeed(string elementID, float speed) => await JSR.InvokeAsync<string>("utilities.setVideoSpeed", elementID, speed);
         }
 
         public class Runtime
         {
             public async Task Load(string relativePath) => await JSR.InvokeAsync<string>("runtime.load", relativePath);
             public async Task<bool> IsScriptLoaded(string relativePath) => await JSR.InvokeAsync<bool>("runtime.isScriptLoaded", relativePath);
-            public async Task LoadWebGL2() => await JSR.InvokeVoidAsync("runtime.loadWebGL2");
         }
 
         public class Cache
@@ -39,24 +37,22 @@ namespace UEESA.Client.Data
 
         public class AnimationManager
         {
-            public float Time_PageFade = 0.2F;
-            public float Time_BackgroundFade = 0.2F;
-            public float Time_NavigationBarSlideIn = 0.5F;
-            public float Time_ToolsBarSlideIn = 0.5F;
-            public float Time_NavigationBarTickerSlide = 0.5F;
-            public float Time_ProfilePanelDropdownSlide = 0.25F;
+            public float Time_Fastest = 0.25F;
+            public float Time_Fast = 0.5F;
+            public float Time_Normal = 0.75F;
+            public float Time_Slow = 1F;
+            public float Time_Slowest = 1.25F;
 
-            public async Task FadePageInOut(bool fadeIn) => await JSR.InvokeVoidAsync("animationInterface.fadeInOutPage", Time_PageFade, fadeIn);
-            public async Task FadeInOutBackground(bool fadeIn) => await JSR.InvokeVoidAsync("animationInterface.fadeInOutBackground", Time_BackgroundFade, fadeIn);
-            public async Task SlideInNavigationBar() => await JSR.InvokeVoidAsync("animationInterface.slideInNavigationBar", Time_NavigationBarSlideIn);
-            public async Task SlideInToolsBar() => await JSR.InvokeVoidAsync("animationInterface.slideInToolsBar", Time_ToolsBarSlideIn);
-            public async Task SlideInOutHeadlinesNavBarTicker(bool slideOut) => await JSR.InvokeVoidAsync("animationInterface.slideInOutHeadlinesNavBarTicker", Time_NavigationBarTickerSlide, slideOut);
-            public async Task SlideInOutEonomeNavBarTicker(bool slideOut) => await JSR.InvokeVoidAsync("animationInterface.slideInOutEonomeNavBarTicker", Time_NavigationBarTickerSlide, slideOut);
+            public async Task InOutPage(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutPage", Time_Fastest, show);
+            public async Task InOutBackground(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutBackground", Time_Slow, show);
+            public async Task InOutNavbar() => await JSR.InvokeVoidAsync("animationInterface.inNavbar", Time_Normal);
+            public async Task InOutHeadlinesBar(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutHeadlinesBar", Time_Slow, show);
+            public async Task InOutEconomeBar(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutEconomeBar", Time_Slow, show);
 
             // Profile Panel
 
-            public async Task SlideInOutProfilePanel(bool slideOut) => await JSR.InvokeVoidAsync("animationInterface.slideInOutProfilePanel", Time_ProfilePanelDropdownSlide, slideOut);
-            public async Task SlideInOutProfilePanelDropdown(bool slideOut, int id) => await JSR.InvokeVoidAsync("animationInterface.slideInOutProfileDropdownPanel", Time_ProfilePanelDropdownSlide, slideOut, id);
+            public async Task InOutProfilePanel(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutProfilePanel", Time_Fast, show);
+            public async Task InOutProfilePanelDropdown(bool show, int id) => await JSR.InvokeVoidAsync("animationInterface.inOutProfilePanelDropdown", Time_Fast, show, id);
 
             // Universal
             public async Task ScrollTo(int position) => await JSR.InvokeVoidAsync("animationInterface.scrollTo", position);

@@ -97,28 +97,30 @@
                 margin: 0px;
             }
 
-            a, button {
-                border: solid 1px $colour-grey-10;
-                border-radius: 6px;
+            a, .button {
+                border: none;
+                border-radius: $border-radius;
                 padding: 12px;
+                margin: 12px;
                 display: inline-block !important;
-                background-color: $colour-black-trans-low;
+                background-color: transparent;
+                cursor: pointer;
 
                 p {
                     margin: 0px;
                 }
 
                 i {
-                    color: rgba($colour-white, 0.6);
+                    color: $colour-white-trans-high;
                     font-size: 24px;
                     transform: translateY(1.5px);
                 }
 
                 &:hover {
-                    background-color: $colour-grey-10;
+                    background-color: $colour-red-main-trans-low;
 
                     i {
-                        color: rgba($colour-white, 0.6);
+                        color: $colour-white-trans-high;
                     }
                 }
             }
