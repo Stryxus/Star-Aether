@@ -83,7 +83,7 @@
     <link rel="manifest" href="manifest.json" />
     <link rel="apple-touch-icon" href="pwa-192.avif" />
 
-    <link rel="stylesheet" type="text/css" href="bundle.min.css"></link>
+    <link rel="preload" href="bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 </head>
 <body>
     <noscript>

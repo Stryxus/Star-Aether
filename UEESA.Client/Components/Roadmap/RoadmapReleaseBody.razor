@@ -2,10 +2,10 @@
     <div class="col">
         @foreach (UEESA_Bson_Roadmap_Card_Category category in Enum.GetValues(typeof(UEESA_Bson_Roadmap_Card_Category)))
         {
-            @if (Release.cards.Exists(x => x.category == category))
+            @if (Release.Cards.Exists(x => x.Category == category))
             {
                 <RoadmapReleaseCategoryFrame Title="@category.ToString()">
-                    <RoadmapReleaseCategory FilteredCards="@Release.cards.FindAll(x => x.category == category)" />
+                    <RoadmapReleaseCategory FilteredCards="@Release.Cards.FindAll(x => x.Category == category)" />
                 </RoadmapReleaseCategoryFrame>
             }
         }

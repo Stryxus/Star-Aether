@@ -47,11 +47,11 @@ main {
     z-index: $zindex-main;
     overflow: hidden;
     height: 100vh;
-    width: calc(100% - #{$navbarCornerContainterTopWidth * 2 + ($duo-line-seperator-size * 4) + 2}px) !important;
+    width: calc(100% - #{$navbarCornerContainterTopWidth * 2 + ($duo-line-seperator-size * 4) - 10}px) !important;
     padding-top: 0px;
     padding-bottom: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
     margin-top: 0px;
     margin-bottom: 0px;
     margin-left: 0px;
@@ -59,7 +59,9 @@ main {
     clip-path: polygon(0px 0px, 100% 0px, 100% calc(100% - #{$navbarCornerContainerHeight}px), calc(100% - #{math.div($navbarCornerContainerWidth, 2)}px) 100%, #{math.div($navbarCornerContainerWidth, 2)}px 100%, 0px calc(100% - #{$navbarCornerContainerHeight}px));
 
     & > .row {
+        min-height: calc(100% - #{math.div($navbarCornerContainerHeight, 2) + $duo-line-seperator-size}px);
         margin: 0px;
+        clip-path: polygon(0px 0px, 100% 0px, 100% calc(100% - #{math.div($navbarCornerContainerHeight, 2)}px), calc(100% - #{math.div($navbarCornerContainerWidth, 4)}px) 100%, #{math.div($navbarCornerContainerWidth, 4)}px 100%, 0px calc(100% - #{math.div($navbarCornerContainerHeight, 2)}px));
 
         & > * {
             padding-left: 0px;

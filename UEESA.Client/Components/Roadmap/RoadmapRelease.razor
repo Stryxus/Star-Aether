@@ -1,9 +1,18 @@
-﻿<div class="col-auto roadmap-release-view-card needs-status">
-    <RoadmapReleaseHeader RoadmapRelease="@Release" />
-    <RoadmapReleaseBody Release="@Release" />
+﻿<div class="col-auto roadmap-release-view-card needs-status @(IsCollapsed ? "collapsed" : string.Empty)">
+    <RoadmapReleaseHeader RoadmapRelease="@Release" IsCollasped="@IsCollapsed" IsCollapsedCallback="@((collapsed) => 
+    {
+        IsCollapsed = collapsed;
+        StateHasChanged();
+    })" />
+    @if (!IsCollapsed)
+    {
+        <RoadmapReleaseBody Release="@Release" />
+    }
 </div>
 
 @code {
+
+    public bool IsCollapsed = true;
 
     [Parameter]
     public UEESA_Bson_Roadmap_Release Release { get; set; }

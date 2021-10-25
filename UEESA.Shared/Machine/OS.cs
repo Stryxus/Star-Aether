@@ -18,7 +18,7 @@ namespace UEESA.Machine
 
         static OS()
         {
-            Type = ((Environment.OSVersion.Platform != PlatformID.Win32NT) ? ((Environment.OSVersion.Platform == PlatformID.Unix) ? OSType.Linux : ((Environment.OSVersion.Platform == PlatformID.MacOSX) ? OSType.MacOSX : OSType.Windows)) : OSType.Windows);
+            Type = (Environment.OSVersion.Platform != PlatformID.Win32NT) ? ((Environment.OSVersion.Platform == PlatformID.Unix) ? OSType.Linux : ((Environment.OSVersion.Platform == PlatformID.MacOSX) ? OSType.MacOSX : OSType.Windows)) : OSType.Windows;
         }
     }
 

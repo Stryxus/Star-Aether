@@ -1,0 +1,28 @@
+﻿@page "/admin"
+
+<AuthorizeView Policy="UserIsAdmin">
+    <Authorized>
+        <div id="admin-page" class="row justify-content-center">
+            <div class="col-auto padded-scroll">
+                ITS WORKING
+            </div>
+        </div>
+    </Authorized>
+    <Authorizing>
+        <h1>Checking authority...</h1>
+    </Authorizing>
+    <NotAuthorized>
+        <div id="admin-page" class="row justify-content-center denied">
+            <div class="col-auto padded-scroll">
+                <h3>You are not authorized to use the admin tools. Naughty.</h3>
+                <img src="/img/hacker.avif" width="800" alt="Hackerman" />
+            </div>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
+
+@inject UIState.PageState PageState
+
+@code {
+
+}

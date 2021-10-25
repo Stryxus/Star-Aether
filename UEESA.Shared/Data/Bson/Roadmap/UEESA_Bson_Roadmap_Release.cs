@@ -5,11 +5,11 @@ namespace UEESA.Data.Bson.Roadmap
 {
     public class UEESA_Bson_Roadmap_Release
     {
-        public string version { get; set; }
-        public string release_date { get; set; }
-        public DateTime creation_datetime { get; set; }
-        public DateTime updated_datetime { get; set; }
-        public bool has_released { get; set; }
-        public List<UEESA_Bson_Roadmap_Card> cards { get; set; }
+        public string? Version { get; set; }
+        public string? ReleaseDate { get; set; }
+        public DateTime CreationDateTime { get; set; }
+        public DateTime UpdatedDateTime { get; set; }
+        public bool HasReleased { get; set; }
+        public List<UEESA_Bson_Roadmap_Card>? Cards { get; set; } = new();
     }
 }

@@ -20,6 +20,7 @@
 
     private void SetPageContext()
     {
-        if (!PageState.IsPageTransitioning) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName == href[1..]);
+        PageContext newConext = PageState.PageContexts.First(x => x.InformalPageName == href[1..]);
+        if (!PageState.IsPageTransitioning && !PageState.CurrentPageContext.Equals(newConext)) PageState.CurrentPageContext = newConext;
     }
 }

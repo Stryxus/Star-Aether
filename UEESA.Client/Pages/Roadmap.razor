@@ -2,12 +2,12 @@
 
 <div id="roadmap-page" class="row no-scroll">
     <div class="col">
-        <div id="roadmap-cards" class="row align-items-stretch">
-            @if (ClientState.RoadmapData != null && ClientState.RoadmapData.releases != null)
+        <div id="roadmap-cards" class="row align-items-stretch justify-content-center">
+            @if (ClientState.RoadmapData != null && ClientState.RoadmapData.Releases != null)
             {
-                @foreach (UEESA_Bson_Roadmap_Release release in ClientState.RoadmapData.releases)
+                @for (int i = 0; i < 10; i++)
                 {
-                    <RoadmapRelease Release="@release" />
+                    <RoadmapRelease Release="@ClientState.RoadmapData.Releases[i]" />
                 }
             }
         </div>

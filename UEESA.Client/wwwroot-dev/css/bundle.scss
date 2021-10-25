@@ -7,13 +7,14 @@
 @import "fontawesome/scss/solid";
 
 @import "variables";
-@import "globalClasses";
+@import "classes";
 @import "elements";
 @import "theme";
 
 @import "pages/preloadPage";
 @import "pages/home";
 @import "pages/roadmap";
+@import "pages/admin";
 
 @import "components/navbar";
 @import "components/roadmapRelease";

@@ -3,22 +3,22 @@
         <div class="col">
             <div class="row">
                 <div class="col feature-img">
-                    @if (Card.thumnail_path != null)
+                    @if (Card.ThumnailURL != null)
                     {
-                        <img src="@("https://robertsspaceindustries.com" + Card.thumnail_path)" draggable="false" alt="Feature Image" />
+                        <img src="@("https://robertsspaceindustries.com" + Card.ThumnailURL)" draggable="false" alt="Feature Image" />
                     }
-                    <div class="task-overlay @(Card.status.ToString().ToLower())">
+                    <div class="task-overlay @(Card.Status.ToString().ToLower())">
                         <small>
-                            @Card.status.ToString()
+                            @Card.Status.ToString()
                         </small>
                     </div>
                 </div>
             </div>
-            @if (Card.description != null)
+            @if (Card.Description != null)
             {
                 <div class="row">
                     <div class="col feature-description">
-                        <small>@Card.description</small>
+                        <small>@Card.Description</small>
                     </div>
                 </div>
             }

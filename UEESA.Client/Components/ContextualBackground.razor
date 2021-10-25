@@ -6,7 +6,7 @@
     }
     else if (PageState.CurrentPageContext.PageBackgroundFileName.EndsWith(".webm"))
     {
-        <video id="background" src="@("/vid/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName)" autoplay muted loop poster="@("/vid/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName.Replace(".mp4", ".webp"))" />
+        <video id="background" src="@("/vid/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName)" autoplay muted loop poster="@("/vid/backgrounds/" + PageState.CurrentPageContext.PageBackgroundFileName.Replace(".webm", ".avif"))" />
     }
 }
 

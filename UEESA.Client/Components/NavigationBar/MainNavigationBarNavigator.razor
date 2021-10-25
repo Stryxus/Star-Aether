@@ -3,11 +3,12 @@
         <div class="row">
             @if (PageState.IsCurrentContextPageSet)
             {
+                int count = PageState.PageContexts.OrderBy(o => o.IsHidden == false).Where(o => !o.IsHidden).ToList().Count;
                 <div class="col nav-section">
                     <div class="row justify-content-center">
-                        @for (int i = 1; i < (int)Math.Ceiling((double)(PageState.PageContexts.Count / 2)) + 1; i++)
+                        @for (int i = 1; i < (int)Math.Ceiling((double)(count / 2)) + 1; i++)
                         {
-                            int local = i;
+                            int local = i; // This fixes a strange issue
                             <div class="col-auto">
                                 <PreNavLink href="@("/" + PageState.PageContexts[local].InformalPageName.ToLower())"><p>@(PageState.PageContexts[local].FormalPageName)</p></PreNavLink>
                             </div>
@@ -17,9 +18,9 @@
                 <ProfileButton />
                 <div class="col nav-section">
                     <div class="row justify-content-center">
-                        @for (int i = (int)Math.Floor((double)(PageState.PageContexts.Count / 2)) + 1; i < PageState.PageContexts.Count; i++)
+                        @for (int i = (int)Math.Floor((double)(count / 2)) + 1; i < count; i++)
                         {
-                            int local = i;
+                            int local = i; // This fixes a strange issue
                             <div class="col-auto">
                                 <PreNavLink href="@("/" + PageState.PageContexts[local].InformalPageName.ToLower())"><p>@(PageState.PageContexts[local].FormalPageName)</p></PreNavLink>
                             </div>

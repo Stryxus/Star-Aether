@@ -1,5 +1,12 @@
 #roadmap-page {
     overflow-x: scroll !important;
+    padding-left: 48px;
+    padding-right: 48px;
+    backdrop-filter: $backdrop-blur-heavy;
+
+    & > * {
+        -webkit-mask-image: linear-gradient(to right,rgba(0,0,0,0) 0%,rgba(0,0,0,1) 5%,rgba(0,0,0,1) 95%,rgba(0,0,0,0) 100%)
+    }
 
     & > .col > .row, & > .row {
         overflow-x: scroll;

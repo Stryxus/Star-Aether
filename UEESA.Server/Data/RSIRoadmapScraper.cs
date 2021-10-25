@@ -15,13 +15,10 @@ namespace UEESA.Server.Data
 {
     internal class RSIRoadmapScraper
     {
-        private UEESA_Bson_Roadmap roadmap_Data;
-        internal UEESA_Bson_Roadmap Roadmap_Data
+        private UEESA_Bson_Roadmap? roadmap_Data;
+        internal UEESA_Bson_Roadmap? Roadmap_Data
         {
-            get
-            {
-                return roadmap_Data;
-            }
+            get => roadmap_Data;
 
             set
             {
@@ -44,7 +41,7 @@ namespace UEESA.Server.Data
             while (true)
             {
                 await CheckForUpdate();
-                await Task.Delay(TimeSpan.FromMinutes(2.5));
+                await Task.Delay(TimeSpan.FromMinutes(2));
             }
         }
 
@@ -53,74 +50,200 @@ namespace UEESA.Server.Data
             Logger.LogInfo("Checking for RSI update...");
             HttpClient client = new();
             HttpResponseMessage response = await client.GetAsync("https://robertsspaceindustries.com/api/roadmap/v1/boards/1");
-            JObject rsi_json = JObject.Parse(await response.Content.ReadAsStringAsync());
-            RSI_Json_Roadmap parsed = JsonConvert.DeserializeObject<RSI_Json_Roadmap>(rsi_json["data"].ToString());
+            JObject rsiJson = JObject.Parse(await response.Content.ReadAsStringAsync());
+            JToken? data = rsiJson is not null && rsiJson["data"] is not null ? rsiJson["data"] : null;
+            JToken? lastUpdated = data is not null && data["last_updated"] is not null ? data["last_updated"] : null;
 
-            DateTime updateDate = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(JsonConvert.DeserializeObject<long>(rsi_json["data"]["last_updated"].ToString()));
+            if (data is not null && lastUpdated is not null)
+            {
+                RSI_Json_Roadmap? rsiParsedJson = JsonConvert.DeserializeObject<RSI_Json_Roadmap>(data.ToString());
+                DateTime updateDate = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(JsonConvert.DeserializeObject<long>(lastUpdated.ToString()));
 
-            if (DateTime.UtcNow.Day - updateDate.Day >= 14 || Globals.IsDevelopmentMode) ProcessData();
-            else Logger.LogInfo("No RSI update available...");
+                if (rsiParsedJson is null) Logger.LogError("The RSI Scraper should ");
+                else if (DateTime.UtcNow.Day - updateDate.Day >= 14 || Globals.IsDevelopmentMode || Roadmap_Data is null) ProcessRSIToUEESA(rsiParsedJson, updateDate);
+                else Logger.LogInfo("No RSI update available...");
+            }
 
-            void ProcessData()
+            void ProcessRSIToUEESA(RSI_Json_Roadmap rsiParsedJson, DateTime updateDate)
             {
                 Logger.LogInfo("- New RSI update available!");
                 Logger.LogInfo("| - Roadmap Update Date: " + updateDate.ToShortDateString() + " | " + updateDate.ToShortTimeString());
-                ConvertRSIJsonToUsableBson();
-            }
-
-            void ConvertRSIJsonToUsableBson()
-            {
                 Logger.LogInfo("  | - Converting RSI Json to Mongo Bson...");
 
                 UEESA_Bson_Roadmap roadmap = new();
-                roadmap.updated_datetime = updateDate;
-                roadmap.releases = new();
+                roadmap.UpdatedDateTime = updateDate;
+                roadmap.Releases = new();
                 int relIndex = 0;
                 int caIndex = 0;
-                foreach (RSI_Json_Roadmap_Release rel in parsed.releases)
+
+                if (rsiParsedJson is not null)
                 {
-                    UEESA_Bson_Roadmap_Release release = new();
-                    try
+                    foreach (RSI_Json_Roadmap_Release rel in rsiParsedJson.releases)
                     {
-                        release.version = rel.name;
-                        release.release_date = rel.description;
-                        release.creation_datetime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(rel.time_created);
-                        release.updated_datetime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(rel.time_created);
-                        release.has_released = Convert.ToBoolean(rel.released);
-                    }
-                    catch (Exception ex)
-                    {
-                        Logger.LogError(ex.Message + " : " + ex.StackTrace);
-                    }
-                    release.cards = new();
-                    foreach (RSI_Json_Roadmap_Card ca in rel.cards)
-                    {
-                        UEESA_Bson_Roadmap_Card card = new();
+                        UEESA_Bson_Roadmap_Release release = new();
+
                         try
                         {
-                            card.name = ca.name;
-                            card.description = ca.body;
-                            card.category = (UEESA_Bson_Roadmap_Card_Category)ca.category_id;
-                            card.creation_datetime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(ca.time_created);
-                            card.updated_datetime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(ca.time_modified);
-                            card.thumnail_path = rsi_json["data"]["releases"][relIndex]["cards"][caIndex]["thumbnail"]["urls"]["source"].ToString();
-                            card.status = Enum.Parse<RSI_Bson_Roadmap_Card_Status>(ca.status);
-                            card.has_released = Convert.ToBoolean(ca.released);
-                            card.teams = new();
-                            //foreach (RSI_Json_Roadmap_Card_Teams tea in ca.teams.Values) card.teams.Add(tea.title);
+                            release.Version = rel.name;
                         }
-                        catch (Exception ex)
+                        catch (Exception)
                         {
-                            Logger.LogError(ex.Message + " : " + ex.StackTrace);
+                            Logger.LogError("Release Version value cannot be discerned from index '" + relIndex + "'");
                         }
-                        release.cards.Add(card);
-                        caIndex++;
+
+                        try
+                        {
+                            release.ReleaseDate = rel.description;
+                        }
+                        catch (Exception)
+                        {
+                            Logger.LogError("Release Date value cannot be discerned from index '" + relIndex + "'");
+                        }
+
+                        try
+                        {
+                            release.CreationDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(rel.time_created);
+                        }
+                        catch (Exception)
+                        {
+                            Logger.LogError("Release Creation DateTime value cannot be discerned from index '" + relIndex + "'");
+                        }
+
+                        try
+                        {
+                            release.UpdatedDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(rel.time_modified);
+                        }
+                        catch (Exception)
+                        {
+                            Logger.LogError("Release Updated DateTime value cannot be discerned from index '" + relIndex + "'");
+                        }
+
+                        try
+                        {
+                            release.HasReleased = Convert.ToBoolean(rel.released);
+                        }
+                        catch (Exception)
+                        {
+                            Logger.LogError("Release Has Released value cannot be discerned from index '" + relIndex + "'");
+                        }
+
+                        release.Cards = new();
+
+                        foreach (RSI_Json_Roadmap_Card ca in rel.cards)
+                        {
+                            UEESA_Bson_Roadmap_Card card = new();
+
+                            try
+                            {
+                                card.Name = ca.name;
+                            }
+                            catch (Exception)
+                            {
+                                Logger.LogWarn("Card Name value cannot be discerned from index '" + relIndex + "' - '" + caIndex + "' - Defaulting value!");
+                            }
+
+                            try
+                            {
+                                card.Description = ca.body;
+                            }
+                            catch (Exception)
+                            {
+                                Logger.LogWarn("Card Description value cannot be discerned from index '" + relIndex + "' - '" + caIndex + "' - Defaulting value!");
+                            }
+
+                            try
+                            {
+                                card.Category = (UEESA_Bson_Roadmap_Card_Category)ca.category_id;
+                            }
+                            catch (Exception)
+                            {
+                                Logger.LogWarn("Card Category value cannot be discerned from index '" + relIndex + "' - '" + caIndex + "' - Defaulting value!");
+                            }
+
+                            try
+                            {
+                                card.CreationDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(ca.time_created);
+                            }
+                            catch (Exception)
+                            {
+                                Logger.LogWarn("Card Creation DateTime value cannot be discerned from index '" + relIndex + "' - '" + caIndex + "' - Defaulting value!");
+                            }
+
+                            try
+                            {
+                                card.UpdatedDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(ca.time_modified);
+                            }
+                            catch (Exception)
+                            {
+                                Logger.LogWarn("Card Updated DateTime value cannot be discerned from index '" + relIndex + "' - '" + caIndex + "' - Defaulting value!");
+                            }
+
+                            try
+                            {
+                                JToken? stepOne = data["releases"];
+                                JToken? stepTwo = stepOne is not null ? stepOne[relIndex] : null;
+                                JToken? stepThree = stepTwo is not null ? stepTwo["cards"] : null;
+                                JToken? stepFour = stepThree is not null ? stepThree[caIndex] : null;
+                                JToken? stepFive = stepFour is not null ? stepFour["thumbnail"] : null;
+                                JToken? stepSix = stepFive is not null ? stepFive["urls"] : null;
+                                JToken? stepSeven = stepSix is not null ? stepSix["source"] : null;
+                                card.ThumnailURL = stepSeven is not null ? stepSeven.ToString() : null;
+                            }
+                            catch (Exception)
+                            {
+                                Logger.LogWarn("Card Thumbnail Path value cannot be discerned from index '" + relIndex + "' - '" + caIndex + "' - Defaulting value!");
+                            }
+
+                            try
+                            {
+                                card.Status = Enum.Parse<RSI_Bson_Roadmap_Card_Status>(ca.status);
+                            }
+                            catch (Exception)
+                            {
+                                Logger.LogWarn("Card Status value cannot be discerned from index '" + relIndex + "' - '" + caIndex + "' - Defaulting value!");
+                            }
+
+                            try
+                            {
+                                card.HasReleased = Convert.ToBoolean(ca.released);
+                            }
+                            catch (Exception)
+                            {
+                                Logger.LogWarn("Card Head Released value cannot be discerned from index '" + relIndex + "' - '" + caIndex + "' - Defaulting value!");
+                            }
+
+                            try
+                            {
+                                card.Teams = new();
+                                JToken? stepOne = data["releases"];
+                                JToken? stepTwo = stepOne is not null ? stepOne[relIndex] : null;
+                                JToken? stepThree = stepTwo is not null ? stepTwo["cards"] : null;
+                                JToken? stepFour = stepThree is not null ? stepThree[caIndex] : null;
+                                JToken? stepFive = stepFour is not null ? stepFour["teams"] : null;
+                                if (stepFive is not null)
+                                {
+                                    foreach (JToken team in stepFive.Children())
+                                    {
+                                        card.Teams.Add(team["abbreviation"] + " - " + (team["title"] is not null).ToString());
+                                    }
+                                }
+                            }
+                            catch (Exception)
+                            {
+                                Logger.LogWarn("Card Teams List value cannot be discerned from index '" + relIndex + "' - '" + caIndex + "' - Defaulting value!");
+                            }
+
+                            release.Cards.Add(card);
+                            caIndex++;
+                        }
+
+                        roadmap.Releases.Add(release);
+                        relIndex++;
+                        caIndex = 0;
                     }
-                    roadmap.releases.Add(release);
-                    relIndex++;
-                    caIndex = 0;
                 }
-                roadmap.releases.Reverse();
+
+                roadmap.Releases.Reverse();
                 Roadmap_Data = roadmap;
 
                 Logger.LogInfo("  | - RSI Json Conversion to Mongo Bson Successful!");

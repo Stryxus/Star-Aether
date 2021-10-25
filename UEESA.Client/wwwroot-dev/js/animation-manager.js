@@ -9,8 +9,8 @@ GLOBAL.animationInterface = (ref) => { if (GLOBAL.JSAnimationInterface === null)
             var el
             if ((el = document.getElementById("page-body")) !== null) 
             {
-                if (!show) TweenMax.to(el, timeSecs, { opacity: 0, yPercent: -5, ease: "power3.out" })
-                else TweenMax.to(el, timeSecs, { opacity: 1, yPercent: 0, ease: "power3.out" })
+                if (!show) TweenMax.to(el, timeSecs, { opacity: -2, yPercent: -5, scaleX: "80%", scaleY: "80%" })
+                else TweenMax.to(el, timeSecs, { opacity: 1, yPercent: 0, scaleX: "100%", scaleY: "100%" })
             }
         },
         inOutBackground: (timeSecs, show) => 
@@ -18,14 +18,19 @@ GLOBAL.animationInterface = (ref) => { if (GLOBAL.JSAnimationInterface === null)
             var el
             if ((el = document.getElementById("background")) !== null) 
             {
-                if (!show) TweenMax.to(el, timeSecs, { opacity: 0, ease: "power3.out" })
-                else TweenMax.to(el, timeSecs, { opacity: 1, ease: "power3.out" })
+                if (!show) TweenMax.to(el, timeSecs, { opacity: -2, scaleX: "100%", scaleY: "100%" })
+                else 
+                {
+                    // Setting the initial value in TweenMax is needed because the node is constantly changing between img and video.
+                    TweenMax.to(el, 0, { opacity: -2, scaleX: "100%", scaleY: "100%" })
+                    TweenMax.to(el, timeSecs, { opacity: 1, scaleX: "120%", scaleY: "120%" })
+                }
             }
         },
         inNavbar: (timeSecs) => 
         {
             var el
-            if ((el = document.getElementById("main-nav")) !== null) TweenMax.to(el, timeSecs, { opacity: 1, ease: "power3.out" })
+            if ((el = document.getElementById("main-nav")) !== null) TweenMax.to(el, timeSecs, { opacity: 1 })
         },
         inOutHeadlinesBar: (timeSecs, show) => 
         {

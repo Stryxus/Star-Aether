@@ -9,7 +9,6 @@
     padding-left: 0px;
     padding-right: 0px;
     background-color: rgba($colour-black, 0.5);
-    backdrop-filter: $backdrop-blur-heavy;
     border-left: 1px solid $colour-grey-7-trans-high;
     border-right: 1px solid $colour-grey-7-trans-high;
     border-bottom: 1px solid $colour-grey-7-trans-high;
@@ -36,6 +35,10 @@
         }
     }
 
+    &.collapsed {
+        width: 120px;
+    }
+
     .header {
         border-bottom: 1px solid $colour-grey-7-trans-high;
         margin: 0px;
@@ -54,6 +57,11 @@
             font-weight: 400;
             display: block;
             line-height: 40.6666px;
+        }
+
+        .expand-button {
+            padding-top: 12px;
+            padding-bottom: 12px;
         }
     }
 

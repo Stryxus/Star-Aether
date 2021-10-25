@@ -8,8 +8,7 @@ namespace UEESA.Client.Data
     {
         public static IJSRuntime JSR { get; private set; }
 
-        public JSInterface(IJSRuntime runtime) => JSR = runtime;
-
+        public void SetJSRuntime(IJSRuntime runtime) => JSR = runtime;
         public async Task InitializeInterface<T>(T tiedObject, string functionName) where T : class => await JSR.InvokeVoidAsync("GLOBAL." + functionName, DotNetObjectReference.Create(tiedObject));
 
         public class Utilities
@@ -43,16 +42,16 @@ namespace UEESA.Client.Data
             public float Time_Slow = 1F;
             public float Time_Slowest = 1.25F;
 
-            public async Task InOutPage(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutPage", Time_Fastest, show);
-            public async Task InOutBackground(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutBackground", Time_Slow, show);
+            public async Task InOutPage(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutPage", Time_Fast, show);
+            public async Task InOutBackground(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutBackground", Time_Normal, show);
             public async Task InOutNavbar() => await JSR.InvokeVoidAsync("animationInterface.inNavbar", Time_Normal);
             public async Task InOutHeadlinesBar(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutHeadlinesBar", Time_Slow, show);
             public async Task InOutEconomeBar(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutEconomeBar", Time_Slow, show);
 
             // Profile Panel
 
-            public async Task InOutProfilePanel(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutProfilePanel", Time_Fast, show);
-            public async Task InOutProfilePanelDropdown(bool show, int id) => await JSR.InvokeVoidAsync("animationInterface.inOutProfilePanelDropdown", Time_Fast, show, id);
+            public async Task InOutProfilePanel(bool show) => await JSR.InvokeVoidAsync("animationInterface.inOutProfilePanel", Time_Fastest, show);
+            public async Task InOutProfilePanelDropdown(bool show, int id) => await JSR.InvokeVoidAsync("animationInterface.inOutProfilePanelDropdown", Time_Fastest, show, id);
 
             // Universal
             public async Task ScrollTo(int position) => await JSR.InvokeVoidAsync("animationInterface.scrollTo", position);

@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using UEESA.Client.Data.Json;
 using UEESA.Client.Sockets;
 
+using Microsoft.JSInterop;
+
 namespace UEESA.Client.Data.States
 {
     internal class InitializationState
@@ -22,7 +24,7 @@ namespace UEESA.Client.Data.States
         private bool FirstRegisterPass { get; set; } = true;
         private bool FirstDataLoadPass { get; set; } = true;
 
-        internal async Task Init()
+        internal async Task Init(IJSRuntime runtime)
         {
             if (FirstRegisterPass)
             {
@@ -30,6 +32,7 @@ namespace UEESA.Client.Data.States
 
                 Logger.LogInfo("Initializing Client State...");
 
+                Services.Get<JSInterface>().SetJSRuntime(runtime);
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.Runtime>(), "runtime");
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.Cache>(), "cacheStorageInterface");
                 await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.LocalData>(), "localStorageInterface");

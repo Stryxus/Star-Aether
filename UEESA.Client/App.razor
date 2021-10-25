@@ -42,17 +42,8 @@
 
 @inject InitializationState InitializationState
 @inject UIState.PageState PageState
-@inject ClientState ClientState
-@inject ServerState ServerState
-@inject LocalStorageState LocalStorageState
-@inject WebSocketManagerMiddleware WebSocketMiddleware
 
-@inject JSInterface Javascript
-@inject JSInterface.Utilities Utilities
-@inject JSInterface.Runtime Runtime
-@inject JSInterface.Cache Cache
-@inject JSInterface.LocalData LocalData
-@inject JSInterface.AnimationManager AnimationManager
+@inject IJSRuntime JSRuntime
 
 @code {
 
@@ -64,55 +55,67 @@
             {
                 FormalPageName = "Home",
                 InformalPageName = "",
-                AllowsNavBarTickers = true,
-                PageBackgroundFileName = null
+                PageBackgroundFileName = "home.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Blog",
                 InformalPageName = "blog",
-                AllowsNavBarTickers = true,
-                PageBackgroundFileName = "blog.avif"
+                PageBackgroundFileName = "blog.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Changelog",
                 InformalPageName = "changelog",
-                AllowsNavBarTickers = true,
-                PageBackgroundFileName = null
+                PageBackgroundFileName = "changelog.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Roadmap",
                 InformalPageName = "roadmap",
-                AllowsNavBarTickers = false,
-                PageBackgroundFileName = "roadmap.avif"
+                PageBackgroundFileName = "roadmap.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Load Out",
                 InformalPageName = "loadout",
-                AllowsNavBarTickers = false,
-                PageBackgroundFileName = "loadupout.avif"
+                PageBackgroundFileName = "loadout.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Fleeter",
                 InformalPageName = "fleeter",
-                AllowsNavBarTickers = false,
-                PageBackgroundFileName = "fleeter.avif"
+                PageBackgroundFileName = "fleeter.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Econome",
                 InformalPageName = "econome",
-                AllowsNavBarTickers = true,
-                PageBackgroundFileName = "econome.avif"
+                PageBackgroundFileName = "econome.webm",
+                IsHidden = false
+            },
+
+            new PageContext
+            {
+                FormalPageName = "",
+                InformalPageName = "admin",
+                PageBackgroundFileName = "home.webm",
+                IsHidden = true
             }
         };
-        if (NavigationManager.Uri == NavigationManager.BaseUri) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());
-        else PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1));
-        await InitializationState.Init();
+        try
+        {
+            if (NavigationManager.Uri == NavigationManager.BaseUri || !PageState.PageContexts.Any(o => o.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1))) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());
+            else PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1));
+        }
+        catch { NavigationManager.NavigateTo(string.Empty); }
+        await InitializationState.Init(JSRuntime);
         await base.OnInitializedAsync();
     }
 }
