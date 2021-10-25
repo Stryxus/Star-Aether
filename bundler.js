@@ -128,7 +128,7 @@ async function processJS(jsFiles)
         const minJSFilePath = __client_wwwroot_dirname + sep + 'bundle.min.js'
         const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.js.map'
         console.log('  | Minifying JS: ' + minJSFilePath.replace(__client_wwwroot_dirname, ''))
-        var orderedJS = 'var GLOBAL = {};' // Define this to silence errors made from Blazor's GLOBAL variable missing
+        var orderedJS = 'var GLOBAL = {};' // Define this to silence errors made from Blazor's GLOBAL variable
         config.jsDependencies.forEach(async item => {
             const fullPath = __dirname + sep + item
             if (item.substring(item.lastIndexOf('.')) == '.js' && fileExists(fullPath)) {
