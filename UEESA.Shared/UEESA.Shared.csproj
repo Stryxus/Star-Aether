@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>annotations</Nullable>
     <AssemblyName>UEESA</AssemblyName>
-	<LangVersion>10</LangVersion>
+    <DebugType>embedded</DebugType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>annotations</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

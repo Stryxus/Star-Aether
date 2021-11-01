@@ -2,12 +2,10 @@
 	
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Nullable>annotations</Nullable>
-	<LangVersion>10</LangVersion>
 	<UserSecretsId>5ced1bea-94b2-4ef7-a213-1f443c1d6c93</UserSecretsId>
 	<DebugType>embedded</DebugType>
-	<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
-	<TypeScriptModuleKind>amd</TypeScriptModuleKind>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>annotations</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

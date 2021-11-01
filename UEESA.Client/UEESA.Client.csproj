@@ -2,15 +2,13 @@
 	
   <PropertyGroup>
 	<TargetFramework>net6.0</TargetFramework>
-	<Nullable>annotations</Nullable>
 	<AssemblyName>UEESA.Client</AssemblyName>
 	<RunAOTCompilation>true</RunAOTCompilation>
-	<LangVersion>10</LangVersion>
-	<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
 	<UserSecretsId>7583da45-3db4-40c1-9b1d-da7ad5213210</UserSecretsId>
-	<DebugType>embedded</DebugType>
-	<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 	<NoWin32Manifest>true</NoWin32Manifest>
+  	<DebugType>embedded</DebugType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>annotations</Nullable>
   </PropertyGroup>
 	
   <ItemGroup>
