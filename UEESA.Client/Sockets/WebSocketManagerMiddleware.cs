@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Net.WebSockets;
 using System.Text;
 
-using UEESA.Client.Data.States;
 using UEESA.Client.Sockets.Handlers;
 using UEESA.Sockets;
 
