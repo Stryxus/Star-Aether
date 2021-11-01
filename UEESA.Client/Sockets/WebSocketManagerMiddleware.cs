@@ -19,7 +19,6 @@ namespace UEESA.Client.Sockets
         public ClientWebSocket ClientSocket { get; private set; }
         public bool IsConnected { get; private set; }
         public event Action OnServerConnected;
-        public event Action OnServerConnectionError;
 
         internal WebSocketManagerMiddleware(StateSocketHandler handler)
         {
@@ -69,7 +68,6 @@ namespace UEESA.Client.Sockets
                             }
                         });
                     }
-                    else OnServerConnectionError?.Invoke();
                 }
             }
         }

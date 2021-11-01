@@ -48,11 +48,6 @@ namespace UEESA.Client.Data.States
                         await Services.Get<ServerState>().RequestRoadmapData(true);
                     }
                 };
-                Services.Get<WebSocketManagerMiddleware>().OnServerConnectionError += async () =>
-                {
-                    Logger.LogInfo("Connection to the server cannot be established. Running in offline mode.");
-                    await Services.Get<ServerState>().RequestRoadmapData();
-                };
                 await Services.Get<WebSocketManagerMiddleware>().Connect(Services.Get<ClientState>());
 
                 Logger.LogInfo("Client State Initialized.");
