@@ -20,7 +20,7 @@ namespace UEESA.Server.Sockets
     {
         private WebSocketHandler<WebSocket> SocketHandler { get; set; }
 
-        public WebSocketManagerMiddleware(RequestDelegate next, WebSocketHandler<WebSocket> webSocketHandler) => SocketHandler = webSocketHandler;
+        public WebSocketManagerMiddleware(WebSocketHandler<WebSocket> webSocketHandler) => SocketHandler = webSocketHandler;
 
         public async Task InvokeAsync(HttpContext context)
         {
@@ -31,20 +31,12 @@ namespace UEESA.Server.Sockets
             {
                 if (result.MessageType == WebSocketMessageType.Text)
                 {
-                    string message = Encoding.UTF8.GetString(buffer);
-                    message = message.Replace("\0", string.Empty);
-                    try
-                    {
-                        SocketHandler.Receive(socket, result, JObject.Parse(message));
-                    }
-                    catch (JsonReaderException) { }
-                    return;
+                    string message = Encoding.UTF8.GetString(buffer).Replace("\0", string.Empty);
+                    try { SocketHandler.Receive(socket, result, JObject.Parse(message)); }
+                    catch { }
                 }
-                else if (result.MessageType == WebSocketMessageType.Close)
-                {
-                    await SocketHandler.OnDisconnected(socket);
-                    return;
-                }
+                else if (result.MessageType == WebSocketMessageType.Close) await SocketHandler.OnDisconnected(socket);
+                return;
             });
         }
 
@@ -59,10 +51,7 @@ namespace UEESA.Server.Sockets
                     handleMessage(result, buffer.ToArray());
                 }
             }
-            catch (WebSocketException)
-            {
-                await SocketHandler.OnDisconnected(socket);
-            }
+            catch { await SocketHandler.OnDisconnected(socket); }
         }
     }
 
@@ -73,10 +62,7 @@ namespace UEESA.Server.Sockets
         public static IServiceCollection AddWebSocketManager(this IServiceCollection services)
         {
             services.AddTransient<ConnectionManager<WebSocket>>();
-            foreach (Type type in Assembly.GetEntryAssembly().ExportedTypes)
-            {
-                if (type.GetTypeInfo().BaseType == typeof(WebSocketHandler<WebSocket>)) services.AddScoped(type);
-            }
+            foreach (Type type in Assembly.GetEntryAssembly().ExportedTypes) if (type.GetTypeInfo().BaseType == typeof(WebSocketHandler<WebSocket>)) services.AddScoped(type);
             return services;
         }
     }

@@ -45,10 +45,7 @@ namespace UEESA.Client.Sockets
                             if (result.MessageType == WebSocketMessageType.Text)
                             {
                                 string message = Encoding.UTF8.GetString(buffer).Replace("\0", string.Empty);
-                                try
-                                {
-                                    SocketHandler.Receive(ClientSocket, result, JObject.Parse(message));
-                                }
+                                try { SocketHandler.Receive(ClientSocket, result, JObject.Parse(message)); }
                                 catch { }
                             }
                             else if (result.MessageType == WebSocketMessageType.Close) await SocketHandler.OnDisconnected(ClientSocket);
