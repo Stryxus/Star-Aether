@@ -48,7 +48,7 @@ namespace UEESA.Client.Data.States
                         await Services.Get<ServerState>().RequestRoadmapData(true);
                     }
                 };
-                await Services.Get<WebSocketManagerMiddleware>().Connect(Services.Get<ClientState>());
+                await Services.Get<WebSocketManagerMiddleware>().Connect();
 
                 Logger.LogInfo("Client State Initialized.");
             }

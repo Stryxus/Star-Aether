@@ -25,7 +25,7 @@ namespace UEESA.Client.Sockets
             SocketHandler = handler;
         }
 
-        internal async Task Connect(ClientState state)
+        internal async Task Connect()
         {
             if (ClientSocket != null) return;
             else
