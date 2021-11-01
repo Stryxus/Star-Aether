@@ -31,14 +31,11 @@ namespace UEESA.Client.Sockets
             else
             {
                 ClientSocket = new ClientWebSocket();
-                try
-                {
-                    await ClientSocket.ConnectAsync(new Uri("wss://staraether.com/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
-                }
-                catch (WebSocketException)
-                {
-                    await ClientSocket.ConnectAsync(new Uri("wss://localhost:5001/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
-                }
+#if DEBUG
+                await ClientSocket.ConnectAsync(new Uri("wss://localhost:5001/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
+#else
+                await ClientSocket.ConnectAsync(new Uri("wss://staraether.com/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
+#endif
 
                 async Task Continued()
                 {
