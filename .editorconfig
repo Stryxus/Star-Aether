@@ -1,7 +1,4 @@
-﻿[*.cs]
+﻿[*.{cs,vb}]
 
-# CS8601: Possible null reference assignment.
-dotnet_diagnostic.CS8601.severity = silent
-
-# IDE0011: Add braces
-dotnet_diagnostic.IDE0011.severity = silent
+# IDE0044: Add readonly modifier
+dotnet_style_readonly_field = false
