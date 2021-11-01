@@ -7,7 +7,6 @@ using System.Text;
 using UEESA.Client.Sockets.Handlers;
 using UEESA.Sockets;
 
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace UEESA.Client.Sockets
@@ -19,17 +18,14 @@ namespace UEESA.Client.Sockets
         public bool IsConnected { get; private set; }
         public event Action OnServerConnected;
 
-        internal WebSocketManagerMiddleware(StateSocketHandler handler)
-        {
-            SocketHandler = handler;
-        }
+        internal WebSocketManagerMiddleware(StateSocketHandler handler) { SocketHandler = handler; }
 
         internal async Task Connect()
         {
             if (ClientSocket != null) return;
             else
             {
-                ClientSocket = new ClientWebSocket();
+                ClientSocket = new();
 #if DEBUG
                 await ClientSocket.ConnectAsync(new Uri("wss://localhost:5001/state"), CancellationToken.None).ContinueWith(async (task) => await Continued());
 #else
@@ -48,20 +44,14 @@ namespace UEESA.Client.Sockets
                         {
                             if (result.MessageType == WebSocketMessageType.Text)
                             {
-                                string message = Encoding.UTF8.GetString(buffer);
-                                message = message.Replace("\0", string.Empty);
+                                string message = Encoding.UTF8.GetString(buffer).Replace("\0", string.Empty);
                                 try
                                 {
                                     SocketHandler.Receive(ClientSocket, result, JObject.Parse(message));
                                 }
-                                catch (JsonReaderException) { }
-                                return;
+                                catch { }
                             }
-                            else if (result.MessageType == WebSocketMessageType.Close)
-                            {
-                                await SocketHandler.OnDisconnected(ClientSocket);
-                                return;
-                            }
+                            else if (result.MessageType == WebSocketMessageType.Close) await SocketHandler.OnDisconnected(ClientSocket);
                         });
                     }
                 }
@@ -79,10 +69,7 @@ namespace UEESA.Client.Sockets
                     handleMessage(result, buffer.ToArray());
                 }
             }
-            catch (WebSocketException)
-            {
-                await SocketHandler.OnDisconnected(socket);
-            }
+            catch { await SocketHandler.OnDisconnected(socket); }
         }
     }
 }
