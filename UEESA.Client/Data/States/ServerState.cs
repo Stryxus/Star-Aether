@@ -1,12 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Net.WebSockets;
-using System.Collections.Generic;
+﻿using System.Net.WebSockets;
 
 using UEESA.Client.Sockets;
 using UEESA.Client.Sockets.Handlers;
-using UEESA.Data.Bson.Roadmap;
-using UEESA.Data.Json;
+using UEESA.Json.Client;
+using UEESA.Json.External.RSI.Roadmap;
 
 namespace UEESA.Client.Data.States
 {
@@ -16,8 +13,8 @@ namespace UEESA.Client.Data.States
         {
             Logger.LogInfo("Requesting Roadmap Data...");
             if (Services.Get<WebSocketManagerMiddleware>().IsConnected && getFreshCopy)
-                Services.Get<StateSocketHandler>().SendMessageAsync(socket, new UEESA_Json_StateSocketDataCapsule<object> { attributes = new List<string>() { "GetRoadmapData" } });
-            else await Services.Get<LocalStorageState>().GetLocalData<UEESA_Bson_Roadmap>();
+                Services.Get<StateSocketHandler>().SendMessageAsync(socket, new JClient_SocketDataCapsule<object> { Attributes = new List<string>() { "GetRoadmapData" } });
+            else await Services.Get<LocalStorageState>().GetLocalData<JRSI_Roadmap>();
         });
 
         private static Task Send(Action<ClientWebSocket> act)

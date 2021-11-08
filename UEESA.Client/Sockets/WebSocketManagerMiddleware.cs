@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Net.WebSockets;
+﻿using System.Net.WebSockets;
 using System.Text;
 
 using UEESA.Client.Sockets.Handlers;
@@ -13,7 +10,7 @@ namespace UEESA.Client.Sockets
 {
     internal class WebSocketManagerMiddleware
     {
-        public WebSocketHandler<ClientWebSocket> SocketHandler { get; private set; }
+        public SocketHandler<ClientWebSocket> SocketHandler { get; private set; }
         public ClientWebSocket ClientSocket { get; private set; }
         public bool IsConnected { get; private set; }
         public event Action OnServerConnected;
@@ -57,7 +54,7 @@ namespace UEESA.Client.Sockets
 
         private async Task Receive(ClientWebSocket socket, Action<WebSocketReceiveResult, byte[]> handleMessage)
         {
-            ArraySegment<byte> buffer = new(new byte[Globals.MaxSocketBufferSize]);
+            ArraySegment<byte> buffer = new(new byte[References.MaxSocketBufferSize]);
             try
             {
                 while (socket.State == WebSocketState.Open)

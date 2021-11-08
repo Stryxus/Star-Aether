@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Net.WebSockets;
 using System.Net.Http;
 
@@ -15,6 +15,10 @@ using UEESA.Client.Data.States;
 using UEESA.Client.Data.Authentication;
 using UEESA.Client.Sockets;
 using UEESA.Client.Sockets.Handlers;
+
+using Serilog;
+
+Logger.Initialise(new LoggerConfiguration().WriteTo.Console(outputTemplate: Logger.DefaultLogFormat).CreateLogger());
 
 WebAssemblyHost Host;
 WebAssemblyHostBuilder HostBuilder = WebAssemblyHostBuilder.CreateDefault(args);

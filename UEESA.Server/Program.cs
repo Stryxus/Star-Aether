@@ -17,9 +17,13 @@ using UEESA.Server.Data;
 using UEESA.Server.Sockets;
 using UEESA.Server.Sockets.Handlers;
 
+using Serilog;
+
 #if RELEASE
 string CORSAuthorityName = "_starAetherCORSAuthority";
 #endif
+
+Logger.Initialise(new LoggerConfiguration().WriteTo.Console(outputTemplate: Logger.DefaultLogFormat).CreateLogger());
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 Services.SetConfiguration(builder.Configuration);
@@ -49,9 +53,9 @@ builder.Services.Configure<BrotliCompressionProviderOptions>(o => o.Level = Comp
 
 WebApplication app = builder.Build();
 Services.SetServiceProvider(app.Services.CreateScope().ServiceProvider);
-Globals.IsDevelopmentMode = app.Environment.IsDevelopment();
+References.IsDevelopmentMode = app.Environment.IsDevelopment();
 
-if (Globals.IsDevelopmentMode)
+if (References.IsDevelopmentMode)
 {
     app.UseDeveloperExceptionPage();
     app.UseWebAssemblyDebugging();
@@ -78,10 +82,7 @@ app.UseAuthorization();
 app.UseCors(CORSAuthorityName);
 #endif
 app.UseResponseCaching();
-app.UseEndpoints(endpoints => 
-{
-    endpoints.MapFallbackToFile("index.html");
-});
+app.MapFallbackToFile("index.html");
 
 Services.Get<MongoDBHandler>();
 Services.Get<RSIRoadmapScraper>();

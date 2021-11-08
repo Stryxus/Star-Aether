@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using System.Security.Authentication;
 
-using UEESA.Data.Bson.Roadmap;
-using UEESA.Data.Bson.Users;
+using UEESA.Json.Client;
+using UEESA.Json.External.RSI.Roadmap;
 
 using MongoDB.Driver;
 
@@ -14,9 +14,9 @@ namespace UEESA.Server.Data
         private IMongoDatabase UEESA_DB;
 
         //private IMongoCollection<UEESA_Bson_User> UEESA_USERS;
-        private IMongoCollection<UEESA_Bson_Roadmap> UEESA_BLOG_DATA;
-        private IMongoCollection<UEESA_Bson_Roadmap> UEESA_ChANGELOG_DATA;
-        private IMongoCollection<UEESA_Bson_Roadmap> UEESA_ROADMAP_DATA;
+        private IMongoCollection<JRSI_Roadmap> UEESA_BLOG_DATA;
+        private IMongoCollection<JRSI_Roadmap> UEESA_ChANGELOG_DATA;
+        private IMongoCollection<JRSI_Roadmap> UEESA_ROADMAP_DATA;
 
         public MongoDBHandler()
         {
@@ -43,9 +43,9 @@ namespace UEESA.Server.Data
                 Client = new(settings);
                 UEESA_DB = Client.GetDatabase("ueesadb");
                 //UEESA_USERS = UEESA_DB.GetCollection<UEESA_Bson_User>("users");
-                UEESA_BLOG_DATA = UEESA_DB.GetCollection<UEESA_Bson_Roadmap>("blog_data");
-                UEESA_ChANGELOG_DATA = UEESA_DB.GetCollection<UEESA_Bson_Roadmap>("changelog_data");
-                UEESA_ROADMAP_DATA = UEESA_DB.GetCollection<UEESA_Bson_Roadmap>("roadmap_data");
+                UEESA_BLOG_DATA = UEESA_DB.GetCollection<JRSI_Roadmap>("blog_data");
+                UEESA_ChANGELOG_DATA = UEESA_DB.GetCollection<JRSI_Roadmap>("changelog_data");
+                UEESA_ROADMAP_DATA = UEESA_DB.GetCollection<JRSI_Roadmap>("roadmap_data");
                 Logger.LogInfo("Connected to UEESA Database!");
             });
         }

@@ -1,15 +1,15 @@
 ﻿using System.Net.WebSockets;
 
 using UEESA.Client.Data.States;
-using UEESA.Data.Bson.Roadmap;
-using UEESA.Data.Json;
+using UEESA.Json.Client;
+using UEESA.Json.External.RSI.Roadmap;
 using UEESA.Sockets;
 
 using Newtonsoft.Json.Linq;
 
 namespace UEESA.Client.Sockets.Handlers
 {
-    public class StateSocketHandler : WebSocketHandler<ClientWebSocket>
+    public class StateSocketHandler : SocketHandler<ClientWebSocket>
     {
         public StateSocketHandler(ConnectionManager<ClientWebSocket> webSocketConnectionManager) : base(webSocketConnectionManager) { }
 
@@ -21,20 +21,20 @@ namespace UEESA.Client.Sockets.Handlers
             {
                 if (message["datetime_sent"].Type != JTokenType.Null && message["attributes"].Type != JTokenType.Null && message["data_type"].Type != JTokenType.Null)
                 {
-                    if (message["data_type"].ToString() == typeof(UEESA_Bson_Roadmap).Name)
+                    if (message["data_type"].ToString() == typeof(JRSI_Roadmap).Name)
                     {
-                        UEESA_Json_StateSocketDataCapsule<UEESA_Bson_Roadmap> data = message.ToObject<UEESA_Json_StateSocketDataCapsule<UEESA_Bson_Roadmap>>();
+                        JClient_SocketDataCapsule<JRSI_Roadmap> data = message.ToObject<JClient_SocketDataCapsule<JRSI_Roadmap>>();
 
-                        if (data.attributes.Contains(StateSocketDataCapsuleAttributes.GetRoadmapData.ToString())) Services.Get<ClientState>().NotifyRoadmapCardDataChange(data.data, false);
+                        if (data.Attributes.Contains(JClient_SocketDataCapsuleAttributes.GetRoadmapData.ToString())) Services.Get<ClientState>().NotifyRoadmapCardDataChange(data.Data, false);
 
-                        if (data.data != null)
+                        if (data.Data != null)
                         {
 
                         }
                     }
                     else
                     {
-                        UEESA_Json_StateSocketDataCapsule<object> data = message.ToObject<UEESA_Json_StateSocketDataCapsule<object>>();
+                        JClient_SocketDataCapsule<object> data = message.ToObject<JClient_SocketDataCapsule<object>>();
 
                         // Lone Attributes
                     }

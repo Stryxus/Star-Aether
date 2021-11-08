@@ -5,8 +5,8 @@ using System.Net.Http;
 
 using UEESA.Server.Data.Json.RSI;
 using UEESA.Server.Sockets.Handlers;
-using UEESA.Data.Bson.Roadmap;
-using UEESA.Data.Json;
+using UEESA.Json.Client;
+using UEESA.Json.External.RSI.Roadmap;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,18 +15,18 @@ namespace UEESA.Server.Data
 {
     internal class RSIRoadmapScraper
     {
-        private UEESA_Bson_Roadmap? roadmap_Data;
-        internal UEESA_Bson_Roadmap? Roadmap_Data
+        private JRSI_Roadmap? roadmap_Data;
+        internal JRSI_Roadmap? Roadmap_Data
         {
             get => roadmap_Data;
 
             set
             {
                 roadmap_Data = value;
-                Task.Run(() => Services.Get<StateSocketHandler>().SendMessageToAllAsync(new UEESA_Json_StateSocketDataCapsule<UEESA_Bson_Roadmap>
+                Task.Run(() => Services.Get<StateSocketHandler>().SendMessageToAllAsync(new JClient_SocketDataCapsule<JRSI_Roadmap>
                 {
-                    attributes = new List<string>() { StateSocketDataCapsuleAttributes.GetRoadmapData.ToString() },
-                    data = value
+                    Attributes = new List<string>() { JClient_SocketDataCapsuleAttributes.GetRoadmapData.ToString() },
+                    Data = value
                 }));
             }
         }
@@ -60,7 +60,7 @@ namespace UEESA.Server.Data
                 DateTime updateDate = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(JsonConvert.DeserializeObject<long>(lastUpdated.ToString()));
 
                 if (rsiParsedJson is null) Logger.LogError("The RSI Scraper should ");
-                else if (DateTime.UtcNow.Day - updateDate.Day >= 14 || Globals.IsDevelopmentMode || Roadmap_Data is null) ProcessRSIToUEESA(rsiParsedJson, updateDate);
+                else if (DateTime.UtcNow.Day - updateDate.Day >= 14 || References.IsDevelopmentMode || Roadmap_Data is null) ProcessRSIToUEESA(rsiParsedJson, updateDate);
                 else Logger.LogInfo("No RSI update available...");
             }
 
@@ -70,7 +70,7 @@ namespace UEESA.Server.Data
                 Logger.LogInfo("| - Roadmap Update Date: " + updateDate.ToShortDateString() + " | " + updateDate.ToShortTimeString());
                 Logger.LogInfo("  | - Converting RSI Json to Mongo Bson...");
 
-                UEESA_Bson_Roadmap roadmap = new();
+                JRSI_Roadmap roadmap = new();
                 roadmap.UpdatedDateTime = updateDate;
                 roadmap.Releases = new();
                 int relIndex = 0;
@@ -80,7 +80,7 @@ namespace UEESA.Server.Data
                 {
                     foreach (RSI_Json_Roadmap_Release rel in rsiParsedJson.releases)
                     {
-                        UEESA_Bson_Roadmap_Release release = new();
+                        JRSI_Roadmap_Release release = new();
 
                         try
                         {
@@ -131,7 +131,7 @@ namespace UEESA.Server.Data
 
                         foreach (RSI_Json_Roadmap_Card ca in rel.cards)
                         {
-                            UEESA_Bson_Roadmap_Card card = new();
+                            JRSI_Roadmap_Card card = new();
 
                             try
                             {
@@ -153,7 +153,7 @@ namespace UEESA.Server.Data
 
                             try
                             {
-                                card.Category = (UEESA_Bson_Roadmap_Card_Category)ca.category_id;
+                                card.Category = (JRSI_Roadmap_Card_Category)ca.category_id;
                             }
                             catch (Exception)
                             {
@@ -196,7 +196,7 @@ namespace UEESA.Server.Data
 
                             try
                             {
-                                card.Status = Enum.Parse<RSI_Bson_Roadmap_Card_Status>(ca.status);
+                                card.Status = Enum.Parse<JRSI_Roadmap_Card_Status>(ca.status);
                             }
                             catch (Exception)
                             {

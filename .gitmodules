@@ -10,3 +10,6 @@
 [submodule "GSAP"]
 	path = GSAP
 	url = https://github.com/greensock/GSAP
+[submodule "Common"]
+	path = Common
+	url = https://github.com/Star-Aether/Common
