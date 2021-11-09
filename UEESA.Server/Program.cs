@@ -1,21 +1,14 @@
 ﻿using System.IO.Compression;
-using System.Linq;
 using System.Security.Authentication;
 
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.StaticFiles;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 
 using UEESA.Server.Data;
-using UEESA.Server.Sockets;
-using UEESA.Server.Sockets.Handlers;
 
 using Serilog;
 
@@ -44,7 +37,6 @@ builder.Services.AddResponseCompression(o =>
     o.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
 });
 builder.Services.AddResponseCaching();
-builder.Services.AddWebSocketManager();
 builder.Services.AddSingleton<MongoDBHandler>(new MongoDBHandler());
 builder.Services.AddSingleton<RSIRoadmapScraper>(new RSIRoadmapScraper());
 builder.Services.Configure<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme, o => o.TokenValidationParameters.NameClaimType = "name");
@@ -74,7 +66,6 @@ app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
 app.UseHttpsRedirection();
 app.UseResponseCompression();
 app.UseWebSockets();
-app.MapWebSocketManager("/state", Services.Get<StateSocketHandler>());
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();

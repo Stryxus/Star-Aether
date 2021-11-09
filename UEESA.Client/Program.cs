@@ -1,20 +1,11 @@
-﻿using System;
-using System.Net.WebSockets;
-using System.Net.Http;
-
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
 
-using UEESA.Sockets;
 using UEESA.Client;
 using UEESA.Client.Data;
 using UEESA.Client.Data.States;
 using UEESA.Client.Data.Authentication;
-using UEESA.Client.Sockets;
-using UEESA.Client.Sockets.Handlers;
 
 using Serilog;
 
@@ -24,15 +15,10 @@ WebAssemblyHost Host;
 WebAssemblyHostBuilder HostBuilder = WebAssemblyHostBuilder.CreateDefault(args);
 Services.SetConfiguration(HostBuilder.Configuration);
 HostBuilder.RootComponents.Add<App>("#app");
-ConnectionManager<ClientWebSocket> socket;
-StateSocketHandler handler;
-HostBuilder.Services.AddSingleton<ConnectionManager<ClientWebSocket>>(socket = new ConnectionManager<ClientWebSocket>());
-HostBuilder.Services.AddSingleton<StateSocketHandler>(handler = new StateSocketHandler(socket));
 HostBuilder.Services.AddSingleton<ClientState>(new ClientState());
 HostBuilder.Services.AddSingleton<InitializationState>(new InitializationState());
 HostBuilder.Services.AddSingleton<ServerState>(new ServerState());
 HostBuilder.Services.AddSingleton<LocalStorageState>(new LocalStorageState());
-HostBuilder.Services.AddSingleton<WebSocketManagerMiddleware>(new WebSocketManagerMiddleware(handler));
 HostBuilder.Services.AddSingleton<UserState>(new UserState());
 HostBuilder.Services.AddSingleton<UIState>(new UIState());
 HostBuilder.Services.AddSingleton<UIState.PageState>(new UIState.PageState());
@@ -50,7 +36,7 @@ HostBuilder.Services.AddMsalAuthentication(options =>
     HostBuilder.Configuration.Bind("AZURE_AD_B2C", options.ProviderOptions.Authentication);
     options.ProviderOptions.DefaultAccessTokenScopes.Add("https://staraether.onmicrosoft.com/10bf1403-384e-47cd-80cc-f1caca6527b4/AAD.B2C.API.Access");
 });
-HostBuilder.Services.AddAuthorizationCore(o => 
+HostBuilder.Services.AddAuthorizationCore(o =>
 {
     o.AddPolicy("UserIsAdmin", policy => policy.Requirements.Add(new UserGroupsRequirement(new string[] { "Admins" })));
 });

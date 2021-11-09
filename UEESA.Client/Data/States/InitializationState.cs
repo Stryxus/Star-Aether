@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-using UEESA.Client.Data.Json;
-using UEESA.Client.Sockets;
+﻿using UEESA.Client.Data.Json;
 
 using Microsoft.JSInterop;
 
@@ -40,6 +36,8 @@ namespace UEESA.Client.Data.States
 
                 await Services.Get<LocalStorageState>().GetLocalData<GlobalSettings>();
 
+                /*
+                 * TODO
                 Services.Get<WebSocketManagerMiddleware>().OnServerConnected += async () =>
                 {
                     if (FirstDataLoadPass)
@@ -49,6 +47,7 @@ namespace UEESA.Client.Data.States
                     }
                 };
                 await Services.Get<WebSocketManagerMiddleware>().Connect();
+                */
 
                 Logger.LogInfo("Client State Initialized.");
             }

@@ -4,11 +4,12 @@
 	<TargetFramework>net6.0</TargetFramework>
 	<AssemblyName>UEESA.Client</AssemblyName>
 	<RunAOTCompilation>true</RunAOTCompilation>
-	<UserSecretsId>7583da45-3db4-40c1-9b1d-da7ad5213210</UserSecretsId>
 	<NoWin32Manifest>true</NoWin32Manifest>
   	<DebugType>embedded</DebugType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>annotations</Nullable>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <UserSecretsId>f7770fa8-4e11-4d8e-8662-53fde795030a</UserSecretsId>
   </PropertyGroup>
 	
   <ItemGroup>
@@ -31,15 +32,15 @@
 	<ItemGroup>
 		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
 	</ItemGroup>
-  
-  <ItemGroup>
-	<ProjectReference Include="..\Common\JSON\UEESA.Json\UEESA.Json.csproj" />
-	<ProjectReference Include="..\Common\UEESA.Common\UEESA.Common.csproj" />
-  </ItemGroup>
 
 	<ItemGroup>
       <SupportedPlatform Include="browser" />
       <SupportedPlatform Include="browser-wasm" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Common\JSON\UEESA.Json\UEESA.Json.csproj" />
+	  <ProjectReference Include="..\Common\UEESA.Common\UEESA.Common.csproj" />
 	</ItemGroup>
 
 </Project>

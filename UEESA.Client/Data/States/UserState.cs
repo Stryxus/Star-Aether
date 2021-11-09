@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace UEESA.Client.Data.States;
+﻿namespace UEESA.Client.Data.States;
 
 public class UserState
 {
@@ -19,7 +17,7 @@ public class UserState
         }
     }
 
-    public UserState() 
+    public UserState()
     {
 
     }

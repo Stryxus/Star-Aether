@@ -1,6 +1,4 @@
-﻿using System;
-
-using UEESA.Client.Data.Json;
+﻿using UEESA.Client.Data.Json;
 using UEESA.Json.External.RSI.Roadmap;
 
 namespace UEESA.Client.Data.States

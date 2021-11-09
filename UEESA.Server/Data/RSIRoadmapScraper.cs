@@ -1,11 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Net.Http;
-
-using UEESA.Server.Data.Json.RSI;
-using UEESA.Server.Sockets.Handlers;
-using UEESA.Json.Client;
+﻿using UEESA.Server.Data.Json.RSI;
 using UEESA.Json.External.RSI.Roadmap;
 
 using Newtonsoft.Json;
@@ -23,11 +16,14 @@ namespace UEESA.Server.Data
             set
             {
                 roadmap_Data = value;
+                /*
+                 * TODO
                 Task.Run(() => Services.Get<StateSocketHandler>().SendMessageToAllAsync(new JClient_SocketDataCapsule<JRSI_Roadmap>
                 {
                     Attributes = new List<string>() { JClient_SocketDataCapsuleAttributes.GetRoadmapData.ToString() },
                     Data = value
                 }));
+                */
             }
         }
 
