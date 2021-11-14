@@ -6,6 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{61E03DBB-6DDD-4027-A6FE-D3BCC26C4ADF}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		bundle_debug.cmd = bundle_debug.cmd
+		bundle_release.cmd = bundle_release.cmd
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
@@ -23,8 +25,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{4210ADEF-0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Node", "Node", "{A4D98FF0-B988-4582-BBD1-526A118545F1}"
 	ProjectSection(SolutionItems) = preProject
-		bundle_debug.cmd = bundle_debug.cmd
-		bundle_release.cmd = bundle_release.cmd
 		bundler.js = bundler.js
 		package.json = package.json
 		ueesa-cache.json = ueesa-cache.json
