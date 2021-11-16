@@ -1,64 +1,67 @@
 ﻿@page "/debug/ctp"
 @layout BlankLayout
 
-<div id="ctp-page" class="row justify-content-center">
-    <div class="col-auto padded-scroll">
-        <div class="row">
-            <div class="col-4">
-                <UButton></UButton>
+<div id="ctp-page" class="row">
+    <div class="col">
+        @for (int i = 0; i < 2; i++)
+        {
+            <div class="row @(i == 0 ? "black" : "white")">
+                <div class="col-4">
+                    <UButton>Click Me</UButton>
+                </div>
+                <div class="col-4">
+                    <UDropdown></UDropdown>
+                </div>
+                <div class="col-4">
+                    <UInput></UInput>
+                </div>
+                <div class="col-4">
+                    <ULabel></ULabel>
+                </div>
             </div>
-            <div class="col-4">
-                <UDropdown></UDropdown>
+            <div class="row @(i == 0 ? "black" : "white")">
+                <div class="col-4">
+                    <UOrderedList></UOrderedList>
+                </div>
+                <div class="col-4">
+                    <UPanel></UPanel>
+                </div>
+                <div class="col-4">
+                    <UUnorderedList></UUnorderedList>
+                </div>
+                <div class="col-4">
+                    <UIcon></UIcon>
+                </div>
             </div>
-            <div class="col-4">
-                <UInput></UInput>
+            <div class="row @(i == 0 ? "black" : "white")">
+                <div class="col-4">
+                    <ULine></ULine>
+                </div>
+                <div class="col-4">
+                    <UMedia></UMedia>
+                </div>
+                <div class="col-4">
+                    <UProgressBar></UProgressBar>
+                </div>
+                <div class="col-4">
+                    <UField></UField>
+                </div>
             </div>
-            <div class="col-4">
-                <ULabel></ULabel>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <UOrderedList></UOrderedList>
-            </div>
-            <div class="col-4">
-                <UPanel></UPanel>
-            </div>
-            <div class="col-4">
-                <UUnorderedList></UUnorderedList>
-            </div>
-            <div class="col-4">
-                <UIcon></UIcon>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <ULine></ULine>
-            </div>
-            <div class="col-4">
-                <UMedia></UMedia>
-            </div>
-            <div class="col-4">
-                <UProgressBar></UProgressBar>
-            </div>
-            <div class="col-4">
-                <UField></UField>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-4">
-                <UHeader>Testing123!?~#</UHeader>
-            </div>
-            <div class="col-4">
-                <UTitle>Testing123!?~#</UTitle>
-            </div>
-            <div class="col-4">
+            <div class="row @(i == 0 ? "black" : "white")">
+                <div class="col-4">
+                    <UHeader>Testing123!?~#</UHeader>
+                </div>
+                <div class="col-4">
+                    <UTitle>Testing123!?~#</UTitle>
+                </div>
+                <div class="col-4">
 
-            </div>
-            <div class="col-4">
+                </div>
+                <div class="col-4">
 
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>
 
