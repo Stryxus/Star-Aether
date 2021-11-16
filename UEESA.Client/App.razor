@@ -101,18 +101,33 @@
                 IsHidden = false
             },
 
+            // Admin
             new PageContext
             {
                 FormalPageName = "",
                 InformalPageName = "admin",
                 PageBackgroundFileName = "home.webm",
                 IsHidden = true
+            },
+
+            // Debug
+            new PageContext
+            {
+                FormalPageName = "",
+                InformalPageName = "debug/ctp",
+                PageBackgroundFileName = null,
+                IsHidden = true
             }
         };
         try
         {
-            if (NavigationManager.Uri == NavigationManager.BaseUri || !PageState.PageContexts.Any(o => o.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1))) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());
-            else PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1));
+            Uri url = new Uri(NavigationManager.Uri);
+            if (NavigationManager.Uri == NavigationManager.BaseUri || !PageState.PageContexts.Any(o => o.InformalPageName == url.AbsolutePath[1..])) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());
+            else
+            {
+                PageContext newConext = PageState.PageContexts.First(x => x.InformalPageName == url.AbsolutePath[1..]);
+                if (!PageState.IsPageTransitioning && !PageState.CurrentPageContext.Equals(newConext)) PageState.CurrentPageContext = newConext;
+            }
         }
         catch { NavigationManager.NavigateTo(string.Empty); }
         await InitializationState.Init(JSRuntime);
