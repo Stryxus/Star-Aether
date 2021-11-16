@@ -17,7 +17,7 @@
                     </AuthorizeRouteView>
                 </Found>
                 <NotFound>
-                    <LayoutView Layout="@typeof(MainLayout)">
+                    <LayoutView Layout="@typeof(BlankLayout)">
                         <h4 id="page-load-error">Uh oh! There seems to be an error loading this page!</h4>
                     </LayoutView>
                 </NotFound>
@@ -112,7 +112,7 @@
             {
                 FormalPageName = string.Empty,
                 InformalPageName = "debug/ctp",
-                PageBackgroundFileName = null,
+                PageBackgroundFileName = string.Empty,
                 IsHidden = true,
                 ShowControlpanel = false
             }

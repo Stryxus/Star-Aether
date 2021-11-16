@@ -41,6 +41,10 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Common\JSON\UEESA.Json\UEESA.Json.csproj" />
 	  <ProjectReference Include="..\Common\UEESA.Common\UEESA.Common.csproj" />
+	  <ProjectReference Include="..\UEESA.UI.Common\UEESA.UI.Common.csproj" />
+	  <ProjectReference Include="..\UEESA.UI.ControlPanel\UEESA.UI.ControlPanel.csproj" />
+	  <ProjectReference Include="..\UEESA.UI.Router\UEESA.UI.Router.csproj" />
+	  <ProjectReference Include="..\UEESA.UI.Startup\UEESA.UI.Startup.csproj" />
 	</ItemGroup>
 
 </Project>
