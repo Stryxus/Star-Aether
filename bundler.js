@@ -158,7 +158,7 @@ async function processJS(jsFiles)
     }
 }
 
-function processSASS(scssFile)
+function processSASS(sassFile)
 {
     try
     {
@@ -166,7 +166,7 @@ function processSASS(scssFile)
         const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.css.map'
         console.log('  | Minifying SASS: ' + minCSSFilePath.replace(__client_wwwroot_dirname, ''))
         const result = sass.renderSync({
-            file: scssFile, sourceMap: true, outFile: 'bundle.css', outputStyle: isDebug ? 'expanded' : 'compressed', indentType: 'tab', indentWidth: 1, quietDeps: true, includePaths: [__client_wwwrootdev_dirname + sep + 'css' + sep + 'thirdparty']
+            file: sassFile, sourceMap: true, outFile: 'bundle.css', outputStyle: isDebug ? 'expanded' : 'compressed', indentType: 'tab', indentWidth: 1, quietDeps: true, includePaths: [__client_wwwrootdev_dirname + sep + 'css' + sep + 'thirdparty']
         })
         if (fileExists(minCSSFilePath)) {
             truncateSync(minCSSFilePath, 0)
@@ -193,7 +193,7 @@ async function processing()
     const files = findFiles(__client_wwwrootdev_dirname)
     const jsFiles = filterFiles(files, 'js').filter(file => String(file.name) != 'service-worker.js' && String(file.name) != 'service-worker.published.js')
     const svjsFiles = filterFiles(files, 'js').filter(file => String(file.name) == 'service-worker.js' || String(file.name) == 'service-worker.published.js')
-    const scssFile = __client_wwwrootdev_dirname + sep + 'css' + sep + 'bundle.scss'
+    const sassFile = __client_wwwrootdev_dirname + sep + 'bundle.sass'
     const htmlFiles = filterFiles(files, 'html')
     const svgFiles = filterFiles(files, 'svg')
     const jsonFiles = filterFiles(files, 'json')
@@ -203,7 +203,7 @@ async function processing()
     const mp4Files = filterFiles(files, 'mp4')
 
     await processJS(jsFiles)
-    processSASS(scssFile)
+    processSASS(sassFile)
 
     svjsFiles.forEach(async item =>
     {
