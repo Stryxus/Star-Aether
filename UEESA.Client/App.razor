@@ -23,18 +23,7 @@
                 </NotFound>
             </Router>
         </div>
-        <div id="sidebar-bordered-lines">
-            <div id="sidebar-left-near"></div>
-            <div id="sidebar-left-far"></div>
-            <div id="sidebar-right-near"></div>
-            <div id="sidebar-right-far"></div>
-	    </div>
-        <HeadlinesTicker />
-        <EconomeTicker />
-        <ProfilePanel />
-        <SidebarLeftSide />
-        <SidebarRightSide />
-        <MainNavigationBar />
+        <ControlPanel/>
     </div>
 </CascadingAuthenticationState>
 
@@ -54,69 +43,78 @@
             new PageContext
             {
                 FormalPageName = "Home",
-                InformalPageName = "",
+                InformalPageName = string.Empty,
                 PageBackgroundFileName = "home.webm",
-                IsHidden = false
+                IsHidden = false,
+                ShowControlpanel = true
             },
             new PageContext
             {
                 FormalPageName = "Blog",
                 InformalPageName = "blog",
                 PageBackgroundFileName = "blog.webm",
-                IsHidden = false
+                IsHidden = false,
+                ShowControlpanel = true
             },
             new PageContext
             {
                 FormalPageName = "Changelog",
                 InformalPageName = "changelog",
                 PageBackgroundFileName = "changelog.webm",
-                IsHidden = false
+                IsHidden = false,
+                ShowControlpanel = true
             },
             new PageContext
             {
                 FormalPageName = "Roadmap",
                 InformalPageName = "roadmap",
                 PageBackgroundFileName = "roadmap.webm",
-                IsHidden = false
+                IsHidden = false,
+                ShowControlpanel = true
             },
             new PageContext
             {
                 FormalPageName = "Load Out",
                 InformalPageName = "loadout",
                 PageBackgroundFileName = "loadout.webm",
-                IsHidden = false
+                IsHidden = false,
+                ShowControlpanel = true
             },
             new PageContext
             {
                 FormalPageName = "Fleeter",
                 InformalPageName = "fleeter",
                 PageBackgroundFileName = "fleeter.webm",
-                IsHidden = false
+                IsHidden = false,
+                ShowControlpanel = true
             },
             new PageContext
             {
                 FormalPageName = "Econome",
                 InformalPageName = "econome",
                 PageBackgroundFileName = "econome.webm",
-                IsHidden = false
+                IsHidden = false,
+                ShowControlpanel = true
             },
 
             // Admin
             new PageContext
             {
-                FormalPageName = "",
+                FormalPageName = string.Empty,
                 InformalPageName = "admin",
                 PageBackgroundFileName = "home.webm",
-                IsHidden = true
+                IsHidden = true,
+                ShowControlpanel = true
             },
 
             // Debug
             new PageContext
             {
-                FormalPageName = "",
+                FormalPageName = string.Empty,
                 InformalPageName = "debug/ctp",
                 PageBackgroundFileName = null,
-                IsHidden = true
+                IsHidden = true,
+                ShowControlpanel = false
             }
         };
         try

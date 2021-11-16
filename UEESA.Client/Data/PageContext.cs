@@ -6,5 +6,6 @@
         public string InformalPageName { get; set; }
         public string PageBackgroundFileName { get; set; }
         public bool IsHidden { get; set; }
+        public bool ShowControlpanel { get; set; }
     }
 }
