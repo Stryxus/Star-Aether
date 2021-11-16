@@ -50,7 +50,7 @@ namespace UEESA.Client.Data.States
                         startStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutBackground(false));
                         startStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutPage(false));
                         await Task.WhenAll(startStageTasks);
-                        Services.Get<NavigationManager>().NavigateTo(value.InformalPageName);
+                        Services.Get<NavigationManager>().NavigateTo('/' + value.InformalPageName);
                         OnPageTransitionBackgroundStage?.Invoke();
                         List<Task> pageComponents = new();
                         OnPageTransitionEnd?.Invoke();

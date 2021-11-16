@@ -119,7 +119,8 @@
         };
         try
         {
-            Uri url = new Uri(NavigationManager.Uri);
+            Uri url = new(NavigationManager.Uri);
+            Console.Write(url.AbsolutePath[1..]);
             if (NavigationManager.Uri == NavigationManager.BaseUri || !PageState.PageContexts.Any(o => o.InformalPageName == url.AbsolutePath[1..])) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());
             else
             {
