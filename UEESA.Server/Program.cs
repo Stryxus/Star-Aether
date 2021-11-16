@@ -37,8 +37,8 @@ builder.Services.AddResponseCompression(o =>
     o.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
 });
 builder.Services.AddResponseCaching();
-builder.Services.AddSingleton<MongoDBHandler>(new MongoDBHandler());
-builder.Services.AddSingleton<RSIRoadmapScraper>(new RSIRoadmapScraper());
+//builder.Services.AddSingleton<MongoDBHandler>(new MongoDBHandler());
+//builder.Services.AddSingleton<RSIRoadmapScraper>(new RSIRoadmapScraper());
 builder.Services.Configure<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme, o => o.TokenValidationParameters.NameClaimType = "name");
 builder.Services.Configure<ForwardedHeadersOptions>(o => o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto);
 builder.Services.Configure<BrotliCompressionProviderOptions>(o => o.Level = CompressionLevel.SmallestSize);
