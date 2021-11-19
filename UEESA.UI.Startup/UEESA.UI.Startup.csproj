@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UEESA.UI.Common\UEESA.UI.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <SupportedPlatform Include="browser" />
     <SupportedPlatform Include="browser-wasm" />
   </ItemGroup>
