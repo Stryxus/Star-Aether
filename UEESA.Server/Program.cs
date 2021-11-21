@@ -74,7 +74,4 @@ app.UseCors(CORSAuthorityName);
 app.UseResponseCaching();
 app.MapFallbackToFile("index.html");
 
-Services.Get<MongoDBHandler>();
-Services.Get<RSIRoadmapScraper>();
-
 await app.RunAsync();
