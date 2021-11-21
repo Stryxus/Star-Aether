@@ -2,55 +2,53 @@
 
 using Microsoft.JSInterop;
 
-namespace UEESA.Client.Data.States
+namespace UEESA.Client.Data.States;
+internal class InitializationState
 {
-    internal class InitializationState
+    internal event Action OnAppLoaded;
+    private bool SingleAppLoadedLock;
+    internal void CheckAppLoaded()
     {
-        internal event Action OnAppLoaded;
-        private bool SingleAppLoadedLock;
-        internal void CheckAppLoaded()
+        if (Services.Get<ClientState>().Settings != null && !SingleAppLoadedLock)
         {
-            if (Services.Get<ClientState>().Settings != null && !SingleAppLoadedLock)
-            {
-                SingleAppLoadedLock = true;
-                OnAppLoaded?.Invoke();
-            }
+            SingleAppLoadedLock = true;
+            OnAppLoaded?.Invoke();
         }
+    }
 
-        private bool FirstRegisterPass { get; set; } = true;
-        private bool FirstDataLoadPass { get; set; } = true;
+    private bool FirstRegisterPass { get; set; } = true;
+    private bool FirstDataLoadPass { get; set; } = true;
 
-        internal async Task Init(IJSRuntime runtime)
+    internal async Task Init(IJSRuntime runtime)
+    {
+        if (FirstRegisterPass)
         {
-            if (FirstRegisterPass)
+            FirstRegisterPass = false;
+
+            Logger.LogInfo("Initializing Client State...");
+
+            Services.Get<JSInterface>().SetJSRuntime(runtime);
+            await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.Runtime>(), "runtime");
+            await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.Cache>(), "cacheStorageInterface");
+            await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.LocalData>(), "localStorageInterface");
+            await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.AnimationManager>(), "animationInterface");
+
+            await Services.Get<LocalStorageState>().GetLocalData<GlobalSettings>();
+
+            /*
+                * TODO
+            Services.Get<WebSocketManagerMiddleware>().OnServerConnected += async () =>
             {
-                FirstRegisterPass = false;
-
-                Logger.LogInfo("Initializing Client State...");
-
-                Services.Get<JSInterface>().SetJSRuntime(runtime);
-                await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.Runtime>(), "runtime");
-                await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.Cache>(), "cacheStorageInterface");
-                await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.LocalData>(), "localStorageInterface");
-                await Services.Get<JSInterface>().InitializeInterface(Services.Get<JSInterface.AnimationManager>(), "animationInterface");
-
-                await Services.Get<LocalStorageState>().GetLocalData<GlobalSettings>();
-
-                /*
-                 * TODO
-                Services.Get<WebSocketManagerMiddleware>().OnServerConnected += async () =>
+                if (FirstDataLoadPass)
                 {
-                    if (FirstDataLoadPass)
-                    {
-                        FirstDataLoadPass = false;
-                        await Services.Get<ServerState>().RequestRoadmapData(true);
-                    }
-                };
-                await Services.Get<WebSocketManagerMiddleware>().Connect();
-                */
+                    FirstDataLoadPass = false;
+                    await Services.Get<ServerState>().RequestRoadmapData(true);
+                }
+            };
+            await Services.Get<WebSocketManagerMiddleware>().Connect();
+            */
 
-                Logger.LogInfo("Client State Initialized.");
-            }
+            Logger.LogInfo("Client State Initialized.");
         }
     }
 }
