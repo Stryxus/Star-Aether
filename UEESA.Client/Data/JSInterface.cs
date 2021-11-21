@@ -1,6 +1,6 @@
 ﻿using Microsoft.JSInterop;
 
-namespace UEESA.Client.Data
+namespace UEESA.Client.Data;
 public class JSInterface
 {
     public static IJSRuntime JSR { get; private set; }
