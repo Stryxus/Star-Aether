@@ -1,4 +1,49 @@
-
+.ubutton, .udropdown, .uinput, .upanel, .uline, .uprogressbar, .ufield
+    border-color: rgba(255, 255, 255, 0.25)
+.ubutton, .udropdown, .uinput, .ulabel, .ufield, .uheader, .utitle
+    color: white
+.ubutton, .udropdown, .uinput, .upanel, .uprogressbar, .ufield
+    backdrop-filter: blur(24px)
+.ubutton, .udropdown, .upanel, .ufield
+    background-color: rgba(0, 0, 0, 0.75)
+.ubutton, .udropdown, .ufield
+    padding: 8px
+.ubutton
+    border: $borderStyle
+    cursor: pointer
+    text-align: center
+.udropdown
+    border: $borderStyle
+    cursor: pointer
+.uinput
+    cursor: pointer
+.ulabel
+    cursor: pointer
+.uorderedlist
+    cursor: pointer
+.upanel
+    cursor: pointer
+.uunorderedlist
+    cursor: pointer
+.uicon
+    cursor: pointer
+.uline
+    border-style: solid
+    border-top-width: 1px
+    border-bottom-width: 0px
+    border-left-width: 0px
+    border-right-width: 0px
+    height: 0px
+.umedia
+    cursor: pointer
+.uprogressbar
+    cursor: pointer
+.ufield
+    outline: none
+.uheader
+    cursor: pointer
+.utitle
+    cursor: pointer
 
 @include media-breakpoint-up(xs)
 
@@ -19,38 +64,6 @@
 
 // Phone & Down
 @include media-breakpoint-down(xl)
-    .ubutton, .udropdown, .uinput, .upanel, .uprogressbar, .ufield
-        backdrop-filter: blur(24px)
-    .ubutton, .udropdown, .ufield
-        clip-path: polygon(0% 0%, calc(100% - 24px) 0%, 100% 100%, 24px 100%)
-    .ubutton
-        
-    .udropdown
-
-    .uinput
-
-    .ulabel
-
-    .uorderedlist
-
-    .upanel
-
-    .uunorderedlist
-
-    .uicon
-
-    .uline
-
-    .umedia
-
-    .uprogressbar
-
-    .ufield
-
-    .uheader
-
-    .utitle
-
 
 @include media-breakpoint-only(xs)
 

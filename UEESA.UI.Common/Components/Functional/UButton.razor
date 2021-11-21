@@ -1,8 +1,10 @@
-﻿<button class="ubutton">@ChildContent</button>
+﻿<div class="ubutton" @onmouseup="OnClick">@ChildContent</div>
 
 @code {
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
 }

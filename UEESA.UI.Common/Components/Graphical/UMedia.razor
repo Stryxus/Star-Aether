@@ -1,8 +1,20 @@
-﻿<h3>UMedia</h3>
+﻿@if (MediaSource is not null) 
+{
+    @if (MediaSource.EndsWith(".mp4"))
+    {
+        <video src="@MediaSource" />
+    }
+    else if (MediaSource.EndsWith(".avif"))
+    {
+        <img src="@MediaSource" />
+    }
+}
 
 @code {
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
+    [Parameter]
+    public string? MediaSource { get; set; }
 }

@@ -1,4 +1,56 @@
+// Z-Index
+$zindex-background-container: 0
+$zindex-main: 1
+$zindex-profile-panel: 2
+$zindex-navigation-bar: 3
+$zindex-tickers: 4
+$zindex-navigation-bar-borders: 5
 
+// Elements
+$controlPanelNav-height: 100
+$controlPanelMobileNav-height: 56
+$duo-line-seperator-size: 6
+$navbar-top-padding: 8
+
+$navbarCornerContainerWidth: 200
+$navbarCornerContainerHeight: 200
+$navbarCornerContainterTopWidth: 100
+
+// Styles
+$borderStyle: solid 1px rgba(255, 255, 255, 0.25)
+
+// Global Classes
+.bordered-line-top 
+    border-top-width: 1px !important
+.bordered-line-bottom 
+    border-bottom-width: 1px !important
+.bordered-line-left 
+    border-left-width: 1px !important
+.bordered-line-right 
+    border-right-width: 1px !important
+.bordered-line-all 
+    border-top-width: 1px !important
+    border-bottom-width: 1px !important
+    border-left-width: 1px !important
+    border-right-width: 1px !important
+.bordered-line-h-alt 
+    border-top-width: 1px
+    border-bottom-width: 1px
+    border-left-width: 0px
+    border-right-width: 0px
+.bordered-line-v-alt 
+    border-top-width: 0px
+    border-bottom-width: 0px
+    border-left-width: 1px
+    border-right-width: 1px
+.bordered 
+    border: solid 0pxrgba(255, 255, 255, 0.25)
+.bordered-line-h, .bordered-line-v, .bordered-line-h-alt, .bordered-line-v-alt 
+    border-color: rgba(255, 255, 255, 0.25)
+    border-style: solid
+.vr 
+    width: 0px
+    border-left: $borderStyle
 
 @include media-breakpoint-up(xs)
 
