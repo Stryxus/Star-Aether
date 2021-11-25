@@ -246,17 +246,6 @@ async function processing()
         }
     })
 
-    jsonFiles.forEach(item =>
-    {
-        if (needsCaching(item.path, 'json') || needsProcessing(item.path))
-        {
-            const output = item.path.replace('wwwroot-dev', 'wwwroot')
-            console.log('  | Copying JSON: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
-            mkdirSync(dirname(output), { recursive: true })
-            copyFileSync(item.path, output)
-        }
-    })
-
     woff2Files.forEach(item =>
     {
         if (needsCaching(item.path, 'woff2') || needsProcessing(item.path))
@@ -402,9 +391,12 @@ async function processing()
     await processing()
     chokidar.watch(__dirname, { ignored: __dirname + sep + 'UEESA.Client' + sep + 'wwwroot', awaitWriteFinish: true }).on('change', async (path) =>
     {
-        if (path.endsWith('.html') || path.endsWith('.sass') || path.endsWith('.js') || path.endsWith('.mp4') || path.endsWith('.svg') || path.endsWith('.json') || path.endsWith('.woff2') || path.endsWith('.ttf'))
+        if (path.endsWith('.html') || path.endsWith('.sass') || path.endsWith('.js') || path.endsWith('.mp4') || path.endsWith('.svg') || path.endsWith('.woff2') || path.endsWith('.ttf'))
         {
-            await processing()
+            if (!path.endsWith('bundler.js'))
+            {
+                await processing()
+            }
         }
     });
 })()
