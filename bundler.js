@@ -23,6 +23,13 @@ const __cache_filename = __dirname + sep + 'ueesa-cache.json'
 
 var isDebug
 
+/*
+ * TODO:
+ * - Add in json minification support back
+ * - Convert javascript to typescript
+ * - Bring back squoosh
+ */
+
 //const imagePool = new ImagePool()
 
 // Global Variables //
