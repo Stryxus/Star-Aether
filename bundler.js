@@ -400,7 +400,7 @@ async function processing()
 
     loadConfig()
     await processing()
-    chokidar.watch(__dirname, { awaitWriteFinish: true }).on('change', async () =>
+    chokidar.watch(__dirname, { ignored: __dirname + sep + 'UEESA.Client' + sep + 'wwwroot', awaitWriteFinish: true }).on('change', async () =>
     {
         await processing()
     });
