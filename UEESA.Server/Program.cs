@@ -36,6 +36,9 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddResponseCompression(o =>
 {
     o.Providers.Add<BrotliCompressionProvider>();
+#if DEBUG
+    o.Providers.Add<GzipCompressionProvider>();
+#endif
     o.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
 });
 builder.Services.AddResponseCaching();
