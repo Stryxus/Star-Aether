@@ -89,7 +89,6 @@ FileExtensionContentTypeProvider provider = new(new Dictionary<string, string>()
     { ".atom", "application/atom+xml" },
     { ".au", "audio/basic" },
     { ".avi", "video/x-msvideo" },
-    { ".avif", "image/avif" },
     { ".axs", "application/olescript" },
     { ".bas", "text/plain" },
     { ".bcpio", "application/x-bcpio" },
@@ -184,7 +183,7 @@ FileExtensionContentTypeProvider provider = new(new Dictionary<string, string>()
     { ".jpe", "image/jpeg" },
     { ".jpeg", "image/jpeg" },
     { ".jpg", "image/jpeg" },
-    { ".js", "application/javascript" },
+  //{ ".js", "application/javascript" },
     { ".json", "application/json" },
     { ".jsx", "text/jscript" },
     { ".latex", "application/x-latex" },
@@ -440,6 +439,10 @@ FileExtensionContentTypeProvider provider = new(new Dictionary<string, string>()
     { ".xwd", "image/x-xwindowdump" },
     { ".z", "application/x-compress" },
     { ".zip", "application/x-zip-compressed" },
+
+    // Modified
+    { ".avif", "image/avif" },
+    { ".js", "text/js" },
 });
 
 app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
