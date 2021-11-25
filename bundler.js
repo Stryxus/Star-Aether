@@ -400,8 +400,11 @@ async function processing()
 
     loadConfig()
     await processing()
-    chokidar.watch(__dirname, { ignored: __dirname + sep + 'UEESA.Client' + sep + 'wwwroot', awaitWriteFinish: true }).on('change', async () =>
+    chokidar.watch(__dirname, { ignored: __dirname + sep + 'UEESA.Client' + sep + 'wwwroot', awaitWriteFinish: true }).on('change', async (path) =>
     {
-        await processing()
+        if (path.endsWith('.html') || path.endsWith('.sass') || path.endsWith('.js') || path.endsWith('.mp4') || path.endsWith('.svg') || path.endsWith('.json') || path.endsWith('.woff2') || path.endsWith('.ttf'))
+        {
+            await processing()
+        }
     });
 })()
