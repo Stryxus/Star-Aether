@@ -1,29 +1,142 @@
-﻿<input type="checkbox" />
-<input type="color" />
-<input type="date" />
-<input type="datetime" />
-<input type="datetime-local" />
-<input type="email" />
-<input type="file" />
-<input type="hidden" />
-<input type="image" />
-<input type="month" />
-<input type="number" />
-<input type="password" />
-<input type="radio" />
-<input type="range" />
-<input type="reset" />
-<input type="search" />
-<input type="submit" />
-<input type="tel" />
-<input type="text" />
-<input type="time" />
-<input type="url" />
-<input type="week" />
+﻿@if (Type == "checkbox")
+{
+    <ULabel class="switch">
+        @if (Value)
+        {
+            <input class="uinput" name="ID" type="checkbox" checked @onclick="Toggle">
+        }
+        else
+        {
+            <input class="uinput" name="ID" type="checkbox" @onclick="Toggle">
+        }
+        <span class="slider"></span>
+    </ULabel>
+    <ULabel for="ID">@ChildContent</ULabel>
+}
+else if (Type == "color")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="color" />
+}
+else if (Type == "date")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="date" />
+}
+else if (Type == "datetime")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="datetime" />
+}
+else if (Type == "datetime-local")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="datetime-local" />
+}
+else if (Type == "email")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="email" />
+}
+else if (Type == "file")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="file" />
+}
+else if (Type == "hidden")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="hidden" />
+}
+else if (Type == "image")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="image" />
+}
+else if (Type == "month")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="month" />
+}
+else if (Type == "number")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="number" />
+}
+else if (Type == "password")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="password" />
+}
+else if (Type == "radio")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="radio" />
+}
+else if (Type == "range")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="range" />
+}
+else if (Type == "reset")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="reset" />
+}
+else if (Type == "search")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="search" />
+}
+else if (Type == "submit")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="submit" />
+}
+else if (Type == "tel")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="tel" />
+}
+else if (Type == "text")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="text" />
+}
+else if (Type == "time")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="time" />
+}
+else if (Type == "url")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="url" />
+}
+else if (Type == "week")
+{
+    <ULabel for="ID">@ChildContent</ULabel>
+    <input class="uinput" name="ID" type="week" />
+}
 
 @code {
 
+    private Guid ID = Guid.NewGuid();
+    private bool Value { get; set; }
+
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string Type { get; set; } = "checkbox";
+
+    [Parameter]
+    public EventCallback<bool> ToggleValue { get; set; }
+
+    private async Task Toggle()
+    {
+        await ToggleValue.InvokeAsync(Value = !Value);
+        StateHasChanged();
+    }
 
 }

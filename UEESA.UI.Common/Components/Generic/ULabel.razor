@@ -1,8 +1,10 @@
-﻿<label></label>
+﻿<label @attributes="InputAttributes">@ChildContent</label>
 
 @code {
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? InputAttributes { get; set; }
 }
