@@ -40,23 +40,7 @@ builder.Services.AddResponseCaching();
 builder.Services.Configure<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme, o => o.TokenValidationParameters.NameClaimType = "name");
 builder.Services.Configure<ForwardedHeadersOptions>(o => o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto);
 builder.Services.Configure<BrotliCompressionProviderOptions>(o => o.Level = CompressionLevel.SmallestSize);
-
-WebApplication app = builder.Build();
-Services.SetServiceProvider(app.Services.CreateScope().ServiceProvider);
-References.IsDevelopmentMode = app.Environment.IsDevelopment();
-
-if (References.IsDevelopmentMode)
-{
-    app.UseDeveloperExceptionPage();
-    app.UseWebAssemblyDebugging();
-}
-else
-{
-    app.UseExceptionHandler("/error");
-    app.UseHsts();
-}
-
-FileExtensionContentTypeProvider provider = new(new Dictionary<string, string>() 
+builder.Services.Configure<StaticFileOptions>(o => o.ContentTypeProvider = new FileExtensionContentTypeProvider(new Dictionary<string, string>()
 {
     { ".323", "text/h323" },
     { ".3g2", "video/3gpp2" },
@@ -443,9 +427,24 @@ FileExtensionContentTypeProvider provider = new(new Dictionary<string, string>()
     // Modified
     { ".avif", "image/avif" },
     { ".js", "text/javascript" },
-});
+}));
 
-app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
+WebApplication app = builder.Build();
+Services.SetServiceProvider(app.Services.CreateScope().ServiceProvider);
+References.IsDevelopmentMode = app.Environment.IsDevelopment();
+
+if (References.IsDevelopmentMode)
+{
+    app.UseDeveloperExceptionPage();
+    app.UseWebAssemblyDebugging();
+}
+else
+{
+    app.UseExceptionHandler("/error");
+    app.UseHsts();
+}
+
+app.UseStaticFiles();
 app.UseBlazorFrameworkFiles();
 app.UseResponseCompression();
 app.UseWebSockets();
