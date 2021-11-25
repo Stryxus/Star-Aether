@@ -442,7 +442,7 @@ FileExtensionContentTypeProvider provider = new(new Dictionary<string, string>()
 
     // Modified
     { ".avif", "image/avif" },
-    { ".js", "text/js" },
+    { ".js", "text/javascript" },
 });
 
 app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
