@@ -2,15 +2,18 @@
 {
     @if (MediaSource.EndsWith(".mp4"))
     {
-        <video src="@MediaSource" />
+        <video @attributes="InputAttributes" src="@MediaSource" />
     }
     else if (MediaSource.EndsWith(".avif"))
     {
-        <img src="@MediaSource" />
+        <img @attributes="InputAttributes" src="@MediaSource" />
     }
 }
 
 @code {
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? InputAttributes { get; set; }
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
