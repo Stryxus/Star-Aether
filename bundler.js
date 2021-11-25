@@ -129,22 +129,27 @@ async function processJS(jsFiles)
         const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.js.map'
         console.log('  | Minifying JS: ' + minJSFilePath.replace(__client_wwwroot_dirname, ''))
         var orderedJS = 'var GLOBAL = {};' // Define this to silence errors made from Blazor's GLOBAL variable
-        config.jsDependencies.forEach(async item => {
+        config.jsDependencies.forEach(async item =>
+        {
             const fullPath = __dirname + sep + item
-            if (item.substring(item.lastIndexOf('.')) == '.js' && fileExists(fullPath)) {
+            if (item.substring(item.lastIndexOf('.')) == '.js' && fileExists(fullPath))
+            {
                 console.log('  | - Including Dependency: ' + item)
                 orderedJS += readFileSync(item, 'utf8') + '\n'
             }
-            else {
+            else
+            {
                 console.error('  | - Dependency "' + item + '" does not exist or is not a .js file - skipping...')
             }
         })
         jsFiles.forEach(async item => orderedJS += readFileSync(item.path, 'utf8') + '\n')
         const result = await minify(orderedJS, { sourceMap: true, module: false, mangle: false, ecma: 2021, compress: !isDebug })
-        if (fileExists(minJSFilePath)) {
+        if (fileExists(minJSFilePath))
+        {
             truncateSync(minJSFilePath, 0)
         }
-        if (fileExists(minMapFilePath)) {
+        if (fileExists(minMapFilePath))
+        {
             truncateSync(minMapFilePath, 0)
         }
         writeFileSync(minJSFilePath, result.code, 'utf8')
@@ -165,13 +170,16 @@ function processSASS(sassFile)
         const minCSSFilePath = __client_wwwroot_dirname + sep + 'bundle.min.css'
         const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.css.map'
         console.log('  | Minifying SASS: ' + minCSSFilePath.replace(__client_wwwroot_dirname, ''))
-        const result = sass.renderSync({
+        const result = sass.renderSync(
+        {
             file: sassFile, sourceMap: true, outFile: 'bundle.css', outputStyle: isDebug ? 'expanded' : 'compressed', indentType: 'tab', indentWidth: 1, quietDeps: true, includePaths: [__client_wwwrootdev_dirname + sep + 'css' + sep + 'thirdparty']
         })
-        if (fileExists(minCSSFilePath)) {
+        if (fileExists(minCSSFilePath))
+        {
             truncateSync(minCSSFilePath, 0)
         }
-        if (fileExists(minMapFilePath)) {
+        if (fileExists(minMapFilePath))
+        {
             truncateSync(minMapFilePath, 0)
         }
         writeFileSync(minCSSFilePath, result.css.toString(), 'utf8')
@@ -180,7 +188,7 @@ function processSASS(sassFile)
     catch (e)
     {
         console.error('  | ------------------------------------------------------------------------------------------------')
-        console.error('  | SCSS Minification Error: ' + e)
+        console.error('  | SASS Minification Error: ' + e)
         console.error('  | ------------------------------------------------------------------------------------------------')
     }
 }
@@ -392,7 +400,7 @@ async function processing()
 
     loadConfig()
     await processing()
-    chokidar.watch(__client_wwwrootdev_dirname, { awaitWriteFinish: true }).on('change', async () =>
+    chokidar.watch(__dirname, { awaitWriteFinish: true }).on('change', async () =>
     {
         await processing()
     });
