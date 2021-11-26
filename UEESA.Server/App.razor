@@ -15,13 +15,14 @@
 
 @code {
 
-    bool EnableComingSoonMode = true;
+    bool EnableComingSoonMode = false;
 
     protected override async Task OnInitializedAsync()
     {
         Uri navURI = new(NavigationManager.Uri);
-        if (EnableComingSoonMode && navURI.AbsolutePath[1..] != "soon") NavigationManager.NavigateTo("soon", true, true);
-        else if (navURI.AbsolutePath[1..] == "soon") { }
+        bool isSoon = navURI.AbsolutePath[1..] != "soon";
+        if (EnableComingSoonMode && isSoon) NavigationManager.NavigateTo("soon", true, true);
+        else if (isSoon) { }
         await base.OnInitializedAsync();
     }
 }
