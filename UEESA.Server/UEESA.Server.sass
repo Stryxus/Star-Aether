@@ -1,24 +1,22 @@
 #startup-page
-    max-width: 600px
-    padding-top: 40px
-    padding-bottom: 40px
+    overflow-y: auto
+    height: 100vh
+    width: 100vw
+    padding: 0px
+    & > .row > .col
+        margin-top: 40px
+        margin-bottom: 100px
     .uheader
         text-align: center
-        margin-left: 24px
-        margin-right: 24px
     .ubutton
         margin-bottom: 16px
     li
-        margin-top: 24px
-        margin-bottom: 24px
         small
             font-style: italic
             color: rgb(150, 150, 150)
     small
         font-weight: light
         margin-bottom: 8px
-        margin-left: 30px
-        margin-right: 30px
 
 @include media-breakpoint-up(xs)
 
@@ -26,8 +24,20 @@
 
 @include media-breakpoint-up(md)
 
-// Desktop & Up
 @include media-breakpoint-up(lg)
+    #startup-page
+        & > .row > .col
+            margin-top: 40px
+            max-width: 600px
+        .uheader
+            margin-left: 24px
+            margin-right: 24px
+        li
+            margin-top: 24px
+            margin-bottom: 24px
+        small
+            margin-left: 30px
+            margin-right: 30px
 
 @include media-breakpoint-up(xl)
 
@@ -36,8 +46,10 @@
 @include media-breakpoint-down(sm)
 
 @include media-breakpoint-down(lg)
+    #startup-page
+        & > .row > .col
+            margin-top: 14px
 
-// Phone & Down
 @include media-breakpoint-down(xl)
 
 @include media-breakpoint-only(xs)

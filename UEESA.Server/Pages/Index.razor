@@ -2,39 +2,39 @@
 
 <div id="startup-page" class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-auto">
-            <div class="row">
+        <div class="col">
+            <div class="row justify-content-center">
                 <div class="col">
                     <UHeader Size="3">Star Aether UEFI</UHeader>
                 </div>
             </div>
             <hr />
-            <div class="row">
-                <div class="col">
+            <div class="row justify-content-center">
+                <div class="col-10 col-lg">
                     <UHeader Size="5">Star Aether UEFI is the place where you can configure the app before it has even started downloading.</UHeader>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
+            <div class="row justify-content-center">
+                <div class="col-5 col-lg">
                     <UButton>Enable All</UButton>
                 </div>
-                <div class="col">
+                <div class="col-5 col-lg">
                     <UButton>Disable All</UButton>
                 </div>
-                <div class="col">
+                <div class="col-10 col-lg">
                     <UButton>Save &amp; Continue</UButton>
                 </div>
             </div>
             <hr />
-            <div class="row">
-                <div class="col">
-                    <p style="text-align: center; font-weight: bold;">
+            <div class="row justify-content-center">
+                <div class="col-10 col-lg">
+                    <p style="text-align: center;">
                         Estimated Full App Download: @((RuntimeState.ClientSize / 1000000).ToString("0,0.000"))MB
                     </p>
-                    <small style="text-align: center; font-weight: bold;">
+                    <small style="text-align: center;">
                         The initial app download size is usually a lot smaller. App assets will be dynamically downloaded depending on what you do with the app.
                     </small>
-                    <p style="color: darkgreen; text-align: center; font-weight: bold">
+                    <p style="color: darkgreen; text-align: center;">
                         Your browser has passed 0/0 compatibility tests.
                     </p>
                 </div>
@@ -56,8 +56,8 @@
                 </div>
             </div>
             <hr />
-            <div class="row">
-                <div class="col">
+            <div class="row justify-content-center">
+                <div class="col-10 col-lg">
                     <UUnorderedList>
                         <li>
                             <UInput Type="checkbox">Enable Local Storage</UInput>
@@ -72,12 +72,12 @@
                             </small>
                         </li>
                         <li>
-                            <UInput Type="checkbox">Enable Progressive Web App Support</UInput>
+                            <UInput Type="checkbox">Enable PWA Support</UInput>
                             <small>
                                 Enabling Progressive Web App support will enable scripts which allow the app to be installed as if it is a native app on your device.
                             </small>
                             <small>
-                                When the app is installed as a PWA, the script will cache any asset into Local Storage for quick access and offline use to an extent.
+                                When the app is installed as a PWA, the script will cache any asset into Local Storage for quick access &amp; offline use to an extent.
                                 It will also allow the use of some native features like Windows' push notifications.
                             </small>
                         </li>
@@ -90,7 +90,7 @@
                         <li>
                             <UInput Type="checkbox">Enable Eco Mode</UInput>
                             <small>
-                                Eco Mode will put multiple features, pages and functions into a light processing mode, saving battery life overall.
+                                Eco Mode will put multiple features, pages &amp; functions into a light processing mode, saving battery life overall.
                             </small>
                         </li>
                     </UUnorderedList>
