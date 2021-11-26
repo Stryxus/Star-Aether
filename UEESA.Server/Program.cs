@@ -465,4 +465,4 @@ app.MapRazorPages();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 
-await app.RunAsync();
+await app.RunAsync("https://0.0.0.0:5001");
