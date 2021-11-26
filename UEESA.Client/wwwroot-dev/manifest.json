@@ -9,17 +9,17 @@
     {
       "src": "maskable_icon.avif",
       "sizes": "196x196",
-      "type": "image/png",
+      "type": "image/avif",
       "purpose": "any maskable"
     },
     {
       "src": "pwa-192.avif",
-      "type": "image/png",
+      "type": "image/avif",
       "sizes": "192x192"
     },
     {
       "src": "pwa-512.avif",
-      "type": "image/png",
+      "type": "image/avif",
       "sizes": "512x512"
     }
   ]
