@@ -10,3 +10,18 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+@inject NavigationManager NavigationManager
+
+@code {
+
+    bool EnableComingSoonMode = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Uri navURI = new(NavigationManager.Uri);
+        if (EnableComingSoonMode && navURI.AbsolutePath[1..] != "soon") NavigationManager.NavigateTo("soon", true, true);
+        else if (navURI.AbsolutePath[1..] == "soon") { }
+        await base.OnInitializedAsync();
+    }
+}

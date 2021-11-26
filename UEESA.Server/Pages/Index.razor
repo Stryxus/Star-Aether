@@ -31,12 +31,12 @@
                     <p style="text-align: center; font-weight: bold;">
                         Estimated Full App Download: @((RuntimeState.ClientSize / 1000000).ToString("0,0.000"))MB
                     </p>
-                    <p style="color: darkgreen; text-align: center; font-weight: bold">
-                        Your browser has passed 0/0 compatibility tests.
-                    </p>
                     <small style="text-align: center; font-weight: bold;">
                         The initial app download size is usually a lot smaller. App assets will be dynamically downloaded depending on what you do with the app.
                     </small>
+                    <p style="color: darkgreen; text-align: center; font-weight: bold">
+                        Your browser has passed 0/0 compatibility tests.
+                    </p>
                 </div>
             </div>
             <div class="row">
@@ -76,9 +76,6 @@
                             <small>
                                 When the app is installed as a PWA, the script will cache any asset into Local Storage for quick access and offline use to an extent.
                                 It will also allow the use of some native features like Windows' push notifications.
-                            </small>
-                            <small style="color: darkred; font-weight: bold;">
-                                This requires the Local Storage permission to function!
                             </small>
                         </li>
                         <li>
