@@ -62,10 +62,9 @@ else
 FileExtensionContentTypeProvider provider = new();
 provider.Mappings[".avif"] = "image/avif";
 
-app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
 app.UseBlazorFrameworkFiles();
+app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
 app.UseResponseCompression();
-app.UseWebSockets();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
