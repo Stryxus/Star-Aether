@@ -43,6 +43,7 @@ builder.Services.AddResponseCompression(o =>
 });
 builder.Services.AddResponseCaching();
 builder.Services.AddSingleton<RuntimeState>();
+builder.Services.AddSingleton<RSIRoadmapScraper>();
 builder.Services.Configure<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme, o => o.TokenValidationParameters.NameClaimType = "name");
 builder.Services.Configure<ForwardedHeadersOptions>(o => o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto);
 builder.Services.Configure<BrotliCompressionProviderOptions>(o => o.Level = CompressionLevel.SmallestSize);
@@ -438,6 +439,8 @@ builder.Services.Configure<StaticFileOptions>(o => o.ContentTypeProvider = new F
 WebApplication app = builder.Build();
 Services.SetServiceProvider(app.Services.CreateScope().ServiceProvider);
 References.IsDevelopmentMode = app.Environment.IsDevelopment();
+
+app.Services.GetService<RSIRoadmapScraper>();
 
 if (References.IsDevelopmentMode)
 {
