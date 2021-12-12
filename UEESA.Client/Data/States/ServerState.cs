@@ -1,9 +1,12 @@
 ﻿using System.Net.WebSockets;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 namespace UEESA.Client.Data.States;
 internal class ServerState
 =======
+=======
+>>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
 using UEESA.Client.Sockets;
 using UEESA.Client.Sockets.Handlers;
 using UEESA.Json.Client;

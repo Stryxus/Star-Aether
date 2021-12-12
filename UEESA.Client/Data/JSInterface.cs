@@ -1,4 +1,9 @@
 ﻿using System.Threading.Tasks;
+<<<<<<< HEAD
+=======
+
+using Microsoft.JSInterop;
+>>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
 
 using Microsoft.JSInterop;
 

@@ -53,8 +53,11 @@ internal class InitializationState
             await Services.Get<WebSocketManagerMiddleware>().Connect();
             */
 
+<<<<<<< HEAD
             Logger.LogInfo("Client State Initialized.");
 =======
+=======
+>>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
                 Services.Get<WebSocketManagerMiddleware>().OnServerConnected += async () =>
                 {
                     if (FirstDataLoadPass)

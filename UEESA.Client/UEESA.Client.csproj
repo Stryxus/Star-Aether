@@ -43,6 +43,7 @@
 	</ItemGroup>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<ItemGroup>
 	  <ProjectReference Include="..\Common\JSON\UEESA.Json\UEESA.Json.csproj" />
 	  <ProjectReference Include="..\Common\UEESA.Common\UEESA.Common.csproj" />
@@ -51,6 +52,8 @@
 	  <ProjectReference Include="..\UEESA.UI.Router\UEESA.UI.Router.csproj" />
 	</ItemGroup>
 
+=======
+>>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
 =======
 >>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
 </Project>

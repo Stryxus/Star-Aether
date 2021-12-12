@@ -50,8 +50,11 @@ builder.Services.AddResponseCompression(o =>
 });
 builder.Services.AddResponseCaching();
 <<<<<<< HEAD
+<<<<<<< HEAD
 builder.Services.AddSingleton<RuntimeState>();
 =======
+=======
+>>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
 builder.Services.AddWebSocketManager();
 builder.Services.AddSingleton<MongoDBHandler>(new MongoDBHandler());
 builder.Services.AddSingleton<RSIRoadmapScraper>(new RSIRoadmapScraper());
