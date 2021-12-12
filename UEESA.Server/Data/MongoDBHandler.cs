@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using System.Security.Authentication;
-
-using UEESA.Json.Client;
+﻿using System.Security.Authentication;
 using UEESA.Json.External.RSI.Roadmap;
 
 using MongoDB.Driver;
@@ -27,7 +24,7 @@ namespace UEESA.Server.Data
                 try
                 {
                     settings = MongoClientSettings.FromUrl(new MongoUrl(Services.Configuration["COSMOSDB_CONNECTIONSTRING"]));
-                } 
+                }
                 catch
                 {
                     try

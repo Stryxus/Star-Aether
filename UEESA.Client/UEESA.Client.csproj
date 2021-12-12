@@ -4,11 +4,12 @@
 	<TargetFramework>net6.0</TargetFramework>
 	<AssemblyName>UEESA.Client</AssemblyName>
 	<RunAOTCompilation>true</RunAOTCompilation>
-	<UserSecretsId>7583da45-3db4-40c1-9b1d-da7ad5213210</UserSecretsId>
 	<NoWin32Manifest>true</NoWin32Manifest>
   	<DebugType>embedded</DebugType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>annotations</Nullable>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <UserSecretsId>f7770fa8-4e11-4d8e-8662-53fde795030a</UserSecretsId>
   </PropertyGroup>
 	
   <ItemGroup>
@@ -25,35 +26,21 @@
 	<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
 	<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	<PackageReference Include="Serilog" Version="2.11.0-dev-01371" />
-	<PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
+	<PackageReference Include="Serilog.Sinks.Console" Version="4.0.1-dev-00879" />
   </ItemGroup>
 
 	<ItemGroup>
 		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
 	</ItemGroup>
-  
-  <ItemGroup>
-	<ProjectReference Include="..\Common\JSON\UEESA.Json\UEESA.Json.csproj" />
-	<ProjectReference Include="..\Common\UEESA.Common\UEESA.Common.csproj" />
-  </ItemGroup>
 
 	<ItemGroup>
       <SupportedPlatform Include="browser" />
       <SupportedPlatform Include="browser-wasm" />
 	</ItemGroup>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	<ItemGroup>
 	  <ProjectReference Include="..\Common\JSON\UEESA.Json\UEESA.Json.csproj" />
 	  <ProjectReference Include="..\Common\UEESA.Common\UEESA.Common.csproj" />
-	  <ProjectReference Include="..\UEESA.UI.Common\UEESA.UI.Common.csproj" />
-	  <ProjectReference Include="..\UEESA.UI.ControlPanel\UEESA.UI.ControlPanel.csproj" />
-	  <ProjectReference Include="..\UEESA.UI.Router\UEESA.UI.Router.csproj" />
 	</ItemGroup>
 
-=======
->>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
-=======
->>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
 </Project>

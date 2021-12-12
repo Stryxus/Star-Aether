@@ -1,4 +1,4 @@
-﻿@if (!string.IsNullOrEmpty(PageState.CurrentPageContext.PageBackgroundFileName))
+﻿@if (PageState.CurrentPageContext.PageBackgroundFileName != null)
 {
     @if (PageState.CurrentPageContext.PageBackgroundFileName.EndsWith(".avif"))
     {

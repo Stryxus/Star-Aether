@@ -1,7 +1,7 @@
 ﻿<CascadingAuthenticationState>
     <div id="router">
         <div id="webpage">
-            <Router AppAssembly="@typeof(App).Assembly" AdditionalAssemblies="new[] { typeof(BlankLayout).Assembly }">
+            <Router AppAssembly="@typeof(App).Assembly">
                 <Found Context="routeData">
                     <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
                         <NotAuthorized>
@@ -17,13 +17,24 @@
                     </AuthorizeRouteView>
                 </Found>
                 <NotFound>
-                    <LayoutView Layout="@typeof(BlankLayout)">
+                    <LayoutView Layout="@typeof(MainLayout)">
                         <h4 id="page-load-error">Uh oh! There seems to be an error loading this page!</h4>
                     </LayoutView>
                 </NotFound>
             </Router>
         </div>
-        <ControlPanel/>
+        <div id="sidebar-bordered-lines">
+            <div id="sidebar-left-near"></div>
+            <div id="sidebar-left-far"></div>
+            <div id="sidebar-right-near"></div>
+            <div id="sidebar-right-far"></div>
+	    </div>
+        <HeadlinesTicker />
+        <EconomeTicker />
+        <ProfilePanel />
+        <SidebarLeftSide />
+        <SidebarRightSide />
+        <MainNavigationBar />
     </div>
 </CascadingAuthenticationState>
 
@@ -38,94 +49,70 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Uri navURI = new(NavigationManager.Uri);
         PageState.PageContexts = new()
         {
             new PageContext
             {
                 FormalPageName = "Home",
-                InformalPageName = null,
-                PageBackgroundFileName = null,
-                IsHidden = false,
-                ShowControlpanel = true
+                InformalPageName = "",
+                PageBackgroundFileName = "home.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Blog",
                 InformalPageName = "blog",
-                PageBackgroundFileName = null,
-                IsHidden = false,
-                ShowControlpanel = true
+                PageBackgroundFileName = "blog.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Changelog",
                 InformalPageName = "changelog",
-                PageBackgroundFileName = null,
-                IsHidden = false,
-                ShowControlpanel = true
+                PageBackgroundFileName = "changelog.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Roadmap",
                 InformalPageName = "roadmap",
-                PageBackgroundFileName = null,
-                IsHidden = false,
-                ShowControlpanel = true
+                PageBackgroundFileName = "roadmap.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Load Out",
                 InformalPageName = "loadout",
-                PageBackgroundFileName = null,
-                IsHidden = false,
-                ShowControlpanel = true
+                PageBackgroundFileName = "loadout.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Fleeter",
                 InformalPageName = "fleeter",
-                PageBackgroundFileName = null,
-                IsHidden = false,
-                ShowControlpanel = true
+                PageBackgroundFileName = "fleeter.webm",
+                IsHidden = false
             },
             new PageContext
             {
                 FormalPageName = "Econome",
                 InformalPageName = "econome",
-                PageBackgroundFileName = null,
-                IsHidden = false,
-                ShowControlpanel = true
+                PageBackgroundFileName = "econome.webm",
+                IsHidden = false
             },
 
-            // Admin
             new PageContext
             {
-                FormalPageName = string.Empty,
+                FormalPageName = "",
                 InformalPageName = "admin",
                 PageBackgroundFileName = "home.webm",
-                IsHidden = true,
-                ShowControlpanel = true
-            },
-
-            // Debug
-            new PageContext
-            {
-                FormalPageName = string.Empty,
-                InformalPageName = "debug/ctp",
-                PageBackgroundFileName = string.Empty,
-                IsHidden = true,
-                ShowControlpanel = false
+                IsHidden = true
             }
         };
         try
         {
-            if (NavigationManager.Uri == NavigationManager.BaseUri || !PageState.PageContexts.Any(o => o.InformalPageName == navURI.AbsolutePath[1..])) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());
-            else
-            {
-                PageContext newConext = PageState.PageContexts.First(x => x.InformalPageName == navURI.AbsolutePath[1..]);
-                if (!PageState.IsPageTransitioning && !PageState.CurrentPageContext.Equals(newConext)) PageState.CurrentPageContext = newConext;
-            }
+            if (NavigationManager.Uri == NavigationManager.BaseUri || !PageState.PageContexts.Any(o => o.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1))) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());
+            else PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1));
         }
         catch { NavigationManager.NavigateTo(string.Empty); }
         await InitializationState.Init(JSRuntime);

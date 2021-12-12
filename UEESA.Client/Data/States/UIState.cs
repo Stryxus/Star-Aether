@@ -1,82 +1,75 @@
-﻿using System;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-<<<<<<< HEAD
-=======
+﻿using Microsoft.AspNetCore.Components;
 
-using Microsoft.AspNetCore.Components;
->>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
-
-using Microsoft.AspNetCore.Components;
-
-namespace UEESA.Client.Data.States;
-internal class UIState
+namespace UEESA.Client.Data.States
 {
-    internal class PageState
+    internal class UIState
     {
-        internal bool HasSiteBeenRendered;
-        internal bool IsPageTransitioning;
-
-        internal event Action OnPagePreTransition;
-        internal event Action OnPageTransitionStart;
-
-        internal event Action OnPageTransitionBackgroundStage;
-
-        internal event Action OnPageTransitionEnd;
-        internal event Action OnPagePostTransition;
-
-        internal List<PageContext> PageContexts;
-
-        internal bool IsCurrentContextPageSet;
-        private PageContext currentPageContext;
-        internal PageContext CurrentPageContext
+        internal class PageState
         {
-            get
-            {
-                return currentPageContext;
-            }
+            internal bool HasSiteBeenRendered;
+            internal bool IsPageTransitioning;
 
-            set
+            internal event Action OnPagePreTransition;
+            internal event Action OnPageTransitionStart;
+
+            internal event Action OnPageTransitionBackgroundStage;
+
+            internal event Action OnPageTransitionEnd;
+            internal event Action OnPagePostTransition;
+
+            internal List<PageContext> PageContexts;
+
+            internal bool IsCurrentContextPageSet;
+            private PageContext currentPageContext;
+            internal PageContext CurrentPageContext
             {
-                currentPageContext = value;
-                Task.Run(async () =>
+                get
                 {
-                    IsCurrentContextPageSet = true;
-                    if (!HasSiteBeenRendered)
+                    return currentPageContext;
+                }
+
+                set
+                {
+                    currentPageContext = value;
+                    Task.Run(async () =>
                     {
-                        new Action(async () =>
+                        IsCurrentContextPageSet = true;
+                        if (!HasSiteBeenRendered)
                         {
-                            await Services.Get<JSInterface.AnimationManager>().InOutNavbar();
-                        }).Invoke();
-                    }
-                    OnPagePreTransition?.Invoke();
-                    await Services.Get<JSInterface.Utilities>().SetTitle("UEESA - " + value.FormalPageName);
-                    if (HasSiteBeenRendered) IsPageTransitioning = true;
-                    OnPageTransitionStart?.Invoke();
-                    List<Task> startStageTasks = new();
-                    startStageTasks.Add(Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_Fastest)));
-                    startStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutBackground(false));
-                    startStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutPage(false));
-                    await Task.WhenAll(startStageTasks);
-                    Services.Get<NavigationManager>().NavigateTo('/' + value.InformalPageName);
-                    OnPageTransitionBackgroundStage?.Invoke();
-                    List<Task> pageComponents = new();
-                    OnPageTransitionEnd?.Invoke();
-                    await Task.WhenAll(pageComponents);
-                    IsPageTransitioning = false;
-                    List<Task> endStageTasks = new();
-                    endStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutBackground(true));
-                    endStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutPage(true));
-                    await Task.WhenAll(endStageTasks);
-                    OnPagePostTransition?.Invoke();
-                    HasSiteBeenRendered = true;
-                });
+                            new Action(async () =>
+                            {
+                                await Services.Get<JSInterface.AnimationManager>().InOutNavbar();
+                            }).Invoke();
+                        }
+                        OnPagePreTransition?.Invoke();
+                        await Services.Get<JSInterface.Utilities>().SetTitle("UEESA - " + value.FormalPageName);
+                        if (HasSiteBeenRendered) IsPageTransitioning = true;
+                        OnPageTransitionStart?.Invoke();
+                        List<Task> startStageTasks = new();
+                        startStageTasks.Add(Task.Delay(TimeSpan.FromSeconds(Services.Get<JSInterface.AnimationManager>().Time_Fastest)));
+                        startStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutBackground(false));
+                        startStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutPage(false));
+                        await Task.WhenAll(startStageTasks);
+                        Services.Get<NavigationManager>().NavigateTo(value.InformalPageName);
+                        OnPageTransitionBackgroundStage?.Invoke();
+                        List<Task> pageComponents = new();
+                        OnPageTransitionEnd?.Invoke();
+                        await Task.WhenAll(pageComponents);
+                        IsPageTransitioning = false;
+                        List<Task> endStageTasks = new();
+                        endStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutBackground(true));
+                        endStageTasks.Add(Services.Get<JSInterface.AnimationManager>().InOutPage(true));
+                        await Task.WhenAll(endStageTasks);
+                        OnPagePostTransition?.Invoke();
+                        HasSiteBeenRendered = true;
+                    });
+                }
             }
         }
-    }
 
-    internal class ComponentState
-    {
+        internal class ComponentState
+        {
 
+        }
     }
 }

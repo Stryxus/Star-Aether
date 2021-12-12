@@ -23,13 +23,6 @@ const __cache_filename = __dirname + sep + 'ueesa-cache.json'
 
 var isDebug
 
-/*
- * TODO:
- * - Add in json minification support back
- * - Convert javascript to typescript
- * - Bring back squoosh
- */
-
 //const imagePool = new ImagePool()
 
 // Global Variables //
@@ -136,27 +129,22 @@ async function processJS(jsFiles)
         const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.js.map'
         console.log('  | Minifying JS: ' + minJSFilePath.replace(__client_wwwroot_dirname, ''))
         var orderedJS = 'var GLOBAL = {};' // Define this to silence errors made from Blazor's GLOBAL variable
-        config.jsDependencies.forEach(async item =>
-        {
+        config.jsDependencies.forEach(async item => {
             const fullPath = __dirname + sep + item
-            if (item.substring(item.lastIndexOf('.')) == '.js' && fileExists(fullPath))
-            {
+            if (item.substring(item.lastIndexOf('.')) == '.js' && fileExists(fullPath)) {
                 console.log('  | - Including Dependency: ' + item)
                 orderedJS += readFileSync(item, 'utf8') + '\n'
             }
-            else
-            {
+            else {
                 console.error('  | - Dependency "' + item + '" does not exist or is not a .js file - skipping...')
             }
         })
         jsFiles.forEach(async item => orderedJS += readFileSync(item.path, 'utf8') + '\n')
         const result = await minify(orderedJS, { sourceMap: true, module: false, mangle: false, ecma: 2021, compress: !isDebug })
-        if (fileExists(minJSFilePath))
-        {
+        if (fileExists(minJSFilePath)) {
             truncateSync(minJSFilePath, 0)
         }
-        if (fileExists(minMapFilePath))
-        {
+        if (fileExists(minMapFilePath)) {
             truncateSync(minMapFilePath, 0)
         }
         writeFileSync(minJSFilePath, result.code, 'utf8')
@@ -170,23 +158,20 @@ async function processJS(jsFiles)
     }
 }
 
-function processSASS(sassFile)
+function processSASS(scssFile)
 {
     try
     {
         const minCSSFilePath = __client_wwwroot_dirname + sep + 'bundle.min.css'
         const minMapFilePath = __client_wwwroot_dirname + sep + 'bundle.css.map'
         console.log('  | Minifying SASS: ' + minCSSFilePath.replace(__client_wwwroot_dirname, ''))
-        const result = sass.renderSync(
-        {
-            file: sassFile, sourceMap: true, outFile: 'bundle.css', outputStyle: isDebug ? 'expanded' : 'compressed', indentType: 'tab', indentWidth: 1, quietDeps: true, includePaths: [__client_wwwrootdev_dirname + sep + 'css' + sep + 'thirdparty']
+        const result = sass.renderSync({
+            file: scssFile, sourceMap: true, outFile: 'bundle.css', outputStyle: isDebug ? 'expanded' : 'compressed', indentType: 'tab', indentWidth: 1, quietDeps: true, includePaths: [__client_wwwrootdev_dirname + sep + 'css' + sep + 'thirdparty']
         })
-        if (fileExists(minCSSFilePath))
-        {
+        if (fileExists(minCSSFilePath)) {
             truncateSync(minCSSFilePath, 0)
         }
-        if (fileExists(minMapFilePath))
-        {
+        if (fileExists(minMapFilePath)) {
             truncateSync(minMapFilePath, 0)
         }
         writeFileSync(minCSSFilePath, result.css.toString(), 'utf8')
@@ -195,7 +180,7 @@ function processSASS(sassFile)
     catch (e)
     {
         console.error('  | ------------------------------------------------------------------------------------------------')
-        console.error('  | SASS Minification Error: ' + e)
+        console.error('  | SCSS Minification Error: ' + e)
         console.error('  | ------------------------------------------------------------------------------------------------')
     }
 }
@@ -208,7 +193,7 @@ async function processing()
     const files = findFiles(__client_wwwrootdev_dirname)
     const jsFiles = filterFiles(files, 'js').filter(file => String(file.name) != 'service-worker.js' && String(file.name) != 'service-worker.published.js')
     const svjsFiles = filterFiles(files, 'js').filter(file => String(file.name) == 'service-worker.js' || String(file.name) == 'service-worker.published.js')
-    const sassFile = __client_wwwrootdev_dirname + sep + 'bundle.sass'
+    const scssFile = __client_wwwrootdev_dirname + sep + 'css' + sep + 'bundle.scss'
     const htmlFiles = filterFiles(files, 'html')
     const svgFiles = filterFiles(files, 'svg')
     const jsonFiles = filterFiles(files, 'json')
@@ -218,7 +203,7 @@ async function processing()
     const mp4Files = filterFiles(files, 'mp4')
 
     await processJS(jsFiles)
-    processSASS(sassFile)
+    processSASS(scssFile)
 
     svjsFiles.forEach(async item =>
     {
@@ -248,6 +233,17 @@ async function processing()
         {
             const output = item.path.replace('wwwroot-dev', 'wwwroot')
             console.log('  | Copying SVG: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
+            mkdirSync(dirname(output), { recursive: true })
+            copyFileSync(item.path, output)
+        }
+    })
+
+    jsonFiles.forEach(item =>
+    {
+        if (needsCaching(item.path, 'json') || needsProcessing(item.path))
+        {
+            const output = item.path.replace('wwwroot-dev', 'wwwroot')
+            console.log('  | Copying JSON: ' + item.path.replace(__client_wwwrootdev_dirname, '') + ' > ' + output.replace(__client_wwwroot_dirname, ''))
             mkdirSync(dirname(output), { recursive: true })
             copyFileSync(item.path, output)
         }
@@ -396,14 +392,8 @@ async function processing()
 
     loadConfig()
     await processing()
-    chokidar.watch(__dirname, { ignored: __dirname + sep + 'UEESA.Client' + sep + 'wwwroot', awaitWriteFinish: true }).on('change', async (path) =>
+    chokidar.watch(__client_wwwrootdev_dirname, { awaitWriteFinish: true }).on('change', async () =>
     {
-        if (path.endsWith('.html') || path.endsWith('.sass') || path.endsWith('.js') || path.endsWith('.mp4') || path.endsWith('.svg') || path.endsWith('.woff2') || path.endsWith('.ttf'))
-        {
-            if (!path.endsWith('bundler.js'))
-            {
-                await processing()
-            }
-        }
+        await processing()
     });
 })()
