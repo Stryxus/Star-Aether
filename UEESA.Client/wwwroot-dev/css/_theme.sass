@@ -1,0 +1,226 @@
+* 
+    user-select: none
+
+
+html 
+
+
+
+body 
+    background-color: $black
+    color: $colour-white
+    font-family: 'Roboto'
+    padding: 0px
+    margin: 0px
+    scroll-behavior: smooth
+
+
+html, body 
+    width: 100vw
+    height: 100vh
+    overflow: hidden
+
+
+::-webkit-scrollbar 
+    display: none
+    width: 0px
+
+
+#app 
+    overflow: hidden
+
+
+#background 
+    width: 100vw
+    height: 100vh
+    object-fit: cover
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+    opacity: 0
+
+
+main 
+    position: absolute
+    top: 0px
+    left: #$navbarCornerContainterTopWidth + 1px
+    z-index: $zindex-main
+    overflow: hidden
+    height: 100vh
+    width: calc(100% - #$navbarCornerContainterTopWidth * 2 + ($duo-line-seperator-size * 4) - 10px) !important
+    padding-top: 0px
+    padding-bottom: 0px
+    padding-left: 6px !important
+    padding-right: 6px !important
+    margin-top: 0px
+    margin-bottom: 0px
+    margin-left: 0px
+    margin-right: 0px
+    clip-path: polygon(0px 0px, 100% 0px, 100% calc(100% - #$navbarCornerContainerHeightpx), calc(100% - #math.div($navbarCornerContainerWidth, 2)px) 100%, #math.div($navbarCornerContainerWidth, 2)px 100%, 0px calc(100% - #$navbarCornerContainerHeightpx))
+
+    & > .row 
+        min-height: calc(100% - #math.div($navbarCornerContainerHeight, 2) + $duo-line-seperator-sizepx)
+        margin: 0px
+        clip-path: polygon(0px 0px, 100% 0px, 100% calc(100% - #math.div($navbarCornerContainerHeight, 2)px), calc(100% - #math.div($navbarCornerContainerWidth, 4)px) 100%, #math.div($navbarCornerContainerWidth, 4)px 100%, 0px calc(100% - #math.div($navbarCornerContainerHeight, 2)px))
+
+        & > * 
+            padding-left: 0px
+            padding-right: 0px
+        
+
+        &.no-scroll 
+            height: calc(100% - #$navigation-bar-height + $duo-line-seperator-sizepx)
+            overflow-y: hidden
+
+            & > [class*='col-'], & > .col 
+                height: 100%
+                padding-bottom: #$navbar-top-paddingpx
+            
+    
+            & > [class*='col-'].alt-scroll, & > .col.alt-scroll 
+                overflow-y: scroll
+                height: 100%
+            
+
+            & > [class*='col-'].padded-no-scroll, & > .col.padded-no-scroll 
+                overflow-y: hidden
+                height: 100%
+            
+        
+    
+
+
+#router 
+    
+    #webpage 
+        #page-body 
+            opacity: 0
+        
+    
+
+
+// BEGIN-Min-Width
+
+@include media-breakpoint-up(xs) 
+
+
+@include media-breakpoint-up(sm) 
+
+
+@include media-breakpoint-up(md) 
+
+
+
+// Desktop
+
+@include media-breakpoint-up(lg) 
+
+    main 
+    
+        & > .row 
+    
+            [class*='col-'].padded-scroll, .col.padded-scroll 
+                padding-bottom: ($navigation-bar-height * 2.25) + px
+            
+    
+            [class*='col-'].padded-no-scroll, .col.padded-no-scroll 
+                padding-bottom: ($navigation-bar-height * 2.25) + px
+            
+    
+            &.no-scroll 
+    
+                [class*='col-'].alt-scroll, .col.alt-scroll 
+                    padding-bottom: ($navigation-bar-height * 4.5) + px
+    
+                    &.alt-scroll-left 
+                        padding-bottom: ($navigation-bar-height * 4.5) + px
+                    
+    
+                    &:not(.alt-scroll-left) 
+                        padding-bottom: 155px
+                    
+                
+            
+        
+    
+
+
+@include media-breakpoint-up(xl) 
+
+
+// END-Min-Width
+
+// BEGIN-Max-Width
+
+@media (max-width: 375px) 
+
+    #viewport-overlay 
+        display: block
+    
+
+
+@include media-breakpoint-down(xs) 
+
+
+@include media-breakpoint-down(sm) 
+
+
+@include media-breakpoint-down(md) 
+
+
+// Desktop
+
+@include media-breakpoint-down(lg) 
+
+    main 
+    
+        & > .row 
+    
+            [class*='col-'].padded-scroll, .col.padded-scroll 
+                padding-bottom: $navigation-bar-mobile-height + px
+            
+    
+            [class*='col-'].padded-no-scroll, .col.padded-no-scroll 
+                padding-bottom: $navigation-bar-mobile-height + px
+            
+    
+            &.no-scroll 
+    
+                [class*='col-'].alt-scroll, .col.alt-scroll 
+                    padding-bottom: $navigation-bar-mobile-height + px
+    
+                    &.alt-scroll-left 
+                        padding-bottom: $navigation-bar-mobile-height + px
+                    
+    
+                    &:not(.alt-scroll-left) 
+                        padding-bottom: $navigation-bar-mobile-height + px
+                    
+                
+            
+        
+    
+
+
+// END-Max-Width
+
+// BEGIN-Width-Exclusivity
+
+@include media-breakpoint-only(xs) 
+
+
+@include media-breakpoint-only(sm) 
+
+
+@include media-breakpoint-only(md) 
+
+
+// Desktop
+
+@include media-breakpoint-only(lg) 
+
+
+@include media-breakpoint-only(xl) 
+
+
+// END-Width-Exclusivity

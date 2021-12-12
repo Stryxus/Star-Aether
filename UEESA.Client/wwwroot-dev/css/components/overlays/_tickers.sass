@@ -1,0 +1,198 @@
+#headlines-ticker 
+
+
+
+#econome-ticker 
+
+
+
+#headlines-ticker, #econome-ticker 
+
+
+
+// BEGIN-Min-Width
+
+@include media-breakpoint-up(xs) 
+
+
+@include media-breakpoint-up(sm) 
+
+
+@include media-breakpoint-up(md) 
+
+
+// Desktop
+
+@include media-breakpoint-up(lg) 
+    #headlines-ticker 
+        left: #$navbarCornerContainterTopWidth * 1.675px
+        clip-path: polygon(0px 0px, 100% 0px, calc(100% - 36px) 100%, 18px 100%)
+
+        #headlines-ticker-title 
+            
+            h6 
+                padding-right: 45px
+            
+        
+
+        #headlines-ticker-content 
+
+            & > .row 
+                & > .col-auto 
+                    &:first-child 
+                        padding-left: 20px
+                    
+                
+            
+        
+    
+
+    #econome-ticker 
+        right: #$navbarCornerContainterTopWidth * 1.675px
+        clip-path: polygon(0px 0px, 100% 0px, calc(100% - 18px) 100%, 36px 100%)
+
+        #econome-ticker-title 
+
+            h6 
+                padding-left: 45px
+            
+        
+
+        #econome-ticker-content 
+
+            & > .row 
+                & > .col-auto 
+                    &:last-child 
+                        padding-right: 20px
+                    
+                
+            
+
+            h6 
+
+                &:nth-child(2), &:nth-child(2), &:nth-child(3) 
+                    font-weight: 300
+                
+
+                &:nth-child(1) 
+                    background-color: $colour-black-trans-low
+                
+
+                &:nth-child(2) 
+                    color: $colour-green-main
+                
+
+                &:nth-child(3) 
+                    color: $colour-green-main
+                
+
+                &:nth-child(4) 
+                    color: $colour-red-main
+                
+            
+        
+    
+
+    #headlines-ticker, #econome-ticker 
+        position: absolute
+        backdrop-filter: $backdrop-blur-heavy
+        background-color: rgba($colour-black, 0.5)
+        bottom: #math.div($navigation-bar-height, 2) + 12px
+        width: calc(100% / 2 - #$navigation-bar-height * 2.1 + $duo-line-seperator-sizepx)
+        margin: 0px
+        z-index: $zindex-tickers
+
+        .col, .col-auto 
+            padding: 0px
+
+            .row 
+                margin: 0px
+            
+        
+
+        h6 
+            float: left
+            padding-top: 10px
+            padding-bottom: 10px
+            padding-left: 14px
+            padding-right: 14px
+            margin: 0px
+            font-weight: 300
+            font-size: 13px
+        
+
+        #econome-ticker-title, #headlines-ticker-title 
+            
+            h6 
+                background-color: $colour-black-trans-low
+            
+        
+
+        #headlines-ticker-content, #econome-ticker-content 
+            overflow-x: scroll !important
+
+            & > * 
+                overflow-x: scroll
+                overflow-y: hidden
+                flex-wrap: nowrap
+                flex-grow: 1
+            
+        
+    
+
+
+@include media-breakpoint-up(xl) 
+
+
+// END-Min-Width
+
+// BEGIN-Max-Width
+
+@include media-breakpoint-down(xs) 
+
+
+@include media-breakpoint-down(sm) 
+
+
+@include media-breakpoint-down(md) 
+
+
+// Desktop
+
+@include media-breakpoint-down(lg) 
+
+    #headlines-ticker 
+
+    
+
+    #econome-ticker 
+
+    
+
+    #headlines-ticker, #econome-ticker 
+
+    
+
+
+// END-Max-Width
+
+// BEGIN-Width-Exclusivity
+
+@include media-breakpoint-only(xs) 
+
+
+@include media-breakpoint-only(sm) 
+
+
+@include media-breakpoint-only(md) 
+
+
+// Desktop
+
+@include media-breakpoint-only(lg) 
+
+
+@include media-breakpoint-only(xl) 
+
+
+// END-Width-Exclusivity
