@@ -31,8 +31,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddMi
 #if RELEASE
 builder.Services.AddCors(options => options.AddPolicy(name: CORSAuthorityName, builder => builder.WithOrigins("https://staraether.com")));
 #endif
-builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
 builder.Services.AddResponseCompression(o =>
 {
     o.Providers.Add<BrotliCompressionProvider>();
@@ -464,8 +462,6 @@ app.UseAuthorization();
 app.UseCors(CORSAuthorityName);
 #endif
 app.UseResponseCaching();
-app.MapRazorPages();
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
+app.MapFallbackToFile("index.html");
 
 await app.RunAsync("https://0.0.0.0:5001");
