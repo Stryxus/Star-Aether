@@ -4,7 +4,7 @@
     {
         <video @attributes="InputAttributes" src="@MediaSource" />
     }
-    else if (MediaSource.EndsWith(".avif"))
+    else if (MediaSource.EndsWith(".avif") || MediaSource.EndsWith(".svg"))
     {
         <img @attributes="InputAttributes" src="@MediaSource" />
     }
