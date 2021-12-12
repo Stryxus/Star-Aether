@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" prefix="og: https://ogp.me/ns#">
 <head><!--
                                  ..             .. ...............................''''',,,,,,,;;:;,;;;;;;;,,,,,,,,;;,,,'',,,,,,,''''.................                                                   
@@ -90,7 +90,12 @@
         This website requires Javascript. If you dont have Javascript enabled, you must find out how to enable it.
         For no reason should Javascript be disabled in the modern day.
     </noscript>
+    @RenderBody();
+    @{
+        //IgnoreBody(); 
+    }
     <div id="app"></div>
+    <!--
     <script defer type="text/javascript" charset="UTF-8">
         navigator.serviceWorker.register('service-worker.js').then(reg =>
         {
@@ -112,8 +117,10 @@
             }
         }).catch(err => console.error('[SERVICE WORKER]', err))
     </script>
+    -->
     <script defer type="text/javascript" charset="UTF-8" src="bundle.min.js"></script>
-    <script defer type="text/javascript" charset="UTF-8" src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>
-    <script defer type="text/javascript" charset="UTF-8" src="_framework/blazor.webassembly.js"></script>
+    <script defer type="text/javascript" charset="UTF-8" src="_framework/blazor.server.js"></script>
+    <!--<script defer type="text/javascript" charset="UTF-8" src="_content/Microsoft.Authentication.WebAssembly.Msal/AuthenticationService.js"></script>-->
+    <!--<script defer type="text/javascript" charset="UTF-8" src="_framework/blazor.webassembly.js"></script>-->
 </body>
 </html>

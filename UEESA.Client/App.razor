@@ -49,12 +49,13 @@
 
     protected override async Task OnInitializedAsync()
     {
+        Uri navURI = new(NavigationManager.Uri);
         PageState.PageContexts = new()
         {
             new PageContext
             {
                 FormalPageName = "Home",
-                InformalPageName = "",
+                InformalPageName = "null",
                 PageBackgroundFileName = "home.webm",
                 IsHidden = false
             },
@@ -111,8 +112,12 @@
         };
         try
         {
-            if (NavigationManager.Uri == NavigationManager.BaseUri || !PageState.PageContexts.Any(o => o.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1))) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());
-            else PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName == NavigationManager.Uri.Substring(NavigationManager.Uri.LastIndexOf('/') + 1));
+            if (NavigationManager.Uri == NavigationManager.BaseUri || !PageState.PageContexts.Any(o => o.InformalPageName == navURI.AbsolutePath[1..])) PageState.CurrentPageContext = PageState.PageContexts.First(x => x.InformalPageName.IsEmpty());
+            else
+            {
+                PageContext newConext = PageState.PageContexts.First(x => x.InformalPageName == navURI.AbsolutePath[1..]);
+                if (!PageState.IsPageTransitioning && !PageState.CurrentPageContext.Equals(newConext)) PageState.CurrentPageContext = newConext;
+            }
         }
         catch { NavigationManager.NavigateTo(string.Empty); }
         await InitializationState.Init(JSRuntime);

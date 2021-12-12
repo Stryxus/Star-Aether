@@ -1,4 +1,7 @@
-﻿<a class="@(PageState.CurrentPageContext.InformalPageName == href[1..] ? "active" : string.Empty)" draggable="false" @onclick="SetPageContext">@ChildContent</a>
+﻿@if (!string.IsNullOrEmpty(PageState.CurrentPageContext.InformalPageName))
+{
+<a class="@(PageState.CurrentPageContext.InformalPageName == href[1..] ? "active" : string.Empty)" draggable="false" @onclick="SetPageContext">@ChildContent</a>
+}
 
 @inject UIState.PageState PageState
 @inject NavigationManager NavigationManager

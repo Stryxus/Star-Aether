@@ -1,0 +1,129 @@
+﻿@page "/"
+
+<div id="startup-page" class="container-fluid">
+    <div class="row justify-content-center @(!HasConfirmedFirstUse ? "align-items-center h-100" : string.Empty)">
+        <div class="col">
+            @if (HasConfirmedFirstUse)
+            {
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <h3>Star Aether UEFI</h3>
+                    </div>
+                </div>
+                <hr />
+                <div class="row justify-content-center">
+                    <div class="col-10 col-lg">
+                        <h5>Star Aether UEFI is the place where you can configure the app before it has even started downloading.</h5>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-5 col-lg">
+                        <div>Enable All</div>
+                    </div>
+                    <div class="col-5 col-lg">
+                        <div>Disable All</div>
+                    </div>
+                    <div class="col-10 col-lg">
+                        <div>Save &amp; Continue</div>
+                    </div>
+                </div>
+                <hr />
+                <div class="row justify-content-center">
+                    <div class="col-10 col-lg">
+                        <p style="text-align: center;">
+                            Estimated Full App Download: @((RuntimeState.ClientSize / 1000000).ToString("0,0.000"))MB
+                        </p>
+                        <small style="text-align: center;">
+                            The initial app download size is usually a lot smaller. App assets will be dynamically downloaded depending on what you do with the app.
+                        </small>
+                        <p style="color: darkgreen; text-align: center;">
+                            Your browser has passed 0/0 compatibility tests.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h4>Maintenance</h4>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h4>Permissions</h4>
+                    </div>
+                </div>
+                <hr />
+                <div class="row justify-content-center">
+                    <div class="col-10 col-lg">
+                        <ul>
+                            <li>
+                                <label for="op0">Enable Local Storage</label>
+                                <input id="op0" type="checkbox" />
+                                <small>
+                                    Local Storage is a ways &amp; means of storing isolated data (usually small amounts) within your browser/on your device.
+                                </small>
+                                <small>
+                                    You can find this by pressing F12 &amp; going to the Application tab. Under this tab, there is the Local Storage tab which will show all data stored by the domain.
+                                </small>
+                                <small>
+                                    Local Storage will still be used if disabled but only to save the JSON data of these settings.
+                                </small>
+                            </li>
+                            <li>
+                                <label for="op1">Enable PWA Support</label>
+                                <input id="op1" type="checkbox" />
+                                <small>
+                                    Enabling Progressive Web App support will enable scripts which allow the app to be installed as if it is a native app on your device.
+                                </small>
+                                <small>
+                                    When the app is installed as a PWA, the script will cache any asset into Local Storage for quick access &amp; offline use to an extent.
+                                    It will also allow the use of some native features like Windows' push notifications.
+                                </small>
+                            </li>
+                            <li>
+                                <label for="op2">Enable Audio</label>
+                                <input id="op2" type="checkbox" />
+                                <small>
+                                    Its known throughout the internet that people do not like immediate audio (Which is why there is this page) or audio at all.
+                                </small>
+                            </li>
+                            <li>
+                                <label for="op3">Enable Eco Mode</label>
+                                <input id="op3" type="checkbox" />
+                                <small>
+                                    Eco Mode will put multiple features, pages &amp; functions into a light processing mode, saving battery life overall.
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <img src="favicon.svg" width="400" height="400" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <h2>Click to begin to enter the Star Aether UEFI and begin initial setup</h2>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@inject RuntimeState RuntimeState
+
+@code {
+
+    private bool HasConfirmedFirstUse = false;
+
+}

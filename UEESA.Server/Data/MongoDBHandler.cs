@@ -47,6 +47,7 @@ namespace UEESA.Server.Data
             });
         }
 
+        /*
         // Blog
 
         internal async Task StoreBlogRecord()
@@ -112,5 +113,6 @@ namespace UEESA.Server.Data
         {
 
         }
+        */
     }
 }
