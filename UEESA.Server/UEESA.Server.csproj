@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 	
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Common\UEESA.Common\UEESA.Common.csproj" />
-    <ProjectReference Include="..\..\JSON\UEESA.Json\UEESA.Json.csproj" />
     <ProjectReference Include="..\UEESA.Client\UEESA.Client.csproj" />
   </ItemGroup>
 
