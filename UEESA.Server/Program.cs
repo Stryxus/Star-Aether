@@ -34,9 +34,6 @@ builder.Services.AddCors(options => options.AddPolicy(name: CORSAuthorityName, b
 builder.Services.AddResponseCompression(o =>
 {
     o.Providers.Add<BrotliCompressionProvider>();
-#if DEBUG
-    o.Providers.Add<GzipCompressionProvider>();
-#endif
     o.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
 });
 builder.Services.AddResponseCaching();
