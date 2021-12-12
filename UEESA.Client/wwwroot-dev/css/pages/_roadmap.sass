@@ -3,83 +3,43 @@
     padding-left: 48px
     padding-right: 48px
     backdrop-filter: $backdrop-blur-heavy
-
     & > * 
         -webkit-mask-image: linear-gradient(to right,rgba(0,0,0,0) 0%,rgba(0,0,0,1) 5%,rgba(0,0,0,1) 95%,rgba(0,0,0,0) 100%)
-    
-
     & > .col > .row, & > .row 
         overflow-x: scroll
         overflow-y: hidden
         flex-wrap: nowrap
         flex-grow: 1
         height: 100%
-    
-
-
-// BEGIN-Min-Width
 
 @include media-breakpoint-up(xs) 
 
-
 @include media-breakpoint-up(sm) 
-
 
 @include media-breakpoint-up(md) 
 
-
-// Desktop
-
 @include media-breakpoint-up(lg) 
-
     #roadmap-page 
-    
         #roadmap-cards 
             padding-left: 6px
         
-    
-
-
 @include media-breakpoint-up(xl) 
-
-
-// END-Min-Width
-
-// BEGIN-Max-Width
 
 @include media-breakpoint-down(xs) 
 
-
 @include media-breakpoint-down(sm) 
-
-
-// Desktop
 
 @include media-breakpoint-down(md) 
 
 
 @include media-breakpoint-down(lg) 
 
-
-// END-Max-Width
-
-// BEGIN-Width-Exclusivity
-
 @include media-breakpoint-only(xs) 
-
 
 @include media-breakpoint-only(sm) 
 
-
 @include media-breakpoint-only(md) 
-
-
-// Desktop
 
 @include media-breakpoint-only(lg) 
 
-
 @include media-breakpoint-only(xl) 
-
-
-// END-Width-Exclusivity
