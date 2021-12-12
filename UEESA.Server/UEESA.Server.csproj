@@ -27,6 +27,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\UEESA.Common\UEESA.Common.csproj" />
+    <ProjectReference Include="..\..\JSON\UEESA.Json\UEESA.Json.csproj" />
     <ProjectReference Include="..\Common\JSON\UEESA.Json\UEESA.Json.csproj" />
     <ProjectReference Include="..\Common\UEESA.Common\UEESA.Common.csproj" />
     <ProjectReference Include="..\UEESA.Client\UEESA.Client.csproj" />
