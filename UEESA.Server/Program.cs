@@ -1,14 +1,21 @@
 ﻿using System.IO.Compression;
+using System.Linq;
 using System.Security.Authentication;
 
 using Microsoft.ApplicationInsights.AspNetCore.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Web;
 
 using UEESA.Server.Data;
+using UEESA.Server.Sockets;
+using UEESA.Server.Sockets.Handlers;
 
 using Serilog;
 
@@ -42,7 +49,13 @@ builder.Services.AddResponseCompression(o =>
     o.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/svg+xml" });
 });
 builder.Services.AddResponseCaching();
+<<<<<<< HEAD
 builder.Services.AddSingleton<RuntimeState>();
+=======
+builder.Services.AddWebSocketManager();
+builder.Services.AddSingleton<MongoDBHandler>(new MongoDBHandler());
+builder.Services.AddSingleton<RSIRoadmapScraper>(new RSIRoadmapScraper());
+>>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
 builder.Services.Configure<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme, o => o.TokenValidationParameters.NameClaimType = "name");
 builder.Services.Configure<ForwardedHeadersOptions>(o => o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto);
 builder.Services.Configure<BrotliCompressionProviderOptions>(o => o.Level = CompressionLevel.SmallestSize);
@@ -454,6 +467,7 @@ app.UseStaticFiles();
 app.UseBlazorFrameworkFiles();
 app.UseResponseCompression();
 app.UseWebSockets();
+app.MapWebSocketManager("/state", Services.Get<StateSocketHandler>());
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();

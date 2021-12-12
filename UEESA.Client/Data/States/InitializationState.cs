@@ -1,4 +1,8 @@
-﻿using UEESA.Client.Data.Json;
+﻿using System;
+using System.Threading.Tasks;
+
+using UEESA.Client.Data.Json;
+using UEESA.Client.Sockets;
 
 using Microsoft.JSInterop;
 
@@ -35,6 +39,7 @@ internal class InitializationState
 
             await Services.Get<LocalStorageState>().GetLocalData<GlobalSettings>();
 
+<<<<<<< HEAD
             /*
                 * TODO
             Services.Get<WebSocketManagerMiddleware>().OnServerConnected += async () =>
@@ -49,6 +54,20 @@ internal class InitializationState
             */
 
             Logger.LogInfo("Client State Initialized.");
+=======
+                Services.Get<WebSocketManagerMiddleware>().OnServerConnected += async () =>
+                {
+                    if (FirstDataLoadPass)
+                    {
+                        FirstDataLoadPass = false;
+                        await Services.Get<ServerState>().RequestRoadmapData(true);
+                    }
+                };
+                await Services.Get<WebSocketManagerMiddleware>().Connect();
+
+                Logger.LogInfo("Client State Initialized.");
+            }
+>>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
         }
     }
 }

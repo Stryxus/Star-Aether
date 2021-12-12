@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 ﻿namespace UEESA.Server.Data.Json.RSI;
 public class RSI_Json_Roadmap_Release
+=======
+﻿using System.Collections.Generic;
+
+namespace UEESA.Server.Data.Json.RSI
+>>>>>>> parent of 0f2b48d (Remove socket code and cleanup)
 {
     public int Id { get; set; }
     public int time_created { get; set; }
