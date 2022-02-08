@@ -61,6 +61,7 @@ else
 
 FileExtensionContentTypeProvider provider = new();
 provider.Mappings[".avif"] = "image/avif";
+provider.Mappings[".js"] = "text/javascript";
 
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles(new StaticFileOptions { ContentTypeProvider = provider });
