@@ -1,14 +1,12 @@
 <h1 align="center">
 
-<img src="https://raw.githubusercontent.com/Star-Athenaeum/Website/master/.github/git-readme.png?sanitize=true" width="300px" height="300px" alt="Logo" />
+<img src="https://raw.githubusercontent.com/Stryxus/Star-Aether/master/.github/git-readme.png?sanitize=true" width="300px" height="300px" alt="Logo" />
 <br/>
 UEESA WebAssembly App
 </h1>
 <div align="center">
 
-[![Build](https://img.shields.io/github/workflow/status/Star-Athenaeum/UEESA-App/Build?style=flat-square)](https://github.com/Star-Athenaeum/UEESA-App/actions/workflows/dotnet-core.yml)
-[![License: MIT](https://img.shields.io/github/license/Star-Athenaeum/Website?style=flat-square)](https://github.com/Star-Athenaeum/Website/blob/master/LICENSE)
-[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=flat-square&logo=twitter)](https://twitter.com/intent/tweet?hashtags=UEESA,StarCitizen&text=StarAthenaeum.+The+most+ambitious+tools+project+for+Star+Citizen&url=https://github.com/Star-Athenaeum)
+[![License: MIT](https://img.shields.io/github/license/Stryxus/Star-Aether?style=flat-square)](https://github.com/Star-Athenaeum/Website/blob/master/LICENSE)
 
 </div>
 
@@ -16,7 +14,7 @@ Home to the cutting edge corner of the verse, where each and every citizen, pira
 
 # Licensing
 
-This project follows the [MIT License](https://github.com/Star-Athenaeum/Website/blob/master/LICENSE)
+This project follows the [MIT License](https://github.com/Stryxus/Star-Aether/blob/main/LICENSE)
 
 # Questions
 
